@@ -32,7 +32,7 @@ const Features = () => {
           {/* Section header */}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Powerful Features for Better UX Research
+              Usability is made Comprehensive and Scalable
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Everything you need to conduct comprehensive user research with AI-powered synthetic users.
