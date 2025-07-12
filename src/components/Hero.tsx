@@ -58,59 +58,63 @@ const Hero = () => {
 
                   {/* Product Demo Interface */}
                   <div className="relative rounded-b-lg overflow-hidden bg-background">
-                    {/* Navigation Tabs */}
-                    <div className="flex border-b bg-muted/50">
-                      <div className="px-4 py-2 bg-background border-b-2 border-primary text-sm font-medium">Simulation</div>
-                      <div className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground cursor-pointer">Steps</div>
-                      <div className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground cursor-pointer">Persona</div>
-                      <div className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground cursor-pointer">Goal</div>
-                    </div>
-
                     <div className="p-6 space-y-6">
+                      {/* Persona & Goal Section */}
+                      <div className="grid grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <h3 className="text-sm font-semibold text-foreground">Persona: Jeff, 34</h3>
+                          <p className="text-xs text-muted-foreground">Mid-career professional looking for quality furniture that fits his modern apartment aesthetic and budget.</p>
+                        </div>
+                        <div className="space-y-2">
+                          <h3 className="text-sm font-semibold text-foreground">Goal</h3>
+                          <p className="text-xs text-muted-foreground">Find and purchase a credenza under $800 that matches existing decor and has good storage capacity.</p>
+                        </div>
+                      </div>
+
                       {/* Website Preview */}
                       <div className="space-y-3">
-                        <h3 className="text-sm font-medium text-foreground">Website Preview</h3>
+                        <h3 className="text-sm font-medium text-foreground">Current Page</h3>
                         <div className="relative rounded-lg overflow-hidden border">
                           <img 
-                            src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=500&fit=crop" 
-                            alt="Website preview" 
-                            className="w-full h-48 object-cover"
+                            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=400&fit=crop" 
+                            alt="Furniture website showing credenza products" 
+                            className="w-full h-40 object-cover"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
                         </div>
                       </div>
 
-                      {/* Steps Preview */}
+                      {/* User Journey Steps */}
                       <div className="space-y-3">
-                        <h3 className="text-sm font-medium text-foreground">User Journey Steps</h3>
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/30 border">
-                            <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">1</div>
-                            <span className="text-sm">Landing on homepage and browsing categories</span>
-                            <div className="ml-auto text-xs text-muted-foreground">2.3s</div>
+                        <h3 className="text-sm font-medium text-foreground">Simulation Steps</h3>
+                        <div className="space-y-3">
+                          <div className="p-4 rounded-lg bg-muted/30 border">
+                            <div className="flex items-start gap-3">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center mt-0.5">1</div>
+                              <div className="space-y-1">
+                                <div className="text-sm font-medium">Landing on homepage and browsing categories</div>
+                                <p className="text-xs text-muted-foreground">Jeff immediately navigates to the furniture section, showing familiarity with e-commerce sites. His quick scanning behavior indicates he has a specific item in mind.</p>
+                              </div>
+                            </div>
                           </div>
-                          <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/30 border">
-                            <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">2</div>
-                            <span className="text-sm">Searching for "credenza furniture"</span>
-                            <div className="ml-auto text-xs text-muted-foreground">1.8s</div>
+                          <div className="p-4 rounded-lg bg-muted/30 border">
+                            <div className="flex items-start gap-3">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center mt-0.5">2</div>
+                              <div className="space-y-1">
+                                <div className="text-sm font-medium">Searching for "credenza furniture"</div>
+                                <p className="text-xs text-muted-foreground">Uses specific terminology rather than browsing categories, demonstrating product knowledge. This targeted search approach is typical of buyers who have done preliminary research.</p>
+                              </div>
+                            </div>
                           </div>
-                          <div className="flex items-center gap-3 p-3 rounded-lg bg-primary/10 border border-primary/20">
-                            <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">3</div>
-                            <span className="text-sm">Viewing product details and reviews</span>
-                            <div className="ml-auto text-xs text-muted-foreground">4.1s</div>
+                          <div className="p-4 rounded-lg bg-primary/10 border border-primary/20">
+                            <div className="flex items-start gap-3">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center mt-0.5">3</div>
+                              <div className="space-y-1">
+                                <div className="text-sm font-medium">Viewing product details and reviews</div>
+                                <p className="text-xs text-muted-foreground">Spends significant time reading reviews and checking dimensions, indicating he values quality and wants to ensure the piece fits his space. This thorough evaluation suggests high purchase intent.</p>
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-
-                      {/* User Insights */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="p-4 rounded-lg bg-muted/30 border">
-                          <div className="text-xs text-muted-foreground mb-1">Decision Factor</div>
-                          <div className="text-sm font-medium">Price Comparison</div>
-                        </div>
-                        <div className="p-4 rounded-lg bg-muted/30 border">
-                          <div className="text-xs text-muted-foreground mb-1">Behavior</div>
-                          <div className="text-sm font-medium">Thorough Researcher</div>
                         </div>
                       </div>
                     </div>
