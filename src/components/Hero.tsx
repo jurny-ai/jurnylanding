@@ -85,35 +85,29 @@ const Hero = () => {
                       </div>
 
                       {/* User Journey Steps */}
-                      <div className="space-y-3">
+                      <div className="space-y-4">
                         <h3 className="text-sm font-medium text-foreground">Simulation Steps</h3>
-                        <div className="space-y-3">
-                          <div className="p-4 rounded-lg bg-muted/30 border">
-                            <div className="flex items-start gap-3">
-                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center mt-0.5">1</div>
-                              <div className="space-y-1">
-                                <div className="text-sm font-medium">Landing on homepage and browsing categories</div>
-                                <p className="text-xs text-muted-foreground">Jeff immediately navigates to the furniture section, showing familiarity with e-commerce sites. His quick scanning behavior indicates he has a specific item in mind.</p>
-                              </div>
+                        <div className="grid grid-cols-3 gap-4">
+                          <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">1</div>
+                              <div className="text-sm font-medium">Browse Categories</div>
                             </div>
+                            <p className="text-xs text-muted-foreground">Jeff immediately navigates to the furniture section, showing familiarity with e-commerce sites. His quick scanning behavior indicates he has a specific item in mind.</p>
                           </div>
-                          <div className="p-4 rounded-lg bg-muted/30 border">
-                            <div className="flex items-start gap-3">
-                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center mt-0.5">2</div>
-                              <div className="space-y-1">
-                                <div className="text-sm font-medium">Searching for "credenza furniture"</div>
-                                <p className="text-xs text-muted-foreground">Uses specific terminology rather than browsing categories, demonstrating product knowledge. This targeted search approach is typical of buyers who have done preliminary research.</p>
-                              </div>
+                          <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">2</div>
+                              <div className="text-sm font-medium">Search Product</div>
                             </div>
+                            <p className="text-xs text-muted-foreground">Uses specific terminology "credenza furniture" rather than browsing categories, demonstrating product knowledge and targeted search approach.</p>
                           </div>
-                          <div className="p-4 rounded-lg bg-primary/10 border border-primary/20">
-                            <div className="flex items-start gap-3">
-                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center mt-0.5">3</div>
-                              <div className="space-y-1">
-                                <div className="text-sm font-medium">Viewing product details and reviews</div>
-                                <p className="text-xs text-muted-foreground">Spends significant time reading reviews and checking dimensions, indicating he values quality and wants to ensure the piece fits his space. This thorough evaluation suggests high purchase intent.</p>
-                              </div>
+                          <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">3</div>
+                              <div className="text-sm font-medium">Review Details</div>
                             </div>
+                            <p className="text-xs text-muted-foreground">Spends significant time reading reviews and checking dimensions, indicating quality focus and ensuring proper fit. Shows high purchase intent.</p>
                           </div>
                         </div>
                       </div>
