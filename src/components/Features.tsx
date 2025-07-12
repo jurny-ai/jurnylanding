@@ -3,34 +3,14 @@ import { Brain, Target, Zap, BarChart3, Users, Shield, Clock, RefreshCw } from "
 
 const features = [
   {
-    icon: Brain,
-    title: "AI-Generated Personas",
-    description: "Create realistic user personas with detailed psychological profiles, preferences, and behavioral patterns based on your target demographics."
-  },
-  {
-    icon: Target,
-    title: "Directed Testing",
-    description: "Guide synthetic users through specific scenarios and user journeys to uncover usability issues and optimization opportunities."
-  },
-  {
     icon: Zap,
     title: "Instant Insights",
     description: "Get real-time feedback and analysis as synthetic users interact with your designs, identifying pain points and areas for improvement."
   },
   {
-    icon: BarChart3,
-    title: "Comprehensive Analytics",
-    description: "Detailed reports on user behavior, conversion paths, and engagement metrics to inform your design decisions."
-  },
-  {
     icon: Users,
     title: "Diverse User Base",
     description: "Generate users from different demographics, technical skill levels, and cultural backgrounds for comprehensive testing."
-  },
-  {
-    icon: Shield,
-    title: "Privacy-First",
-    description: "Test with synthetic users instead of real personal data, ensuring complete privacy compliance and ethical research practices."
   },
   {
     icon: Clock,
