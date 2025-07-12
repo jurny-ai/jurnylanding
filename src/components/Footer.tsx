@@ -14,7 +14,7 @@ const Footer = () => {
             </div>
 
             {/* Work with Us Button */}
-            <Button variant="outline" className="bg-gradient-primary text-primary-foreground border-none hover:opacity-90">
+            <Button size="lg" className="bg-gradient-primary hover:opacity-90 shadow-elegant">
               Work with Us
             </Button>
           </div>
