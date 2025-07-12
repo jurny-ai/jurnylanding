@@ -6,15 +6,7 @@ const ProductDemo = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section header */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              See SyntheticUX in Action
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Watch as our AI creates detailed user personas that interact with your designs, 
-              providing actionable insights for better user experiences.
-            </p>
-          </div>
+          
 
           {/* Demo screenshot */}
           <div className="relative">
