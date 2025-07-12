@@ -27,10 +27,7 @@ const Hero = () => {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-            Generate realistic user personas with detailed behavioral patterns, preferences, and decision-making processes. 
-            Test your designs with AI-powered users before launching to real customers.
-          </p>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">Generate realistic user personas with detailed behavioral patterns, preferences, and decision-making processes. Evaluate your user interfaces with AI-powered users before launching to real customers.</p>
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
@@ -42,20 +39,7 @@ const Hero = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-foreground">10,000+</div>
-              <div className="text-sm text-muted-foreground">Synthetic Users Created</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-foreground">95%</div>
-              <div className="text-sm text-muted-foreground">Accuracy Rate</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-foreground">50%</div>
-              <div className="text-sm text-muted-foreground">Faster Research</div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>;
