@@ -1,10 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Monitor, Users, Target, TrendingUp } from "lucide-react";
-
 const ProductDemo = () => {
-  return (
-    <section id="demo" className="py-20 bg-background">
+  return <section id="demo" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section header */}
@@ -29,18 +27,12 @@ const ProductDemo = () => {
                     <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                     <div className="w-3 h-3 rounded-full bg-green-500"></div>
                   </div>
-                  <div className="flex-1 text-center text-sm text-muted-foreground">
-                    SyntheticUX Dashboard - User Simulation
-                  </div>
+                  <div className="flex-1 text-center text-sm text-muted-foreground">JurnyAI Dashboard - User Simulation</div>
                 </div>
 
                 {/* Screenshot */}
                 <div className="relative rounded-b-lg overflow-hidden">
-                  <img 
-                    src="/lovable-uploads/a7d3d606-8bf6-4de7-b8a7-0dfd57725a1e.png" 
-                    alt="SyntheticUX user simulation showing Jeff shopping for a credenza with detailed behavioral analysis"
-                    className="w-full h-auto shadow-lg"
-                  />
+                  <img src="/lovable-uploads/a7d3d606-8bf6-4de7-b8a7-0dfd57725a1e.png" alt="SyntheticUX user simulation showing Jeff shopping for a credenza with detailed behavioral analysis" className="w-full h-auto shadow-lg" />
                   
                   {/* Overlay with highlights */}
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent pointer-events-none"></div>
@@ -93,15 +85,9 @@ const ProductDemo = () => {
           </div>
 
           {/* Call to action */}
-          <div className="text-center mt-12">
-            <Button size="lg" className="bg-gradient-primary hover:opacity-90">
-              Try It Yourself
-            </Button>
-          </div>
+          
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ProductDemo;

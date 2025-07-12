@@ -25,7 +25,7 @@ const Hero = () => {
             <span className="bg-gradient-hero bg-clip-text text-transparent">
               Synthetic Users
             </span>{" "}
-            for Deep UX Insights
+            for Directed UX Insights
           </h1>
 
           {/* Subheadline */}
