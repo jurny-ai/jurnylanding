@@ -61,11 +61,11 @@ const Hero = () => {
                     <div className="p-6 space-y-6">
                       {/* Persona & Goal Section */}
                       <div className="grid grid-cols-2 gap-6">
-                        <div className="space-y-2">
+                        <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
                           <h3 className="text-sm font-semibold text-foreground">Persona: Jeff, 34</h3>
                           <p className="text-xs text-muted-foreground">Mid-career professional looking for quality furniture that fits his modern apartment aesthetic and budget.</p>
                         </div>
-                        <div className="space-y-2">
+                        <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
                           <h3 className="text-sm font-semibold text-foreground">Goal</h3>
                           <p className="text-xs text-muted-foreground">Find and purchase a credenza under $800 that matches existing decor and has good storage capacity.</p>
                         </div>
@@ -87,27 +87,52 @@ const Hero = () => {
                       {/* User Journey Steps */}
                       <div className="space-y-4">
                         <h3 className="text-sm font-medium text-foreground">Simulation Steps</h3>
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-2 gap-4 mb-4">
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">1</div>
                               <div className="text-sm font-medium">Browse Categories</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Jeff immediately navigates to the furniture section, showing familiarity with e-commerce sites. His quick scanning behavior indicates he has a specific item in mind.</p>
+                            <p className="text-xs text-muted-foreground">Jeff immediately navigates to the furniture section, showing familiarity with e-commerce sites.</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">2</div>
                               <div className="text-sm font-medium">Search Product</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Uses specific terminology "credenza furniture" rather than browsing categories, demonstrating product knowledge and targeted search approach.</p>
+                            <p className="text-xs text-muted-foreground">Uses specific terminology "credenza furniture" demonstrating product knowledge.</p>
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4 mb-4">
+                          <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">3</div>
+                              <div className="text-sm font-medium">Filter Results</div>
+                            </div>
+                            <p className="text-xs text-muted-foreground">Applies price filter ($500-$800) and material preferences, showing budget consciousness.</p>
                           </div>
                           <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 space-y-2">
                             <div className="flex items-center gap-2">
-                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">3</div>
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">4</div>
                               <div className="text-sm font-medium">Review Details</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Spends significant time reading reviews and checking dimensions, indicating quality focus and ensuring proper fit. Shows high purchase intent.</p>
+                            <p className="text-xs text-muted-foreground">Carefully reads reviews and checks dimensions, indicating high purchase intent.</p>
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">5</div>
+                              <div className="text-sm font-medium">Compare Options</div>
+                            </div>
+                            <p className="text-xs text-muted-foreground">Opens multiple tabs to compare similar products, showing thorough research behavior.</p>
+                          </div>
+                          <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">6</div>
+                              <div className="text-sm font-medium">Add to Cart</div>
+                            </div>
+                            <p className="text-xs text-muted-foreground">Selects preferred option and proceeds to checkout after final dimension check.</p>
                           </div>
                         </div>
                       </div>
