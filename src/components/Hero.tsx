@@ -59,6 +59,25 @@ const Hero = () => {
                   {/* Product Demo Interface */}
                   <div className="relative rounded-b-lg overflow-hidden bg-background">
                     <div className="p-6 space-y-6">
+                      {/* Summary Section */}
+                      <div className="p-4 rounded-lg border bg-green-50 border-green-200 dark:bg-green-950 dark:border-green-800">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center">
+                              ✓
+                            </div>
+                            <div>
+                              <h3 className="text-sm font-semibold text-green-800 dark:text-green-200">Goal Successfully Completed</h3>
+                              <p className="text-xs text-green-600 dark:text-green-300">Jeff found and purchased a credenza that met his criteria</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-lg font-bold text-green-800 dark:text-green-200">12</div>
+                            <div className="text-xs text-green-600 dark:text-green-300">Total Steps</div>
+                          </div>
+                        </div>
+                      </div>
+
                       {/* Persona & Goal Section */}
                       <div className="grid grid-cols-2 gap-6">
                         <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
@@ -87,52 +106,90 @@ const Hero = () => {
                       {/* User Journey Steps */}
                       <div className="space-y-4">
                         <h3 className="text-sm font-medium text-foreground">Simulation Steps</h3>
-                        <div className="grid grid-cols-2 gap-4 mb-4">
-                          <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="p-3 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">1</div>
                               <div className="text-sm font-medium">Browse Categories</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Jeff immediately navigates to the furniture section, showing familiarity with e-commerce sites.</p>
+                            <p className="text-xs text-muted-foreground">Navigates to furniture section showing familiarity with e-commerce sites.</p>
                           </div>
-                          <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
+                          <div className="p-3 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">2</div>
                               <div className="text-sm font-medium">Search Product</div>
                             </div>
                             <p className="text-xs text-muted-foreground">Uses specific terminology "credenza furniture" demonstrating product knowledge.</p>
                           </div>
-                        </div>
-                        <div className="grid grid-cols-2 gap-4 mb-4">
-                          <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
+                          <div className="p-3 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">3</div>
                               <div className="text-sm font-medium">Filter Results</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Applies price filter ($500-$800) and material preferences, showing budget consciousness.</p>
+                            <p className="text-xs text-muted-foreground">Applies price filter ($500-$800) showing budget consciousness.</p>
                           </div>
-                          <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 space-y-2">
+                          <div className="p-3 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">4</div>
-                              <div className="text-sm font-medium">Review Details</div>
+                              <div className="text-sm font-medium">Review Product</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Carefully reads reviews and checks dimensions, indicating high purchase intent.</p>
+                            <p className="text-xs text-muted-foreground">Carefully reads reviews and checks dimensions for quality assurance.</p>
                           </div>
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
+                          <div className="p-3 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">5</div>
                               <div className="text-sm font-medium">Compare Options</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Opens multiple tabs to compare similar products, showing thorough research behavior.</p>
+                            <p className="text-xs text-muted-foreground">Opens multiple tabs to compare similar products thoroughly.</p>
                           </div>
-                          <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
+                          <div className="p-3 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">6</div>
-                              <div className="text-sm font-medium">Add to Cart</div>
+                              <div className="text-sm font-medium">Check Materials</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Selects preferred option and proceeds to checkout after final dimension check.</p>
+                            <p className="text-xs text-muted-foreground">Examines material quality and finish options to match decor.</p>
+                          </div>
+                          <div className="p-3 rounded-lg bg-muted/30 border space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">7</div>
+                              <div className="text-sm font-medium">Measure Space</div>
+                            </div>
+                            <p className="text-xs text-muted-foreground">Cross-references dimensions with available space in apartment.</p>
+                          </div>
+                          <div className="p-3 rounded-lg bg-muted/30 border space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">8</div>
+                              <div className="text-sm font-medium">Read Reviews</div>
+                            </div>
+                            <p className="text-xs text-muted-foreground">Studies customer feedback focusing on durability and assembly.</p>
+                          </div>
+                          <div className="p-3 rounded-lg bg-muted/30 border space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">9</div>
+                              <div className="text-sm font-medium">Check Delivery</div>
+                            </div>
+                            <p className="text-xs text-muted-foreground">Verifies shipping options and delivery timeframes.</p>
+                          </div>
+                          <div className="p-3 rounded-lg bg-muted/30 border space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">10</div>
+                              <div className="text-sm font-medium">Final Comparison</div>
+                            </div>
+                            <p className="text-xs text-muted-foreground">Makes final side-by-side comparison of top 3 options.</p>
+                          </div>
+                          <div className="p-3 rounded-lg bg-muted/30 border space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">11</div>
+                              <div className="text-sm font-medium">Select Option</div>
+                            </div>
+                            <p className="text-xs text-muted-foreground">Chooses mid-range option balancing quality and budget constraints.</p>
+                          </div>
+                          <div className="p-3 rounded-lg bg-primary/10 border border-primary/20 space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">12</div>
+                              <div className="text-sm font-medium">Purchase</div>
+                            </div>
+                            <p className="text-xs text-muted-foreground">Completes purchase with confidence after thorough research process.</p>
                           </div>
                         </div>
                       </div>
