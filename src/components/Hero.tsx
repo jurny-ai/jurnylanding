@@ -21,11 +21,11 @@ const Hero = () => {
 
           {/* Main headline */}
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
-            Create{" "}
+            Deploy{" "}
             <span className="bg-gradient-hero bg-clip-text text-transparent">
               Synthetic Users
             </span>{" "}
-            for Directed UX Insights
+            to Validate UX Decisions
           </h1>
 
           {/* Subheadline */}
