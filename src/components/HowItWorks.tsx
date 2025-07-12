@@ -89,7 +89,7 @@ const HowItWorks = () => {
           {/* CTA */}
           <div className="text-center mt-16">
             <Button size="lg" className="bg-gradient-primary hover:opacity-90">
-              Start Your First Simulation
+              work with us
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
