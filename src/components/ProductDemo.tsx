@@ -50,11 +50,11 @@ const ProductDemo = () => {
               <Card className="p-4 bg-background shadow-glow border max-w-xs">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Target className="h-5 w-5 text-primary" />
+                    <TrendingUp className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-sm">Behavioral Analysis</h4>
-                    <p className="text-xs text-muted-foreground">Deep insights into user decisions</p>
+                    <h4 className="font-semibold text-sm">Actionable Insights</h4>
+                    <p className="text-xs text-muted-foreground">Clear recommendations for improvement</p>
                   </div>
                 </div>
               </Card>
@@ -64,11 +64,11 @@ const ProductDemo = () => {
               <Card className="p-4 bg-background shadow-glow border max-w-xs">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <TrendingUp className="h-5 w-5 text-primary" />
+                    <Target className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-sm">Actionable Insights</h4>
-                    <p className="text-xs text-muted-foreground">Clear recommendations for improvement</p>
+                    <h4 className="font-semibold text-sm">Behavioral Analysis</h4>
+                    <p className="text-xs text-muted-foreground">Deep insights into user decisions</p>
                   </div>
                 </div>
               </Card>
