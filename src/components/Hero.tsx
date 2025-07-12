@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Play, ArrowRight, Target, Brain } from "lucide-react";
-
 const Hero = () => {
-  return (
-    <section className="relative overflow-hidden bg-gradient-subtle pt-20 pb-16">
+  return <section className="relative overflow-hidden bg-gradient-subtle pt-20 pb-16">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
@@ -40,10 +38,7 @@ const Hero = () => {
               Talk with Us
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button variant="outline" size="lg" className="group">
-              <Play className="mr-2 h-5 w-5" />
-              Work with Us
-            </Button>
+            
           </div>
 
           {/* Stats */}
@@ -63,8 +58,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
