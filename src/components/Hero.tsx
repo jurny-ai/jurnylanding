@@ -10,7 +10,7 @@ const Hero = () => {
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary-glow/10 rounded-full blur-3xl"></div>
 
       <div className="container mx-auto px-4 relative">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-accent/50 border border-accent-foreground/20 rounded-full px-4 py-2 mb-8">
             <Brain className="h-4 w-4 text-accent-foreground" />
@@ -41,7 +41,7 @@ const Hero = () => {
           </div>
 
           {/* Product Demo */}
-          <div className="max-w-6xl mx-auto mt-16">
+          <div className="max-w-7xl mx-auto mt-16">
             {/* Demo screenshot */}
             <div className="relative">
               <Card className="p-6 bg-gradient-to-br from-background to-muted/30 border shadow-elegant">

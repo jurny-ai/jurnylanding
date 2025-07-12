@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 const Footer = () => {
   return <footer className="bg-foreground/5 border-t border-border py-12">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center">
             {/* Brand */}
             <div className="flex items-center space-x-2">
