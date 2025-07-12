@@ -37,12 +37,12 @@ const Hero = () => {
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Button size="lg" className="bg-gradient-primary hover:opacity-90 shadow-elegant group">
-              Start Free Trial
+              Talk with Us
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button variant="outline" size="lg" className="group">
               <Play className="mr-2 h-5 w-5" />
-              Watch Demo
+              Work with Us
             </Button>
           </div>
 
