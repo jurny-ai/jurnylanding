@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Play, ArrowRight, Target, Brain } from "lucide-react";
 const Hero = () => {
-  return <section className="relative overflow-hidden bg-gradient-subtle pt-20 pb-16">
+  return <section className="relative overflow-hidden bg-gradient-subtle pt-20 pb-8">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       <div className="absolute inset-0 bg-gradient-radial from-primary/20 via-primary/5 to-transparent"></div>

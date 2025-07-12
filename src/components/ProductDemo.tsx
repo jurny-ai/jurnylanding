@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Monitor, Users, Target, TrendingUp } from "lucide-react";
 const ProductDemo = () => {
-  return <section id="demo" className="py-20 bg-background">
+  return <section id="demo" className="py-12 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section header */}
