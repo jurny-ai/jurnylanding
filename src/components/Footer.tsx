@@ -1,4 +1,4 @@
-import { Users } from "lucide-react";
+import { Users, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 const Footer = () => {
   return <footer className="bg-foreground/5 border-t border-border py-12">
@@ -14,8 +14,9 @@ const Footer = () => {
             </div>
 
             {/* Work with Us Button */}
-            <Button size="lg" className="bg-gradient-primary hover:opacity-90 shadow-elegant">
+            <Button size="lg" className="bg-gradient-primary hover:opacity-90 shadow-elegant group">
               Work with Us
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
 
