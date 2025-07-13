@@ -254,7 +254,7 @@ const Hero = () => {
                 </Card>
               </div>
 
-              <div className="absolute -left-48 bottom-1/6 hidden lg:block">
+              <div className="absolute -left-48 bottom-1/3 hidden lg:block">
                 <Card className="p-4 bg-background shadow-elegant border-2 max-w-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
