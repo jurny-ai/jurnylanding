@@ -73,7 +73,7 @@ const Hero = () => {
                           </div>
                           <div className="text-left">
                             <h3 className="text-sm font-semibold text-red-800 dark:text-red-200">Goal Failed - Purchase Abandoned</h3>
-                            <p className="text-xs text-red-600 dark:text-red-300">Sarah gave up after reviewing one product due to unconvincing reviews and time constraints</p>
+                            <p className="text-xs text-red-600 dark:text-red-300">Jen gave up after reviewing one product due to unconvincing reviews and time constraints</p>
                           </div>
                         </div>
                         
@@ -93,7 +93,7 @@ const Hero = () => {
                       {/* Persona & Goal Section */}
                       <div className="grid grid-cols-2 gap-6">
                         <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
-                          <h3 className="text-sm font-semibold text-foreground">Persona: Sarah, 28</h3>
+                          <h3 className="text-sm font-semibold text-foreground">Persona: Jen, 28</h3>
                           <p className="text-xs text-muted-foreground">Dog owner looking for durable, safe toys that will keep her energetic Golden Retriever entertained and engaged...</p>
                         </div>
                         <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
