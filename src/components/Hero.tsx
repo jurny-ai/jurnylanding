@@ -115,8 +115,9 @@ const Hero = () => {
           <div className="p-4 grid grid-cols-2 gap-4">
             {/* Left Side - Product Image */}
             <div className="space-y-3">
-              <div className="h-32 bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg flex items-center justify-center border relative">
-                <div className="w-16 h-12 bg-orange-400/60 rounded-lg"></div>
+              <div className="h-32 bg-gradient-to-br from-muted/40 to-muted/60 rounded-lg flex items-center justify-center border relative">
+                <div className="w-12 h-8 bg-muted-foreground/30 rounded-lg"></div>
+                <div className="w-8 h-6 bg-muted-foreground/20 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
                 <Heart className="absolute top-2 right-2 h-4 w-4 text-muted-foreground" />
               </div>
               <div className="flex gap-2">
