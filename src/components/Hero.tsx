@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Play, ArrowRight, Target, Brain, Users, TrendingUp, Monitor } from "lucide-react";
+import { Play, ArrowRight, Target, Brain, Users, TrendingUp, Monitor, Star, Heart, ShoppingCart } from "lucide-react";
 const Hero = () => {
   return <section className="relative overflow-hidden bg-gradient-subtle pt-20 pb-8">
       {/* Background decoration */}
@@ -100,10 +100,14 @@ const Hero = () => {
             <div className="flex items-center gap-3">
               <div className="h-4 w-4 bg-primary rounded-sm"></div>
               <div className="h-3 w-16 bg-muted rounded"></div>
+              <div className="text-xs text-muted-foreground">PetToys.com</div>
             </div>
-            <div className="flex gap-2">
-              <div className="h-6 w-12 bg-muted/40 rounded-sm"></div>
-              <div className="h-6 w-16 bg-primary rounded-sm"></div>
+            <div className="flex items-center gap-2">
+              <Heart className="h-4 w-4 text-muted-foreground" />
+              <ShoppingCart className="h-4 w-4 text-muted-foreground" />
+              <div className="h-6 w-16 bg-primary rounded-sm flex items-center justify-center">
+                <span className="text-xs text-white">Login</span>
+              </div>
             </div>
           </div>
           
@@ -111,8 +115,9 @@ const Hero = () => {
           <div className="p-4 grid grid-cols-2 gap-4">
             {/* Left Side - Product Image */}
             <div className="space-y-3">
-              <div className="h-32 bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg flex items-center justify-center border">
+              <div className="h-32 bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg flex items-center justify-center border relative">
                 <div className="w-16 h-12 bg-orange-400/60 rounded-lg"></div>
+                <Heart className="absolute top-2 right-2 h-4 w-4 text-muted-foreground" />
               </div>
               <div className="flex gap-2">
                 <div className="h-8 w-8 bg-muted/40 rounded border"></div>
@@ -124,19 +129,33 @@ const Hero = () => {
             {/* Right Side - Product Details */}
             <div className="space-y-3">
               <div>
-                <div className="h-4 w-3/4 bg-muted rounded mb-2"></div>
-                <div className="h-3 w-1/2 bg-muted/60 rounded"></div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-medium">Ultra Durable Rubber Chew Toy</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  {[1,2,3,4,5].map((star) => (
+                    <Star key={star} className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                  ))}
+                  <span className="text-xs text-muted-foreground ml-1">(247)</span>
+                </div>
               </div>
-              <div className="h-5 w-16 bg-primary/60 rounded"></div>
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-bold text-primary">$22.99</span>
+                <span className="text-sm text-muted-foreground line-through">$29.99</span>
+              </div>
               <div className="space-y-2">
-                <div className="h-2 w-full bg-muted/60 rounded"></div>
-                <div className="h-2 w-5/6 bg-muted/60 rounded"></div>
-                <div className="h-2 w-2/3 bg-muted/60 rounded"></div>
+                <div className="text-xs">• Non-toxic natural rubber material</div>
+                <div className="text-xs">• Designed for aggressive chewers</div>
+                <div className="text-xs">• Helps clean teeth and freshen breath</div>
+                <div className="text-xs">• Perfect for large dogs 50-80 lbs</div>
               </div>
               <div className="flex gap-2 pt-2">
-                <div className="h-8 w-20 bg-muted/40 rounded border"></div>
-                <div className="h-8 w-24 bg-primary rounded flex items-center justify-center">
-                  <div className="h-2 w-12 bg-white/80 rounded"></div>
+                <div className="h-8 w-20 bg-muted/40 rounded border flex items-center justify-center">
+                  <span className="text-xs">Qty: 1</span>
+                </div>
+                <div className="h-8 w-24 bg-primary rounded flex items-center justify-center gap-1">
+                  <ShoppingCart className="h-3 w-3 text-white" />
+                  <span className="text-xs text-white">Add Cart</span>
                 </div>
               </div>
             </div>
@@ -144,15 +163,22 @@ const Hero = () => {
           
           {/* Reviews Section */}
           <div className="px-4 pb-4 border-t border-border/30 pt-3">
-            <div className="h-3 w-16 bg-muted rounded mb-2"></div>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-xs font-medium">Reviews</span>
+              <div className="flex items-center gap-1">
+                {[1,2,3,4,5].map((star) => (
+                  <Star key={star} className="h-2 w-2 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+            </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
-                <div className="h-2 w-3/4 bg-muted/60 rounded"></div>
-                <div className="h-2 w-1/2 bg-muted/40 rounded"></div>
+                <div className="text-xs font-medium">Sarah K. ⭐⭐⭐⭐⭐</div>
+                <div className="text-xs text-muted-foreground">"Finally found one that lasts!"</div>
               </div>
               <div className="space-y-1">
-                <div className="h-2 w-2/3 bg-muted/60 rounded"></div>
-                <div className="h-2 w-3/4 bg-muted/40 rounded"></div>
+                <div className="text-xs font-medium">Mike R. ⭐⭐⭐⭐⭐</div>
+                <div className="text-xs text-muted-foreground">"My German Shepherd loves it"</div>
               </div>
             </div>
           </div>
