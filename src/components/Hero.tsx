@@ -143,43 +143,43 @@ const Hero = () => {
               </Card>
 
               {/* Floating feature callouts */}
-              <div className="absolute -left-32 top-1/4 hidden lg:block">
-                <Card className="p-4 bg-background shadow-glow border max-w-xs">
+              <div className="absolute -left-48 top-1/4 hidden xl:block">
+                <Card className="p-4 bg-background shadow-glow border-2 max-w-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                       <Users className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-sm">Persona Creation</h4>
-                      <p className="text-xs text-muted-foreground">AI generates realistic user profiles</p>
+                      <h4 className="font-bold text-sm">Persona Creation</h4>
+                      <p className="text-xs text-muted-foreground font-medium">AI generates realistic user profiles</p>
                     </div>
                   </div>
                 </Card>
               </div>
 
-              <div className="absolute -right-32 top-1/3 hidden lg:block">
-                <Card className="p-4 bg-background shadow-glow border max-w-xs">
+              <div className="absolute -right-48 top-1/3 hidden xl:block">
+                <Card className="p-4 bg-background shadow-glow border-2 max-w-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                       <TrendingUp className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-sm">Actionable Insights</h4>
-                      <p className="text-xs text-muted-foreground">Clear recommendations for improvement</p>
+                      <h4 className="font-bold text-sm">Actionable Insights</h4>
+                      <p className="text-xs text-muted-foreground font-medium">Clear recommendations for improvement</p>
                     </div>
                   </div>
                 </Card>
               </div>
 
-              <div className="absolute -left-32 bottom-1/4 hidden lg:block">
-                <Card className="p-4 bg-background shadow-glow border max-w-xs">
+              <div className="absolute -left-48 bottom-1/4 hidden xl:block">
+                <Card className="p-4 bg-background shadow-glow border-2 max-w-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                       <Target className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-sm">Behavioral Analysis</h4>
-                      <p className="text-xs text-muted-foreground">Deep insights into user decisions</p>
+                      <h4 className="font-bold text-sm">Behavioral Analysis</h4>
+                      <p className="text-xs text-muted-foreground font-medium">Deep insights into user decisions</p>
                     </div>
                   </div>
                 </Card>
