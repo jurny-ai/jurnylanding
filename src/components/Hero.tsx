@@ -114,46 +114,20 @@ const Hero = () => {
                               </div>
                             </div>
                             
-                            {/* Product Cards with Visual Content */}
-                            <div className="grid grid-cols-3 gap-3">
-                              <div className="space-y-2 p-2 bg-muted/20 rounded">
-                                <div className="h-14 bg-gradient-to-br from-muted to-muted/60 rounded-md flex items-center justify-center">
-                                  <div className="w-8 h-6 bg-muted-foreground/20 rounded-sm"></div>
+                            {/* Single Product Card */}
+                            <div className="flex justify-center">
+                              <div className="w-48 space-y-2 p-3 bg-primary/5 rounded-lg ring-2 ring-primary/30">
+                                <div className="h-20 bg-gradient-to-br from-primary/20 to-primary/10 rounded-md flex items-center justify-center">
+                                  <div className="w-12 h-8 bg-primary/40 rounded-sm"></div>
                                 </div>
-                                <div className="space-y-1">
-                                  <div className="h-2 bg-muted-foreground/40 rounded w-full"></div>
-                                  <div className="h-2 bg-muted-foreground/30 rounded w-2/3"></div>
-                                  <div className="flex justify-between items-center">
-                                    <div className="h-2 bg-primary/60 rounded w-1/3"></div>
-                                    <div className="h-3 w-3 bg-muted/60 rounded"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                              <div className="space-y-2 p-2 bg-primary/5 rounded ring-2 ring-primary/30">
-                                <div className="h-14 bg-gradient-to-br from-primary/20 to-primary/10 rounded-md flex items-center justify-center">
-                                  <div className="w-8 h-6 bg-primary/40 rounded-sm"></div>
-                                </div>
-                                <div className="space-y-1">
-                                  <div className="h-2 bg-primary/60 rounded w-full"></div>
-                                  <div className="h-2 bg-primary/40 rounded w-2/3"></div>
-                                  <div className="flex justify-between items-center">
-                                    <div className="h-2 bg-primary rounded w-1/3"></div>
-                                    <div className="h-3 w-3 bg-primary/60 rounded"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                              <div className="space-y-2 p-2 bg-muted/20 rounded">
-                                <div className="h-14 bg-gradient-to-br from-muted to-muted/60 rounded-md flex items-center justify-center">
-                                  <div className="w-8 h-6 bg-muted-foreground/20 rounded-sm"></div>
-                                </div>
-                                <div className="space-y-1">
-                                  <div className="h-2 bg-muted-foreground/40 rounded w-full"></div>
-                                  <div className="h-2 bg-muted-foreground/30 rounded w-2/3"></div>
-                                  <div className="flex justify-between items-center">
-                                    <div className="h-2 bg-primary/60 rounded w-1/3"></div>
-                                    <div className="h-3 w-3 bg-muted/60 rounded"></div>
+                                <div className="space-y-2">
+                                  <div className="h-3 bg-primary/60 rounded w-full"></div>
+                                  <div className="h-2 bg-primary/40 rounded w-3/4"></div>
+                                  <div className="flex justify-between items-center mt-3">
+                                    <div className="h-3 bg-primary rounded w-1/3"></div>
+                                    <div className="h-6 w-16 bg-primary rounded-sm flex items-center justify-center">
+                                      <div className="h-2 w-8 bg-white/80 rounded"></div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -169,23 +143,23 @@ const Hero = () => {
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">9</div>
-                              <div className="text-sm font-medium">Browse Products</div>
+                              <div className="text-sm font-medium">View Product</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Scans the three product cards displayed in the grid layout.</p>
+                            <p className="text-xs text-muted-foreground">Examines the featured product card with its details and pricing.</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">10</div>
-                              <div className="text-sm font-medium">Focus on Center Item</div>
+                              <div className="text-sm font-medium">Check Specifications</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Notices the highlighted middle product with the selection ring.</p>
+                            <p className="text-xs text-muted-foreground">Reviews product description and specifications for fit and quality.</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">11</div>
-                              <div className="text-sm font-medium">Compare Options</div>
+                              <div className="text-sm font-medium">Evaluate Price</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Reviews price indicators and product details across all three items.</p>
+                            <p className="text-xs text-muted-foreground">Confirms the price meets budget requirements and offers good value.</p>
                           </div>
                           <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 space-y-2">
                             <div className="flex items-center gap-2">
