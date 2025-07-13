@@ -111,7 +111,7 @@ const Hero = () => {
                 <div className="bg-background border border-border/50 rounded-md px-3 py-1 flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-green-500"></div>
                   <span className="text-xs text-muted-foreground">https://</span>
-                  <span className="text-xs font-medium">pettoys.com</span>
+                  <span className="text-xs font-medium">rogerspets.com</span>
                 </div>
               </div>
               
