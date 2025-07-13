@@ -12,11 +12,11 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative">
         <div className="max-w-6xl mx-auto text-center">
           {/* Logo */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-4">
             <img 
-              src="/lovable-uploads/a87915b7-4460-49bc-a231-e64fea7c9241.png" 
+              src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png" 
               alt="Jurny Logo" 
-              className="h-16 md:h-20"
+              className="h-8 md:h-10"
             />
           </div>
 
