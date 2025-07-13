@@ -5,22 +5,22 @@ const steps = [{
   step: "01",
   icon: Upload,
   title: "Upload Your Design",
-  description: "Compare your current design against proven alternatives. Upload both versions to see which performs better with real users."
+  description: "Click 'Upload Design' and import your wireframes or prototypes. Support for Figma, Sketch, and live website URLs."
 }, {
   step: "02",
   icon: Brain,
   title: "Define User Personas",
-  description: "Test how different user types respond to each design variant. Compare behavior across demographics and use cases."
+  description: "Click 'Add Persona' to create target users. Set demographics like 'Tech-savvy millennial' or 'Budget-conscious parent'."
 }, {
   step: "03",
   icon: Play,
   title: "Run Simulations",
-  description: "Watch side-by-side as synthetic users interact with both designs, revealing preference patterns and decision-making differences."
+  description: "Click 'Start Test' and watch synthetic users navigate your design. See them click buttons, read reviews, and make purchases."
 }, {
   step: "04",
   icon: BarChart3,
   title: "Analyze Results",
-  description: "Compare conversion rates, task completion, and user satisfaction between designs to make data-driven decisions."
+  description: "Click 'View Report' to see heatmaps, conversion rates, and user feedback. Export insights as PDF or share with your team."
 }];
 const HowItWorks = () => {
   return (
