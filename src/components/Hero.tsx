@@ -11,8 +11,14 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 relative">
         <div className="max-w-6xl mx-auto text-center">
-          {/* Badge */}
-          
+          {/* Logo */}
+          <div className="flex justify-center mb-8">
+            <img 
+              src="/lovable-uploads/a87915b7-4460-49bc-a231-e64fea7c9241.png" 
+              alt="Jurny Logo" 
+              className="h-16 md:h-20"
+            />
+          </div>
 
           {/* Main headline */}
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
