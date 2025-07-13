@@ -106,152 +106,91 @@ const Hero = () => {
             <div className="flex items-center justify-between">
               {/* Window Controls */}
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 cursor-pointer"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 cursor-pointer"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 cursor-pointer"></div>
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
               
               {/* URL Bar */}
-              <div className="flex-1 mx-4">
-                <div className="bg-background border border-border/50 rounded-md px-3 py-1 flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  <span className="text-xs text-muted-foreground">https://</span>
-                  <span className="text-xs font-medium">rogerspets.com</span>
-                </div>
-              </div>
-              
-              {/* Browser Menu */}
-              <div className="flex items-center gap-1">
-                <div className="w-4 h-4 hover:bg-muted rounded cursor-pointer flex items-center justify-center">
-                  <div className="w-1 h-1 bg-muted-foreground rounded-full"></div>
-                </div>
-                <div className="w-4 h-4 hover:bg-muted rounded cursor-pointer flex items-center justify-center">
-                  <div className="w-1 h-1 bg-muted-foreground rounded-full"></div>
-                </div>
-                <div className="w-4 h-4 hover:bg-muted rounded cursor-pointer flex items-center justify-center">
-                  <div className="w-1 h-1 bg-muted-foreground rounded-full"></div>
+              <div className="flex-1 mx-2 md:mx-4">
+                <div className="bg-background border border-border/50 rounded-md px-2 md:px-3 py-1 flex items-center gap-1 md:gap-2">
+                  <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-green-500"></div>
+                  <span className="text-xs font-medium truncate">rogerspets.com</span>
                 </div>
               </div>
             </div>
           </div>
           
           {/* Website Header */}
-          <div className="flex items-center justify-between border-b border-border/30 p-3" style={{
+          <div className="flex items-center justify-between border-b border-border/30 p-2 md:p-3" style={{
                           backgroundColor: 'hsl(var(--pet-background))'
                         }}>
-            <div className="flex items-center gap-3">
-              <div className="h-4 w-4 rounded-sm" style={{
+            <div className="flex items-center gap-2">
+              <div className="h-3 w-3 md:h-4 md:w-4 rounded-sm" style={{
                               backgroundColor: 'hsl(var(--pet-primary))'
-                            }}></div>
-              <div className="h-3 w-16 rounded" style={{
-                              backgroundColor: 'hsl(var(--pet-muted))'
                             }}></div>
               <div className="text-xs font-medium" style={{
                               color: 'hsl(var(--pet-secondary))'
                             }}>Roger's Pet Store</div>
             </div>
-            <div className="flex items-center gap-2">
-              <Heart className="h-4 w-4" style={{
-                              color: 'hsl(var(--pet-accent))'
-                            }} />
-              <ShoppingCart className="h-4 w-4" style={{
+            <div className="flex items-center gap-1 md:gap-2">
+              <ShoppingCart className="h-3 w-3 md:h-4 md:w-4" style={{
                               color: 'hsl(var(--pet-secondary))'
                             }} />
-              <div className="h-6 w-16 rounded-sm flex items-center justify-center" style={{
-                              backgroundColor: 'hsl(var(--pet-primary))'
-                            }}>
-                <span className="text-xs text-white font-medium">Login</span>
-              </div>
             </div>
           </div>
           
           {/* Product Page Content */}
-          <div className="p-4 grid grid-cols-2 gap-4" style={{
+          <div className="p-3 md:p-4 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4" style={{
                           backgroundColor: 'hsl(var(--pet-background))'
                         }}>
-            {/* Left Side - Product Image */}
-            <div className="space-y-3">
-              <div className="h-32 rounded-lg flex items-center justify-center border relative" style={{
+            {/* Product Image & Details Combined on Mobile */}
+            <div className="md:space-y-3">
+              <div className="h-24 md:h-32 rounded-lg flex items-center justify-center border relative mb-3" style={{
                               backgroundColor: 'hsl(var(--pet-card))',
                               borderColor: 'hsl(var(--pet-muted))'
                             }}>
-                <Bone className="h-16 w-16" style={{
+                <Bone className="h-12 w-12 md:h-16 md:w-16" style={{
                                 color: 'hsl(var(--pet-secondary))'
                               }} />
-                <Heart className="absolute top-2 right-2 h-4 w-4" style={{
+                <Heart className="absolute top-2 right-2 h-3 w-3 md:h-4 md:w-4" style={{
                                 color: 'hsl(var(--pet-accent))'
                               }} />
               </div>
-              <div className="flex gap-2">
-                <div className="h-8 w-8 rounded border" style={{
-                                backgroundColor: 'hsl(var(--pet-muted))',
-                                borderColor: 'hsl(var(--pet-muted))'
-                              }}></div>
-                <div className="h-8 w-8 rounded border-2" style={{
-                                backgroundColor: 'hsl(var(--pet-primary) / 0.2)',
-                                borderColor: 'hsl(var(--pet-primary))'
-                              }}></div>
-                <div className="h-8 w-8 rounded border" style={{
-                                backgroundColor: 'hsl(var(--pet-muted))',
-                                borderColor: 'hsl(var(--pet-muted))'
-                              }}></div>
-              </div>
             </div>
             
-            {/* Right Side - Product Details */}
-            <div className="space-y-3">
+            {/* Product Details */}
+            <div className="space-y-2 md:space-y-3">
               <div>
                 <div className="mb-2">
-                  <div className="h-3 w-32 bg-muted-foreground/30 rounded"></div>
+                  <div className="h-3 w-24 md:w-32 bg-muted-foreground/30 rounded"></div>
                 </div>
                 <div className="flex items-center gap-1">
-                  {[1, 2, 3, 4, 5].map(star => <Star key={star} className="h-3 w-3 fill-yellow-400 text-yellow-400" />)}
-                  <div className="h-2 w-8 bg-muted-foreground/30 rounded ml-1"></div>
+                  {[1, 2, 3, 4, 5].map(star => <Star key={star} className="h-2 w-2 md:h-3 md:w-3 fill-yellow-400 text-yellow-400" />)}
+                  <div className="h-2 w-6 md:w-8 bg-muted-foreground/30 rounded ml-1"></div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <div className="h-4 w-12 rounded" style={{
+                <div className="h-3 w-8 md:h-4 md:w-12 rounded" style={{
                                 backgroundColor: 'hsl(var(--pet-primary))'
                               }}></div>
-                <div className="h-3 w-10 rounded line-through" style={{
-                                backgroundColor: 'hsl(var(--pet-muted))'
-                              }}></div>
-              </div>
-              <div className="space-y-2">
-                <div className="h-2 w-28 rounded" style={{
-                                backgroundColor: 'hsl(var(--pet-muted))'
-                              }}></div>
-                <div className="h-2 w-24 rounded" style={{
-                                backgroundColor: 'hsl(var(--pet-muted))'
-                              }}></div>
-                <div className="h-2 w-20 rounded" style={{
-                                backgroundColor: 'hsl(var(--pet-muted))'
-                              }}></div>
-                <div className="h-2 w-32 rounded" style={{
+                <div className="h-2 w-6 md:h-3 md:w-10 rounded line-through" style={{
                                 backgroundColor: 'hsl(var(--pet-muted))'
                               }}></div>
               </div>
               <div className="flex gap-2 pt-2">
-                <div className="h-8 w-20 rounded border flex items-center justify-center" style={{
-                                backgroundColor: 'hsl(var(--pet-card))',
-                                borderColor: 'hsl(var(--pet-muted))'
-                              }}>
-                  <div className="h-2 w-8 rounded" style={{
-                                  backgroundColor: 'hsl(var(--pet-muted))'
-                                }}></div>
-                </div>
-                <div className="h-8 w-24 rounded flex items-center justify-center gap-1" style={{
+                <div className="h-6 w-16 md:h-8 md:w-24 rounded flex items-center justify-center gap-1" style={{
                                 backgroundColor: 'hsl(var(--pet-secondary))'
                               }}>
-                  <ShoppingCart className="h-3 w-3 text-white" />
-                  <div className="h-2 w-10 bg-white/60 rounded"></div>
+                  <ShoppingCart className="h-2 w-2 md:h-3 md:w-3 text-white" />
+                  <div className="h-1 w-6 md:h-2 md:w-10 bg-white/60 rounded"></div>
                 </div>
               </div>
             </div>
           </div>
           
-          {/* Reviews Section */}
-          <div className="px-4 pb-4 border-t border-border/30 pt-3">
+          {/* Reviews Section - Hidden on mobile for simplicity */}
+          <div className="hidden md:block px-4 pb-4 border-t border-border/30 pt-3">
             <div className="flex items-center gap-2 mb-2">
               <div className="h-2 w-16 bg-muted-foreground/30 rounded"></div>
             </div>
@@ -278,7 +217,7 @@ const Hero = () => {
                       {/* User Journey Steps */}
                       <div className="space-y-4">
                         <h3 className="text-sm font-medium text-foreground">Simulation Steps</h3>
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">9</div>
