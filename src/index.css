@@ -52,7 +52,7 @@ All colors MUST be HSL.
 
     /* Pet Store Theme */
     --pet-primary: 25 95% 53%;     /* Orange/amber for warmth */
-    --pet-secondary: 142 76% 36%;  /* Forest green for nature */
+    --pet-secondary: 142 45% 42%;  /* Muted forest green for nature */
     --pet-accent: 271 81% 56%;     /* Purple for playfulness */
     --pet-background: 45 100% 96%; /* Warm off-white */
     --pet-card: 39 100% 97%;       /* Light cream */
