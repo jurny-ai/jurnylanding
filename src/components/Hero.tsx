@@ -47,14 +47,7 @@ const Hero = () => {
               <Card className="p-4 bg-gradient-to-br from-background to-muted/30 border shadow-elegant">
                 <div className="relative">
                   {/* Browser chrome */}
-                  <div className="flex items-center gap-2 mb-4 p-3 bg-muted rounded-t-lg border-b">
-                    <div className="flex gap-2">
-                      <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                    </div>
-                    <div className="flex-1 text-center text-sm text-muted-foreground">JurnyAI Dashboard - User Simulation</div>
-                  </div>
+                  
 
                   {/* Product Demo Interface */}
                   <div className="relative rounded-b-lg overflow-hidden bg-background">
