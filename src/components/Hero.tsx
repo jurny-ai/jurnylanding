@@ -13,7 +13,7 @@ const Hero = () => {
         {/* Logo in top left */}
         <div className="absolute top-0 left-4">
           <img 
-            src="/lovable-uploads/a29bf3c3-2ec0-4c59-9014-a6ff4a4b268d.png" 
+            src="/lovable-uploads/6e4184e1-b941-4197-bfd2-b7efd3241713.png" 
             alt="Jurny Logo" 
             className="h-12 w-auto"
           />

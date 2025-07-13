@@ -6,11 +6,12 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center">
             {/* Brand */}
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <Users className="h-5 w-5 text-primary-foreground" />
-              </div>
-              <span className="text-xl font-bold text-foreground">JurnyAI</span>
+            <div className="flex items-center">
+              <img 
+                src="/lovable-uploads/6e4184e1-b941-4197-bfd2-b7efd3241713.png" 
+                alt="Jurny Logo" 
+                className="h-8 w-auto"
+              />
             </div>
 
             {/* Work with Us Button */}
