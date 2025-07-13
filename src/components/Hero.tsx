@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Play, ArrowRight, Target, Brain, Users, TrendingUp, Monitor, Star, Heart, ShoppingCart } from "lucide-react";
+import { Play, ArrowRight, Target, Brain, Users, TrendingUp, Monitor, Star, Heart, ShoppingCart, Bone } from "lucide-react";
 const Hero = () => {
   return <section className="relative overflow-hidden bg-gradient-subtle pt-20 pb-8">
       {/* Background decoration */}
@@ -115,9 +115,8 @@ const Hero = () => {
           <div className="p-4 grid grid-cols-2 gap-4">
             {/* Left Side - Product Image */}
             <div className="space-y-3">
-              <div className="h-32 bg-gradient-to-br from-muted/40 to-muted/60 rounded-lg flex items-center justify-center border relative">
-                <div className="w-12 h-8 bg-muted-foreground/30 rounded-lg"></div>
-                <div className="w-8 h-6 bg-muted-foreground/20 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+              <div className="h-32 bg-gradient-to-br from-muted/20 to-muted/40 rounded-lg flex items-center justify-center border relative">
+                <Bone className="h-16 w-16 text-muted-foreground/60" />
                 <Heart className="absolute top-2 right-2 h-4 w-4 text-muted-foreground" />
               </div>
               <div className="flex gap-2">
