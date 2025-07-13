@@ -65,17 +65,21 @@ const Hero = () => {
                   <div className="relative rounded-b-lg overflow-hidden bg-background">
                     <div className="p-4 space-y-4">
                       {/* Summary Section */}
-                      <div className="p-4 rounded-lg border bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 min-w-8 min-h-8 rounded-full bg-red-500 text-white flex items-center justify-center flex-shrink-0">
-                              <span className="text-sm font-bold">✗</span>
-                            </div>
-                            <div className="text-left">
-                              <h3 className="text-sm font-semibold text-red-800 dark:text-red-200">Goal Failed - Purchase Abandoned</h3>
-                              <p className="text-xs text-red-600 dark:text-red-300">Sarah gave up after reviewing one product due to unconvincing reviews and time constraints</p>
-                            </div>
+                      <div className="p-4 rounded-lg border bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800 space-y-3">
+                        {/* Main failure message */}
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 min-w-8 min-h-8 rounded-full bg-red-500 text-white flex items-center justify-center flex-shrink-0">
+                            <span className="text-sm font-bold">✗</span>
                           </div>
+                          <div className="text-left">
+                            <h3 className="text-sm font-semibold text-red-800 dark:text-red-200">Goal Failed - Purchase Abandoned</h3>
+                            <p className="text-xs text-red-600 dark:text-red-300">Sarah gave up after reviewing one product due to unconvincing reviews and time constraints</p>
+                          </div>
+                        </div>
+                        
+                        {/* Steps counter section */}
+                        <div className="flex items-center justify-between pt-2 border-t border-red-200 dark:border-red-800">
+                          <span className="text-xs text-red-600 dark:text-red-300 font-medium">Session Progress</span>
                           <div className="text-right">
                             <div className="text-lg font-bold text-red-800 dark:text-red-200">12</div>
                             <div className="text-xs text-red-600 dark:text-red-300">Steps Taken</div>
