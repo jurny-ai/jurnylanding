@@ -77,7 +77,7 @@ const Hero = () => {
                             </div>
                           </div>
                           <div className="text-right">
-                            <div className="text-lg font-bold text-red-800 dark:text-red-200">9</div>
+                            <div className="text-lg font-bold text-red-800 dark:text-red-200">12</div>
                             <div className="text-xs text-red-600 dark:text-red-300">Steps Taken</div>
                           </div>
                         </div>
