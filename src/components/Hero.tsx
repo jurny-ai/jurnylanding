@@ -143,7 +143,7 @@ const Hero = () => {
               </Card>
 
               {/* Floating feature callouts */}
-              <div className="absolute -left-24 top-1/4 hidden lg:block">
+              <div className="absolute -left-32 top-1/4 hidden lg:block">
                 <Card className="p-4 bg-background shadow-glow border max-w-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -157,7 +157,7 @@ const Hero = () => {
                 </Card>
               </div>
 
-              <div className="absolute -right-24 top-1/3 hidden lg:block">
+              <div className="absolute -right-32 top-1/3 hidden lg:block">
                 <Card className="p-4 bg-background shadow-glow border max-w-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -171,7 +171,7 @@ const Hero = () => {
                 </Card>
               </div>
 
-              <div className="absolute -left-24 bottom-1/4 hidden lg:block">
+              <div className="absolute -left-32 bottom-1/4 hidden lg:block">
                 <Card className="p-4 bg-background shadow-glow border max-w-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
