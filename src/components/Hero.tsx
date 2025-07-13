@@ -41,10 +41,10 @@ const Hero = () => {
           </div>
 
           {/* Product Demo */}
-          <div className="max-w-7xl mx-auto mt-16">
+          <div className="max-w-5xl mx-auto mt-16">
             {/* Demo screenshot */}
             <div className="relative">
-              <Card className="p-6 bg-gradient-to-br from-background to-muted/30 border shadow-elegant">
+              <Card className="p-4 bg-gradient-to-br from-background to-muted/30 border shadow-elegant">
                 <div className="relative">
                   {/* Browser chrome */}
                   <div className="flex items-center gap-2 mb-4 p-3 bg-muted rounded-t-lg border-b">
@@ -58,7 +58,7 @@ const Hero = () => {
 
                   {/* Product Demo Interface */}
                   <div className="relative rounded-b-lg overflow-hidden bg-background">
-                    <div className="p-6 space-y-6">
+                    <div className="p-4 space-y-4">
                       {/* Summary Section */}
                       <div className="p-4 rounded-lg border bg-green-50 border-green-200 dark:bg-green-950 dark:border-green-800">
                         <div className="flex items-center justify-between">
@@ -143,7 +143,7 @@ const Hero = () => {
               </Card>
 
               {/* Floating feature callouts */}
-              <div className="absolute -left-4 top-1/4 hidden lg:block">
+              <div className="absolute -left-16 top-1/4 hidden lg:block">
                 <Card className="p-4 bg-background shadow-glow border max-w-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -157,7 +157,7 @@ const Hero = () => {
                 </Card>
               </div>
 
-              <div className="absolute -right-4 top-1/3 hidden lg:block">
+              <div className="absolute -right-16 top-1/3 hidden lg:block">
                 <Card className="p-4 bg-background shadow-glow border max-w-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -171,7 +171,7 @@ const Hero = () => {
                 </Card>
               </div>
 
-              <div className="absolute -left-4 bottom-1/4 hidden lg:block">
+              <div className="absolute -left-16 bottom-1/4 hidden lg:block">
                 <Card className="p-4 bg-background shadow-glow border max-w-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
