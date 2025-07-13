@@ -65,20 +65,20 @@ const Hero = () => {
                   <div className="relative rounded-b-lg overflow-hidden bg-background">
                     <div className="p-4 space-y-4">
                       {/* Summary Section */}
-                      <div className="p-4 rounded-lg border bg-green-50 border-green-200 dark:bg-green-950 dark:border-green-800">
+                      <div className="p-4 rounded-lg border bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center">
-                              ✓
+                            <div className="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center">
+                              ✗
                             </div>
                             <div>
-                              <h3 className="text-sm font-semibold text-green-800 dark:text-green-200">Goal Successfully Completed</h3>
-                              <p className="text-xs text-green-600 dark:text-green-300">Sarah found and purchased a durable dog toy that meets her criteria</p>
+                              <h3 className="text-sm font-semibold text-red-800 dark:text-red-200">Goal Failed - Purchase Abandoned</h3>
+                              <p className="text-xs text-red-600 dark:text-red-300">Sarah gave up after reviewing one product due to unconvincing reviews and time constraints</p>
                             </div>
                           </div>
                           <div className="text-right">
-                            <div className="text-lg font-bold text-green-800 dark:text-green-200">12</div>
-                            <div className="text-xs text-green-600 dark:text-green-300">Total Steps</div>
+                            <div className="text-lg font-bold text-red-800 dark:text-red-200">9</div>
+                            <div className="text-xs text-red-600 dark:text-red-300">Steps Taken</div>
                           </div>
                         </div>
                       </div>
