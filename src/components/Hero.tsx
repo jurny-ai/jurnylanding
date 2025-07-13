@@ -93,41 +93,50 @@ const Hero = () => {
                       {/* Website Preview */}
                       <div className="space-y-3">
                         <h3 className="text-sm font-medium text-foreground">Current Page</h3>
-                        {/* Full Website Interface */}
+                        {/* Checkout Page Interface */}
                         <div className="bg-background rounded-lg min-h-64 border border-border/50 overflow-hidden">
-                          {/* Header with Navigation */}
+                          {/* Header */}
                           <div className="flex items-center justify-between border-b border-border/30 p-4 bg-muted/20">
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-3">
                               <div className="h-5 w-5 bg-primary rounded-sm"></div>
-                              <div className="h-4 w-20 bg-muted rounded"></div>
-                              <div className="h-3 w-16 bg-muted/60 rounded"></div>
-                              <div className="h-3 w-18 bg-muted/60 rounded"></div>
+                              <div className="h-3 w-16 bg-muted rounded"></div>
                             </div>
-                            <div className="flex gap-3">
-                              <div className="h-7 w-16 bg-muted/40 rounded-sm flex items-center justify-center">
-                                <div className="h-2 w-3 bg-muted rounded-full"></div>
-                              </div>
-                              <div className="h-7 w-20 bg-primary rounded-sm flex items-center justify-center">
-                                <div className="h-2 w-10 bg-white/80 rounded"></div>
-                              </div>
-                            </div>
+                            <div className="h-3 w-20 bg-muted/60 rounded"></div>
                           </div>
                           
-                          {/* Main Content Area */}
-                          <div className="p-8 flex justify-center items-center min-h-48">
-                            <div className="w-80 space-y-4 p-6 bg-primary/5 rounded-lg ring-2 ring-primary/30">
-                              <div className="h-40 bg-gradient-to-br from-primary/20 to-primary/10 rounded-md flex items-center justify-center">
-                                <div className="w-20 h-16 bg-primary/40 rounded-sm"></div>
-                              </div>
+                          {/* Checkout Content */}
+                          <div className="p-6 grid grid-cols-2 gap-6">
+                            {/* Left Side - Form */}
+                            <div className="space-y-4">
+                              <div className="h-4 w-24 bg-muted rounded"></div>
                               <div className="space-y-3">
-                                <div className="h-4 bg-primary/60 rounded w-full"></div>
-                                <div className="h-3 bg-primary/40 rounded w-3/4"></div>
-                                <div className="h-3 bg-primary/30 rounded w-1/2"></div>
-                                <div className="flex justify-between items-center mt-4">
-                                  <div className="h-4 bg-primary rounded w-1/3"></div>
-                                  <div className="h-8 w-24 bg-primary rounded-sm flex items-center justify-center">
-                                    <div className="h-2 w-12 bg-white/80 rounded"></div>
-                                  </div>
+                                <div className="h-8 bg-muted/40 rounded border"></div>
+                                <div className="h-8 bg-muted/40 rounded border"></div>
+                                <div className="grid grid-cols-2 gap-2">
+                                  <div className="h-8 bg-muted/40 rounded border"></div>
+                                  <div className="h-8 bg-muted/40 rounded border"></div>
+                                </div>
+                              </div>
+                              <div className="h-10 w-32 bg-primary rounded-sm flex items-center justify-center">
+                                <div className="h-2 w-16 bg-white/80 rounded"></div>
+                              </div>
+                            </div>
+                            
+                            {/* Right Side - Order Summary */}
+                            <div className="bg-muted/10 rounded-lg p-4 space-y-3">
+                              <div className="h-4 w-20 bg-muted rounded"></div>
+                              <div className="space-y-2">
+                                <div className="flex justify-between">
+                                  <div className="h-3 w-16 bg-muted/60 rounded"></div>
+                                  <div className="h-3 w-12 bg-muted/60 rounded"></div>
+                                </div>
+                                <div className="flex justify-between">
+                                  <div className="h-3 w-12 bg-muted/60 rounded"></div>
+                                  <div className="h-3 w-8 bg-muted/60 rounded"></div>
+                                </div>
+                                <div className="border-t pt-2 flex justify-between">
+                                  <div className="h-4 w-10 bg-primary/60 rounded"></div>
+                                  <div className="h-4 w-12 bg-primary/60 rounded"></div>
                                 </div>
                               </div>
                             </div>
@@ -142,30 +151,30 @@ const Hero = () => {
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">9</div>
-                              <div className="text-sm font-medium">View Product</div>
+                              <div className="text-sm font-medium">Fill Shipping Info</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Examines the featured product card with its details and pricing.</p>
+                            <p className="text-xs text-muted-foreground">Enters shipping address and contact information in the form fields.</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">10</div>
-                              <div className="text-sm font-medium">Check Specifications</div>
+                              <div className="text-sm font-medium">Review Order</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Reviews product description and specifications for fit and quality.</p>
+                            <p className="text-xs text-muted-foreground">Checks the order summary on the right side for accuracy.</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">11</div>
-                              <div className="text-sm font-medium">Evaluate Price</div>
+                              <div className="text-sm font-medium">Verify Total</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Confirms the price meets budget requirements and offers good value.</p>
+                            <p className="text-xs text-muted-foreground">Confirms the final total amount including shipping and taxes.</p>
                           </div>
                           <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">12</div>
-                              <div className="text-sm font-medium">Add to Cart</div>
+                              <div className="text-sm font-medium">Complete Purchase</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Clicks the primary action button to proceed with purchase.</p>
+                            <p className="text-xs text-muted-foreground">Clicks the primary checkout button to finalize the order.</p>
                           </div>
                         </div>
                       </div>
