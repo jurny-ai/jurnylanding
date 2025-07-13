@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Play, ArrowRight, Target, Brain, Users, TrendingUp, Monitor, Star, Heart, ShoppingCart, Bone } from "lucide-react";
+import { Play, ArrowRight, Target, Brain, Users, TrendingUp, Monitor, Star, Heart, ShoppingCart, Bone, User } from "lucide-react";
 const Hero = () => {
   return <section className="relative overflow-hidden bg-gradient-subtle pt-20 pb-8">
       {/* Background decoration */}
@@ -165,24 +165,19 @@ const Hero = () => {
           <div className="px-4 pb-4 border-t border-border/30 pt-3">
             <div className="flex items-center gap-2 mb-2">
               <div className="h-2 w-16 bg-muted-foreground/30 rounded"></div>
-              <div className="flex items-center gap-1">
-                {[1,2,3,4,5].map((star) => (
-                  <Star key={star} className="h-2 w-2 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-2">
+                  <User className="h-3 w-3 text-muted-foreground" />
                   <div className="h-2 w-12 bg-muted-foreground/30 rounded"></div>
-                  <span className="text-xs">⭐⭐⭐⭐⭐</span>
                 </div>
                 <div className="h-2 w-20 bg-muted-foreground/20 rounded"></div>
               </div>
               <div className="space-y-1">
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-2">
+                  <User className="h-3 w-3 text-muted-foreground" />
                   <div className="h-2 w-12 bg-muted-foreground/30 rounded"></div>
-                  <span className="text-xs">⭐⭐⭐⭐⭐</span>
                 </div>
                 <div className="h-2 w-18 bg-muted-foreground/20 rounded"></div>
               </div>
