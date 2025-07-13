@@ -144,7 +144,7 @@ const Hero = () => {
 
               {/* Floating feature callouts */}
               <div className="absolute -left-48 top-1/4 hidden lg:block">
-                <Card className="p-4 bg-background shadow-glow border-2 max-w-xs">
+                <Card className="p-4 bg-background shadow-elegant border-2 max-w-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                       <Users className="h-5 w-5 text-primary" />
@@ -158,7 +158,7 @@ const Hero = () => {
               </div>
 
               <div className="absolute -right-48 top-1/3 hidden lg:block">
-                <Card className="p-4 bg-background shadow-glow border-2 max-w-xs">
+                <Card className="p-4 bg-background shadow-elegant border-2 max-w-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                       <TrendingUp className="h-5 w-5 text-primary" />
@@ -172,7 +172,7 @@ const Hero = () => {
               </div>
 
               <div className="absolute -left-48 bottom-1/4 hidden lg:block">
-                <Card className="p-4 bg-background shadow-glow border-2 max-w-xs">
+                <Card className="p-4 bg-background shadow-elegant border-2 max-w-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                       <Target className="h-5 w-5 text-primary" />
