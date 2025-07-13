@@ -29,7 +29,7 @@ const Hero = () => {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed text-center">Define targeted AI personas, simulate behaviors at scale, reveal UX gaps early, and launch with confidence.</p>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed text-center">Define targeted personas, simulate behaviors at scale, optimize UX gaps</p>
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
@@ -133,9 +133,7 @@ const Hero = () => {
                   <div className="h-3 w-32 bg-muted-foreground/30 rounded"></div>
                 </div>
                 <div className="flex items-center gap-1">
-                  {[1,2,3,4,5].map((star) => (
-                    <Star key={star} className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                  ))}
+                  {[1, 2, 3, 4, 5].map(star => <Star key={star} className="h-3 w-3 fill-yellow-400 text-yellow-400" />)}
                   <div className="h-2 w-8 bg-muted-foreground/30 rounded ml-1"></div>
                 </div>
               </div>
