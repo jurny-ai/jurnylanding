@@ -12,12 +12,20 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative">
         <div className="max-w-6xl mx-auto text-center">
           {/* Logo */}
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-center mb-6">
             <img 
               src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png" 
               alt="Jurny Logo" 
               className="h-8 md:h-10"
             />
+          </div>
+
+          {/* AI Badge */}
+          <div className="flex justify-center mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-primary/10 border border-primary/20 backdrop-blur-sm">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-primary">AI-Powered User Simulation</span>
+            </div>
           </div>
 
           {/* Main headline */}
