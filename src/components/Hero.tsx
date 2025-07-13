@@ -48,17 +48,6 @@ const Hero = () => {
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </a>
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="shadow-elegant group"
-              asChild
-            >
-              <a href="mailto:syntheticjurny.ai@gmail.com">
-                Work With Us
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
           </div>
 
           {/* Product Demo */}

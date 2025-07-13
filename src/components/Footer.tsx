@@ -15,9 +15,11 @@ const Footer = () => {
             </div>
 
             {/* Work with Us Button */}
-            <Button size="lg" className="bg-gradient-primary hover:opacity-90 shadow-elegant group">
-              Work with Us
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            <Button size="lg" className="bg-gradient-primary hover:opacity-90 shadow-elegant group" asChild>
+              <a href="mailto:syntheticjurny.ai@gmail.com">
+                Work with Us
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
           </div>
 
