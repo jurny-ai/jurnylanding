@@ -282,7 +282,7 @@ const Hero = () => {
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">9</div>
-                              <div className="text-sm font-medium">Compare Materials</div>
+                              <div className="text-sm font-medium">click "dumbbell dog toy"</div>
                             </div>
                             <p className="text-xs text-muted-foreground">Examines the rubber material vs. the rope toy that frayed quickly.</p>
                           </div>
