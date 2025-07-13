@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Monitor, Users, Target, TrendingUp, ArrowLeft, ArrowRight, RotateCcw, Lock } from "lucide-react";
+import { Monitor, Users, Target, TrendingUp } from "lucide-react";
 const ProductDemo = () => {
   return <section id="demo" className="py-12 bg-background">
       <div className="container mx-auto px-4">
@@ -12,42 +12,13 @@ const ProductDemo = () => {
             <Card className="p-6 bg-gradient-to-br from-background to-muted/30 border shadow-elegant">
               <div className="relative">
                 {/* Browser chrome */}
-                <div className="bg-muted rounded-t-lg border-b">
-                  {/* Browser window controls */}
-                  <div className="flex items-center justify-between p-3 border-b border-border/50">
-                    <div className="flex gap-2">
-                      <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                      <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                    </div>
-                    <div className="text-xs text-muted-foreground">PetToys.com - Chrome</div>
-                    <div className="w-12"></div>
+                <div className="flex items-center gap-2 mb-4 p-3 bg-muted rounded-t-lg border-b">
+                  <div className="flex gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
                   </div>
-                  
-                  {/* Browser navigation bar */}
-                  <div className="flex items-center gap-3 p-2 px-3">
-                    <div className="flex items-center gap-1">
-                      <Button variant="ghost" size="sm" className="h-7 w-7 p-0">
-                        <ArrowLeft className="h-3 w-3" />
-                      </Button>
-                      <Button variant="ghost" size="sm" className="h-7 w-7 p-0">
-                        <ArrowRight className="h-3 w-3" />
-                      </Button>
-                      <Button variant="ghost" size="sm" className="h-7 w-7 p-0">
-                        <RotateCcw className="h-3 w-3" />
-                      </Button>
-                    </div>
-                    
-                    {/* URL bar */}
-                    <div className="flex-1 flex items-center bg-background rounded-md border px-3 py-1">
-                      <Lock className="h-3 w-3 text-green-600 mr-2" />
-                      <span className="text-xs text-muted-foreground">https://</span>
-                      <span className="text-xs font-medium">pettoys.com</span>
-                      <span className="text-xs text-muted-foreground">/shop/dog-toys</span>
-                    </div>
-                    
-                    <div className="w-8"></div>
-                  </div>
+                  <div className="flex-1 text-center text-sm text-muted-foreground">JurnyAI Dashboard - User Simulation</div>
                 </div>
 
                 {/* Screenshot */}
