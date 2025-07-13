@@ -96,7 +96,42 @@ const Hero = () => {
         {/* Product Page Interface */}
         <div className="bg-background rounded-lg min-h-64 border border-border overflow-hidden">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-border/30 p-3 bg-muted/20">
+          {/* Browser Header */}
+          <div className="bg-muted/40 border-b border-border/30 p-2">
+            <div className="flex items-center justify-between">
+              {/* Window Controls */}
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 cursor-pointer"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 cursor-pointer"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 cursor-pointer"></div>
+              </div>
+              
+              {/* URL Bar */}
+              <div className="flex-1 mx-4">
+                <div className="bg-background border border-border/50 rounded-md px-3 py-1 flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  <span className="text-xs text-muted-foreground">https://</span>
+                  <span className="text-xs font-medium">pettoys.com</span>
+                </div>
+              </div>
+              
+              {/* Browser Menu */}
+              <div className="flex items-center gap-1">
+                <div className="w-4 h-4 hover:bg-muted rounded cursor-pointer flex items-center justify-center">
+                  <div className="w-1 h-1 bg-muted-foreground rounded-full"></div>
+                </div>
+                <div className="w-4 h-4 hover:bg-muted rounded cursor-pointer flex items-center justify-center">
+                  <div className="w-1 h-1 bg-muted-foreground rounded-full"></div>
+                </div>
+                <div className="w-4 h-4 hover:bg-muted rounded cursor-pointer flex items-center justify-center">
+                  <div className="w-1 h-1 bg-muted-foreground rounded-full"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Website Header */}
+          <div className="flex items-center justify-between border-b border-border/30 p-3 bg-background">
             <div className="flex items-center gap-3">
               <div className="h-4 w-4 bg-primary rounded-sm"></div>
               <div className="h-3 w-16 bg-muted rounded"></div>
