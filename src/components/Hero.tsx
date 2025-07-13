@@ -10,23 +10,9 @@ const Hero = () => {
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary-glow/10 rounded-full blur-3xl"></div>
 
       <div className="container mx-auto px-4 relative">
-        {/* Logo in top left */}
-        <div className="absolute top-0 left-4">
-          <img 
-            src="/lovable-uploads/6e4184e1-b941-4197-bfd2-b7efd3241713.png" 
-            alt="Jurny Logo" 
-            className="h-12 w-auto"
-          />
-        </div>
-        
         <div className="max-w-6xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-accent/50 border border-accent-foreground/20 rounded-full px-4 py-2 mb-8">
-            <Brain className="h-4 w-4 text-accent-foreground" />
-            <span className="text-sm font-medium text-accent-foreground">
-              AI-Powered User Research
-            </span>
-          </div>
+          
 
           {/* Main headline */}
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
@@ -140,33 +126,65 @@ const Hero = () => {
           </div>
           
           {/* Website Header */}
-          <div className="flex items-center justify-between border-b border-border/30 p-3" style={{backgroundColor: 'hsl(var(--pet-background))'}}>
+          <div className="flex items-center justify-between border-b border-border/30 p-3" style={{
+                          backgroundColor: 'hsl(var(--pet-background))'
+                        }}>
             <div className="flex items-center gap-3">
-              <div className="h-4 w-4 rounded-sm" style={{backgroundColor: 'hsl(var(--pet-primary))'}}></div>
-              <div className="h-3 w-16 rounded" style={{backgroundColor: 'hsl(var(--pet-muted))'}}></div>
-              <div className="text-xs font-medium" style={{color: 'hsl(var(--pet-secondary))'}}>Roger's Pet Store</div>
+              <div className="h-4 w-4 rounded-sm" style={{
+                              backgroundColor: 'hsl(var(--pet-primary))'
+                            }}></div>
+              <div className="h-3 w-16 rounded" style={{
+                              backgroundColor: 'hsl(var(--pet-muted))'
+                            }}></div>
+              <div className="text-xs font-medium" style={{
+                              color: 'hsl(var(--pet-secondary))'
+                            }}>Roger's Pet Store</div>
             </div>
             <div className="flex items-center gap-2">
-              <Heart className="h-4 w-4" style={{color: 'hsl(var(--pet-accent))'}} />
-              <ShoppingCart className="h-4 w-4" style={{color: 'hsl(var(--pet-secondary))'}} />
-              <div className="h-6 w-16 rounded-sm flex items-center justify-center" style={{backgroundColor: 'hsl(var(--pet-primary))'}}>
+              <Heart className="h-4 w-4" style={{
+                              color: 'hsl(var(--pet-accent))'
+                            }} />
+              <ShoppingCart className="h-4 w-4" style={{
+                              color: 'hsl(var(--pet-secondary))'
+                            }} />
+              <div className="h-6 w-16 rounded-sm flex items-center justify-center" style={{
+                              backgroundColor: 'hsl(var(--pet-primary))'
+                            }}>
                 <span className="text-xs text-white font-medium">Login</span>
               </div>
             </div>
           </div>
           
           {/* Product Page Content */}
-          <div className="p-4 grid grid-cols-2 gap-4" style={{backgroundColor: 'hsl(var(--pet-background))'}}>
+          <div className="p-4 grid grid-cols-2 gap-4" style={{
+                          backgroundColor: 'hsl(var(--pet-background))'
+                        }}>
             {/* Left Side - Product Image */}
             <div className="space-y-3">
-              <div className="h-32 rounded-lg flex items-center justify-center border relative" style={{backgroundColor: 'hsl(var(--pet-card))', borderColor: 'hsl(var(--pet-muted))'}}>
-                <Bone className="h-16 w-16" style={{color: 'hsl(var(--pet-secondary))'}} />
-                <Heart className="absolute top-2 right-2 h-4 w-4" style={{color: 'hsl(var(--pet-accent))'}} />
+              <div className="h-32 rounded-lg flex items-center justify-center border relative" style={{
+                              backgroundColor: 'hsl(var(--pet-card))',
+                              borderColor: 'hsl(var(--pet-muted))'
+                            }}>
+                <Bone className="h-16 w-16" style={{
+                                color: 'hsl(var(--pet-secondary))'
+                              }} />
+                <Heart className="absolute top-2 right-2 h-4 w-4" style={{
+                                color: 'hsl(var(--pet-accent))'
+                              }} />
               </div>
               <div className="flex gap-2">
-                <div className="h-8 w-8 rounded border" style={{backgroundColor: 'hsl(var(--pet-muted))', borderColor: 'hsl(var(--pet-muted))'}}></div>
-                <div className="h-8 w-8 rounded border-2" style={{backgroundColor: 'hsl(var(--pet-primary) / 0.2)', borderColor: 'hsl(var(--pet-primary))'}}></div>
-                <div className="h-8 w-8 rounded border" style={{backgroundColor: 'hsl(var(--pet-muted))', borderColor: 'hsl(var(--pet-muted))'}}></div>
+                <div className="h-8 w-8 rounded border" style={{
+                                backgroundColor: 'hsl(var(--pet-muted))',
+                                borderColor: 'hsl(var(--pet-muted))'
+                              }}></div>
+                <div className="h-8 w-8 rounded border-2" style={{
+                                backgroundColor: 'hsl(var(--pet-primary) / 0.2)',
+                                borderColor: 'hsl(var(--pet-primary))'
+                              }}></div>
+                <div className="h-8 w-8 rounded border" style={{
+                                backgroundColor: 'hsl(var(--pet-muted))',
+                                borderColor: 'hsl(var(--pet-muted))'
+                              }}></div>
               </div>
             </div>
             
@@ -182,20 +200,39 @@ const Hero = () => {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <div className="h-4 w-12 rounded" style={{backgroundColor: 'hsl(var(--pet-primary))'}}></div>
-                <div className="h-3 w-10 rounded line-through" style={{backgroundColor: 'hsl(var(--pet-muted))'}}></div>
+                <div className="h-4 w-12 rounded" style={{
+                                backgroundColor: 'hsl(var(--pet-primary))'
+                              }}></div>
+                <div className="h-3 w-10 rounded line-through" style={{
+                                backgroundColor: 'hsl(var(--pet-muted))'
+                              }}></div>
               </div>
               <div className="space-y-2">
-                <div className="h-2 w-28 rounded" style={{backgroundColor: 'hsl(var(--pet-muted))'}}></div>
-                <div className="h-2 w-24 rounded" style={{backgroundColor: 'hsl(var(--pet-muted))'}}></div>
-                <div className="h-2 w-20 rounded" style={{backgroundColor: 'hsl(var(--pet-muted))'}}></div>
-                <div className="h-2 w-32 rounded" style={{backgroundColor: 'hsl(var(--pet-muted))'}}></div>
+                <div className="h-2 w-28 rounded" style={{
+                                backgroundColor: 'hsl(var(--pet-muted))'
+                              }}></div>
+                <div className="h-2 w-24 rounded" style={{
+                                backgroundColor: 'hsl(var(--pet-muted))'
+                              }}></div>
+                <div className="h-2 w-20 rounded" style={{
+                                backgroundColor: 'hsl(var(--pet-muted))'
+                              }}></div>
+                <div className="h-2 w-32 rounded" style={{
+                                backgroundColor: 'hsl(var(--pet-muted))'
+                              }}></div>
               </div>
               <div className="flex gap-2 pt-2">
-                <div className="h-8 w-20 rounded border flex items-center justify-center" style={{backgroundColor: 'hsl(var(--pet-card))', borderColor: 'hsl(var(--pet-muted))'}}>
-                  <div className="h-2 w-8 rounded" style={{backgroundColor: 'hsl(var(--pet-muted))'}}></div>
+                <div className="h-8 w-20 rounded border flex items-center justify-center" style={{
+                                backgroundColor: 'hsl(var(--pet-card))',
+                                borderColor: 'hsl(var(--pet-muted))'
+                              }}>
+                  <div className="h-2 w-8 rounded" style={{
+                                  backgroundColor: 'hsl(var(--pet-muted))'
+                                }}></div>
                 </div>
-                <div className="h-8 w-24 rounded flex items-center justify-center gap-1" style={{backgroundColor: 'hsl(var(--pet-secondary))'}}>
+                <div className="h-8 w-24 rounded flex items-center justify-center gap-1" style={{
+                                backgroundColor: 'hsl(var(--pet-secondary))'
+                              }}>
                   <ShoppingCart className="h-3 w-3 text-white" />
                   <div className="h-2 w-10 bg-white/60 rounded"></div>
                 </div>
