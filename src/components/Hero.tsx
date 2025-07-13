@@ -71,7 +71,7 @@ const Hero = () => {
                             <div className="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center">
                               ✗
                             </div>
-                            <div>
+                            <div className="text-left">
                               <h3 className="text-sm font-semibold text-red-800 dark:text-red-200">Goal Failed - Purchase Abandoned</h3>
                               <p className="text-xs text-red-600 dark:text-red-300">Sarah gave up after reviewing one product due to unconvincing reviews and time constraints</p>
                             </div>
