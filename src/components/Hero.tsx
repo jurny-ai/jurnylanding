@@ -88,7 +88,7 @@ const Hero = () => {
                       </div>
 
                       {/* Actionable Insights Overlay */}
-                      <div className="absolute -right-32 top-4 hidden lg:block">
+                      <div className="absolute -right-32 -top-2 hidden lg:block">
                         <Card className="p-4 bg-background shadow-elegant border-2 max-w-xs">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
