@@ -5,22 +5,22 @@ const steps = [{
   step: "01",
   icon: Upload,
   title: "Upload Your Design",
-  description: "Import your wireframes, prototypes, or live websites. SyntheticUX supports all major design tools and formats."
+  description: "Compare your current design against proven alternatives. Upload both versions to see which performs better with real users."
 }, {
   step: "02",
   icon: Brain,
   title: "Define User Personas",
-  description: "Specify your target demographics, goals, and behavioral characteristics. Our AI will generate realistic synthetic users."
+  description: "Test how different user types respond to each design variant. Compare behavior across demographics and use cases."
 }, {
   step: "03",
   icon: Play,
   title: "Run Simulations",
-  description: "Watch as synthetic users navigate your design, making decisions and providing detailed thought processes along the way."
+  description: "Watch side-by-side as synthetic users interact with both designs, revealing preference patterns and decision-making differences."
 }, {
   step: "04",
   icon: BarChart3,
   title: "Analyze Results",
-  description: "Get comprehensive reports with actionable insights, usability issues, and recommendations for improvement."
+  description: "Compare conversion rates, task completion, and user satisfaction between designs to make data-driven decisions."
 }];
 const HowItWorks = () => {
   return (
