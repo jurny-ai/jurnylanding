@@ -296,7 +296,7 @@ const Hero = () => {
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">11</div>
-                              <div className="text-sm font-medium">Price Comparison</div>
+                              <div className="text-sm font-medium">read reviews</div>
                             </div>
                             <p className="text-xs text-muted-foreground">Confirms better value than the $18 rope toy that lasted only 2 weeks.</p>
                           </div>
