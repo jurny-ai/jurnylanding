@@ -90,21 +90,6 @@ const Hero = () => {
                         </div>
                       </div>
 
-                      {/* Actionable Insights Overlay */}
-                      <div className="absolute -right-24 -top-2 hidden lg:block">
-                        <Card className="p-4 bg-background shadow-elegant border-2 max-w-xs">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                              <TrendingUp className="h-5 w-5 text-primary" />
-                            </div>
-                            <div>
-                              <h4 className="font-bold text-sm">Actionable Insights</h4>
-                              <p className="text-xs text-muted-foreground font-medium">Clear recommendations for improvement</p>
-                            </div>
-                          </div>
-                        </Card>
-                      </div>
-
                       {/* Persona & Goal Section */}
                       <div className="grid grid-cols-2 gap-6">
                         <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
@@ -274,6 +259,21 @@ const Hero = () => {
                   </div>
                 </div>
               </Card>
+
+              {/* Actionable Insights Overlay */}
+              <div className="absolute -right-48 top-16 hidden lg:block">
+                <Card className="p-4 bg-background shadow-elegant border-2 max-w-xs">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <TrendingUp className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-sm">Actionable Insights</h4>
+                      <p className="text-xs text-muted-foreground font-medium">Clear recommendations for improvement</p>
+                    </div>
+                  </div>
+                </Card>
+              </div>
 
               {/* Floating feature callouts */}
               <div className="absolute -left-48 top-1/3 hidden lg:block">
