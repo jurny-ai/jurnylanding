@@ -38,11 +38,27 @@ const Hero = () => {
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button size="lg" className="bg-gradient-primary hover:opacity-90 shadow-elegant group">
-              Talk with Us
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            <Button 
+              size="lg" 
+              className="bg-gradient-primary hover:opacity-90 shadow-elegant group"
+              asChild
+            >
+              <a href="mailto:syntheticjurny.ai@gmail.com">
+                Talk with Us
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
-            
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="shadow-elegant group"
+              asChild
+            >
+              <a href="mailto:syntheticjurny.ai@gmail.com">
+                Work With Us
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </Button>
           </div>
 
           {/* Product Demo */}
