@@ -289,7 +289,7 @@ const Hero = () => {
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">10</div>
-                              <div className="text-sm font-medium">Check Reviews</div>
+                              <div className="text-sm font-medium">scroll down</div>
                             </div>
                             <p className="text-xs text-muted-foreground">Reads customer reviews focusing on durability and safety feedback.</p>
                           </div>
