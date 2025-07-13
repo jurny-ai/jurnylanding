@@ -93,42 +93,40 @@ const Hero = () => {
                       {/* Website Preview */}
                       <div className="space-y-3">
                         <h3 className="text-sm font-medium text-foreground">Current Page</h3>
-                        <div className="relative rounded-lg overflow-hidden border bg-background">
-                          {/* Minimalist UI Mockup */}
-                          <div className="p-6 space-y-6 h-64">
-                            {/* Header with Navigation */}
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-4">
-                                <div className="h-5 w-5 bg-primary rounded-sm"></div>
-                                <div className="h-4 w-20 bg-muted rounded"></div>
-                                <div className="h-3 w-16 bg-muted/60 rounded"></div>
-                                <div className="h-3 w-18 bg-muted/60 rounded"></div>
+                        {/* Full Website Interface */}
+                        <div className="bg-background rounded-lg p-6 space-y-6 min-h-64 border border-border/50">
+                          {/* Header with Navigation */}
+                          <div className="flex items-center justify-between border-b border-border/30 pb-4">
+                            <div className="flex items-center gap-4">
+                              <div className="h-5 w-5 bg-primary rounded-sm"></div>
+                              <div className="h-4 w-20 bg-muted rounded"></div>
+                              <div className="h-3 w-16 bg-muted/60 rounded"></div>
+                              <div className="h-3 w-18 bg-muted/60 rounded"></div>
+                            </div>
+                            <div className="flex gap-3">
+                              <div className="h-7 w-16 bg-muted/40 rounded-sm flex items-center justify-center">
+                                <div className="h-2 w-3 bg-muted rounded-full"></div>
                               </div>
-                              <div className="flex gap-3">
-                                <div className="h-7 w-16 bg-muted/40 rounded-sm flex items-center justify-center">
-                                  <div className="h-2 w-3 bg-muted rounded-full"></div>
-                                </div>
-                                <div className="h-7 w-20 bg-primary rounded-sm flex items-center justify-center">
-                                  <div className="h-2 w-10 bg-white/80 rounded"></div>
-                                </div>
+                              <div className="h-7 w-20 bg-primary rounded-sm flex items-center justify-center">
+                                <div className="h-2 w-10 bg-white/80 rounded"></div>
                               </div>
                             </div>
-                            
-                            {/* Single Product Card */}
-                            <div className="flex justify-center pt-4">
-                              <div className="w-64 space-y-4 p-4 bg-primary/5 rounded-lg ring-2 ring-primary/30">
-                                <div className="h-32 bg-gradient-to-br from-primary/20 to-primary/10 rounded-md flex items-center justify-center">
-                                  <div className="w-16 h-12 bg-primary/40 rounded-sm"></div>
-                                </div>
-                                <div className="space-y-3">
-                                  <div className="h-4 bg-primary/60 rounded w-full"></div>
-                                  <div className="h-3 bg-primary/40 rounded w-3/4"></div>
-                                  <div className="h-3 bg-primary/30 rounded w-1/2"></div>
-                                  <div className="flex justify-between items-center mt-4">
-                                    <div className="h-4 bg-primary rounded w-1/3"></div>
-                                    <div className="h-8 w-20 bg-primary rounded-sm flex items-center justify-center">
-                                      <div className="h-2 w-10 bg-white/80 rounded"></div>
-                                    </div>
+                          </div>
+                          
+                          {/* Main Content Area */}
+                          <div className="flex justify-center pt-8">
+                            <div className="w-64 space-y-4 p-4 bg-primary/5 rounded-lg ring-2 ring-primary/30">
+                              <div className="h-32 bg-gradient-to-br from-primary/20 to-primary/10 rounded-md flex items-center justify-center">
+                                <div className="w-16 h-12 bg-primary/40 rounded-sm"></div>
+                              </div>
+                              <div className="space-y-3">
+                                <div className="h-4 bg-primary/60 rounded w-full"></div>
+                                <div className="h-3 bg-primary/40 rounded w-3/4"></div>
+                                <div className="h-3 bg-primary/30 rounded w-1/2"></div>
+                                <div className="flex justify-between items-center mt-4">
+                                  <div className="h-4 bg-primary rounded w-1/3"></div>
+                                  <div className="h-8 w-20 bg-primary rounded-sm flex items-center justify-center">
+                                    <div className="h-2 w-10 bg-white/80 rounded"></div>
                                   </div>
                                 </div>
                               </div>
