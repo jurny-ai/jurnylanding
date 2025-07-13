@@ -135,7 +135,7 @@ const Hero = () => {
             <div className="flex items-center gap-3">
               <div className="h-4 w-4 bg-primary rounded-sm"></div>
               <div className="h-3 w-16 bg-muted rounded"></div>
-              <div className="text-xs text-muted-foreground">PetToys.com</div>
+              <div className="text-xs text-muted-foreground">Roger's Pet Store</div>
             </div>
             <div className="flex items-center gap-2">
               <Heart className="h-4 w-4 text-muted-foreground" />
