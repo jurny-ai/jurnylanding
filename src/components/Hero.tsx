@@ -79,7 +79,7 @@ const Hero = () => {
                         
                         {/* Steps counter section */}
                         <div className="flex items-center justify-between pt-2 border-t border-red-200 dark:border-red-800">
-                          <span className="text-xs text-red-600 dark:text-red-300 font-medium">Session Progress</span>
+                          <span className="text-xs text-red-600 dark:text-red-300 font-medium cursor-pointer hover:text-red-500 transition-colors">View AI Analysis & Suggestions</span>
                           <div className="text-right">
                             <div className="text-lg font-bold text-red-800 dark:text-red-200">12</div>
                             <div className="text-xs text-red-600 dark:text-red-300">Steps Taken</div>
@@ -91,7 +91,7 @@ const Hero = () => {
                       <div className="grid grid-cols-2 gap-6">
                         <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
                           <h3 className="text-sm font-semibold text-foreground">Persona: Sarah, 28</h3>
-                          <p className="text-xs text-muted-foreground">Dog owner looking for durable, safe toys that will keep her energetic Golden Retriever entertained and engaged.</p>
+                          <p className="text-xs text-muted-foreground">Dog owner looking for durable, safe toys that will keep her energetic Golden Retriever entertained and engaged...</p>
                         </div>
                         <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
                           <h3 className="text-sm font-semibold text-foreground">Goal</h3>
