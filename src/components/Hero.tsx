@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Play, ArrowRight, Target, Brain, Users, TrendingUp, Monitor } from "lucide-react";
@@ -144,43 +143,43 @@ const Hero = () => {
               </Card>
 
               {/* Floating feature callouts */}
-              <div className="absolute -left-6 top-1/4 sm:-left-48 lg:block">
-                <Card className="p-4 bg-primary text-white shadow-glow border-2 border-primary max-w-xs">
+              <div className="absolute -left-4 top-1/4 block lg:-left-48">
+                <Card className="p-4 bg-background shadow-glow border-2 max-w-xs">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
-                      <Users className="h-5 w-5 text-white" />
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <Users className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-sm text-white">Persona Creation</h4>
-                      <p className="text-xs text-white/90 font-medium">AI generates realistic user profiles</p>
+                      <h4 className="font-bold text-sm">Persona Creation</h4>
+                      <p className="text-xs text-muted-foreground font-medium">AI generates realistic user profiles</p>
                     </div>
                   </div>
                 </Card>
               </div>
 
-              <div className="absolute -right-6 top-1/3 sm:-right-48 lg:block">
-                <Card className="p-4 bg-primary text-white shadow-glow border-2 border-primary max-w-xs">
+              <div className="absolute -right-4 top-1/3 block lg:-right-48">
+                <Card className="p-4 bg-background shadow-glow border-2 max-w-xs">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
-                      <TrendingUp className="h-5 w-5 text-white" />
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <TrendingUp className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-sm text-white">Actionable Insights</h4>
-                      <p className="text-xs text-white/90 font-medium">Clear recommendations for improvement</p>
+                      <h4 className="font-bold text-sm">Actionable Insights</h4>
+                      <p className="text-xs text-muted-foreground font-medium">Clear recommendations for improvement</p>
                     </div>
                   </div>
                 </Card>
               </div>
 
-              <div className="absolute -left-6 bottom-1/4 sm:-left-48 lg:block">
-                <Card className="p-4 bg-primary text-white shadow-glow border-2 border-primary max-w-xs">
+              <div className="absolute -left-4 bottom-1/4 block lg:-left-48">
+                <Card className="p-4 bg-background shadow-glow border-2 max-w-xs">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
-                      <Target className="h-5 w-5 text-white" />
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <Target className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-sm text-white">Behavioral Analysis</h4>
-                      <p className="text-xs text-white/90 font-medium">Deep insights into user decisions</p>
+                      <h4 className="font-bold text-sm">Behavioral Analysis</h4>
+                      <p className="text-xs text-muted-foreground font-medium">Deep insights into user decisions</p>
                     </div>
                   </div>
                 </Card>
