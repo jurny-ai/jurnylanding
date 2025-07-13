@@ -130,32 +130,32 @@ const Hero = () => {
             <div className="space-y-3">
               <div>
                 <div className="mb-2">
-                  <span className="text-xs font-medium">Product Name Lorem Ipsum</span>
+                  <div className="h-3 w-32 bg-muted-foreground/30 rounded"></div>
                 </div>
                 <div className="flex items-center gap-1">
                   {[1,2,3,4,5].map((star) => (
                     <Star key={star} className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                   ))}
-                  <span className="text-xs text-muted-foreground ml-1">(xxx)</span>
+                  <div className="h-2 w-8 bg-muted-foreground/30 rounded ml-1"></div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-lg font-bold text-primary">$XX.XX</span>
-                <span className="text-sm text-muted-foreground line-through">$XX.XX</span>
+                <div className="h-4 w-12 bg-primary/50 rounded"></div>
+                <div className="h-3 w-10 bg-muted-foreground/30 rounded line-through"></div>
               </div>
               <div className="space-y-2">
-                <div className="text-xs">• Lorem ipsum dolor sit amet</div>
-                <div className="text-xs">• Consectetur adipiscing elit</div>
-                <div className="text-xs">• Sed do eiusmod tempor</div>
-                <div className="text-xs">• Incididunt ut labore dolore</div>
+                <div className="h-2 w-28 bg-muted-foreground/20 rounded"></div>
+                <div className="h-2 w-24 bg-muted-foreground/20 rounded"></div>
+                <div className="h-2 w-20 bg-muted-foreground/20 rounded"></div>
+                <div className="h-2 w-32 bg-muted-foreground/20 rounded"></div>
               </div>
               <div className="flex gap-2 pt-2">
                 <div className="h-8 w-20 bg-muted/40 rounded border flex items-center justify-center">
-                  <span className="text-xs">Qty: 1</span>
+                  <div className="h-2 w-8 bg-muted-foreground/40 rounded"></div>
                 </div>
                 <div className="h-8 w-24 bg-primary rounded flex items-center justify-center gap-1">
                   <ShoppingCart className="h-3 w-3 text-white" />
-                  <span className="text-xs text-white">Add Cart</span>
+                  <div className="h-2 w-10 bg-white/60 rounded"></div>
                 </div>
               </div>
             </div>
@@ -164,7 +164,7 @@ const Hero = () => {
           {/* Reviews Section */}
           <div className="px-4 pb-4 border-t border-border/30 pt-3">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-medium">Customer Reviews</span>
+              <div className="h-2 w-16 bg-muted-foreground/30 rounded"></div>
               <div className="flex items-center gap-1">
                 {[1,2,3,4,5].map((star) => (
                   <Star key={star} className="h-2 w-2 fill-yellow-400 text-yellow-400" />
@@ -173,12 +173,18 @@ const Hero = () => {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
-                <div className="text-xs font-medium">User A. ⭐⭐⭐⭐⭐</div>
-                <div className="text-xs text-muted-foreground">"Lorem ipsum dolor sit"</div>
+                <div className="flex items-center gap-1">
+                  <div className="h-2 w-12 bg-muted-foreground/30 rounded"></div>
+                  <span className="text-xs">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div className="h-2 w-20 bg-muted-foreground/20 rounded"></div>
               </div>
               <div className="space-y-1">
-                <div className="text-xs font-medium">User B. ⭐⭐⭐⭐⭐</div>
-                <div className="text-xs text-muted-foreground">"Consectetur adipiscing"</div>
+                <div className="flex items-center gap-1">
+                  <div className="h-2 w-12 bg-muted-foreground/30 rounded"></div>
+                  <span className="text-xs">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div className="h-2 w-18 bg-muted-foreground/20 rounded"></div>
               </div>
             </div>
           </div>
