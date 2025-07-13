@@ -279,7 +279,7 @@ const Hero = () => {
                       <div className="space-y-4">
                         <h3 className="text-sm font-medium text-foreground">Simulation Steps</h3>
                         <div className="grid grid-cols-2 gap-4">
-                          <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
+                          <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">9</div>
                               <div className="text-sm font-medium">click "dumbbell dog toy"</div>
@@ -300,7 +300,7 @@ const Hero = () => {
                             </div>
                             <p className="text-xs text-muted-foreground">Confirms better value than the $18 rope toy that lasted only 2 weeks.</p>
                           </div>
-                          <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 space-y-2">
+                          <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">12</div>
                               <div className="text-sm font-medium">Add to Cart</div>
