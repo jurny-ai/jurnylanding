@@ -10,6 +10,15 @@ const Hero = () => {
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary-glow/10 rounded-full blur-3xl"></div>
 
       <div className="container mx-auto px-4 relative">
+        {/* Logo in top left */}
+        <div className="absolute top-0 left-4">
+          <img 
+            src="/lovable-uploads/a29bf3c3-2ec0-4c59-9014-a6ff4a4b268d.png" 
+            alt="Jurny Logo" 
+            className="h-12 w-auto"
+          />
+        </div>
+        
         <div className="max-w-6xl mx-auto text-center">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-accent/50 border border-accent-foreground/20 rounded-full px-4 py-2 mb-8">
