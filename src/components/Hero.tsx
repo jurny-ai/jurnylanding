@@ -130,24 +130,24 @@ const Hero = () => {
             <div className="space-y-3">
               <div>
                 <div className="mb-2">
-                  <span className="text-xs font-medium">Ultra Durable Rubber Chew Toy</span>
+                  <span className="text-xs font-medium">Product Name Lorem Ipsum</span>
                 </div>
                 <div className="flex items-center gap-1">
                   {[1,2,3,4,5].map((star) => (
                     <Star key={star} className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                   ))}
-                  <span className="text-xs text-muted-foreground ml-1">(247)</span>
+                  <span className="text-xs text-muted-foreground ml-1">(xxx)</span>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-lg font-bold text-primary">$22.99</span>
-                <span className="text-sm text-muted-foreground line-through">$29.99</span>
+                <span className="text-lg font-bold text-primary">$XX.XX</span>
+                <span className="text-sm text-muted-foreground line-through">$XX.XX</span>
               </div>
               <div className="space-y-2">
-                <div className="text-xs">• Non-toxic natural rubber material</div>
-                <div className="text-xs">• Designed for aggressive chewers</div>
-                <div className="text-xs">• Helps clean teeth and freshen breath</div>
-                <div className="text-xs">• Perfect for large dogs 50-80 lbs</div>
+                <div className="text-xs">• Lorem ipsum dolor sit amet</div>
+                <div className="text-xs">• Consectetur adipiscing elit</div>
+                <div className="text-xs">• Sed do eiusmod tempor</div>
+                <div className="text-xs">• Incididunt ut labore dolore</div>
               </div>
               <div className="flex gap-2 pt-2">
                 <div className="h-8 w-20 bg-muted/40 rounded border flex items-center justify-center">
@@ -164,7 +164,7 @@ const Hero = () => {
           {/* Reviews Section */}
           <div className="px-4 pb-4 border-t border-border/30 pt-3">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-medium">Reviews</span>
+              <span className="text-xs font-medium">Customer Reviews</span>
               <div className="flex items-center gap-1">
                 {[1,2,3,4,5].map((star) => (
                   <Star key={star} className="h-2 w-2 fill-yellow-400 text-yellow-400" />
@@ -173,12 +173,12 @@ const Hero = () => {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
-                <div className="text-xs font-medium">Sarah K. ⭐⭐⭐⭐⭐</div>
-                <div className="text-xs text-muted-foreground">"Finally found one that lasts!"</div>
+                <div className="text-xs font-medium">User A. ⭐⭐⭐⭐⭐</div>
+                <div className="text-xs text-muted-foreground">"Lorem ipsum dolor sit"</div>
               </div>
               <div className="space-y-1">
-                <div className="text-xs font-medium">Mike R. ⭐⭐⭐⭐⭐</div>
-                <div className="text-xs text-muted-foreground">"My German Shepherd loves it"</div>
+                <div className="text-xs font-medium">User B. ⭐⭐⭐⭐⭐</div>
+                <div className="text-xs text-muted-foreground">"Consectetur adipiscing"</div>
               </div>
             </div>
           </div>
