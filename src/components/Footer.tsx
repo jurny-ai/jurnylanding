@@ -8,7 +8,7 @@ const Footer = () => {
             {/* Brand */}
             <div className="flex items-center">
               <img 
-                src="/lovable-uploads/6e4184e1-b941-4197-bfd2-b7efd3241713.png" 
+                src="/lovable-uploads/560e781d-c4c7-4e51-819a-b21fc0746540.png" 
                 alt="Jurny Logo" 
                 className="h-8 w-auto"
               />
