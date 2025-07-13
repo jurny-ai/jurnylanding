@@ -94,7 +94,7 @@ const Hero = () => {
                       <div className="space-y-3">
                         <h3 className="text-sm font-medium text-foreground">Current Page</h3>
         {/* Product Page Interface */}
-        <div className="bg-background rounded-lg min-h-64 border border-border/50 overflow-hidden">
+        <div className="bg-background rounded-lg min-h-64 border border-border overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between border-b border-border/30 p-3 bg-muted/20">
             <div className="flex items-center gap-3">
