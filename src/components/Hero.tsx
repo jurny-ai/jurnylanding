@@ -239,16 +239,16 @@ const Hero = () => {
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">11</div>
-                              <div className="text-sm font-medium">read reviews</div>
+                              <div className="text-sm font-medium">Read Reviews</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Confirms better value than the $18 rope toy that lasted only 2 weeks.</p>
+                            <p className="text-xs text-muted-foreground">There are limited reviews, the few that are there describe issues with long term wear and tear</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">12</div>
-                              <div className="text-sm font-medium">Add to Cart</div>
+                              <div className="text-sm font-medium">Abandon goal</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Confident this will outlast previous purchase, proceeds to checkout.</p>
+                            <p className="text-xs text-muted-foreground">I am short for time and 12 steps is more than how much I have patience for. The one toy I was looking at did not have convincing reviews</p>
                           </div>
                         </div>
                       </div>
