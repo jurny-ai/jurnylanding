@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Play, ArrowRight, Target, Brain, Users, TrendingUp, Monitor, Star, Heart, ShoppingCart, Bone, User } from "lucide-react";
+import { Play, ArrowRight, Target, Brain, Users, TrendingUp, Monitor, Star, Heart, ShoppingCart, Bone, User, ChevronDown } from "lucide-react";
 const Hero = () => {
   return <section className="relative overflow-hidden bg-gradient-subtle pt-8 pb-8">
       {/* Background decoration */}
@@ -79,7 +79,10 @@ const Hero = () => {
                         
                         {/* Steps counter section */}
                         <div className="flex items-center justify-between pt-2 border-t border-red-200 dark:border-red-800">
-                          <span className="text-xs text-red-600 dark:text-red-300 font-medium cursor-pointer hover:text-red-500 transition-colors">View AI Analysis & Suggestions</span>
+                          <span className="text-xs text-red-600 dark:text-red-300 font-medium cursor-pointer hover:text-red-500 transition-colors flex items-center gap-1">
+                            View AI Analysis & Suggestions
+                            <ChevronDown className="h-3 w-3" />
+                          </span>
                           <div className="text-right">
                             <div className="text-lg font-bold text-red-800 dark:text-red-200">12</div>
                             <div className="text-xs text-red-600 dark:text-red-300">Steps Taken</div>
