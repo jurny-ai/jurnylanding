@@ -68,8 +68,8 @@ const Hero = () => {
                       <div className="p-4 rounded-lg border bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center">
-                              ✗
+                            <div className="w-8 h-8 min-w-8 min-h-8 rounded-full bg-red-500 text-white flex items-center justify-center flex-shrink-0">
+                              <span className="text-sm font-bold">✗</span>
                             </div>
                             <div className="text-left">
                               <h3 className="text-sm font-semibold text-red-800 dark:text-red-200">Goal Failed - Purchase Abandoned</h3>
