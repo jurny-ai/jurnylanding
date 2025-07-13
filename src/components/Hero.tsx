@@ -93,13 +93,37 @@ const Hero = () => {
                       {/* Website Preview */}
                       <div className="space-y-3">
                         <h3 className="text-sm font-medium text-foreground">Current Page</h3>
-                        <div className="relative rounded-lg overflow-hidden border">
-                          <img 
-                            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=400&fit=crop" 
-                            alt="Furniture website showing credenza products" 
-                            className="w-full h-40 object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                        <div className="relative rounded-lg overflow-hidden border bg-background">
+                          {/* Minimalist UI Mockup */}
+                          <div className="p-4 space-y-4 h-40">
+                            {/* Header */}
+                            <div className="flex items-center justify-between">
+                              <div className="h-4 w-20 bg-muted rounded"></div>
+                              <div className="flex gap-2">
+                                <div className="h-6 w-16 bg-primary/20 rounded-sm"></div>
+                                <div className="h-6 w-16 bg-primary rounded-sm"></div>
+                              </div>
+                            </div>
+                            
+                            {/* Product Cards */}
+                            <div className="grid grid-cols-3 gap-3">
+                              <div className="space-y-2">
+                                <div className="h-16 bg-muted rounded-md"></div>
+                                <div className="h-2 bg-muted/60 rounded w-3/4"></div>
+                                <div className="h-2 bg-primary/30 rounded w-1/2"></div>
+                              </div>
+                              <div className="space-y-2 ring-2 ring-primary/20">
+                                <div className="h-16 bg-muted rounded-md"></div>
+                                <div className="h-2 bg-muted/60 rounded w-3/4"></div>
+                                <div className="h-2 bg-primary/30 rounded w-1/2"></div>
+                              </div>
+                              <div className="space-y-2">
+                                <div className="h-16 bg-muted rounded-md"></div>
+                                <div className="h-2 bg-muted/60 rounded w-3/4"></div>
+                                <div className="h-2 bg-primary/30 rounded w-1/2"></div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
@@ -110,30 +134,30 @@ const Hero = () => {
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">9</div>
-                              <div className="text-sm font-medium">Check Delivery</div>
+                              <div className="text-sm font-medium">Browse Products</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Verifies shipping options and delivery timeframes to ensure timely arrival.</p>
+                            <p className="text-xs text-muted-foreground">Scans the three product cards displayed in the grid layout.</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">10</div>
-                              <div className="text-sm font-medium">Final Comparison</div>
+                              <div className="text-sm font-medium">Focus on Center Item</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Makes final side-by-side comparison of top 3 credenza options.</p>
+                            <p className="text-xs text-muted-foreground">Notices the highlighted middle product with the selection ring.</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">11</div>
-                              <div className="text-sm font-medium">Select Option</div>
+                              <div className="text-sm font-medium">Compare Options</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Chooses mid-range option balancing quality and budget constraints.</p>
+                            <p className="text-xs text-muted-foreground">Reviews price indicators and product details across all three items.</p>
                           </div>
                           <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">12</div>
-                              <div className="text-sm font-medium">Purchase</div>
+                              <div className="text-sm font-medium">Add to Cart</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Completes purchase with confidence after thorough research process.</p>
+                            <p className="text-xs text-muted-foreground">Clicks the primary action button to proceed with purchase.</p>
                           </div>
                         </div>
                       </div>
