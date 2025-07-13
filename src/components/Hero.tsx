@@ -68,7 +68,7 @@ const Hero = () => {
                             </div>
                             <div>
                               <h3 className="text-sm font-semibold text-green-800 dark:text-green-200">Goal Successfully Completed</h3>
-                              <p className="text-xs text-green-600 dark:text-green-300">Jeff found and purchased a credenza that met his criteria</p>
+                              <p className="text-xs text-green-600 dark:text-green-300">Sarah found and purchased a durable dog toy that meets her criteria</p>
                             </div>
                           </div>
                           <div className="text-right">
@@ -81,67 +81,82 @@ const Hero = () => {
                       {/* Persona & Goal Section */}
                       <div className="grid grid-cols-2 gap-6">
                         <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
-                          <h3 className="text-sm font-semibold text-foreground">Persona: Jeff, 34</h3>
-                          <p className="text-xs text-muted-foreground">Mid-career professional looking for quality furniture that fits his modern apartment aesthetic and budget.</p>
+                          <h3 className="text-sm font-semibold text-foreground">Persona: Sarah, 28</h3>
+                          <p className="text-xs text-muted-foreground">Dog owner looking for durable, safe toys that will keep her energetic Golden Retriever entertained and engaged.</p>
                         </div>
                         <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
                           <h3 className="text-sm font-semibold text-foreground">Goal</h3>
-                          <p className="text-xs text-muted-foreground">Find and purchase a credenza under $800 that matches existing decor and has good storage capacity.</p>
+                          <p className="text-xs text-muted-foreground">Find a high-quality chew toy under $25 that's safer and more durable than her previous rope toy purchase.</p>
                         </div>
                       </div>
 
                       {/* Website Preview */}
                       <div className="space-y-3">
                         <h3 className="text-sm font-medium text-foreground">Current Page</h3>
-                        {/* Checkout Page Interface */}
-                        <div className="bg-background rounded-lg min-h-64 border border-border/50 overflow-hidden">
-                          {/* Header */}
-                          <div className="flex items-center justify-between border-b border-border/30 p-4 bg-muted/20">
-                            <div className="flex items-center gap-3">
-                              <div className="h-5 w-5 bg-primary rounded-sm"></div>
-                              <div className="h-3 w-16 bg-muted rounded"></div>
-                            </div>
-                            <div className="h-3 w-20 bg-muted/60 rounded"></div>
-                          </div>
-                          
-                          {/* Checkout Content */}
-                          <div className="p-6 grid grid-cols-2 gap-6">
-                            {/* Left Side - Form */}
-                            <div className="space-y-4">
-                              <div className="h-4 w-24 bg-muted rounded"></div>
-                              <div className="space-y-3">
-                                <div className="h-8 bg-muted/40 rounded border"></div>
-                                <div className="h-8 bg-muted/40 rounded border"></div>
-                                <div className="grid grid-cols-2 gap-2">
-                                  <div className="h-8 bg-muted/40 rounded border"></div>
-                                  <div className="h-8 bg-muted/40 rounded border"></div>
-                                </div>
-                              </div>
-                              <div className="h-10 w-32 bg-primary rounded-sm flex items-center justify-center">
-                                <div className="h-2 w-16 bg-white/80 rounded"></div>
-                              </div>
-                            </div>
-                            
-                            {/* Right Side - Order Summary */}
-                            <div className="bg-muted/10 rounded-lg p-4 space-y-3">
-                              <div className="h-4 w-20 bg-muted rounded"></div>
-                              <div className="space-y-2">
-                                <div className="flex justify-between">
-                                  <div className="h-3 w-16 bg-muted/60 rounded"></div>
-                                  <div className="h-3 w-12 bg-muted/60 rounded"></div>
-                                </div>
-                                <div className="flex justify-between">
-                                  <div className="h-3 w-12 bg-muted/60 rounded"></div>
-                                  <div className="h-3 w-8 bg-muted/60 rounded"></div>
-                                </div>
-                                <div className="border-t pt-2 flex justify-between">
-                                  <div className="h-4 w-10 bg-primary/60 rounded"></div>
-                                  <div className="h-4 w-12 bg-primary/60 rounded"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+        {/* Product Page Interface */}
+        <div className="bg-background rounded-lg min-h-64 border border-border/50 overflow-hidden">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-border/30 p-3 bg-muted/20">
+            <div className="flex items-center gap-3">
+              <div className="h-4 w-4 bg-primary rounded-sm"></div>
+              <div className="h-3 w-16 bg-muted rounded"></div>
+            </div>
+            <div className="flex gap-2">
+              <div className="h-6 w-12 bg-muted/40 rounded-sm"></div>
+              <div className="h-6 w-16 bg-primary rounded-sm"></div>
+            </div>
+          </div>
+          
+          {/* Product Page Content */}
+          <div className="p-4 grid grid-cols-2 gap-4">
+            {/* Left Side - Product Image */}
+            <div className="space-y-3">
+              <div className="h-32 bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg flex items-center justify-center border">
+                <div className="w-16 h-12 bg-orange-400/60 rounded-lg"></div>
+              </div>
+              <div className="flex gap-2">
+                <div className="h-8 w-8 bg-muted/40 rounded border"></div>
+                <div className="h-8 w-8 bg-primary/20 rounded border-2 border-primary/40"></div>
+                <div className="h-8 w-8 bg-muted/40 rounded border"></div>
+              </div>
+            </div>
+            
+            {/* Right Side - Product Details */}
+            <div className="space-y-3">
+              <div>
+                <div className="h-4 w-3/4 bg-muted rounded mb-2"></div>
+                <div className="h-3 w-1/2 bg-muted/60 rounded"></div>
+              </div>
+              <div className="h-5 w-16 bg-primary/60 rounded"></div>
+              <div className="space-y-2">
+                <div className="h-2 w-full bg-muted/60 rounded"></div>
+                <div className="h-2 w-5/6 bg-muted/60 rounded"></div>
+                <div className="h-2 w-2/3 bg-muted/60 rounded"></div>
+              </div>
+              <div className="flex gap-2 pt-2">
+                <div className="h-8 w-20 bg-muted/40 rounded border"></div>
+                <div className="h-8 w-24 bg-primary rounded flex items-center justify-center">
+                  <div className="h-2 w-12 bg-white/80 rounded"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Reviews Section */}
+          <div className="px-4 pb-4 border-t border-border/30 pt-3">
+            <div className="h-3 w-16 bg-muted rounded mb-2"></div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <div className="h-2 w-3/4 bg-muted/60 rounded"></div>
+                <div className="h-2 w-1/2 bg-muted/40 rounded"></div>
+              </div>
+              <div className="space-y-1">
+                <div className="h-2 w-2/3 bg-muted/60 rounded"></div>
+                <div className="h-2 w-3/4 bg-muted/40 rounded"></div>
+              </div>
+            </div>
+          </div>
+        </div>
                       </div>
 
                       {/* User Journey Steps */}
@@ -151,30 +166,30 @@ const Hero = () => {
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">9</div>
-                              <div className="text-sm font-medium">Fill Shipping Info</div>
+                              <div className="text-sm font-medium">Compare Materials</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Enters shipping address and contact information in the form fields.</p>
+                            <p className="text-xs text-muted-foreground">Examines the rubber material vs. the rope toy that frayed quickly.</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">10</div>
-                              <div className="text-sm font-medium">Review Order</div>
+                              <div className="text-sm font-medium">Check Reviews</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Checks the order summary on the right side for accuracy.</p>
+                            <p className="text-xs text-muted-foreground">Reads customer reviews focusing on durability and safety feedback.</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">11</div>
-                              <div className="text-sm font-medium">Verify Total</div>
+                              <div className="text-sm font-medium">Price Comparison</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Confirms the final total amount including shipping and taxes.</p>
+                            <p className="text-xs text-muted-foreground">Confirms better value than the $18 rope toy that lasted only 2 weeks.</p>
                           </div>
                           <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">12</div>
-                              <div className="text-sm font-medium">Complete Purchase</div>
+                              <div className="text-sm font-medium">Add to Cart</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Clicks the primary checkout button to finalize the order.</p>
+                            <p className="text-xs text-muted-foreground">Confident this will outlast previous purchase, proceeds to checkout.</p>
                           </div>
                         </div>
                       </div>
