@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Play, ArrowRight, Target, Brain, Users, TrendingUp, Monitor, Star, Heart, ShoppingCart, Bone, User } from "lucide-react";
+import { Play, ArrowRight, Target, Brain, Users, TrendingUp, Monitor, Star, Heart, ShoppingCart, Bone, User, ChevronDown } from "lucide-react";
 const Hero = () => {
-  return <section className="relative overflow-hidden bg-gradient-subtle pt-20 pb-8">
+  return <section className="relative overflow-hidden bg-gradient-subtle pt-8 pb-8">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
       <div className="absolute inset-0 bg-gradient-radial from-primary/20 via-primary/5 to-transparent"></div>
@@ -11,8 +11,18 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 relative">
         <div className="max-w-6xl mx-auto text-center">
-          {/* Badge */}
-          
+          {/* Logo + AI Badge Combined */}
+          <div className="flex justify-center mb-8">
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-primary/10 border border-primary/20 backdrop-blur-sm">
+              <img 
+                src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png" 
+                alt="Jurny Logo" 
+                className="h-6 md:h-7"
+              />
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-primary">AI-Powered User Simulation</span>
+            </div>
+          </div>
 
           {/* Main headline */}
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
@@ -24,15 +34,31 @@ const Hero = () => {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed text-center">Define targeted personas, simulate behaviors at scale, optimize UX gaps</p>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed text-center">Define targeted personas, simulate behaviors at scale, and discover actionable insights to improve user jurnys through data-driven decisions</p>
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button size="lg" className="bg-gradient-primary hover:opacity-90 shadow-elegant group">
-              Talk with Us
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            <Button 
+              size="lg" 
+              className="bg-gradient-primary hover:opacity-90 shadow-elegant group"
+              asChild
+            >
+              <a href="mailto:syntheticjurny.ai@gmail.com">
+                Talk with Us
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
-            
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="shadow-elegant group"
+              asChild
+            >
+              <a href="mailto:syntheticjurny.ai@gmail.com">
+                Request a Demo
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </Button>
           </div>
 
           {/* Product Demo */}
@@ -48,27 +74,34 @@ const Hero = () => {
                       <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                       <div className="w-3 h-3 rounded-full bg-green-500"></div>
                     </div>
-                    <div className="flex-1 text-center text-sm text-muted-foreground">JurnyAI Dashboard - User Simulation</div>
+                    <div className="flex-1 text-center text-sm text-muted-foreground">jurny.ai Dashboard - User Simulation</div>
                   </div>
 
                   {/* Product Demo Interface */}
                   <div className="relative rounded-b-lg overflow-hidden bg-background">
                     <div className="p-4 space-y-4">
                       {/* Summary Section */}
-                      <div className="p-4 rounded-lg border bg-green-50 border-green-200 dark:bg-green-950 dark:border-green-800">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center">
-                              ✓
-                            </div>
-                            <div>
-                              <h3 className="text-sm font-semibold text-green-800 dark:text-green-200">Goal Successfully Completed</h3>
-                              <p className="text-xs text-green-600 dark:text-green-300">Sarah found and purchased a durable dog toy that meets her criteria</p>
-                            </div>
+                      <div className="p-4 rounded-lg border bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800 space-y-3">
+                        {/* Main failure message */}
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 min-w-8 min-h-8 rounded-full bg-red-500 text-white flex items-center justify-center flex-shrink-0">
+                            <span className="text-sm font-bold">✗</span>
                           </div>
+                          <div className="text-left">
+                            <h3 className="text-sm font-semibold text-red-800 dark:text-red-200">Goal Failed - Purchase Abandoned</h3>
+                            <p className="text-xs text-red-600 dark:text-red-300">Jen gave up after reviewing one product due to unconvincing reviews and time constraints</p>
+                          </div>
+                        </div>
+                        
+                        {/* Steps counter section */}
+                        <div className="flex items-center justify-between pt-2 border-t border-red-200 dark:border-red-800">
+                          <span className="text-xs text-red-600 dark:text-red-300 font-medium cursor-pointer hover:text-red-500 transition-colors flex items-center gap-1">
+                            View AI Analysis & Suggestions
+                            <ChevronDown className="h-3 w-3" />
+                          </span>
                           <div className="text-right">
-                            <div className="text-lg font-bold text-green-800 dark:text-green-200">12</div>
-                            <div className="text-xs text-green-600 dark:text-green-300">Total Steps</div>
+                            <div className="text-lg font-bold text-red-800 dark:text-red-200">12</div>
+                            <div className="text-xs text-red-600 dark:text-red-300">Steps Taken</div>
                           </div>
                         </div>
                       </div>
@@ -76,8 +109,8 @@ const Hero = () => {
                       {/* Persona & Goal Section */}
                       <div className="grid grid-cols-2 gap-6">
                         <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
-                          <h3 className="text-sm font-semibold text-foreground">Persona: Sarah, 28</h3>
-                          <p className="text-xs text-muted-foreground">Dog owner looking for durable, safe toys that will keep her energetic Golden Retriever entertained and engaged.</p>
+                          <h3 className="text-sm font-semibold text-foreground">Persona: Jen, 28</h3>
+                          <p className="text-xs text-muted-foreground">Dog owner looking for durable, safe toys that will keep her energetic Golden Retriever entertained and engaged...</p>
                         </div>
                         <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
                           <h3 className="text-sm font-semibold text-foreground">Goal</h3>
@@ -96,152 +129,91 @@ const Hero = () => {
             <div className="flex items-center justify-between">
               {/* Window Controls */}
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 cursor-pointer"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 cursor-pointer"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 cursor-pointer"></div>
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
               
               {/* URL Bar */}
-              <div className="flex-1 mx-4">
-                <div className="bg-background border border-border/50 rounded-md px-3 py-1 flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  <span className="text-xs text-muted-foreground">https://</span>
-                  <span className="text-xs font-medium">rogerspets.com</span>
-                </div>
-              </div>
-              
-              {/* Browser Menu */}
-              <div className="flex items-center gap-1">
-                <div className="w-4 h-4 hover:bg-muted rounded cursor-pointer flex items-center justify-center">
-                  <div className="w-1 h-1 bg-muted-foreground rounded-full"></div>
-                </div>
-                <div className="w-4 h-4 hover:bg-muted rounded cursor-pointer flex items-center justify-center">
-                  <div className="w-1 h-1 bg-muted-foreground rounded-full"></div>
-                </div>
-                <div className="w-4 h-4 hover:bg-muted rounded cursor-pointer flex items-center justify-center">
-                  <div className="w-1 h-1 bg-muted-foreground rounded-full"></div>
+              <div className="flex-1 mx-2 md:mx-4">
+                <div className="bg-background border border-border/50 rounded-md px-2 md:px-3 py-1 flex items-center gap-1 md:gap-2">
+                  <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-green-500"></div>
+                  <span className="text-xs font-medium truncate">rogerspets.com</span>
                 </div>
               </div>
             </div>
           </div>
           
           {/* Website Header */}
-          <div className="flex items-center justify-between border-b border-border/30 p-3" style={{
+          <div className="flex items-center justify-between border-b border-border/30 p-2 md:p-3" style={{
                           backgroundColor: 'hsl(var(--pet-background))'
                         }}>
-            <div className="flex items-center gap-3">
-              <div className="h-4 w-4 rounded-sm" style={{
+            <div className="flex items-center gap-2">
+              <div className="h-3 w-3 md:h-4 md:w-4 rounded-sm" style={{
                               backgroundColor: 'hsl(var(--pet-primary))'
-                            }}></div>
-              <div className="h-3 w-16 rounded" style={{
-                              backgroundColor: 'hsl(var(--pet-muted))'
                             }}></div>
               <div className="text-xs font-medium" style={{
                               color: 'hsl(var(--pet-secondary))'
                             }}>Roger's Pet Store</div>
             </div>
-            <div className="flex items-center gap-2">
-              <Heart className="h-4 w-4" style={{
-                              color: 'hsl(var(--pet-accent))'
-                            }} />
-              <ShoppingCart className="h-4 w-4" style={{
+            <div className="flex items-center gap-1 md:gap-2">
+              <ShoppingCart className="h-3 w-3 md:h-4 md:w-4" style={{
                               color: 'hsl(var(--pet-secondary))'
                             }} />
-              <div className="h-6 w-16 rounded-sm flex items-center justify-center" style={{
-                              backgroundColor: 'hsl(var(--pet-primary))'
-                            }}>
-                <span className="text-xs text-white font-medium">Login</span>
-              </div>
             </div>
           </div>
           
           {/* Product Page Content */}
-          <div className="p-4 grid grid-cols-2 gap-4" style={{
+          <div className="p-3 md:p-4 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4" style={{
                           backgroundColor: 'hsl(var(--pet-background))'
                         }}>
-            {/* Left Side - Product Image */}
-            <div className="space-y-3">
-              <div className="h-32 rounded-lg flex items-center justify-center border relative" style={{
+            {/* Product Image & Details Combined on Mobile */}
+            <div className="md:space-y-3">
+              <div className="h-24 md:h-32 rounded-lg flex items-center justify-center border relative mb-3" style={{
                               backgroundColor: 'hsl(var(--pet-card))',
                               borderColor: 'hsl(var(--pet-muted))'
                             }}>
-                <Bone className="h-16 w-16" style={{
+                <Bone className="h-12 w-12 md:h-16 md:w-16" style={{
                                 color: 'hsl(var(--pet-secondary))'
                               }} />
-                <Heart className="absolute top-2 right-2 h-4 w-4" style={{
+                <Heart className="absolute top-2 right-2 h-3 w-3 md:h-4 md:w-4" style={{
                                 color: 'hsl(var(--pet-accent))'
                               }} />
               </div>
-              <div className="flex gap-2">
-                <div className="h-8 w-8 rounded border" style={{
-                                backgroundColor: 'hsl(var(--pet-muted))',
-                                borderColor: 'hsl(var(--pet-muted))'
-                              }}></div>
-                <div className="h-8 w-8 rounded border-2" style={{
-                                backgroundColor: 'hsl(var(--pet-primary) / 0.2)',
-                                borderColor: 'hsl(var(--pet-primary))'
-                              }}></div>
-                <div className="h-8 w-8 rounded border" style={{
-                                backgroundColor: 'hsl(var(--pet-muted))',
-                                borderColor: 'hsl(var(--pet-muted))'
-                              }}></div>
-              </div>
             </div>
             
-            {/* Right Side - Product Details */}
-            <div className="space-y-3">
+            {/* Product Details */}
+            <div className="space-y-2 md:space-y-3">
               <div>
                 <div className="mb-2">
-                  <div className="h-3 w-32 bg-muted-foreground/30 rounded"></div>
+                  <div className="h-3 w-24 md:w-32 bg-muted-foreground/30 rounded"></div>
                 </div>
                 <div className="flex items-center gap-1">
-                  {[1, 2, 3, 4, 5].map(star => <Star key={star} className="h-3 w-3 fill-yellow-400 text-yellow-400" />)}
-                  <div className="h-2 w-8 bg-muted-foreground/30 rounded ml-1"></div>
+                  {[1, 2, 3, 4, 5].map(star => <Star key={star} className="h-2 w-2 md:h-3 md:w-3 fill-yellow-400 text-yellow-400" />)}
+                  <div className="h-2 w-6 md:w-8 bg-muted-foreground/30 rounded ml-1"></div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <div className="h-4 w-12 rounded" style={{
+                <div className="h-3 w-8 md:h-4 md:w-12 rounded" style={{
                                 backgroundColor: 'hsl(var(--pet-primary))'
                               }}></div>
-                <div className="h-3 w-10 rounded line-through" style={{
-                                backgroundColor: 'hsl(var(--pet-muted))'
-                              }}></div>
-              </div>
-              <div className="space-y-2">
-                <div className="h-2 w-28 rounded" style={{
-                                backgroundColor: 'hsl(var(--pet-muted))'
-                              }}></div>
-                <div className="h-2 w-24 rounded" style={{
-                                backgroundColor: 'hsl(var(--pet-muted))'
-                              }}></div>
-                <div className="h-2 w-20 rounded" style={{
-                                backgroundColor: 'hsl(var(--pet-muted))'
-                              }}></div>
-                <div className="h-2 w-32 rounded" style={{
+                <div className="h-2 w-6 md:h-3 md:w-10 rounded line-through" style={{
                                 backgroundColor: 'hsl(var(--pet-muted))'
                               }}></div>
               </div>
               <div className="flex gap-2 pt-2">
-                <div className="h-8 w-20 rounded border flex items-center justify-center" style={{
-                                backgroundColor: 'hsl(var(--pet-card))',
-                                borderColor: 'hsl(var(--pet-muted))'
-                              }}>
-                  <div className="h-2 w-8 rounded" style={{
-                                  backgroundColor: 'hsl(var(--pet-muted))'
-                                }}></div>
-                </div>
-                <div className="h-8 w-24 rounded flex items-center justify-center gap-1" style={{
+                <div className="h-6 w-16 md:h-8 md:w-24 rounded flex items-center justify-center gap-1" style={{
                                 backgroundColor: 'hsl(var(--pet-secondary))'
                               }}>
-                  <ShoppingCart className="h-3 w-3 text-white" />
-                  <div className="h-2 w-10 bg-white/60 rounded"></div>
+                  <ShoppingCart className="h-2 w-2 md:h-3 md:w-3 text-white" />
+                  <div className="h-1 w-6 md:h-2 md:w-10 bg-white/60 rounded"></div>
                 </div>
               </div>
             </div>
           </div>
           
-          {/* Reviews Section */}
-          <div className="px-4 pb-4 border-t border-border/30 pt-3">
+          {/* Reviews Section - Hidden on mobile for simplicity */}
+          <div className="hidden md:block px-4 pb-4 border-t border-border/30 pt-3">
             <div className="flex items-center gap-2 mb-2">
               <div className="h-2 w-16 bg-muted-foreground/30 rounded"></div>
             </div>
@@ -268,34 +240,34 @@ const Hero = () => {
                       {/* User Journey Steps */}
                       <div className="space-y-4">
                         <h3 className="text-sm font-medium text-foreground">Simulation Steps</h3>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">9</div>
-                              <div className="text-sm font-medium">Compare Materials</div>
+                              <div className="text-sm font-medium">click "dumbbell dog toy"</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Examines the rubber material vs. the rope toy that frayed quickly.</p>
+                            <p className="text-xs text-muted-foreground text-left">This dog toy looks durable which would suit my pitbull</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">10</div>
-                              <div className="text-sm font-medium">Check Reviews</div>
+                              <div className="text-sm font-medium">scroll down</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Reads customer reviews focusing on durability and safety feedback.</p>
+                            <p className="text-xs text-muted-foreground text-left">Scrolling down may help me find a review section or product information</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">11</div>
-                              <div className="text-sm font-medium">Price Comparison</div>
+                              <div className="text-sm font-medium">Read Reviews</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Confirms better value than the $18 rope toy that lasted only 2 weeks.</p>
+                            <p className="text-xs text-muted-foreground text-left">There are limited reviews, the few that are there describe issues with long term wear and tear</p>
                           </div>
-                          <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 space-y-2">
+                          <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
-                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">This dog toy looks durable which would suit my golden retriever puppy</div>
-                              <div className="text-sm font-medium">Add to Cart</div>
+                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">12</div>
+                              <div className="text-sm font-medium">Abandon goal</div>
                             </div>
-                            <p className="text-xs text-muted-foreground">Confident this will outlast previous purchase, proceeds to checkout.</p>
+                            <p className="text-xs text-muted-foreground text-left">I am short for time and 12 steps is more than how much I have patience for. The one toy I was looking at did not have convincing reviews</p>
                           </div>
                         </div>
                       </div>
@@ -303,6 +275,21 @@ const Hero = () => {
                   </div>
                 </div>
               </Card>
+
+              {/* Actionable Insights Overlay */}
+              <div className="absolute -right-48 top-16 hidden lg:block">
+                <Card className="p-4 bg-background shadow-elegant border-2 max-w-xs">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <TrendingUp className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-sm">Actionable Insights</h4>
+                      <p className="text-xs text-muted-foreground font-medium">Clear recommendations for improvement</p>
+                    </div>
+                  </div>
+                </Card>
+              </div>
 
               {/* Floating feature callouts */}
               <div className="absolute -left-48 top-1/3 hidden lg:block">
@@ -319,21 +306,8 @@ const Hero = () => {
                 </Card>
               </div>
 
-              <div className="absolute -right-48 bottom-1/3 hidden lg:block">
-                <Card className="p-4 bg-background shadow-elegant border-2 max-w-xs">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <TrendingUp className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-sm">Actionable Insights</h4>
-                      <p className="text-xs text-muted-foreground font-medium">Clear recommendations for improvement</p>
-                    </div>
-                  </div>
-                </Card>
-              </div>
 
-              <div className="absolute -left-48 bottom-1/4 hidden lg:block">
+              <div className="absolute -right-48 bottom-1/4 hidden lg:block">
                 <Card className="p-4 bg-background shadow-elegant border-2 max-w-xs">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
