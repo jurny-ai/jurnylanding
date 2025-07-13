@@ -129,7 +129,7 @@ const Hero = () => {
             {/* Right Side - Product Details */}
             <div className="space-y-3">
               <div>
-                <div className="flex items-center gap-2 mb-2">
+                <div className="mb-2">
                   <span className="text-xs font-medium">Ultra Durable Rubber Chew Toy</span>
                 </div>
                 <div className="flex items-center gap-1">
