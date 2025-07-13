@@ -50,6 +50,14 @@ All colors MUST be HSL.
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
+    /* Pet Store Theme */
+    --pet-primary: 25 95% 53%;     /* Orange/amber for warmth */
+    --pet-secondary: 142 76% 36%;  /* Forest green for nature */
+    --pet-accent: 271 81% 56%;     /* Purple for playfulness */
+    --pet-background: 45 100% 96%; /* Warm off-white */
+    --pet-card: 39 100% 97%;       /* Light cream */
+    --pet-muted: 43 13% 90%;       /* Warm gray */
+
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
