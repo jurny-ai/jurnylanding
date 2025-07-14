@@ -94,7 +94,7 @@ const ProductDemo = () => {
                           12
                         </div>
                         <div className="flex-1">
-                          <div className="text-sm font-medium text-foreground">Abandon goal</div>
+                          <h4 className="text-sm font-medium text-foreground mb-1">Abandon goal</h4>
                           <div className="w-8 h-1 bg-primary/20 rounded-full" />
                         </div>
                       </div>
