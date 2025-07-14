@@ -14,11 +14,7 @@ const Hero = () => {
           {/* Logo + AI Badge Combined */}
           <div className="flex justify-center mb-8">
             <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-primary/10 border border-primary/20 backdrop-blur-sm">
-              <img 
-                src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png" 
-                alt="Jurny Logo" 
-                className="h-6 md:h-7"
-              />
+              <img src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png" alt="Jurny Logo" className="h-6 md:h-7" />
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
               <span className="text-sm font-medium text-primary">AI-Powered User Simulation</span>
             </div>
@@ -38,26 +34,14 @@ const Hero = () => {
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button 
-              size="lg" 
-              className="bg-gradient-primary hover:opacity-90 shadow-elegant group"
-              asChild
-            >
-              <a href="mailto:syntheticjurny.ai@gmail.com">
-                Talk with Us
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="shadow-elegant group"
-              asChild
-            >
+            <Button size="lg" className="bg-gradient-primary hover:opacity-90 shadow-elegant group" asChild>
               <a href="mailto:syntheticjurny.ai@gmail.com">
                 Request a Demo
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </a>
+            </Button>
+            <Button size="lg" variant="outline" className="shadow-elegant group" asChild>
+              
             </Button>
           </div>
 
