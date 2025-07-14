@@ -79,7 +79,7 @@ const ProductDemo = () => {
                           11
                         </div>
                         <div className="flex-1">
-                          <div className="text-sm font-medium text-foreground mb-1">Navigate to product comparison</div>
+                          <div className="text-sm font-medium text-foreground mb-1">C product comparison</div>
                           <div className="w-12 h-1 bg-primary/30 rounded-full" />
                         </div>
                       </div>
