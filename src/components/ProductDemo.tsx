@@ -30,18 +30,18 @@ const ProductDemo = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
               
               {/* Persona Creation Column */}
-              <Card className="p-8 bg-card/50 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300">
+              <Card className="p-8 bg-primary/5 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="relative group">
                   <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl mb-4 group-hover:bg-primary/20 transition-colors">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/15 rounded-2xl mb-4 group-hover:bg-primary/25 transition-colors">
                       <User className="w-8 h-8 text-primary" />
                     </div>
                     <h3 className="text-xl font-bold text-foreground mb-2">Persona Creation</h3>
-                    <p className="text-sm text-muted-foreground">AI generates realistic user personas</p>
+                    <p className="text-sm text-foreground/70">AI generates realistic user personas</p>
                   </div>
                   
                   {/* Persona UI Mockup */}
-                  <Card className="p-6 bg-card/50 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:border-primary/40">
+                  <Card className="p-6 bg-background/80 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:border-primary/40">
                     <div className="flex items-start gap-3 mb-4">
                       <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
                         <User className="w-5 h-5 text-primary" />
@@ -51,7 +51,7 @@ const ProductDemo = () => {
                         <div className="w-8 h-1 bg-primary/30 rounded-full mt-1" />
                       </div>
                     </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed">Dog owner looking for a durable toy for her energetic pitbull. Jen is always on the move and does a lot of shopping in between commitments</p>
+                    <p className="text-xs text-foreground/60 leading-relaxed">Dog owner looking for a durable toy for her energetic pitbull. Jen is always on the move and does a lot of shopping in between commitments</p>
                     <div className="mt-4 flex gap-2">
                       <div className="w-2 h-2 bg-primary/40 rounded-full" />
                       <div className="w-2 h-2 bg-primary/30 rounded-full" />
@@ -62,19 +62,19 @@ const ProductDemo = () => {
               </Card>
 
               {/* Real Time Simulation Column */}
-              <Card className="p-8 bg-card/50 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300">
+              <Card className="p-8 bg-primary/5 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="relative group">
                   <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl mb-4 group-hover:bg-primary/20 transition-colors">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/15 rounded-2xl mb-4 group-hover:bg-primary/25 transition-colors">
                       <Play className="w-8 h-8 text-primary" />
                     </div>
                     <h3 className="text-xl font-bold text-foreground mb-2">Real Time Simulation</h3>
-                    <p className="text-sm text-muted-foreground">Watch personas interact with your site</p>
+                    <p className="text-sm text-foreground/70">Watch personas interact with your site</p>
                   </div>
                   
                   <div className="space-y-4">
                     {/* Step 11 UI Mockup */}
-                    <Card className="p-4 bg-card/50 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+                    <Card className="p-4 bg-background/80 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden">
                       <div className="absolute top-0 left-0 w-1 h-full bg-primary/60" />
                       <div className="flex items-start gap-3 mb-3">
                         <div className="w-7 h-7 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-semibold flex-shrink-0">
@@ -85,13 +85,13 @@ const ProductDemo = () => {
                           <div className="w-12 h-1 bg-primary/30 rounded-full" />
                         </div>
                       </div>
-                      <p className="text-xs text-muted-foreground leading-relaxed ml-10">
+                      <p className="text-xs text-foreground/60 leading-relaxed ml-10">
                         I'm comparing different dog toys to find the most durable option. The interface shows a comparison matrix...
                       </p>
                     </Card>
                     
                     {/* Step 12 UI Mockup */}
-                    <Card className="p-4 bg-card/50 backdrop-blur-sm border-primary/30 shadow-lg relative overflow-hidden">
+                    <Card className="p-4 bg-background/80 backdrop-blur-sm border-primary/30 shadow-lg relative overflow-hidden">
                       <div className="absolute top-0 left-0 w-1 h-full bg-primary/40" />
                       <div className="flex items-start gap-3 mb-3">
                         <div className="w-7 h-7 rounded-full bg-primary/70 text-primary-foreground text-xs flex items-center justify-center font-semibold flex-shrink-0">
@@ -102,7 +102,7 @@ const ProductDemo = () => {
                           <div className="w-8 h-1 bg-primary/20 rounded-full" />
                         </div>
                       </div>
-                      <p className="text-xs text-muted-foreground leading-relaxed ml-10">
+                      <p className="text-xs text-foreground/60 leading-relaxed ml-10">
                         I am short for time and 12 steps is more than I have patience for...
                       </p>
                     </Card>
@@ -111,14 +111,14 @@ const ProductDemo = () => {
               </Card>
 
               {/* Actionable Insights Column */}
-              <Card className="p-8 bg-card/50 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300">
+              <Card className="p-8 bg-primary/5 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="relative group">
                   <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-red-50 dark:bg-red-950/50 rounded-2xl mb-4 group-hover:bg-red-100 dark:group-hover:bg-red-950/70 transition-colors">
                       <AlertTriangle className="w-8 h-8 text-red-600 dark:text-red-400" />
                     </div>
                     <h3 className="text-xl font-bold text-foreground mb-2">Actionable Insights</h3>
-                    <p className="text-sm text-muted-foreground">Get precise failure analysis</p>
+                    <p className="text-sm text-foreground/70">Get precise failure analysis</p>
                   </div>
                   
                   {/* Main Failure Message UI Mockup */}
