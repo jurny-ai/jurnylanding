@@ -14,9 +14,7 @@ const ProductDemo = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               See How It Works
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Watch real personas navigate your experience and discover exactly where they succeed or fail
-            </p>
+            
           </div>
 
           {/* Workflow visualization */}
