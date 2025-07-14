@@ -94,7 +94,7 @@ const Hero = () => {
                       <div className="grid grid-cols-2 gap-6">
                         <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
                           <h3 className="text-sm font-semibold text-foreground">Persona: Jen, 28</h3>
-                          <p className="text-xs text-muted-foreground">Dog owner looking for durable, safe toys that will keep her energetic Golden Retriever entertained and engaged...</p>
+                          <p className="text-xs text-muted-foreground">Dog owner looking for durable, safe toys that will keep her energetic Pitbull entertained and engaged...</p>
                         </div>
                         <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
                           <h3 className="text-sm font-semibold text-foreground">Goal</h3>
