@@ -28,7 +28,7 @@ const ProductDemo = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
               
               {/* Persona Creation Column */}
-              <Card className="p-8 bg-primary/5 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="p-8 bg-primary/5 backdrop-blur-sm rounded-lg">
                 <div className="relative group">
                   <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/15 rounded-2xl mb-4 group-hover:bg-primary/25 transition-colors">
@@ -57,10 +57,10 @@ const ProductDemo = () => {
                     </div>
                   </Card>
                 </div>
-              </Card>
+              </div>
 
               {/* Real Time Simulation Column */}
-              <Card className="p-8 bg-primary/5 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="p-8 bg-primary/5 backdrop-blur-sm rounded-lg">
                 <div className="relative group">
                   <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/15 rounded-2xl mb-4 group-hover:bg-primary/25 transition-colors">
@@ -104,10 +104,10 @@ const ProductDemo = () => {
                     </Card>
                   </div>
                 </div>
-              </Card>
+              </div>
 
               {/* Actionable Insights Column */}
-              <Card className="p-8 bg-primary/5 backdrop-blur-sm border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="p-8 bg-primary/5 backdrop-blur-sm rounded-lg">
                 <div className="relative group">
                   <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-red-50 dark:bg-red-950/50 rounded-2xl mb-4 group-hover:bg-red-100 dark:group-hover:bg-red-950/70 transition-colors">
@@ -141,7 +141,7 @@ const ProductDemo = () => {
                     </div>
                   </Card>
                 </div>
-              </Card>
+              </div>
 
             </div>
           </div>
