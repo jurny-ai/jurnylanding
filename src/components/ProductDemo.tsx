@@ -1,5 +1,4 @@
 import { Card } from "@/components/ui/card";
-import { Users, Target, TrendingUp, ChevronDown, User } from "lucide-react";
 
 const ProductDemo = () => {
   return (
@@ -19,9 +18,6 @@ const ProductDemo = () => {
             {/* Persona Creation Column */}
             <div className="space-y-6">
               <div className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-6 w-6 text-primary" />
-                </div>
                 <h3 className="text-xl font-bold text-foreground">Persona Creation</h3>
               </div>
               
@@ -35,9 +31,6 @@ const ProductDemo = () => {
             {/* Behavioral Analysis Column */}
             <div className="space-y-6">
               <div className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Target className="h-6 w-6 text-primary" />
-                </div>
                 <h3 className="text-xl font-bold text-foreground">Behavioral Analysis</h3>
               </div>
               
@@ -54,9 +47,6 @@ const ProductDemo = () => {
             {/* Actionable Insights Column */}
             <div className="space-y-6">
               <div className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="h-6 w-6 text-primary" />
-                </div>
                 <h3 className="text-xl font-bold text-foreground">Actionable Insights</h3>
               </div>
               
