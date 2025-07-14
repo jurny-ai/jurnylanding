@@ -1,10 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
-
 const ProductDemo = () => {
   const [api, setApi] = useState<CarouselApi>();
-
   useEffect(() => {
     if (!api) return;
 
@@ -16,30 +14,21 @@ const ProductDemo = () => {
         api.scrollTo(0); // Go back to first slide
       }
     }, 4000);
-
     return () => clearInterval(autoScroll);
   }, [api]);
-
-  return (
-    <section className="py-16 bg-background">
+  return <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* Section header */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              See It In Action
-            </h2>
+            
           </div>
 
           {/* Auto-scroll Carousel */}
-          <Carousel
-            setApi={setApi}
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
+          <Carousel setApi={setApi} opts={{
+          align: "start",
+          loop: true
+        }} className="w-full">
             <CarouselContent>
               {/* Persona Creation Slide */}
               <CarouselItem>
@@ -98,19 +87,11 @@ const ProductDemo = () => {
 
             {/* Dots indicator */}
             <div className="flex justify-center mt-8 space-x-2">
-              {[0, 1, 2].map((index) => (
-                <button
-                  key={index}
-                  className="w-2 h-2 rounded-full bg-muted-foreground/30 transition-colors"
-                  onClick={() => api?.scrollTo(index)}
-                />
-              ))}
+              {[0, 1, 2].map(index => <button key={index} className="w-2 h-2 rounded-full bg-muted-foreground/30 transition-colors" onClick={() => api?.scrollTo(index)} />)}
             </div>
           </Carousel>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ProductDemo;
