@@ -1,15 +1,11 @@
 import { Card } from "@/components/ui/card";
-
 const ProductDemo = () => {
-  return (
-    <section className="py-16 bg-background">
+  return <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section header */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              See It In Action
-            </h2>
+            
           </div>
 
           {/* Three columns */}
@@ -31,7 +27,7 @@ const ProductDemo = () => {
             {/* Behavioral Analysis Column */}
             <div className="space-y-6">
               <div className="text-center">
-                <h3 className="text-xl font-bold text-foreground">Behavioral Analysis</h3>
+                <h3 className="text-xl font-bold text-foreground">Real Time Simulation</h3>
               </div>
               
               {/* Abandon Goal UI Mockup */}
@@ -72,7 +68,6 @@ const ProductDemo = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
 export default ProductDemo;
