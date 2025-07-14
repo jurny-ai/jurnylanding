@@ -56,10 +56,15 @@ const ProductDemo = () => {
                   <div className="w-8 h-8 min-w-8 min-h-8 rounded-full bg-red-500 text-white flex items-center justify-center flex-shrink-0">
                     <span className="text-sm font-bold">✗</span>
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h4 className="text-sm font-semibold text-red-800 dark:text-red-200">Goal Failed - Purchase Abandoned</h4>
                     <p className="text-xs text-red-600 dark:text-red-300">Jen was not able to understand the durability of the dog toy in limited steps due to a complicated product comparison view.</p>
                   </div>
+                </div>
+                <div className="mt-3 pt-2 border-t border-red-200 dark:border-red-700">
+                  <button className="text-xs text-red-700 dark:text-red-300 hover:text-red-800 dark:hover:text-red-200 font-medium">
+                    View Analysis & Suggestions
+                  </button>
                 </div>
               </Card>
             </div>
