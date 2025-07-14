@@ -2,10 +2,6 @@ import { Card } from "@/components/ui/card";
 import { ArrowRight, User, Play, AlertTriangle } from "lucide-react";
 const ProductDemo = () => {
   return <section className="py-24 bg-background relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
-      <div className="absolute top-0 left-1/4 w-96 h-84 bg-primary/10 rounded-full blur-3xl -translate-y-1/2" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-84 bg-primary/5 rounded-full blur-3xl translate-y-1/2" />
       
       <div className="container mx-auto px-4 relative">
         <div className="max-w-7xl mx-auto">
