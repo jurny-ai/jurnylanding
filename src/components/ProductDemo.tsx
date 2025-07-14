@@ -1,9 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { ArrowRight, User, Play, AlertTriangle } from "lucide-react";
-
 const ProductDemo = () => {
-  return (
-    <section className="py-24 bg-background relative overflow-hidden">
+  return <section className="py-24 bg-background relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-y-1/2" />
@@ -49,13 +47,11 @@ const ProductDemo = () => {
                         <User className="w-5 h-5 text-primary" />
                       </div>
                       <div>
-                        <h4 className="text-sm font-semibold text-foreground">Persona: Jen, 28</h4>
+                        <h4 className="text-sm font-semibold text-foreground">Jen, 28</h4>
                         <div className="w-8 h-1 bg-primary/30 rounded-full mt-1" />
                       </div>
                     </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed">
-                      Dog owner looking for a durable toy for her energetic pitbull. Jen is always on the move and does a lot of shopping in between commitments...
-                    </p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">Dog owner looking for a durable toy for her energetic pitbull. Jen is always on the move and does a lot of shopping in between commitments</p>
                     <div className="mt-4 flex gap-2">
                       <div className="w-2 h-2 bg-primary/40 rounded-full" />
                       <div className="w-2 h-2 bg-primary/30 rounded-full" />
@@ -155,8 +151,6 @@ const ProductDemo = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ProductDemo;
