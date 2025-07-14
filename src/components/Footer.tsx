@@ -6,12 +6,13 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center">
             {/* Brand */}
-            <div className="flex items-center">
+            <div className="flex items-center gap-3">
               <img 
                 src="/lovable-uploads/560e781d-c4c7-4e51-819a-b21fc0746540.png" 
                 alt="Jurny Logo" 
                 className="h-8 w-auto"
               />
+              <span className="text-xl font-semibold text-foreground">jurny</span>
             </div>
 
             {/* Work with Us Button */}
