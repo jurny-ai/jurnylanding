@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { ChevronDown } from "lucide-react";
 
 const ProductDemo = () => {
   return (
@@ -51,15 +52,21 @@ const ProductDemo = () => {
               </div>
               
               {/* Main Failure Message UI Mockup */}
-              <Card className="p-4 bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800 h-24 flex items-center">
-                <div className="flex items-center gap-3">
+              <Card className="p-4 bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800 h-24">
+                <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-8 min-w-8 min-h-8 rounded-full bg-red-500 text-white flex items-center justify-center flex-shrink-0">
                     <span className="text-sm font-bold">✗</span>
                   </div>
-                  <div>
+                  <div className="flex-1">
                     <h4 className="text-sm font-semibold text-red-800 dark:text-red-200">Goal Failed - Purchase Abandoned</h4>
-                    <p className="text-xs text-red-600 dark:text-red-300 line-clamp-2">Jen was not able to understand the durability of the dog toy in limited steps due to a complicated product comparison view.</p>
+                    <p className="text-xs text-red-600 dark:text-red-300 line-clamp-1">Jen was not able to understand the durability of the dog toy in limited steps due to a complicated product comparison view.</p>
                   </div>
+                </div>
+                <div className="flex items-center justify-between pt-2 border-t border-red-200 dark:border-red-800">
+                  <span className="text-xs text-red-600 dark:text-red-300 font-medium hover:text-red-500 transition-colors flex items-center gap-1">
+                    View Analysis & Suggestions
+                    <ChevronDown className="h-3 w-3" />
+                  </span>
                 </div>
               </Card>
             </div>
