@@ -95,7 +95,7 @@ const ProductDemo = () => {
                         </div>
                         <div className="flex-1">
                           <div className="text-sm font-medium text-foreground mb-1">Abandon goal</div>
-                          <div className="w-8 h-1 bg-primary/20 rounded-full" />
+                          <div className="w-12 h-1 bg-primary/20 rounded-full" />
                         </div>
                       </div>
                       <p className="text-xs text-foreground/60 leading-relaxed ml-10">
