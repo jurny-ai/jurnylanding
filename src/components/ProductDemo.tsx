@@ -64,7 +64,7 @@ const ProductDemo = () => {
               </div>
 
               {/* Real Time Simulation Column */}
-              <div className="relative group lg:mt-12">
+              <div className="relative group">
                 <div className="text-center mb-8">
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl mb-4 group-hover:bg-primary/20 transition-colors">
                     <Play className="w-8 h-8 text-primary" />
@@ -111,7 +111,7 @@ const ProductDemo = () => {
               </div>
 
               {/* Actionable Insights Column */}
-              <div className="relative group lg:mt-24">
+              <div className="relative group">
                 <div className="text-center mb-8">
                   <div className="inline-flex items-center justify-center w-16 h-16 bg-red-50 dark:bg-red-950/50 rounded-2xl mb-4 group-hover:bg-red-100 dark:group-hover:bg-red-950/70 transition-colors">
                     <AlertTriangle className="w-8 h-8 text-red-600 dark:text-red-400" />
