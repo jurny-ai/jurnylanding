@@ -1,34 +1,83 @@
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Monitor, Users, Target, TrendingUp } from "lucide-react";
+import { Users, Target, TrendingUp, ChevronDown, User } from "lucide-react";
+
 const ProductDemo = () => {
-  return <section id="demo" className="py-12 bg-background">
+  return (
+    <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Section header */}
-
-          {/* Demo screenshot */}
-          <div className="relative">
-            
-
-            {/* Floating feature callouts */}
-            <div className="absolute -left-4 top-1/4 hidden lg:block">
-              
-            </div>
-
-            <div className="absolute -right-4 top-1/3 hidden lg:block">
-              
-            </div>
-
-            <div className="absolute -left-4 bottom-1/4 hidden lg:block">
-              
-            </div>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              See It In Action
+            </h2>
           </div>
 
-          {/* Call to action */}
-          
+          {/* Three columns */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            {/* Persona Creation Column */}
+            <div className="space-y-6">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground">Persona Creation</h3>
+              </div>
+              
+              {/* Persona UI Mockup */}
+              <Card className="p-4 bg-muted/20 border">
+                <h4 className="text-sm font-semibold text-foreground mb-2">Persona: Jen, 28</h4>
+                <p className="text-xs text-muted-foreground">Dog owner looking for a durable toy for her energetic pitbull. Jen is always on the move and does a lot of shopping in between commitments...</p>
+              </Card>
+            </div>
+
+            {/* Behavioral Analysis Column */}
+            <div className="space-y-6">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Target className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground">Behavioral Analysis</h3>
+              </div>
+              
+              {/* Abandon Goal UI Mockup */}
+              <Card className="p-4 bg-muted/30 border">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">12</div>
+                  <div className="text-sm font-medium">Abandon goal</div>
+                </div>
+                <p className="text-xs text-muted-foreground">I am short for time and 12 steps is more than how much I have patience for. I expected to be able to quickly understand the durability of the dog toy in limited clicks.</p>
+              </Card>
+            </div>
+
+            {/* Actionable Insights Column */}
+            <div className="space-y-6">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground">Actionable Insights</h3>
+              </div>
+              
+              {/* Main Failure Message UI Mockup */}
+              <Card className="p-4 bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 min-w-8 min-h-8 rounded-full bg-red-500 text-white flex items-center justify-center flex-shrink-0">
+                    <span className="text-sm font-bold">✗</span>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-red-800 dark:text-red-200">Goal Failed - Purchase Abandoned</h4>
+                    <p className="text-xs text-red-600 dark:text-red-300">Jen was not able to understand the durability of the dog toy in limited steps due to a complicated product comparison view.</p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+          </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
 export default ProductDemo;
