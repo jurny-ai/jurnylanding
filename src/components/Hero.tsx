@@ -73,9 +73,7 @@ const Hero = () => {
                           </div>
                           <div className="text-left">
                             <h3 className="text-sm font-semibold text-red-800 dark:text-red-200">Goal Failed - Purchase Abandoned</h3>
-                            <p className="text-xs text-red-600 dark:text-red-300">Jen gave up because she was not able to understand the durability of the dog toy in limited steps
-due ot a complicated product comparison view.
-                          </p>
+                            <p className="text-xs text-red-600 dark:text-red-300">Jen was not able to understand the durability of the dog toy in limited steps due to a complicated product comparison view.</p>
                           </div>
                         </div>
                         
