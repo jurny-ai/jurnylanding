@@ -35,7 +35,7 @@ const ProductDemo = () => {
               <div className="relative">
                 <div className="lg:transform lg:-translate-y-8">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-lg">
+                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm shadow-lg">
                       01
                     </div>
                     <div>
@@ -44,14 +44,14 @@ const ProductDemo = () => {
                     </div>
                   </div>
                   
-                  <Card className="p-6 bg-gradient-to-br from-blue-50/50 to-blue-100/30 dark:from-blue-950/30 dark:to-blue-900/20 border-blue-200 dark:border-blue-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  <Card className="p-6 bg-primary/5 border-primary/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                     <div className="flex items-start gap-3 mb-3">
-                      <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-xs font-semibold">J</span>
+                      <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                        <span className="text-primary-foreground text-xs font-semibold">J</span>
                       </div>
                       <div>
                         <h4 className="font-semibold text-foreground mb-1">Jen, 28</h4>
-                        <div className="text-xs text-blue-600 dark:text-blue-400 font-medium mb-2">Dog Owner • Busy Professional</div>
+                        <div className="text-xs text-primary font-medium mb-2">Dog Owner • Busy Professional</div>
                       </div>
                     </div>
                     <p className="text-sm text-muted-foreground leading-relaxed">
@@ -65,7 +65,7 @@ const ProductDemo = () => {
               <div className="relative">
                 <div className="lg:transform lg:translate-y-4">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 text-white flex items-center justify-center font-bold text-sm shadow-lg">
+                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm shadow-lg">
                       02
                     </div>
                     <div>
@@ -75,9 +75,9 @@ const ProductDemo = () => {
                   </div>
                   
                   <div className="space-y-4">
-                    <Card className="p-4 bg-gradient-to-br from-amber-50/50 to-amber-100/30 dark:from-amber-950/30 dark:to-amber-900/20 border-amber-200 dark:border-amber-800 shadow-md hover:shadow-lg transition-all duration-300">
+                    <Card className="p-4 bg-primary/5 border-primary/20 shadow-md hover:shadow-lg transition-all duration-300">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 text-white text-xs flex items-center justify-center font-bold">11</div>
+                        <div className="w-7 h-7 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-bold">11</div>
                         <div className="text-sm font-semibold text-foreground">Navigate to comparison</div>
                       </div>
                       <p className="text-xs text-muted-foreground leading-relaxed">
@@ -102,7 +102,7 @@ const ProductDemo = () => {
               <div className="relative">
                 <div className="lg:transform lg:-translate-y-4">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 text-white flex items-center justify-center font-bold text-sm shadow-lg">
+                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm shadow-lg">
                       03
                     </div>
                     <div>
