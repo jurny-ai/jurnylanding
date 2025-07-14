@@ -23,7 +23,7 @@ const ProductDemo = () => {
               </div>
               
               {/* Persona UI Mockup */}
-              <Card className="p-4 bg-muted/20 border h-24 flex flex-col justify-center">
+              <Card className="p-4 bg-muted/20 border h-32 flex flex-col justify-center">
                 <h4 className="text-sm font-semibold text-foreground mb-2">Persona: Jen, 28</h4>
                 <p className="text-xs text-muted-foreground line-clamp-2">Dog owner looking for a durable toy for her energetic pitbull. Jen is always on the move and does a lot of shopping in between commitments...</p>
               </Card>
@@ -36,7 +36,7 @@ const ProductDemo = () => {
               </div>
               
               {/* Abandon Goal UI Mockup */}
-              <Card className="p-4 bg-muted/30 border h-24 flex flex-col justify-center">
+              <Card className="p-4 bg-muted/30 border h-32 flex flex-col justify-center">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">12</div>
                   <div className="text-sm font-medium">Abandon goal</div>
@@ -52,7 +52,7 @@ const ProductDemo = () => {
               </div>
               
               {/* Main Failure Message UI Mockup */}
-              <Card className="p-4 bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800 h-24">
+              <Card className="p-4 bg-red-50 border-red-200 dark:bg-red-950 dark:border-red-800 h-32">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-8 min-w-8 min-h-8 rounded-full bg-red-500 text-white flex items-center justify-center flex-shrink-0">
                     <span className="text-sm font-bold">✗</span>
