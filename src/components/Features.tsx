@@ -5,19 +5,19 @@ import ProductDemo from "@/components/ProductDemo";
 const features = [{
   icon: Zap,
   title: "Instant Insights",
-  description: "Get real-time feedback and analysis as synthetic users interact with your designs, identifying pain points and areas for improvement."
+  description: "Gain real-time insights as synthetic users surface UX pain points and improvement areas."
 }, {
   icon: Users,
   title: "Diverse User Base",
-  description: "Generate users from different demographics, technical skill levels, and cultural backgrounds for comprehensive testing."
+  description: "Generate users across demographics and skill levels for comprehensive testing."
 }, {
   icon: Clock,
   title: "Save Time & Money",
-  description: "Reduce research timelines from weeks to hours while cutting traditional user testing costs by up to 80%."
+  description: "Cut research time from weeks to hours and reduce user testing costs by up to 80%."
 }, {
   icon: RefreshCw,
   title: "Iterative Testing",
-  description: "Rapidly test multiple design variations and prototypes with consistent user personas for reliable A/B testing results."
+  description: "Rapidly A/B test design variations and prototypes with consistent personas for reliable results."
 }];
 const Features = () => {
   return <section id="features" className="py-20 bg-gradient-subtle">
