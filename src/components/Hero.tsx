@@ -237,21 +237,21 @@ const Hero = () => {
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">10</div>
                               <div className="text-sm font-medium">scroll down</div>
                             </div>
-                            <p className="text-xs text-muted-foreground text-left">Scrolling down may help me find a review section or product information</p>
+                            <p className="text-xs text-muted-foreground text-left">Scrolling down may help me find product specifications. I want to see if this product would be durable enough</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">11</div>
-                              <div className="text-sm font-medium">Read Reviews</div>
+                              <div className="text-sm font-medium"> Reviews</div>
                             </div>
-                            <p className="text-xs text-muted-foreground text-left">There are limited reviews, the few that are there describe issues with long term wear and tear</p>
+                            <p className="text-xs text-muted-foreground text-left">f</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">12</div>
                               <div className="text-sm font-medium">Abandon goal</div>
                             </div>
-                            <p className="text-xs text-muted-foreground text-left">I am short for time and 12 steps is more than how much I have patience for. The one toy I was looking at did not have convincing reviews</p>
+                            <p className="text-xs text-muted-foreground text-left">I am short for time and 12 steps is more than how much I have patience for. </p>
                           </div>
                         </div>
                       </div>
