@@ -7,12 +7,8 @@ const Footer = () => {
           <div className="flex justify-between items-center">
             {/* Brand */}
             <div className="inline-flex items-center gap-2">
-              <img 
-                src="/lovable-uploads/560e781d-c4c7-4e51-819a-b21fc0746540.png" 
-                alt="Jurny Logo" 
-                className="h-6 w-auto"
-              />
-              <span className="text-lg font-bold text-foreground">jurny</span>
+              <img src="/lovable-uploads/560e781d-c4c7-4e51-819a-b21fc0746540.png" alt="Jurny Logo" className="h-6 w-auto" />
+              
             </div>
 
             {/* Work with Us Button */}
