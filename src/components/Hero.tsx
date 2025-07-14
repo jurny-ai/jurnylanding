@@ -73,7 +73,7 @@ const Hero = () => {
                           </div>
                           <div className="text-left">
                             <h3 className="text-sm font-semibold text-red-800 dark:text-red-200">Goal Failed - Purchase Abandoned</h3>
-                            <p className="text-xs text-red-600 dark:text-red-300">Jen was not able to understand the durability of the dog toy in limited steps due to a complicated product comparison view.</p>
+                            <p className="text-xs text-red-600 dark:text-red-300">Jen gave up after reviewing one product due to unconvincing reviews and time constraints</p>
                           </div>
                         </div>
                         
@@ -94,7 +94,7 @@ const Hero = () => {
                       <div className="grid grid-cols-2 gap-6">
                         <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
                           <h3 className="text-sm font-semibold text-foreground">Persona: Jen, 28</h3>
-                          <p className="text-xs text-muted-foreground">Dog owner looking for a durable toy for her energetic pitbull. Jen is always on the move and does a lot of shopping in between commitments...</p>
+                          <p className="text-xs text-muted-foreground">Dog owner looking for durable, safe toys that will keep her energetic Golden Retriever entertained and engaged...</p>
                         </div>
                         <div className="p-4 rounded-lg border bg-muted/20 space-y-2">
                           <h3 className="text-sm font-semibold text-foreground">Goal</h3>
@@ -228,30 +228,30 @@ const Hero = () => {
                           <div className="p-4 rounded-lg bg-primary/10 border border-primary/20 space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">9</div>
-                              <div className="text-sm font-medium">click "dumbbell dog toy"</div>
+                              <div className="text-sm font-medium">Click "dumbbell dog toy"</div>
                             </div>
                             <p className="text-xs text-muted-foreground text-left">This dog toy looks durable which would suit my pitbull</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">10</div>
-                              <div className="text-sm font-medium">scroll down</div>
+                              <div className="text-sm font-medium">Scroll down</div>
                             </div>
-                            <p className="text-xs text-muted-foreground text-left">Scrolling down may help me find product specifications. I want to see if this product would be durable enough</p>
+                            <p className="text-xs text-muted-foreground text-left">Scrolling down may help me find a review section or product information</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">11</div>
-                              <div className="text-sm font-medium"> Analyze Product Comparison View</div>
+                              <div className="text-sm font-medium">Read Reviews</div>
                             </div>
-                            <p className="text-xs text-muted-foreground text-left">I see a product comparison matrix with a lot of information. It is organized poorly and is hard to analyze quickly.</p>
+                            <p className="text-xs text-muted-foreground text-left">There are limited reviews, the few that are there describe issues with long term wear and tear</p>
                           </div>
                           <div className="p-4 rounded-lg bg-muted/30 border space-y-2">
                             <div className="flex items-center gap-2">
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">12</div>
                               <div className="text-sm font-medium">Abandon goal</div>
                             </div>
-                            <p className="text-xs text-muted-foreground text-left">I am short for time and 12 steps is more than how much I have patience for. I expected to be able to quickly understand the durability of the dog toy in limited clicks. </p>
+                            <p className="text-xs text-muted-foreground text-left">I am short for time and 12 steps is more than how much I have patience for. The one toy I was looking at did not have convincing reviews</p>
                           </div>
                         </div>
                       </div>
