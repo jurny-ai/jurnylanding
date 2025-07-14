@@ -251,7 +251,7 @@ const Hero = () => {
                               <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">12</div>
                               <div className="text-sm font-medium">Abandon goal</div>
                             </div>
-                            <p className="text-xs text-muted-foreground text-left">I am short for time and 12 steps is more than how much I have patience for. </p>
+                            <p className="text-xs text-muted-foreground text-left">I am short for time and 12 steps is more than how much I have patience for. I expected to be able to quickly understand the durability of the dog toy in limited clicks. </p>
                           </div>
                         </div>
                       </div>
