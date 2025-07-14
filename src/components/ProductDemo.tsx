@@ -30,6 +30,15 @@ const ProductDemo = () => {
                 <h3 className="text-xl font-bold text-foreground">Real Time Simulation</h3>
               </div>
               
+              {/* Step 11 UI Mockup */}
+              <Card className="p-4 bg-muted/20 border">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">11</div>
+                  <div className="text-sm font-medium">Navigate to comparison</div>
+                </div>
+                <p className="text-xs text-muted-foreground">I'm comparing different dog toys to find the most durable option. The interface seems overwhelming with too many options.</p>
+              </Card>
+              
               {/* Abandon Goal UI Mockup */}
               <Card className="p-4 bg-muted/30 border">
                 <div className="flex items-center gap-2 mb-2">
