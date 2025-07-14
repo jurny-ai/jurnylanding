@@ -95,7 +95,7 @@ const Hero = () => {
                         
                         {/* Steps counter section */}
                         <div className="flex items-center justify-between pt-2 border-t border-red-200 dark:border-red-800">
-                          <span className="text-xs text-red-600 dark:text-red-300 font-medium cursor-pointer hover:text-red-500 transition-colors flex items-center gap-1">
+                          <span className="text-xs text-red-600 dark:text-red-300 font-medium hover:text-red-500 transition-colors flex items-center gap-1">
                             View Analysis & Suggestions
                             <ChevronDown className="h-3 w-3" />
                           </span>
