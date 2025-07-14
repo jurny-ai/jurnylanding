@@ -83,9 +83,7 @@ const ProductDemo = () => {
                           <div className="w-12 h-1 bg-primary/30 rounded-full" />
                         </div>
                       </div>
-                      <p className="text-xs text-foreground/60 leading-relaxed ml-10">
-                        I'm comparing different dog toys to find the most durable option. The interface shows a comparison matrix...
-                      </p>
+                      <p className="text-xs text-foreground/60 leading-relaxed ml-10">The interface shows a comparison matrix that is organized poorly and is hard to analyze quickly...</p>
                     </Card>
                     
                     {/* Step 12 UI Mockup */}
