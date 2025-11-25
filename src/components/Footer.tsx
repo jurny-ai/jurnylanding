@@ -17,7 +17,7 @@ const Footer = () => {
 
             {/* Work with Us Button */}
             <Button size="lg" className="bg-gradient-primary hover:opacity-90 shadow-elegant group" asChild>
-              <a href="mailto:syntheticjurny.ai@gmail.com">
+              <a href="mailto:vidushi@usejurny.com">
                 Talk with Us
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </a>
