@@ -28,7 +28,7 @@ const ProductDemo = () => {
                       <User className="w-8 h-8 text-primary" />
                     </div>
                     <h3 className="text-xl font-bold text-foreground mb-2">Persona Creation</h3>
-                    <p className="text-sm text-foreground/70">AI generates realistic user personas</p>
+                    <p className="text-sm text-foreground/70">You create user personas</p>
                   </div>
                   
                   {/* Persona UI Mockup */}
