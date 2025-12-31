@@ -1,32 +1,46 @@
-import { Users, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
 const Footer = () => {
-  return <footer className="bg-foreground/5 border-t border-border py-12">
+  return (
+    <footer className="bg-[#0f1110] border-t border-white/5 py-16">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             {/* Brand */}
-            <div className="inline-flex items-center gap-2">
+            <div className="flex flex-col items-center md:items-start gap-4">
               <img 
                 src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png" 
                 alt="Jurny Logo" 
-                className="h-6 md:h-7"
+                className="h-6 brightness-0 invert opacity-80"
               />
-              
+              <p className="text-white/40 text-sm max-w-xs text-center md:text-left">
+                The future of UX research through autonomous synthetic user simulation.
+              </p>
             </div>
 
             {/* Work with Us Button */}
-            <Button size="lg" className="bg-gradient-primary hover:opacity-90 shadow-elegant group" asChild>
-              <a href="mailto:vidushi@usejurny.com">
-                Talk with Us
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
+            <div className="flex flex-col items-center md:items-end gap-6">
+              <Button size="lg" className="bg-white hover:bg-white/90 text-black rounded-full px-8 py-4 h-auto text-sm font-bold transition-all" asChild>
+                <a href="mailto:vidushi@usejurny.com">
+                  Talk with Us
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+              <div className="flex gap-8 text-white/40 text-[10px] uppercase tracking-widest font-bold">
+                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+              </div>
+            </div>
           </div>
-
           
+          <div className="mt-16 pt-8 border-t border-white/5 text-center text-white/20 text-xs">
+            © 2025 Jurny AI. All rights reserved.
+          </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;
