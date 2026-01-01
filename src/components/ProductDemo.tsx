@@ -2,7 +2,7 @@ import { ArrowUpRight, User, Play, AlertTriangle } from "lucide-react";
 
 const ProductDemo = () => {
   return (
-    <section className="py-20 bg-[#0f1110] relative overflow-hidden">
+    <section className="py-12 bg-[#0f1110] relative overflow-hidden">
       {/* Subtle background glow - purple family */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px]" />
       
