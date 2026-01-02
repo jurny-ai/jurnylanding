@@ -8,44 +8,44 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 240 10% 98%;
-    --foreground: 240 10% 9%;
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 9%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 9%;
+    --popover-foreground: 222 47% 11%;
 
     --primary: 233 36% 42%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 233 36% 60%;
+    --primary-glow: 263 70% 65%;
 
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 10% 9%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
     --accent: 263 70% 95%;
     --accent-foreground: 263 70% 20%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 84% 85%;
+    --destructive-foreground: 0 84% 30%;
 
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 263 70% 50%;
+    --border: 210 40% 90%;
+    --input: 210 40% 90%;
+    --ring: 263 70% 65%;
 
     /* Custom gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(233 36% 42%), hsl(233 36% 60%));
-    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(240 5% 95%));
-    --gradient-radial: radial-gradient(circle at center, hsl(var(--primary) / 0.15), hsl(var(--primary) / 0.05), transparent);
+    --gradient-primary: linear-gradient(135deg, hsl(233 36% 42%), hsl(263 70% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(233 36% 42%), hsl(263 70% 65%));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(233 36% 95%));
+    --gradient-radial: radial-gradient(circle at center, hsl(var(--primary) / 0.15), hsl(var(--primary) / 0.02), transparent);
 
-    /* Shadows */
-    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.2);
-    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.3);
+    /* Shadows - softer and more minimal */
+    --shadow-elegant: 0 4px 20px -2px hsl(var(--primary) / 0.1);
+    --shadow-glow: 0 0 20px hsl(var(--primary-glow) / 0.2);
 
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
