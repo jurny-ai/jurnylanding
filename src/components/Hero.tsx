@@ -60,7 +60,7 @@ const Hero = () => {
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl text-white/60 mb-10 leading-relaxed font-light max-w-lg">
-            Pre-deployment simulations grounded in real user behavior so you understand how your product functions in the hands of the users you designed for.
+            How real users will actually behave before they ever touch your product.
             </p>
 
             {/* CTA buttons */}
@@ -72,27 +72,12 @@ const Hero = () => {
                 </a>
               </Button>
             </div>
-
-            {/* Stats row integrated into left column bottom */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 pt-8 border-t border-white/5">
-              {[
-                { label: 'Conversion', val: '+24%' },
-                { label: 'Retention', val: '+18%' },
-                { label: 'Insights', val: 'Real-time' },
-                { label: 'Time Saved', val: '80%' }
-              ].map((stat, i) => (
-                <div key={i}>
-                  <div className="text-xl font-bold text-white">{stat.val}</div>
-                  <div className="text-[10px] uppercase tracking-wider text-white/40 mt-1">{stat.label}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Right Column: Visualization */}
-          <div className="relative pt-4 lg:ml-auto w-full max-w-[560px]">
-            <DashboardVisualization />
-          </div>
+                  {/* Right Column: Visualization */}
+                  <div className="relative pt-4 mx-auto lg:ml-auto w-full max-w-[560px]">
+                    <DashboardVisualization />
+                  </div>
 
         </div>
       </div>

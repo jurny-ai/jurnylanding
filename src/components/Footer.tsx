@@ -27,15 +27,11 @@ const Footer = () => {
                   <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
-              <div className="flex gap-8 text-white/40 text-[10px] uppercase tracking-widest font-bold">
-                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-              </div>
             </div>
           </div>
           
           <div className="mt-16 pt-8 border-t border-white/5 text-center text-white/20 text-xs">
-            © 2025 Jurny AI. All rights reserved.
+            © 2026 Jurny AI. All rights reserved.
           </div>
         </div>
       </div>
