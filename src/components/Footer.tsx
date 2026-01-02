@@ -22,11 +22,11 @@ const Footer = () => {
             {/* Work with Us Button */}
             <div className="flex flex-col items-center md:items-end gap-6">
               <Button size="lg" className="bg-white hover:bg-white/90 text-black rounded-full px-8 py-4 h-auto text-sm font-bold transition-all" asChild>
-                <a href="mailto:vidushi@usejurny.com">
-                  Talk with Us
+              <a href="mailto:vidushi@usejurny.com">
+                Talk with Us
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
+              </a>
+            </Button>
               <div className="flex gap-8 text-white/40 text-[10px] uppercase tracking-widest font-bold">
                 <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
                 <a href="#" className="hover:text-white transition-colors">Terms of Service</a>

@@ -47,8 +47,7 @@ const Hero = () => {
 
             {/* Main headline */}
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
-              Simulate with <br />
-              synthetic users <br />
+              Synthetic users <br />
               to reveal <br />
               <span 
                 className={`bg-gradient-to-r from-primary-glow to-indigo-400 bg-clip-text text-transparent transition-all duration-500 inline-block py-1 pr-2 ${
@@ -61,7 +60,7 @@ const Hero = () => {
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl text-white/60 mb-10 leading-relaxed font-light max-w-lg">
-              Define targeted personas and simulate real behavior at scale across critical user journeys
+            Pre-deployment simulations grounded in real user behavior so you understand how your product functions in the hands of the users you designed for.
             </p>
 
             {/* CTA buttons */}
