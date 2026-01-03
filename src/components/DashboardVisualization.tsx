@@ -272,12 +272,45 @@ const DashboardVisualization = () => {
 
         {/* Row 3: Stats stuff underneath */}
         <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-12 sm:col-span-6 h-fit animate-float" style={{ animationDelay: '0.4s' }}>
-            <div className="p-6 rounded-3xl bg-[#1a1b26]/90 backdrop-blur-xl border border-white/10 shadow-xl overflow-hidden">
+          <div className="col-span-6 h-fit animate-float" style={{ animationDelay: '0.4s' }}>
+            <div className="p-4 sm:p-6 rounded-3xl bg-[#1a1b26]/90 backdrop-blur-xl border border-white/10 shadow-xl h-full space-y-4">
+              <div>
+                <div className="text-[10px] sm:text-xs uppercase tracking-widest text-white/40 font-bold mb-3">
+                  Completion Rate
+                </div>
+                
+                <div className="flex items-center gap-3 sm:gap-6">
+                  <div className="relative w-10 h-10 sm:w-16 sm:h-16 flex-shrink-0 flex items-center justify-center">
+                    <svg className="w-full h-full transform -rotate-90" viewBox="0 0 64 64">
+                      <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-white/5" />
+                      <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" strokeDasharray="175.9" strokeDashoffset={175.9 * (1 - 0.94)} className="text-primary-glow transition-all duration-1000" strokeLinecap="round" />
+                    </svg>
+                    <span className="absolute text-[10px] sm:text-sm font-bold text-white">94%</span>
+                  </div>
+                  
+                <div className="flex-1 space-y-1 sm:space-y-2">
+                  {[
+                    { label: 'Checkout', done: true },
+                    { label: 'Nav Logic', done: true },
+                    { label: 'Form Fill', done: false }
+                  ].map((step, i) => (
+                    <div key={i} className="flex items-center gap-1.5">
+                      <CheckCircle2 className={`w-2 h-2 sm:w-3 sm:h-3 ${step.done ? 'text-primary-glow' : 'text-white/20'}`} />
+                      <span className={`text-[8px] sm:text-xs ${step.done ? 'text-white/80' : 'text-white/40'}`}>{step.label}</span>
+                    </div>
+                  ))}
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-6 h-fit animate-float" style={{ animationDelay: '0.6s' }}>
+            <div className="p-4 sm:p-6 rounded-3xl bg-[#1a1b26]/90 backdrop-blur-xl border border-white/10 shadow-xl overflow-hidden">
               <div className="flex justify-between items-start mb-3">
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-primary-glow font-bold">Conversion Rate</div>
-                  <div className="text-3xl font-bold text-white mt-1">24.8%</div>
+                  <div className="text-[10px] sm:text-xs uppercase tracking-widest text-primary-glow font-bold">Conversion Rate</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-white mt-1">24.8%</div>
                 </div>
               </div>
               <div className="h-12 w-full">
@@ -291,39 +324,6 @@ const DashboardVisualization = () => {
                     </linearGradient>
                   </defs>
                 </svg>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-span-12 sm:col-span-6 h-fit animate-float" style={{ animationDelay: '0.6s' }}>
-            <div className="p-6 rounded-3xl bg-[#1a1b26]/90 backdrop-blur-xl border border-white/10 shadow-xl h-full space-y-4">
-              <div>
-                <div className="text-xs uppercase tracking-widest text-white/40 font-bold mb-3">
-                  Task Completion Rate
-                </div>
-                
-                <div className="flex items-center gap-6">
-                  <div className="relative w-16 h-16 flex-shrink-0 flex items-center justify-center">
-                    <svg className="w-full h-full transform -rotate-90" viewBox="0 0 64 64">
-                      <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-white/5" />
-                      <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" strokeDasharray="175.9" strokeDashoffset={175.9 * (1 - 0.94)} className="text-primary-glow transition-all duration-1000" strokeLinecap="round" />
-                    </svg>
-                    <span className="absolute text-sm font-bold text-white">94%</span>
-                  </div>
-                  
-                  <div className="flex-1 space-y-2">
-                    {[
-                      { label: 'Checkout', done: true },
-                      { label: 'Nav Logic', done: true },
-                      { label: 'Form Fill', done: false }
-                    ].map((step, i) => (
-                      <div key={i} className="flex items-center gap-2">
-                        <CheckCircle2 className={`w-3 h-3 ${step.done ? 'text-primary-glow' : 'text-white/20'}`} />
-                        <span className={`text-xs ${step.done ? 'text-white/80' : 'text-white/40'}`}>{step.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
           </div>
