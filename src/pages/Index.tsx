@@ -7,7 +7,7 @@ import PathfindingBackground from "@/components/PathfindingBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-[#0f1110]">
+    <div className="min-h-screen bg-background">
       {/* <PathfindingBackground /> */}
       <Header />
       <Hero />

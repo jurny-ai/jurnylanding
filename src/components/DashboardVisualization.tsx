@@ -108,8 +108,8 @@ const DashboardVisualization = () => {
         
         {/* Row 1: Unified Persona Card */}
         <div className="w-full animate-float" style={{ animationDelay: '0s' }}>
-          <div className="p-6 rounded-3xl bg-[#1a1b26]/90 backdrop-blur-xl border border-white/10 shadow-xl flex justify-between items-center gap-4">
-            <div className="text-xs uppercase tracking-[0.2em] text-white/40 font-bold vertical-text border-r border-white/5 pr-4 hidden sm:block">
+          <div className="p-6 rounded-3xl bg-card/90 dark:bg-[#1a1b26]/90 backdrop-blur-xl border border-border dark:border-white/10 shadow-xl flex justify-between items-center gap-4">
+            <div className="text-xs uppercase tracking-[0.2em] text-foreground/60 dark:text-white/40 font-bold vertical-text border-r border-border dark:border-white/5 pr-4 hidden sm:block">
               Active Personas
             </div>
             
@@ -120,8 +120,8 @@ const DashboardVisualization = () => {
                 { name: 'Marcus, 34', quality: 'Methodical', grad: 'from-purple-500 to-pink-400', color: 'text-purple-400', bg: 'bg-purple-500/10' }
               ].map((p, i) => (
                 <div key={i} className="flex flex-col items-center text-center px-2 group">
-                  <div className={`w-12 h-12 rounded-full bg-gradient-to-tr ${p.grad} border border-white/10 shadow-lg mb-2 transition-transform duration-300 group-hover:scale-110`} />
-                  <div className="text-base font-bold text-white mb-0.5">{p.name.split(',')[0]}</div>
+                  <div className={`w-12 h-12 rounded-full bg-gradient-to-tr ${p.grad} border border-border dark:border-white/10 shadow-lg mb-2 transition-transform duration-300 group-hover:scale-110`} />
+                  <div className="text-base font-bold text-foreground dark:text-white mb-0.5">{p.name.split(',')[0]}</div>
                   <div className={`text-xs ${p.color} font-bold uppercase tracking-widest ${p.bg} px-1.5 py-1 rounded-full`}>{p.quality}</div>
                 </div>
               ))}
@@ -131,15 +131,15 @@ const DashboardVisualization = () => {
 
         {/* Row 2: Enhanced Browser Simulation with Entry Phase */}
         <div className="w-full h-[240px] animate-float" style={{ animationDelay: '0.2s' }}>
-          <div className="relative p-0 rounded-3xl bg-[#1a1b26]/95 backdrop-blur-xl border border-white/10 shadow-2xl h-full overflow-hidden">
+          <div className="relative p-0 rounded-3xl bg-card/95 dark:bg-[#1a1b26]/95 backdrop-blur-xl border border-border dark:border-white/10 shadow-2xl h-full overflow-hidden">
             {/* Header */}
-            <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/5 bg-white/5">
+            <div className="flex items-center gap-1.5 px-4 py-3 border-b border-border dark:border-white/5 bg-muted dark:bg-white/5">
               <div className="flex gap-1.5">
                 <div className="w-2 h-2 rounded-full bg-red-500/40" />
                 <div className="w-2 h-2 rounded-full bg-yellow-500/40" />
                 <div className="w-2 h-2 rounded-full bg-green-500/40" />
               </div>
-              <div className="ml-4 px-3 py-1 rounded-full bg-white/5 text-xs text-white/60 font-mono flex items-center gap-2">
+              <div className="ml-4 px-3 py-1 rounded-full bg-muted dark:bg-white/5 text-xs text-foreground/70 dark:text-white/60 font-mono flex items-center gap-2">
                 {phase === 'sim' ? (
                   <>
                     <span className="w-1 h-1 rounded-full bg-primary-glow animate-pulse" />
@@ -164,24 +164,24 @@ const DashboardVisualization = () => {
               }`}>
                 <div className="w-full max-sm px-4 space-y-4">
                   <div className="relative">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/40 dark:text-white/20">
                       <Globe className="w-4 h-4" />
                     </div>
-                    <div className="w-full h-12 bg-white/5 border border-white/10 rounded-xl flex items-center px-12 text-base text-white/80 font-mono overflow-hidden">
+                    <div className="w-full h-12 bg-muted dark:bg-white/5 border border-border dark:border-white/10 rounded-xl flex items-center px-12 text-base text-foreground/80 dark:text-white/80 font-mono overflow-hidden">
                       {urlText}
                       <span className="w-1 h-4 bg-primary-glow ml-1 animate-pulse" />
                     </div>
                     {urlText === '' && (
-                      <div className="absolute left-12 top-1/2 -translate-y-1/2 text-white/20 text-base font-mono">
+                      <div className="absolute left-12 top-1/2 -translate-y-1/2 text-foreground/40 dark:text-white/20 text-base font-mono">
                         website to test
                       </div>
                     )}
                   </div>
                   
-                  <button className="w-full h-12 rounded-xl bg-primary text-white text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-lg shadow-primary/20 flex items-center justify-center gap-2 group">
+                  <button className="w-full h-12 rounded-xl bg-primary text-primary-foreground text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-lg shadow-primary/20 flex items-center justify-center gap-2 group">
                     Start Simulation
-                    <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center group-active:scale-90 transition-transform">
-                      <div className="w-1.5 h-1.5 bg-white rounded-full animate-ping" />
+                    <div className="w-4 h-4 rounded-full bg-primary-foreground/20 flex items-center justify-center group-active:scale-90 transition-transform">
+                      <div className="w-1.5 h-1.5 bg-primary-foreground rounded-full animate-ping" />
                     </div>
                   </button>
                 </div>
@@ -194,21 +194,21 @@ const DashboardVisualization = () => {
                 <div className="p-8 relative h-full bg-gradient-to-b from-transparent to-primary/5">
                   <div className="flex gap-6">
                     {/* Visual Placeholder */}
-                    <div className="w-24 h-24 rounded-2xl bg-white/5 border border-white/10 flex-shrink-0 animate-pulse overflow-hidden relative">
+                    <div className="w-24 h-24 rounded-2xl bg-muted dark:bg-white/5 border border-border dark:border-white/10 flex-shrink-0 animate-pulse overflow-hidden relative">
                       <div className={`absolute inset-0 bg-gradient-to-br ${siteContent[currentUrlIndex].accent} opacity-50`} />
                     </div>
                     
                     <div className="flex-1 space-y-3">
                       {/* Dynamic Title */}
                       <div className="h-4 flex items-center">
-                        <span className="text-sm font-bold text-white/90 tracking-tight">
+                        <span className="text-sm font-bold text-foreground/90 dark:text-white/90 tracking-tight">
                           {siteContent[currentUrlIndex].title}
                         </span>
                       </div>
                       
                       {/* Dynamic Description */}
                       <div className="space-y-1.5">
-                        <div className="text-xs text-white/40 leading-tight font-light line-clamp-2">
+                        <div className="text-xs text-foreground/60 dark:text-white/40 leading-tight font-light line-clamp-2">
                           {siteContent[currentUrlIndex].desc}
                         </div>
                       </div>
@@ -216,11 +216,11 @@ const DashboardVisualization = () => {
                       {/* Dynamic Buttons */}
                       <div className="flex gap-2 pt-2">
                         <div className="w-24 h-8 rounded-lg bg-primary/20 border border-primary/30 flex items-center justify-center relative overflow-hidden group/btn-cart">
-                          <span className="text-xs text-white/60 font-bold">{siteContent[currentUrlIndex].btn1}</span>
+                          <span className="text-xs text-foreground/70 dark:text-white/60 font-bold">{siteContent[currentUrlIndex].btn1}</span>
                           <div className="absolute inset-0 bg-primary-glow/20 animate-ui-click-ripple opacity-0" />
                         </div>
-                        <div className="w-24 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center relative overflow-hidden group/btn-details">
-                          <span className="text-xs text-white/40 font-bold">{siteContent[currentUrlIndex].btn2}</span>
+                        <div className="w-24 h-8 rounded-lg bg-muted dark:bg-white/5 border border-border dark:border-white/10 flex items-center justify-center relative overflow-hidden group/btn-details">
+                          <span className="text-xs text-foreground/60 dark:text-white/40 font-bold">{siteContent[currentUrlIndex].btn2}</span>
                           <div className="absolute inset-0 bg-blue-500/10 animate-ui-click-ripple-2 opacity-0" />
                         </div>
                       </div>
@@ -229,10 +229,10 @@ const DashboardVisualization = () => {
 
                   {/* Form elements underneath */}
                   <div className="mt-6 space-y-3">
-                    <div className="h-1.5 w-24 bg-white/5 rounded-full" />
+                    <div className="h-1.5 w-24 bg-muted dark:bg-white/5 rounded-full" />
                     <div className="grid grid-cols-2 gap-3">
-                      <div className="h-7 rounded-lg bg-white/5 border border-white/5" />
-                      <div className="h-7 rounded-lg bg-white/5 border border-white/5" />
+                      <div className="h-7 rounded-lg bg-muted dark:bg-white/5 border border-border dark:border-white/5" />
+                      <div className="h-7 rounded-lg bg-muted dark:bg-white/5 border border-border dark:border-white/5" />
                     </div>
                   </div>
 
@@ -242,7 +242,7 @@ const DashboardVisualization = () => {
                     <div className="absolute animate-cursor-jen top-0 left-0 z-20">
                       <div className="relative">
                         <MousePointer2 className="w-5 h-5 text-primary-glow drop-shadow-lg fill-primary/20" />
-                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-primary-glow text-xs text-white font-bold whitespace-nowrap shadow-lg">Jen</div>
+                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-primary-glow text-xs text-primary-foreground font-bold whitespace-nowrap shadow-lg">Jen</div>
                         <div className="absolute top-0 left-0 w-8 h-8 -translate-x-1/4 -translate-y-1/4 rounded-full border border-primary-glow/50 scale-0 animate-ui-click-jen" />
                       </div>
                     </div>
@@ -251,7 +251,7 @@ const DashboardVisualization = () => {
                     <div className="absolute animate-cursor-randall top-0 left-0 z-10">
                       <div className="relative">
                         <MousePointer2 className="w-5 h-5 text-blue-400 drop-shadow-lg fill-blue-500/20" />
-                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-blue-500 text-xs text-white font-bold whitespace-nowrap shadow-lg">Randall</div>
+                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-blue-500 text-xs text-white dark:text-white font-bold whitespace-nowrap shadow-lg">Randall</div>
                         <div className="absolute top-0 left-0 w-8 h-8 -translate-x-1/4 -translate-y-1/4 rounded-full border border-blue-400/50 scale-0 animate-ui-click-randall" />
                       </div>
                     </div>
@@ -260,7 +260,7 @@ const DashboardVisualization = () => {
                     <div className="absolute animate-cursor-marcus top-0 left-0 z-0">
                       <div className="relative">
                         <MousePointer2 className="w-5 h-5 text-purple-400 drop-shadow-lg fill-purple-500/20" />
-                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-purple-500 text-xs text-white font-bold whitespace-nowrap shadow-lg">Marcus</div>
+                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-purple-500 text-xs text-white dark:text-white font-bold whitespace-nowrap shadow-lg">Marcus</div>
                       </div>
                     </div>
                   </div>
@@ -273,19 +273,19 @@ const DashboardVisualization = () => {
         {/* Row 3: Stats stuff underneath */}
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-6 h-fit animate-float" style={{ animationDelay: '0.4s' }}>
-            <div className="p-4 sm:p-6 rounded-3xl bg-[#1a1b26]/90 backdrop-blur-xl border border-white/10 shadow-xl h-full space-y-4">
+            <div className="p-4 sm:p-6 rounded-3xl bg-card/90 dark:bg-[#1a1b26]/90 backdrop-blur-xl border border-border dark:border-white/10 shadow-xl h-full space-y-4">
               <div>
-                <div className="text-[10px] sm:text-xs uppercase tracking-widest text-white/40 font-bold mb-3">
+                <div className="text-[10px] sm:text-xs uppercase tracking-widest text-foreground/60 dark:text-white/40 font-bold mb-3">
                   Completion Rate
                 </div>
                 
                 <div className="flex items-center gap-3 sm:gap-6">
                   <div className="relative w-10 h-10 sm:w-16 sm:h-16 flex-shrink-0 flex items-center justify-center">
                     <svg className="w-full h-full transform -rotate-90" viewBox="0 0 64 64">
-                      <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-white/5" />
+                      <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-foreground/10 dark:text-white/5" />
                       <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" strokeDasharray="175.9" strokeDashoffset={175.9 * (1 - 0.94)} className="text-primary-glow transition-all duration-1000" strokeLinecap="round" />
                     </svg>
-                    <span className="absolute text-[10px] sm:text-sm font-bold text-white">94%</span>
+                    <span className="absolute text-[10px] sm:text-sm font-bold text-foreground dark:text-white">94%</span>
                   </div>
                   
                 <div className="flex-1 space-y-1 sm:space-y-2">
@@ -295,8 +295,8 @@ const DashboardVisualization = () => {
                     { label: 'Form Fill', done: false }
                   ].map((step, i) => (
                     <div key={i} className="flex items-center gap-1.5">
-                      <CheckCircle2 className={`w-2 h-2 sm:w-3 sm:h-3 ${step.done ? 'text-primary-glow' : 'text-white/20'}`} />
-                      <span className={`text-[8px] sm:text-xs ${step.done ? 'text-white/80' : 'text-white/40'}`}>{step.label}</span>
+                      <CheckCircle2 className={`w-2 h-2 sm:w-3 sm:h-3 ${step.done ? 'text-primary-glow' : 'text-foreground/30 dark:text-white/20'}`} />
+                      <span className={`text-[8px] sm:text-xs ${step.done ? 'text-foreground/80 dark:text-white/80' : 'text-foreground/60 dark:text-white/40'}`}>{step.label}</span>
                     </div>
                   ))}
                 </div>
@@ -306,11 +306,11 @@ const DashboardVisualization = () => {
           </div>
 
           <div className="col-span-6 h-fit animate-float" style={{ animationDelay: '0.6s' }}>
-            <div className="p-4 sm:p-6 rounded-3xl bg-[#1a1b26]/90 backdrop-blur-xl border border-white/10 shadow-xl overflow-hidden">
+            <div className="p-4 sm:p-6 rounded-3xl bg-card/90 dark:bg-[#1a1b26]/90 backdrop-blur-xl border border-border dark:border-white/10 shadow-xl overflow-hidden">
               <div className="flex justify-between items-start mb-3">
                 <div>
                   <div className="text-[10px] sm:text-xs uppercase tracking-widest text-primary-glow font-bold">Conversion Rate</div>
-                  <div className="text-2xl sm:text-3xl font-bold text-white mt-1">24.8%</div>
+                  <div className="text-2xl sm:text-3xl font-bold text-foreground dark:text-white mt-1">24.8%</div>
                 </div>
               </div>
               <div className="h-12 w-full">

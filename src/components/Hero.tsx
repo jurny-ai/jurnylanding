@@ -28,7 +28,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[75vh] lg:min-h-[780px] flex items-center overflow-hidden bg-[#0f1110] pt-24 pb-12">
+    <section className="relative min-h-[75vh] lg:min-h-[780px] flex items-center overflow-hidden bg-background pt-24 pb-12">
       {/* Background Glows for the whole section - consistent purple family */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/4" />
@@ -39,14 +39,14 @@ const Hero = () => {
           {/* Left Column: Text Content */}
           <div className="text-left max-w-3xl pt-4">
             {/* Logo + AI Badge */}
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8">
-              <img src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png" alt="Jurny Logo" className="h-5 md:h-6 brightness-0 invert opacity-80" />
+            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-foreground/5 dark:bg-white/5 border border-border dark:border-white/10 backdrop-blur-md mb-8">
+              <img src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png" alt="Jurny Logo" className="h-5 md:h-6 opacity-80" />
               <div className="w-1 h-1 bg-primary-glow rounded-full animate-pulse" />
-              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/60">Backed by Unusual Ventures</span>
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-foreground/60 dark:text-white/60">Backed by Unusual Ventures</span>
             </div>
 
             {/* Main headline */}
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-bold text-foreground dark:text-white mb-6 leading-[1.1] tracking-tight">
               Synthetic users <br />
               to reveal <br />
               <span 
@@ -59,13 +59,13 @@ const Hero = () => {
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg md:text-xl text-white/60 mb-10 leading-relaxed font-light max-w-lg">
+            <p className="text-lg md:text-xl text-foreground/60 dark:text-white/60 mb-10 leading-relaxed font-light max-w-lg">
             How real users will actually behave before they ever touch your product.
             </p>
 
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-4 items-start mb-12">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300 shadow-xl shadow-primary/20 border border-white/10" asChild>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300 shadow-xl shadow-primary/20 border border-border dark:border-white/10" asChild>
                 <a href="https://calendly.com/syntheticjurny-ai/new-meeting">
                   Book a Demo
                   <ArrowRight className="ml-2 h-4 w-4" />
