@@ -115,7 +115,7 @@ const DashboardVisualization = () => {
             
             <div className="flex-1 flex justify-around items-center">
               {[
-                { name: 'Jen, 28', quality: 'Fast-Paced', grad: 'from-primary to-primary-glow', color: 'text-primary-glow', bg: 'bg-primary/10' },
+                { name: 'Jen, 28', quality: 'Impatient', grad: 'from-primary to-primary-glow', color: 'text-primary-glow', bg: 'bg-primary/10' },
                 { name: 'Randall, 55', quality: 'Skeptical', grad: 'from-indigo-500 to-blue-400', color: 'text-blue-400', bg: 'bg-blue-500/10' },
                 { name: 'Marcus, 34', quality: 'Methodical', grad: 'from-purple-500 to-pink-400', color: 'text-purple-400', bg: 'bg-purple-500/10' }
               ].map((p, i) => (
@@ -279,9 +279,6 @@ const DashboardVisualization = () => {
                   <div className="text-xs uppercase tracking-widest text-primary-glow font-bold">Conversion Rate</div>
                   <div className="text-3xl font-bold text-white mt-1">24.8%</div>
                 </div>
-                <div className="p-1.5 rounded-full bg-primary/20">
-                  <ArrowUpRight className="w-3 h-3 text-primary-glow" />
-                </div>
               </div>
               <div className="h-12 w-full">
                 <svg width="100%" height="100%" viewBox="0 0 100 40" preserveAspectRatio="none" className="overflow-visible">
@@ -301,9 +298,8 @@ const DashboardVisualization = () => {
           <div className="col-span-6 h-fit animate-float" style={{ animationDelay: '0.6s' }}>
             <div className="p-6 rounded-3xl bg-[#1a1b26]/90 backdrop-blur-xl border border-white/10 shadow-xl h-full space-y-4">
               <div>
-                <div className="text-xs uppercase tracking-widest text-white/40 font-bold mb-3 flex items-center justify-between">
+                <div className="text-xs uppercase tracking-widest text-white/40 font-bold mb-3">
                   Task Completion Rate
-                  <span className="text-primary-glow font-bold">Current Run</span>
                 </div>
                 
                 <div className="flex items-center gap-4">
