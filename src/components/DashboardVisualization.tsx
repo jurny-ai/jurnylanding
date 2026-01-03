@@ -151,7 +151,7 @@ const DashboardVisualization = () => {
               </div>
               <div className="ml-auto">
                 <div className="px-2 py-0.5 rounded-full bg-primary/20 border border-primary/20 text-xs text-primary-glow font-bold uppercase">
-                  {phase === 'url' ? 'Ready' : 'Parallel Testing'}
+                  {phase === 'url' ? 'Ready' : 'Parallel Sim'}
                 </div>
               </div>
             </div>
@@ -272,7 +272,7 @@ const DashboardVisualization = () => {
 
         {/* Row 3: Stats stuff underneath */}
         <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-6 h-fit animate-float" style={{ animationDelay: '0.4s' }}>
+          <div className="col-span-12 sm:col-span-6 h-fit animate-float" style={{ animationDelay: '0.4s' }}>
             <div className="p-6 rounded-3xl bg-[#1a1b26]/90 backdrop-blur-xl border border-white/10 shadow-xl overflow-hidden">
               <div className="flex justify-between items-start mb-3">
                 <div>
@@ -295,18 +295,18 @@ const DashboardVisualization = () => {
             </div>
           </div>
 
-          <div className="col-span-6 h-fit animate-float" style={{ animationDelay: '0.6s' }}>
+          <div className="col-span-12 sm:col-span-6 h-fit animate-float" style={{ animationDelay: '0.6s' }}>
             <div className="p-6 rounded-3xl bg-[#1a1b26]/90 backdrop-blur-xl border border-white/10 shadow-xl h-full space-y-4">
               <div>
                 <div className="text-xs uppercase tracking-widest text-white/40 font-bold mb-3">
                   Task Completion Rate
                 </div>
                 
-                <div className="flex items-center gap-4">
-                  <div className="relative w-16 h-16 flex items-center justify-center">
-                    <svg className="w-full h-full transform -rotate-90">
+                <div className="flex items-center gap-6">
+                  <div className="relative w-16 h-16 flex-shrink-0 flex items-center justify-center">
+                    <svg className="w-full h-full transform -rotate-90" viewBox="0 0 64 64">
                       <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-white/5" />
-                      <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" strokeDasharray={175.9} strokeDashoffset={175.9 * (1 - 0.94)} className="text-primary-glow transition-all duration-1000" strokeLinecap="round" />
+                      <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" strokeDasharray="175.9" strokeDashoffset={175.9 * (1 - 0.94)} className="text-primary-glow transition-all duration-1000" strokeLinecap="round" />
                     </svg>
                     <span className="absolute text-sm font-bold text-white">94%</span>
                   </div>
