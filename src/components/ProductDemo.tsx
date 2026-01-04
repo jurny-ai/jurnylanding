@@ -9,6 +9,13 @@ const ProductDemo = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
           
+          {/* Section header */}
+          <div className="mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 max-w-xl leading-tight">
+              How It Works
+            </h2>
+          </div>
+          
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
             {/* Persona Card */}
