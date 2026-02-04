@@ -11,7 +11,7 @@ const ProductDemo = () => {
           
           {/* Section header */}
           <div className="mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 max-w-xl leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground dark:text-white mb-6 max-w-xl leading-tight">
               How It Works
             </h2>
           </div>
