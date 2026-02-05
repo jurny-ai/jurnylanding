@@ -43,15 +43,15 @@ const Hero = () => {
               href="https://www.unusual.vc/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-foreground/5 dark:bg-white/5 border border-border dark:border-white/10 backdrop-blur-md mb-8 hover:bg-foreground/10 dark:hover:bg-white/10 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-foreground/5 border border-border backdrop-blur-md mb-8 hover:bg-foreground/10 transition-colors cursor-pointer"
             >
               <img src="/unusual-ventures.png" alt="Unusual Ventures Logo" className="h-2.5 md:h-3 opacity-80" />
               <div className="w-1 h-1 bg-primary-glow rounded-full animate-pulse" />
-              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-foreground/60 dark:text-white/60">Backed by Unusual Ventures</span>
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-foreground/60">Backed by Unusual Ventures</span>
             </a>
 
             {/* Main headline */}
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground dark:text-white mb-6 leading-[1.1] tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-[1.1] tracking-tight">
               Synthetic users <br />
               to reveal <br />
               <span 
@@ -64,13 +64,13 @@ const Hero = () => {
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg md:text-xl text-foreground/60 dark:text-white/60 mb-10 leading-relaxed font-light max-w-lg">
-            How real users will actually behave before they ever touch your product.
+            <p className="text-lg md:text-xl text-foreground/60 mb-10 leading-relaxed font-light max-w-lg">
+            How your users will actually behave before they ever touch your product.
             </p>
 
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-4 items-start mb-12">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300 shadow-xl shadow-primary/20 border border-border dark:border-white/10" asChild>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300 shadow-xl shadow-primary/20 border border-border" asChild>
                 <a href="https://calendly.com/syntheticjurny-ai/new-meeting">
                   Book a Demo
                   <ArrowRight className="ml-2 h-4 w-4" />

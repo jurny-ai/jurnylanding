@@ -18,14 +18,14 @@ const Footer = () => {
 
             {/* Centered Description Text */}
             <div className="flex-1 text-center">
-              <p className="text-foreground/60 dark:text-white/40 text-lg max-w-2xl mx-auto">
-                The future of UX research through autonomous synthetic user simulation.
+              <p className="text-foreground/60 text-lg max-w-2xl mx-auto">
+                The future of product validation through autonomous synthetic user simulation.
               </p>
             </div>
 
             {/* Work with Us Button */}
             <div className="flex items-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300 shadow-xl shadow-primary/20 border border-border dark:border-white/10" asChild>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300 shadow-xl shadow-primary/20 border border-border" asChild>
               <a href="mailto:vidushi@usejurny.com">
                 Talk with Us
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -34,7 +34,7 @@ const Footer = () => {
             </div>
           </div>
           
-          <div className="mt-16 pt-8 border-t border-border text-center text-foreground/40 dark:text-white/20 text-base">
+          <div className="mt-16 pt-8 border-t border-border text-center text-foreground/40 text-base">
             © 2026 Jurny AI. All rights reserved.
           </div>
         </div>
