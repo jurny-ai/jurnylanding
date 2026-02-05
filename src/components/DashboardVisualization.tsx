@@ -28,7 +28,7 @@ const DashboardVisualization = () => {
       accent: "from-orange-500/20 to-primary/20"
     },
     {
-      title: "Treasury Checking",
+      title: "My Checking Account",
       desc: "Manage your assets with real-time fraud detection.",
       btn1: "Transfer",
       btn2: "Statements",
@@ -290,7 +290,7 @@ const DashboardVisualization = () => {
                   
                 <div className="flex-1 space-y-1 sm:space-y-2">
                   {[
-                    { label: 'Checkout', done: true },
+                    { label: 'Onboarding', done: true },
                     { label: 'Nav Logic', done: true },
                     { label: 'Form Fill', done: false }
                   ].map((step, i) => (

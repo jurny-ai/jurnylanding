@@ -39,11 +39,16 @@ const Hero = () => {
           {/* Left Column: Text Content */}
           <div className="text-left max-w-3xl pt-4">
             {/* Logo + AI Badge */}
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-foreground/5 dark:bg-white/5 border border-border dark:border-white/10 backdrop-blur-md mb-8">
-              <img src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png" alt="Jurny Logo" className="h-5 md:h-6 opacity-80" />
+            <a 
+              href="https://www.unusual.vc/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-foreground/5 dark:bg-white/5 border border-border dark:border-white/10 backdrop-blur-md mb-8 hover:bg-foreground/10 dark:hover:bg-white/10 transition-colors cursor-pointer"
+            >
+              <img src="/unusual-ventures.png" alt="Unusual Ventures Logo" className="h-2.5 md:h-3 opacity-80" />
               <div className="w-1 h-1 bg-primary-glow rounded-full animate-pulse" />
               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-foreground/60 dark:text-white/60">Backed by Unusual Ventures</span>
-            </div>
+            </a>
 
             {/* Main headline */}
             <h1 className="text-5xl md:text-7xl font-bold text-foreground dark:text-white mb-6 leading-[1.1] tracking-tight">
