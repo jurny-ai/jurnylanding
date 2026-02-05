@@ -29,10 +29,6 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-[75vh] lg:min-h-[780px] flex items-center overflow-hidden bg-background pt-24 pb-12">
-      {/* Background Glows for the whole section - consistent purple family */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/4" />
-
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           
@@ -70,7 +66,7 @@ const Hero = () => {
 
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-4 items-start mb-12">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300 shadow-xl shadow-primary/20 border border-border" asChild>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300 shadow-xl shadow-primary/20" asChild>
                 <a href="https://calendly.com/syntheticjurny-ai/new-meeting">
                   Book a Demo
                   <ArrowRight className="ml-2 h-4 w-4" />

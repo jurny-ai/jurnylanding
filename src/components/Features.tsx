@@ -4,7 +4,7 @@ const features = [
   {
     icon: Zap,
     title: "Reduce Rework",
-    description: "Validate design decisions early in the cycle to drastically reduce engineering cycles and prevent costly code rework."
+    description: "Validate design decisions early to drastically reduce engineering cycles and prevent costly code rework."
   }, 
   {
     icon: Users,

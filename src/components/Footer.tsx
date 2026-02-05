@@ -25,9 +25,9 @@ const Footer = () => {
 
             {/* Work with Us Button */}
             <div className="flex items-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300 shadow-xl shadow-primary/20 border border-border" asChild>
-              <a href="mailto:vidushi@usejurny.com">
-                Talk with Us
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300 shadow-xl shadow-primary/20" asChild>
+              <a href="https://calendly.com/syntheticjurny-ai/new-meeting">
+                Get Started
                   <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
@@ -35,7 +35,7 @@ const Footer = () => {
           </div>
           
           <div className="mt-16 pt-8 border-t border-border text-center text-foreground/40 text-base">
-            © 2026 Jurny AI. All rights reserved.
+            © 2026 Jurny AI, Inc. All rights reserved.
           </div>
         </div>
       </div>
