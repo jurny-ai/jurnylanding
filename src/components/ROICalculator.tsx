@@ -243,7 +243,7 @@ function ConversionTab() {
   const extraPerMonth = s * (imp / 100);
   const monthlyRevenue = extraPerMonth * a;
   const yr1Cumulative = monthlyRevenue * 12;
-  const roi = annualCost > 0 ? ((yr1Cumulative - annualCost) / annualCost) * 100 : 0;
+  const returnMultiple = annualCost > 0 ? yr1Cumulative / annualCost : 0;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -265,7 +265,7 @@ function ConversionTab() {
         <div className="flex gap-2">
           <MetricPill label="Yr 1 Added Revenue" value={`$${fmt(yr1Cumulative)}`} />
           <MetricPill label="Extra customers / mo" value={fmt(extraPerMonth, 1)} />
-          <MetricPill label="ROI" value={`${fmt(roi)}%`} />
+          <MetricPill label="ROI" value={`${fmt(returnMultiple, 1)}x`} />
         </div>
       </div>
     </div>
@@ -290,7 +290,7 @@ function ChurnTab() {
   const retainedPerMonth = c * (cr / 100) * (r / 100);
   const monthlySaved = retainedPerMonth * a;
   const yr1Cumulative = monthlySaved * 12;
-  const roi = annualCost > 0 ? ((yr1Cumulative - annualCost) / annualCost) * 100 : 0;
+  const returnMultiple = annualCost > 0 ? yr1Cumulative / annualCost : 0;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -313,7 +313,7 @@ function ChurnTab() {
         <div className="flex gap-2">
           <MetricPill label="Yr 1 saved" value={`$${fmt(yr1Cumulative)}`} />
           <MetricPill label="Retained / mo" value={fmt(retainedPerMonth, 1)} />
-          <MetricPill label="ROI" value={`${fmt(roi)}%`} />
+          <MetricPill label="ROI" value={`${fmt(returnMultiple, 1)}x`} />
         </div>
       </div>
     </div>
@@ -336,7 +336,7 @@ function SupportTab() {
   const fewerPerMonth = t * (r / 100);
   const monthlySaved = fewerPerMonth * cpt;
   const yr1Cumulative = monthlySaved * 12;
-  const roi = annualCost > 0 ? ((yr1Cumulative - annualCost) / annualCost) * 100 : 0;
+  const returnMultiple = annualCost > 0 ? yr1Cumulative / annualCost : 0;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -358,7 +358,7 @@ function SupportTab() {
         <div className="flex gap-2">
           <MetricPill label="Yr 1 saved" value={`$${fmt(yr1Cumulative)}`} />
           <MetricPill label="Fewer tickets / mo" value={fmt(fewerPerMonth, 0)} />
-          <MetricPill label="ROI" value={`${fmt(roi)}%`} />
+          <MetricPill label="ROI" value={`${fmt(returnMultiple, 1)}x`} />
         </div>
       </div>
     </div>
@@ -381,7 +381,7 @@ function DevTimeTab() {
   const hoursPerMonth = d * h;
   const monthlySaved = hoursPerMonth * r;
   const yr1Cumulative = monthlySaved * 12;
-  const roi = annualCost > 0 ? ((yr1Cumulative - annualCost) / annualCost) * 100 : 0;
+  const returnMultiple = annualCost > 0 ? yr1Cumulative / annualCost : 0;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -403,7 +403,7 @@ function DevTimeTab() {
         <div className="flex gap-2">
           <MetricPill label="Yr 1 saved" value={`$${fmt(yr1Cumulative)}`} />
           <MetricPill label="Hours saved / mo" value={fmt(hoursPerMonth, 0)} />
-          <MetricPill label="ROI" value={`${fmt(roi)}%`} />
+          <MetricPill label="ROI" value={`${fmt(returnMultiple, 1)}x`} />
         </div>
       </div>
     </div>
