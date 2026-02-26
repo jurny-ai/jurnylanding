@@ -88,16 +88,16 @@ function OptimizeVisual() {
 
 const features = [
   {
-    title: "Reduce Rework",
-    description: "Validate design decisions early to drastically reduce engineering cycles and prevent costly code rework.",
-    visual: <ReworkVisual />,
-    panelBg: "bg-primary/5",
-  },
-  {
     title: "Predict Behavior",
     description: "Understand exactly what your users could do before they do it, giving you actionable insights to improve flows.",
     visual: <BehaviorVisual />,
     panelBg: "bg-accent/40",
+  },
+  {
+    title: "Reduce Rework",
+    description: "Validate design decisions early to drastically reduce engineering cycles and prevent costly code rework.",
+    visual: <ReworkVisual />,
+    panelBg: "bg-primary/5",
   },
   {
     title: "Launch with Confidence",
