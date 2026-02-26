@@ -108,7 +108,7 @@ const DashboardVisualization = () => {
         
         {/* Row 1: Unified Persona Card */}
         <div className="w-full animate-float" style={{ animationDelay: '0s' }}>
-          <div className="p-6 rounded-3xl bg-card/90 backdrop-blur-xl border border-border shadow-xl flex justify-between items-center gap-4">
+          <div className="p-6 rounded-3xl bg-secondary backdrop-blur-xl flex justify-between items-center gap-4">
             <div className="text-xs uppercase tracking-[0.2em] text-foreground/60 font-bold vertical-text border-r border-border pr-4 hidden sm:block">
               Active Personas
             </div>
@@ -120,7 +120,7 @@ const DashboardVisualization = () => {
                 { name: 'Marcus, 34', quality: 'Methodical', grad: 'from-purple-500 to-pink-400', color: 'text-purple-400', bg: 'bg-purple-500/10' }
               ].map((p, i) => (
                 <div key={i} className="flex flex-col items-center text-center px-2 group">
-                  <div className={`w-12 h-12 rounded-full bg-gradient-to-tr ${p.grad} border border-border shadow-lg mb-2 transition-transform duration-300 group-hover:scale-110`} />
+                  <div className={`w-12 h-12 rounded-full bg-gradient-to-tr ${p.grad} border border-border mb-2 transition-transform duration-300 group-hover:scale-110`} />
                   <div className="text-base font-bold text-foreground mb-0.5">{p.name.split(',')[0]}</div>
                   <div className={`text-xs ${p.color} font-bold uppercase tracking-widest ${p.bg} px-1.5 py-1 rounded-full`}>{p.quality}</div>
                 </div>
@@ -131,7 +131,7 @@ const DashboardVisualization = () => {
 
         {/* Row 2: Enhanced Browser Simulation with Entry Phase */}
         <div className="w-full h-[240px] animate-float" style={{ animationDelay: '0.2s' }}>
-          <div className="relative p-0 rounded-3xl bg-card/95 backdrop-blur-xl border border-border shadow-2xl h-full overflow-hidden">
+          <div className="relative p-0 rounded-3xl bg-secondary backdrop-blur-xl h-full overflow-hidden">
             {/* Header */}
             <div className="flex items-center gap-1.5 px-4 py-3 border-b border-border bg-muted">
               <div className="flex gap-1.5">
@@ -178,7 +178,7 @@ const DashboardVisualization = () => {
                     )}
                   </div>
                   
-                  <button className="w-full h-12 rounded-xl bg-primary text-primary-foreground text-sm font-bold uppercase tracking-widest transition-all duration-300 shadow-lg shadow-primary/20 flex items-center justify-center gap-2 group">
+                  <button className="w-full h-12 rounded-xl bg-primary text-primary-foreground text-sm font-bold uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 group">
                     Start Simulation
                     <div className="w-4 h-4 rounded-full bg-primary-foreground/20 flex items-center justify-center group-active:scale-90 transition-transform">
                       <div className="w-1.5 h-1.5 bg-primary-foreground rounded-full animate-ping" />
@@ -241,8 +241,8 @@ const DashboardVisualization = () => {
                     {/* Jen */}
                     <div className="absolute animate-cursor-jen top-0 left-0 z-20">
                       <div className="relative">
-                        <MousePointer2 className="w-5 h-5 text-primary-glow drop-shadow-lg fill-primary/20" />
-                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-primary-glow text-xs text-primary-foreground font-bold whitespace-nowrap shadow-lg">Jen</div>
+                        <MousePointer2 className="w-5 h-5 text-primary-glow fill-primary/20" />
+                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-primary-glow text-xs text-primary-foreground font-bold whitespace-nowrap">Jen</div>
                         <div className="absolute top-0 left-0 w-8 h-8 -translate-x-1/4 -translate-y-1/4 rounded-full border border-primary-glow/50 scale-0 animate-ui-click-jen" />
                       </div>
                     </div>
@@ -250,8 +250,8 @@ const DashboardVisualization = () => {
                     {/* Randall */}
                     <div className="absolute animate-cursor-randall top-0 left-0 z-10">
                       <div className="relative">
-                        <MousePointer2 className="w-5 h-5 text-blue-400 drop-shadow-lg fill-blue-500/20" />
-                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-blue-500 text-xs text-white font-bold whitespace-nowrap shadow-lg">Randall</div>
+                        <MousePointer2 className="w-5 h-5 text-blue-400 fill-blue-500/20" />
+                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-blue-500 text-xs text-white font-bold whitespace-nowrap">Randall</div>
                         <div className="absolute top-0 left-0 w-8 h-8 -translate-x-1/4 -translate-y-1/4 rounded-full border border-blue-400/50 scale-0 animate-ui-click-randall" />
                       </div>
                     </div>
@@ -259,8 +259,8 @@ const DashboardVisualization = () => {
                     {/* Marcus */}
                     <div className="absolute animate-cursor-marcus top-0 left-0 z-0">
                       <div className="relative">
-                        <MousePointer2 className="w-5 h-5 text-purple-400 drop-shadow-lg fill-purple-500/20" />
-                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-purple-500 text-xs text-white font-bold whitespace-nowrap shadow-lg">Marcus</div>
+                        <MousePointer2 className="w-5 h-5 text-purple-400 fill-purple-500/20" />
+                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-purple-500 text-xs text-white font-bold whitespace-nowrap">Marcus</div>
                       </div>
                     </div>
                   </div>
@@ -273,7 +273,7 @@ const DashboardVisualization = () => {
         {/* Row 3: Stats stuff underneath */}
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-6 h-fit animate-float" style={{ animationDelay: '0.4s' }}>
-            <div className="p-4 sm:p-6 rounded-3xl bg-card/90 backdrop-blur-xl border border-border shadow-xl h-full space-y-4">
+            <div className="p-4 sm:p-6 rounded-3xl bg-secondary backdrop-blur-xl h-full space-y-4">
               <div>
                 <div className="text-[10px] sm:text-xs uppercase tracking-widest text-foreground/60 font-bold mb-3">
                   Completion Rate
@@ -306,7 +306,7 @@ const DashboardVisualization = () => {
           </div>
 
           <div className="col-span-6 h-fit animate-float" style={{ animationDelay: '0.6s' }}>
-            <div className="p-4 sm:p-6 rounded-3xl bg-card/90 backdrop-blur-xl border border-border shadow-xl overflow-hidden">
+            <div className="p-4 sm:p-6 rounded-3xl bg-secondary backdrop-blur-xl overflow-hidden">
               <div className="flex justify-between items-start mb-3">
                 <div>
                   <div className="text-[10px] sm:text-xs uppercase tracking-widest text-primary-glow font-bold">Conversion Rate</div>

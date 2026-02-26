@@ -25,7 +25,7 @@ const Footer = () => {
 
             {/* Work with Us Button */}
             <div className="flex items-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300 shadow-xl shadow-primary/20" asChild>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300" asChild>
               <a href="https://calendly.com/syntheticjurny-ai/new-meeting">
                 Get Started
                   <ArrowRight className="ml-2 h-4 w-4" />

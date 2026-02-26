@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import ProductDemo from "@/components/ProductDemo";
+import ROICalculator from "@/components/ROICalculator";
 import Footer from "@/components/Footer";
 import PathfindingBackground from "@/components/PathfindingBackground";
 
@@ -12,6 +13,7 @@ const Index = () => {
       <Header />
       <Hero />
       <ProductDemo />
+      <ROICalculator />
       <Features />
       <Footer />
     </div>
