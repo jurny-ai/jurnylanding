@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import DashboardVisualization from "./DashboardVisualization";
 import { useState, useEffect } from "react";
+import { track } from "@/lib/analytics";
 
 const Hero = () => {
   const [outcomeIndex, setOutcomeIndex] = useState(0);
@@ -36,10 +37,11 @@ const Hero = () => {
           {/* Left Column: Text Content */}
           <div className="text-left max-w-3xl pt-4">
             {/* Logo + AI Badge */}
-            <a 
-              href="https://www.unusual.vc/" 
-              target="_blank" 
+            <a
+              href="https://www.unusual.vc/"
+              target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track("badge_clicked", { badge: "unusual_ventures" })}
               className="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-secondary mb-8 hover:bg-foreground/8 transition-colors cursor-pointer"
             >
               <img src="/unusual-ventures.png" alt="Unusual Ventures Logo" className="h-2.5 md:h-3 opacity-80" />
@@ -68,7 +70,7 @@ const Hero = () => {
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-4 items-start mb-12">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300" asChild>
-                <a href="https://calendly.com/syntheticjurny-ai/new-meeting">
+                <a href="https://calendly.com/syntheticjurny-ai/new-meeting" onClick={() => track("cta_clicked", { location: "hero", label: "Book a Demo" })}>
                   Book a Demo
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>

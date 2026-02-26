@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { track } from "@/lib/analytics";
 
 const Footer = () => {
   return (
@@ -26,7 +27,7 @@ const Footer = () => {
             {/* Work with Us Button */}
             <div className="flex items-center">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300" asChild>
-              <a href="https://calendly.com/syntheticjurny-ai/new-meeting">
+              <a href="https://calendly.com/syntheticjurny-ai/new-meeting" onClick={() => track("cta_clicked", { location: "footer", label: "Get Started" })}>
                 Get Started
                   <ArrowRight className="ml-2 h-4 w-4" />
               </a>

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { track } from "@/lib/analytics";
 import { Sparkles } from "lucide-react";
 import {
   BarChart,
@@ -22,11 +23,12 @@ const tabs: { id: Tab; label: string }[] = [
 ];
 
 function InputRow({
-  label, value, onChange, prefix, suffix, jurnyEstimate,
+  label, value, onChange, onBlur, prefix, suffix, jurnyEstimate,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
+  onBlur?: () => void;
   prefix?: string;
   suffix?: string;
   jurnyEstimate?: string;
@@ -47,6 +49,7 @@ function InputRow({
             type="number"
             value={value}
             onChange={(e) => onChange(e.target.value)}
+            onBlur={onBlur}
             className="flex-1 px-2.5 py-1.5 bg-transparent text-foreground text-sm font-medium outline-none min-w-0"
           />
           {suffix && (
@@ -245,16 +248,17 @@ function ConversionTab() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div>
-        <InputRow label="Monthly visitors" value={signups} onChange={setSignups} />
-        <InputRow label="ARPU (monthly per customer)" value={arpu} onChange={setArpu} prefix="$" />
+        <InputRow label="Monthly visitors" value={signups} onChange={setSignups} onBlur={() => track("roi_input_changed", { tab: "conversion", field: "monthly_visitors" })} />
+        <InputRow label="ARPU (monthly per customer)" value={arpu} onChange={setArpu} prefix="$" onBlur={() => track("roi_input_changed", { tab: "conversion", field: "arpu" })} />
         <InputRow
           label="Conversion lift from CX focus"
           value={improvement}
           onChange={setImprovement}
+          onBlur={() => track("roi_input_changed", { tab: "conversion", field: "conversion_lift" })}
           suffix="%"
           jurnyEstimate="Jurny customers typically see 0.5–2% higher conversion vs. teams not optimizing CX"
         />
-        <InputRow label="Monthly Cost" value={cost} onChange={setCost} prefix="$" suffix="/mo" />
+        <InputRow label="Monthly Cost" value={cost} onChange={setCost} prefix="$" suffix="/mo" onBlur={() => track("roi_input_changed", { tab: "conversion", field: "monthly_cost" })} />
       </div>
       <div className="flex flex-col gap-4">
         <ROIChart monthlyValue={monthlyRevenue} cost={annualCost} valueLabel="Added Revenue" compounding={false} />
@@ -291,17 +295,18 @@ function ChurnTab() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div>
-        <InputRow label="Monthly active customers" value={customers} onChange={setCustomers} />
-        <InputRow label="Monthly churn rate" value={churnRate} onChange={setChurnRate} suffix="%" />
-        <InputRow label="ARPU (monthly per customer)" value={arpu} onChange={setArpu} prefix="$" />
+        <InputRow label="Monthly active customers" value={customers} onChange={setCustomers} onBlur={() => track("roi_input_changed", { tab: "churn", field: "monthly_customers" })} />
+        <InputRow label="Monthly churn rate" value={churnRate} onChange={setChurnRate} suffix="%" onBlur={() => track("roi_input_changed", { tab: "churn", field: "churn_rate" })} />
+        <InputRow label="ARPU (monthly per customer)" value={arpu} onChange={setArpu} prefix="$" onBlur={() => track("roi_input_changed", { tab: "churn", field: "arpu" })} />
         <InputRow
           label="Expected churn reduction"
           value={reduction}
           onChange={setReduction}
+          onBlur={() => track("roi_input_changed", { tab: "churn", field: "churn_reduction" })}
           suffix="%"
           jurnyEstimate="Jurny customers typically reduce churn by 20–30%"
         />
-        <InputRow label="Monthly Cost" value={cost} onChange={setCost} prefix="$" suffix="/mo" />
+        <InputRow label="Monthly Cost" value={cost} onChange={setCost} prefix="$" suffix="/mo" onBlur={() => track("roi_input_changed", { tab: "churn", field: "monthly_cost" })} />
       </div>
       <div className="flex flex-col gap-4">
         <ROIChart monthlyValue={monthlySaved} cost={annualCost} valueLabel="Saved Revenue" compounding={false} />
@@ -336,16 +341,17 @@ function SupportTab() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div>
-        <InputRow label="Monthly support tickets" value={tickets} onChange={setTickets} />
-        <InputRow label="Cost per ticket" value={costPerTicket} onChange={setCostPerTicket} prefix="$" />
+        <InputRow label="Monthly support tickets" value={tickets} onChange={setTickets} onBlur={() => track("roi_input_changed", { tab: "support", field: "monthly_tickets" })} />
+        <InputRow label="Cost per ticket" value={costPerTicket} onChange={setCostPerTicket} prefix="$" onBlur={() => track("roi_input_changed", { tab: "support", field: "cost_per_ticket" })} />
         <InputRow
           label="Expected ticket reduction"
           value={reduction}
           onChange={setReduction}
+          onBlur={() => track("roi_input_changed", { tab: "support", field: "ticket_reduction" })}
           suffix="%"
           jurnyEstimate="Jurny customers typically cut support volume by 20–35%"
         />
-        <InputRow label="Monthly Cost" value={projectCost} onChange={setProjectCost} prefix="$" suffix="/mo" />
+        <InputRow label="Monthly Cost" value={projectCost} onChange={setProjectCost} prefix="$" suffix="/mo" onBlur={() => track("roi_input_changed", { tab: "support", field: "monthly_cost" })} />
       </div>
       <div className="flex flex-col gap-4">
         <ROIChart monthlyValue={monthlySaved} cost={annualCost} valueLabel="Saved" compounding={false} />
@@ -380,16 +386,17 @@ function DevTimeTab() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <div>
-        <InputRow label="Developers on team" value={devs} onChange={setDevs} />
-        <InputRow label="Average hourly rate" value={rate} onChange={setRate} prefix="$" />
+        <InputRow label="Developers on team" value={devs} onChange={setDevs} onBlur={() => track("roi_input_changed", { tab: "devtime", field: "num_developers" })} />
+        <InputRow label="Average hourly rate" value={rate} onChange={setRate} prefix="$" onBlur={() => track("roi_input_changed", { tab: "devtime", field: "hourly_rate" })} />
         <InputRow
           label="Hours saved / dev / month"
           value={hoursSaved}
           onChange={setHoursSaved}
+          onBlur={() => track("roi_input_changed", { tab: "devtime", field: "hours_saved" })}
           suffix="hrs"
           jurnyEstimate="Teams using Jurny save 8–12 hrs/dev/month in rework"
         />
-        <InputRow label="Monthly Cost" value={projectCost} onChange={setProjectCost} prefix="$" suffix="/mo" />
+        <InputRow label="Monthly Cost" value={projectCost} onChange={setProjectCost} prefix="$" suffix="/mo" onBlur={() => track("roi_input_changed", { tab: "devtime", field: "monthly_cost" })} />
       </div>
       <div className="flex flex-col gap-4">
         <ROIChart monthlyValue={monthlySaved} cost={annualCost} valueLabel="Dev Time Saved" compounding={false} />
@@ -406,9 +413,32 @@ function DevTimeTab() {
 // ── Main ─────────────────────────────────────────────────────────
 const ROICalculator = () => {
   const [activeTab, setActiveTab] = useState<Tab>("conversion");
+  const sectionRef = useRef<HTMLElement>(null);
+  const viewed = useRef(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !viewed.current) {
+          viewed.current = true;
+          track("roi_calculator_viewed");
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const handleTabClick = (tab: Tab) => {
+    setActiveTab(tab);
+    track("roi_tab_clicked", { tab });
+  };
 
   return (
-    <section className="py-16 bg-background">
+    <section ref={sectionRef} className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           <div className="bg-secondary rounded-3xl p-8 md:p-12">
@@ -424,7 +454,7 @@ const ROICalculator = () => {
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => handleTabClick(tab.id)}
                   className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
                     activeTab === tab.id
                       ? "bg-foreground text-background"
