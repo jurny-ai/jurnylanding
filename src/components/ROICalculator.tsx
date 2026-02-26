@@ -413,6 +413,7 @@ const ROICalculator = () => {
         <div className="max-w-7xl mx-auto">
           <div className="bg-secondary rounded-3xl p-8 md:p-12">
             <div className="mb-10">
+              <p className="text-xl font-semibold text-muted-foreground uppercase tracking-widest mb-2">ROI Calculator</p>
               <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
                 How much can customer experience help?
               </h2>
