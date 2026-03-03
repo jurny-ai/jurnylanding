@@ -35,9 +35,25 @@ export default function BlogPostPage() {
               <h1 className="text-3xl md:text-4xl font-bold text-foreground leading-tight mb-4">
                 The Biggest Problems With Usability Testing Today
               </h1>
-              <p className="text-muted-foreground text-lg">
+              <p className="text-muted-foreground text-lg mb-6">
                 Usability testing is universally respected and routinely underused.
               </p>
+              <div className="flex items-center gap-3">
+                <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-full">
+                  {/* Square source image — no aspect-ratio mismatch */}
+                  <img
+                    src="/vidushi-somani.png"
+                    alt="Vidushi Somani"
+                    width={48}
+                    height={48}
+                    className="block h-full w-full"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xs text-muted-foreground uppercase tracking-wide">Written by</span>
+                  <span className="text-sm font-medium text-foreground">Vidushi Somani</span>
+                </div>
+              </div>
             </header>
 
             <div className="prose prose-lg max-w-none space-y-8 text-foreground">
