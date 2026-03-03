@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
@@ -12,7 +14,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <img 
             src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png" 
             alt="Jurny Logo" 
@@ -29,7 +31,7 @@ const Header = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="min-w-[220px]">
               <DropdownMenuItem asChild>
-                <Link to="/articles/usability-testing-problems" className="cursor-pointer">
+                <Link href="/articles/usability-testing-problems" className="cursor-pointer">
                   The Biggest Problems With Usability Testing Today
                 </Link>
               </DropdownMenuItem>

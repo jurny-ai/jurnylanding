@@ -1,8 +1,15 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import DashboardVisualization from "./DashboardVisualization";
 import { useState, useEffect } from "react";
 import { track } from "@/lib/analytics";
+
+const DashboardVisualization = dynamic(
+  () => import("./DashboardVisualization"),
+  { ssr: false }
+);
 
 const Hero = () => {
   const [outcomeIndex, setOutcomeIndex] = useState(0);

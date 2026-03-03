@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowUpRight, MousePointer2, CheckCircle2, Globe } from "lucide-react";
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import { track } from "@/lib/analytics";
 import { Sparkles } from "lucide-react";
