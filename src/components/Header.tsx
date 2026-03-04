@@ -29,7 +29,12 @@ const Header = () => {
                 <ChevronDown className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="min-w-[220px]">
+            <DropdownMenuContent align="end" className="min-w-[260px]">
+              <DropdownMenuItem asChild>
+                <Link href="/articles/csr-vs-ssr" className="cursor-pointer">
+                  Your Website Looks Amazing. Can Anyone Find It?
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link href="/articles/usability-testing-problems" className="cursor-pointer">
                   The Biggest Problems With Usability Testing Today
