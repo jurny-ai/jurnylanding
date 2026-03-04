@@ -6,10 +6,10 @@ import { track } from "@/lib/analytics";
 
 const Footer = () => {
   return (
-    <footer className="bg-background border-t border-border py-16">
+    <footer className="bg-background border-t border-border py-10 sm:py-16">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
             {/* Brand */}
             <div className="flex items-center gap-4">
               <img 

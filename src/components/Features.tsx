@@ -118,23 +118,23 @@ const Features = () => {
     <section id="features" className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-secondary rounded-3xl p-8 md:p-12">
-            <div className="mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 max-w-xl leading-tight">
+          <div className="bg-secondary rounded-3xl p-4 sm:p-8 md:p-12">
+            <div className="mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 max-w-xl leading-tight">
                 Ship the Right Product, Faster
               </h2>
-              <p className="text-lg text-foreground/50 max-w-xl font-light">
+              <p className="text-base sm:text-lg text-foreground/50 max-w-xl font-light">
                 Empower your product team to validate decisions instantly, reducing risk and engineering waste.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {features.map((feature, i) => (
-                <div key={i} className="rounded-3xl bg-card border border-primary/15 overflow-hidden flex flex-col group">
-                  <div className={`${feature.panelBg} flex items-center justify-center p-10 min-h-[200px] transition-all duration-300`}>
+                <div key={i} className="rounded-2xl sm:rounded-3xl bg-card border border-primary/15 overflow-hidden flex flex-col group">
+                  <div className={`${feature.panelBg} flex items-center justify-center p-6 sm:p-10 min-h-[180px] sm:min-h-[200px] transition-all duration-300`}>
                     {feature.visual}
                   </div>
-                  <div className="p-7">
+                  <div className="p-5 sm:p-7">
                     <h3 className="text-lg font-bold text-foreground mb-2 tracking-tight">
                       {feature.title}
                     </h3>

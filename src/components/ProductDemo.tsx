@@ -2,26 +2,26 @@ import { ArrowUpRight } from "lucide-react";
 
 function SimulationPanel() {
   return (
-    <div className="rounded-3xl bg-card border border-primary/15 p-7 space-y-5">
+    <div className="rounded-2xl sm:rounded-3xl bg-card border border-primary/15 p-4 sm:p-7 space-y-4 sm:space-y-5">
       {/* Slack-style message */}
       <div className="flex items-start gap-3">
         <div className="w-8 h-8 rounded bg-[#3F0E40] flex items-center justify-center shrink-0 mt-0.5">
           <span className="text-white font-bold text-xs">J</span>
         </div>
-        <div>
+        <div className="min-w-0">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-sm font-bold text-foreground">Jurny</span>
             <span className="bg-foreground/10 text-foreground/50 px-1.5 py-0.5 rounded text-[10px] font-medium">APP</span>
             <span className="text-xs text-foreground/30">10:23 AM</span>
           </div>
-          <div className="text-sm text-foreground/70 leading-relaxed">
-            <span className="text-primary font-medium">@jurny</span> Test if 20 researchers can filter for "Phase 3" clinical trials in the dashboard
+          <div className="text-xs sm:text-sm text-foreground/70 leading-relaxed">
+            <span className="text-primary font-medium">@jurny</span> Test if 20 researchers can filter for &ldquo;Phase 3&rdquo; clinical trials in the dashboard
           </div>
         </div>
       </div>
 
       {/* Persona chips */}
-      <div className="flex flex-wrap gap-2 pl-11">
+      <div className="flex flex-wrap gap-2 pl-0 sm:pl-11">
         {[
           { name: "Jen, 28", trait: "Impatient", color: "bg-violet-500/10 text-violet-600 border-violet-500/20" },
           { name: "Randall, 55", trait: "Skeptical", color: "bg-blue-500/10 text-blue-600 border-blue-500/20" },
@@ -51,8 +51,8 @@ function SimulationPanel() {
 
 function ResultsPanel() {
   return (
-    <div className="rounded-3xl bg-card border border-primary/15 p-7 space-y-3">
-      <div className="rounded-2xl bg-background p-5 space-y-3">
+    <div className="rounded-2xl sm:rounded-3xl bg-card border border-primary/15 p-4 sm:p-7 space-y-3">
+      <div className="rounded-xl sm:rounded-2xl bg-background p-3 sm:p-5 space-y-3">
         <div className="flex items-start justify-between gap-3">
           <div>
             <div className="text-sm font-semibold text-foreground mb-1">Filter Visibility Issue</div>
@@ -70,7 +70,7 @@ function ResultsPanel() {
         </div>
       </div>
 
-      <div className="rounded-2xl bg-background p-5 space-y-3">
+      <div className="rounded-xl sm:rounded-2xl bg-background p-3 sm:p-5 space-y-3">
         <div className="flex items-start justify-between gap-3">
           <div>
             <div className="text-sm font-semibold text-foreground mb-1">Terminology Confusion</div>
@@ -96,10 +96,10 @@ const ProductDemo = () => {
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-secondary rounded-3xl p-8 md:p-12">
+          <div className="bg-secondary rounded-3xl p-4 sm:p-8 md:p-12">
 
-            <div className="mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
+            <div className="mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight">
                 How It Works
               </h2>
             </div>

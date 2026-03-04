@@ -36,8 +36,8 @@ function InputRow({
   jurnyEstimate?: string;
 }) {
   return (
-    <div className="flex items-start gap-4 py-2.5 border-b border-border/40 last:border-0">
-      <div className="flex items-center w-52 flex-shrink-0 pt-1.5">
+    <div className="flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-4 py-2.5 border-b border-border/40 last:border-0">
+      <div className="flex items-center sm:w-44 md:w-52 flex-shrink-0 sm:pt-1.5">
         <span className="text-xs text-foreground/60">{label}</span>
       </div>
       <div className="flex-1 min-w-0">
@@ -73,9 +73,9 @@ function InputRow({
 
 function MetricPill({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex-1 bg-secondary/60 rounded-xl px-4 py-3 text-center">
-      <p className="text-[11px] text-foreground/50 mb-0.5">{label}</p>
-      <p className="text-lg font-bold text-foreground tracking-tight">{value}</p>
+    <div className="flex-1 min-w-0 bg-secondary/60 rounded-xl px-2 sm:px-4 py-3 text-center">
+      <p className="text-[10px] sm:text-[11px] text-foreground/50 mb-0.5 truncate">{label}</p>
+      <p className="text-base sm:text-lg font-bold text-foreground tracking-tight">{value}</p>
     </div>
   );
 }
@@ -142,16 +142,16 @@ function ROIChart({
 
   return (
     <div className="flex flex-col">
-      <div className="flex items-center justify-between mb-3">
-        <p className="text-xs font-semibold text-foreground/50 uppercase tracking-wider">
-          Cumulative {valueLabel} — 12 months
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-3">
+        <p className="text-[10px] sm:text-xs font-semibold text-foreground/50 uppercase tracking-wider">
+          Cumulative {valueLabel} — 12 mo
         </p>
         {breakEvenMonth && breakEvenMonth <= 12 ? (
-          <span className="text-[11px] bg-primary/10 text-primary-glow font-semibold px-2.5 py-1 rounded-full">
+          <span className="text-[10px] sm:text-[11px] bg-primary/10 text-primary-glow font-semibold px-2.5 py-1 rounded-full w-fit">
             Break-even: month {breakEvenMonth}
           </span>
         ) : (
-          <span className="text-[11px] bg-secondary text-foreground/40 font-medium px-2.5 py-1 rounded-full">
+          <span className="text-[10px] sm:text-[11px] bg-secondary text-foreground/40 font-medium px-2.5 py-1 rounded-full w-fit">
             Break-even: &gt;12 mo
           </span>
         )}
@@ -205,14 +205,14 @@ function ROIChart({
         </BarChart>
       </ResponsiveContainer>
 
-      <div className="flex items-center gap-4 mt-2">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2">
         <div className="flex items-center gap-1.5">
           <div className="w-2.5 h-2.5 rounded-sm" style={{ background: SETUP }} />
           <span className="text-[10px] text-foreground/40">Implementation</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-2.5 h-2.5 rounded-sm" style={{ background: MUTED }} />
-          <span className="text-[10px] text-foreground/40">Paying off investment</span>
+          <span className="text-[10px] text-foreground/40">Paying off</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-2.5 h-2.5 rounded-sm" style={{ background: PURPLE }} />
@@ -443,15 +443,15 @@ const ROICalculator = () => {
     <section ref={sectionRef} className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-secondary rounded-3xl p-8 md:p-12">
-            <div className="mb-10">
-              <p className="text-xl font-semibold text-muted-foreground uppercase tracking-widest mb-2">ROI Calculator</p>
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
+          <div className="bg-secondary rounded-3xl p-4 sm:p-8 md:p-12">
+            <div className="mb-8 sm:mb-10">
+              <p className="text-sm sm:text-xl font-semibold text-muted-foreground uppercase tracking-widest mb-2">ROI Calculator</p>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight">
                 How much can customer experience help?
               </h2>
             </div>
 
-            <div className="bg-card rounded-3xl p-6 md:p-8 border border-primary/15">
+            <div className="bg-card rounded-2xl sm:rounded-3xl p-3 sm:p-6 md:p-8 border border-primary/15">
             <div className="flex flex-wrap gap-2 mb-8">
               {tabs.map((tab) => (
                 <button

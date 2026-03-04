@@ -36,10 +36,10 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[75vh] lg:min-h-[780px] flex items-center overflow-hidden bg-background pt-24 pb-12">
+    <section className="relative min-h-0 lg:min-h-[780px] flex items-center overflow-hidden bg-background pt-24 pb-12">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div className="max-w-7xl mx-auto md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-start">
           
           {/* Left Column: Text Content */}
           <div className="text-left max-w-3xl pt-4">
@@ -57,7 +57,7 @@ const Hero = () => {
             </a>
 
             {/* Main headline */}
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-[1.1] tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-foreground mb-6 leading-[1.1] tracking-tight">
               Synthetic users <br />
               to reveal <br />
               <span 
