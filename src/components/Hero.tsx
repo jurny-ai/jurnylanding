@@ -77,7 +77,7 @@ const Hero = () => {
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-4 items-start mb-12">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300" asChild>
-                <a href="https://calendly.com/syntheticjurny-ai/new-meeting" onClick={() => track("cta_clicked", { location: "hero", label: "Book a Demo" })}>
+                <a href="https://calendly.com/jurny-ai/new-meeting" onClick={() => track("cta_clicked", { location: "hero", label: "Book a Demo" })}>
                   Book a Demo
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>

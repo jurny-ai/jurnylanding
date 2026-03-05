@@ -6,10 +6,10 @@ import { track } from "@/lib/analytics";
 
 const Footer = () => {
   return (
-    <footer className="bg-background border-t border-border py-10 sm:py-16">
+    <footer className="bg-background border-t border-border py-16">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             {/* Brand */}
             <div className="flex items-center gap-4">
               <img 
@@ -29,7 +29,7 @@ const Footer = () => {
             {/* Work with Us Button */}
             <div className="flex items-center">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300" asChild>
-              <a href="https://calendly.com/syntheticjurny-ai/new-meeting" onClick={() => track("cta_clicked", { location: "footer", label: "Get Started" })}>
+              <a href="https://calendly.com/jurny-ai/new-meeting" onClick={() => track("cta_clicked", { location: "footer", label: "Get Started" })}>
                 Get Started
                   <ArrowRight className="ml-2 h-4 w-4" />
               </a>
