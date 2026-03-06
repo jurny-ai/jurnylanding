@@ -88,24 +88,16 @@ function fmt(n: number, decimals = 0) {
   });
 }
 
-// compounding=true: each month adds a new cohort of customers who keep paying
-// (conversion, churn). compounding=false: flat monthly saving (support, dev time).
-// Month 1 is always the implementation phase — no returns yet.
 function buildChartData(monthlyValue: number, cost: number, compounding: boolean) {
   return Array.from({ length: 12 }, (_, i) => {
     const month = i + 1;
-    if (month === 1) {
-      return { month: `Mo 1`, value: 0, breakEven: false, setup: true };
-    }
-    const n = month - 1; // active months after implementation
     const cumulative = compounding
-      ? Math.round(monthlyValue * (n * (n + 1)) / 2)
-      : Math.round(monthlyValue * n);
+      ? Math.round(monthlyValue * (month * (month + 1)) / 2)
+      : Math.round(monthlyValue * month);
     return {
       month: `Mo ${month}`,
       value: cumulative,
       breakEven: cost > 0 && cumulative >= cost,
-      setup: false,
     };
   });
 }
@@ -113,16 +105,14 @@ function buildChartData(monthlyValue: number, cost: number, compounding: boolean
 function calcBreakEven(monthlyValue: number, cost: number, compounding: boolean): number | null {
   if (monthlyValue <= 0 || cost <= 0) return null;
   if (compounding) {
-    // solve n(n+1)/2 * mv >= cost  →  n = ceil((-1 + sqrt(1 + 8*cost/mv)) / 2)
     const n = Math.ceil((-1 + Math.sqrt(1 + (8 * cost) / monthlyValue)) / 2);
-    return n + 1; // +1 for implementation month
+    return n;
   }
-  return Math.ceil(cost / monthlyValue) + 1; // +1 for implementation month
+  return Math.ceil(cost / monthlyValue);
 }
 
 const PURPLE = "hsl(263, 70%, 62%)";
 const MUTED = "hsl(210, 20%, 88%)";
-const SETUP = "hsl(210, 15%, 93%)";
 
 function ROIChart({
   monthlyValue,
@@ -175,9 +165,7 @@ function ROIChart({
             width={44}
           />
           <RechartsTooltip
-            formatter={(val: number, _name: string, props: { payload?: { setup?: boolean } }) =>
-              props.payload?.setup ? ["Implementation phase", ""] : [`$${fmt(val)}`, valueLabel]
-            }
+            formatter={(val: number) => [`$${fmt(val)}`, valueLabel]}
             labelStyle={{ fontSize: 11 }}
             contentStyle={{
               borderRadius: 10,
@@ -198,7 +186,7 @@ function ROIChart({
             {data.map((entry, index) => (
               <Cell
                 key={index}
-                fill={entry.setup ? SETUP : entry.breakEven ? PURPLE : MUTED}
+                fill={entry.breakEven ? PURPLE : MUTED}
               />
             ))}
           </Bar>
@@ -207,10 +195,6 @@ function ROIChart({
 
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2">
         <div className="flex items-center gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-sm" style={{ background: SETUP }} />
-          <span className="text-[10px] text-foreground/40">Implementation</span>
-        </div>
-        <div className="flex items-center gap-1.5">
           <div className="w-2.5 h-2.5 rounded-sm" style={{ background: MUTED }} />
           <span className="text-[10px] text-foreground/40">Paying off</span>
         </div>
@@ -218,12 +202,6 @@ function ROIChart({
           <div className="w-2.5 h-2.5 rounded-sm" style={{ background: PURPLE }} />
           <span className="text-[10px] text-foreground/40">Pure return</span>
         </div>
-      </div>
-
-      <div className="mt-3 bg-primary/5 border border-primary/15 rounded-xl px-3 py-2.5">
-        <p className="text-xs text-foreground/55 leading-relaxed">
-          Month 1 reflects onboarding. From month 2, your improved product delivers consistent gains — the dashed line shows your total annual subscription cost.
-        </p>
       </div>
     </div>
   );
