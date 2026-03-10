@@ -122,17 +122,22 @@ export default function IFoundAIssueNowWhatPage() {
           it is retrieved, how is it stored and grouped&rdquo;.
         </p>
         <div className="rounded-xl bg-background border border-border p-4 md:p-5 mb-4 space-y-4">
-          <p className="text-sm font-semibold text-foreground/80">Example prompt + response</p>
+          <p className="text-sm font-semibold text-foreground/80">
+            Example of the sliding input/output window
+          </p>
           <div className="rounded-lg border border-border bg-secondary/40 p-3">
-            <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">Prompt</p>
+            <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
+              Window 1 Prompt
+            </p>
             <p className="text-sm text-foreground/90 leading-relaxed">
-              Show me sample input data and sample output data for monthly revenue averaging after
-              grouping. Use one example where a month is missing and explain how many months are
-              counted in the final average.
+              Show me sample input and output for data retrieval and grouping only. Do not calculate
+              averages yet.
             </p>
           </div>
           <div className="rounded-lg border border-border bg-secondary/40 p-3">
-            <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">Response</p>
+            <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
+              Window 1 Response (checks out)
+            </p>
             <p className="text-sm text-foreground/90 leading-relaxed mb-2">
               Sample grouped input:
             </p>
@@ -143,7 +148,26 @@ export default function IFoundAIssueNowWhatPage() {
 ]`}</code>
             </pre>
             <p className="text-sm text-foreground/90 leading-relaxed mb-2">
-              Computed summary:
+              Grouped output:
+            </p>
+            <pre className="bg-background border border-border rounded-md p-3 overflow-x-auto text-xs text-foreground/80">
+              <code>{`{
+  "groupedMonths": ["Jan", "Mar"],
+  "groupedRevenue": [12000, 18000]
+}`}</code>
+            </pre>
+          </div>
+          <div className="rounded-lg border border-border bg-secondary/40 p-3">
+            <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
+              Window 2 Prompt
+            </p>
+            <p className="text-sm text-foreground/90 leading-relaxed">
+              Now show sample input and output for the averaging step using that grouped data.
+            </p>
+          </div>
+          <div className="rounded-lg border border-border bg-secondary/40 p-3">
+            <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
+              Window 2 Response (issue appears)
             </p>
             <pre className="bg-background border border-border rounded-md p-3 overflow-x-auto text-xs text-foreground/80">
               <code>{`Total revenue: 30000
@@ -158,14 +182,14 @@ Average monthly revenue: 10000`}</code>
           </div>
         </div>
         <p className="text-foreground/90 leading-relaxed">
-          Now understand the inputs and verify the outputs. This part checks out. Slide the
-          input/output window over to your first place from which your problem could start existing
-          from.
+          Now understand the inputs and verify the outputs at each window. In this example, window 1
+          checks out, and window 2 does not.
         </p>
         <p className="text-foreground/90 leading-relaxed">
-          &ldquo;show me how the revenue data is preprocessed after it is retrieved and grouped from the
-          database with sample inputs and outputs&rdquo;. Now understand the inputs and verify
-          the outputs. So on and so forth until you find a violation of your business understanding.
+          Then slide the input/output window to the next stage and ask: &ldquo;show me how the revenue
+          data is preprocessed after it is retrieved and grouped from the database with sample
+          inputs and outputs&rdquo;. Keep doing this until you find a clear violation of your business
+          understanding.
         </p>
       </section>
 
