@@ -116,18 +116,13 @@ export default function IFoundAIssueNowWhatPage() {
           existing from. Or if this helps, the farthest place you have ruled out where the problem
           could have started.
         </p>
-        <p className="text-foreground/90 leading-relaxed mb-4">
-          Piece by piece ask Cursor: &ldquo;give me an example of sample inputs going through the
-          retrieval process of the raw data, show me sample raw data and what happens to it after
-          it is retrieved, how is it stored and grouped&rdquo;.
-        </p>
         <div className="rounded-xl bg-background border border-border p-4 md:p-5 mb-4 space-y-4">
           <p className="text-sm font-semibold text-foreground/80">
             Sliding input/output window in action
           </p>
-          <div className="rounded-lg border border-border bg-secondary/40 p-3">
+          <div className="rounded-lg border border-primary/30 bg-primary/10 p-3">
             <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
-              Window 1 Prompt (Flowchart stage: Retrieval + Grouping)
+              Type this prompt — Window 1 (Flowchart stage: Retrieval + Grouping)
             </p>
             <p className="text-sm text-foreground/90 leading-relaxed">
               Show me sample input and output for data retrieval and grouping only. Do not calculate
@@ -157,9 +152,9 @@ export default function IFoundAIssueNowWhatPage() {
 }`}</code>
             </pre>
           </div>
-          <div className="rounded-lg border border-border bg-secondary/40 p-3">
+          <div className="rounded-lg border border-primary/30 bg-primary/10 p-3">
             <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
-              Window 2 Prompt (Flowchart stage: Preprocessing + Aggregation)
+              Type this prompt — Window 2 (Flowchart stage: Preprocessing + Aggregation)
             </p>
             <p className="text-sm text-foreground/90 leading-relaxed">
               Now show sample input and output for the averaging step using that grouped data.
