@@ -41,7 +41,7 @@ const Header = () => {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href="/articles/i-found-an-issue-now-what" className="cursor-pointer">
+                <Link href="/articles/how-to-debug-with-cursor-for-non-technical-folks" className="cursor-pointer">
                   How to Debug with Cursor
                 </Link>
               </DropdownMenuItem>

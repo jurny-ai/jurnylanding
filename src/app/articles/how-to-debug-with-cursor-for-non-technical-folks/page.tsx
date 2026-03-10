@@ -30,7 +30,7 @@ export default function IFoundAIssueNowWhatPage() {
       </p>
       <p className="text-foreground/90 leading-relaxed">
         That was Cursor&apos;s pitch to your boss anyway. In theory they are right. After this guide
-        let&apos;s get you to your first PR.
+        , let&apos;s get you to your first PR.
       </p>
       <p className="text-foreground/90 leading-relaxed">
         If this is your first time touching technical workflows, you may also like{" "}
