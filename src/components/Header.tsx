@@ -40,6 +40,11 @@ const Header = () => {
                   The Biggest Problems With Usability Testing Today
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/articles/i-found-an-issue-now-what" className="cursor-pointer">
+                  How to Debug with Cursor
+                </Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </nav>

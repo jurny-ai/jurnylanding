@@ -93,7 +93,7 @@ function ResultsPanel() {
 
 const ProductDemo = () => {
   return (
-    <section className="py-16 bg-background">
+    <section id="how-it-works" className="py-16 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           <div className="bg-secondary rounded-3xl p-4 sm:p-8 md:p-12">
