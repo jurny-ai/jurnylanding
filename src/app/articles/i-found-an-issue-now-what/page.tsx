@@ -19,7 +19,7 @@ export default function IFoundAIssueNowWhatPage() {
   return (
     <BlogLayout
       title="How to Debug with Cursor for Non Technical Folks"
-      subtitle="A practical guide for non technical folks using Cursor."
+      subtitle="Identify where the problem is and how to fix it using Cursor."
       author={{ name: "Sidd Adatrao", photo: "/sidd-adatrao.png" }}
       date="March 10, 2026"
     >
@@ -123,11 +123,11 @@ export default function IFoundAIssueNowWhatPage() {
         </p>
         <div className="rounded-xl bg-background border border-border p-4 md:p-5 mb-4 space-y-4">
           <p className="text-sm font-semibold text-foreground/80">
-            Example of the sliding input/output window
+            Sliding input/output window in action
           </p>
           <div className="rounded-lg border border-border bg-secondary/40 p-3">
             <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
-              Window 1 Prompt
+              Window 1 Prompt (Flowchart stage: Retrieval + Grouping)
             </p>
             <p className="text-sm text-foreground/90 leading-relaxed">
               Show me sample input and output for data retrieval and grouping only. Do not calculate
@@ -159,7 +159,7 @@ export default function IFoundAIssueNowWhatPage() {
           </div>
           <div className="rounded-lg border border-border bg-secondary/40 p-3">
             <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
-              Window 2 Prompt
+              Window 2 Prompt (Flowchart stage: Preprocessing + Aggregation)
             </p>
             <p className="text-sm text-foreground/90 leading-relaxed">
               Now show sample input and output for the averaging step using that grouped data.
@@ -168,6 +168,18 @@ export default function IFoundAIssueNowWhatPage() {
           <div className="rounded-lg border border-border bg-secondary/40 p-3">
             <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
               Window 2 Response (issue appears)
+            </p>
+            <p className="text-sm text-foreground/90 leading-relaxed mb-2">
+              Sample averaging input:
+            </p>
+            <pre className="bg-background border border-border rounded-md p-3 overflow-x-auto text-xs text-foreground/80 mb-3">
+              <code>{`{
+  "groupedMonths": ["Jan", "Mar"],
+  "groupedRevenue": [12000, 18000]
+}`}</code>
+            </pre>
+            <p className="text-sm text-foreground/90 leading-relaxed mb-2">
+              Averaging output:
             </p>
             <pre className="bg-background border border-border rounded-md p-3 overflow-x-auto text-xs text-foreground/80">
               <code>{`Total revenue: 30000
@@ -186,10 +198,9 @@ Average monthly revenue: 10000`}</code>
           checks out, and window 2 does not.
         </p>
         <p className="text-foreground/90 leading-relaxed">
-          Then slide the input/output window to the next stage and ask: &ldquo;show me how the revenue
-          data is preprocessed after it is retrieved and grouped from the database with sample
-          inputs and outputs&rdquo;. Keep doing this until you find a clear violation of your business
-          understanding.
+          In this case, window 2 is where the violation appears, so you stop sliding and focus your
+          fix there. If both windows had checked out, you would move to the next flowchart stage and
+          repeat the same input/output check.
         </p>
       </section>
 
