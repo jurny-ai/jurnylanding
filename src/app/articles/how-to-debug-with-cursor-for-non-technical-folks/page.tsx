@@ -29,20 +29,22 @@ export default function IFoundAIssueNowWhatPage() {
         you look at all the data, you know when things are wrong, and finally, now you can fix it.
       </p>
       <p className="text-foreground/90 leading-relaxed">
-        That was Cursor&apos;s pitch to your boss anyway. In theory they are right. After this guide
-        , let&apos;s get you to your first PR.
+        That was Cursor&apos;s pitch to your boss anyway. In theory they are right. With this guide, let&apos;s get you to your first PR.
       </p>
+      <div className="rounded-xl border border-primary/30 bg-primary/10 p-4">
+        <p className="text-xs uppercase tracking-wide text-primary font-semibold mb-2">
+          The Problem, Found By Jurny
+        </p>
+        <ul className="list-disc pl-5 space-y-1 text-foreground/90 text-sm">
+          <li>5/9 simulated personas struggle to correlate the monthly average with visible month data.</li>
+          <li>4/9 attempt a manual recalculation and identify a month-count mismatch.</li>
+          <li>2/9 abandon the flow after failing to verify the number.</li>
+        </ul>
+      </div>
       <p className="text-foreground/90 leading-relaxed">
-        If this is your first time touching technical workflows, you may also like{" "}
-        <Link
-          href="/articles/usability-testing-problems"
-          className="text-primary underline underline-offset-4"
-        >
-          The Biggest Problems With Usability Testing Today
-        </Link>
-        . You can also jump to the{" "}
+        To learn more about how Jurny generates insights like these,{" "}
         <Link href="/#how-it-works" className="text-primary underline underline-offset-4">
-          home page How It Works section on how Jurny AI helps find issues early
+          click here
         </Link>
         .
       </p>
@@ -125,8 +127,8 @@ export default function IFoundAIssueNowWhatPage() {
               Type this prompt — Window 1 (Flowchart stage: Retrieval + Grouping)
             </p>
             <p className="text-sm text-foreground/90 leading-relaxed">
-              Show me sample input and output for data retrieval and grouping only. Do not calculate
-              averages yet.
+              Show me sample input and output for retrieval and monthly grouping only. Do not
+              calculate totals or averages yet.
             </p>
           </div>
           <div className="rounded-lg border border-border bg-secondary/40 p-3">
@@ -134,21 +136,23 @@ export default function IFoundAIssueNowWhatPage() {
               Window 1 Response (checks out)
             </p>
             <p className="text-sm text-foreground/90 leading-relaxed mb-2">
-              Sample grouped input:
+              Sample retrieval input:
             </p>
             <pre className="bg-background border border-border rounded-md p-3 overflow-x-auto text-xs text-foreground/80 mb-3">
-              <code>{`[
-  { "month": "Jan", "revenue": 12000 },
-  { "month": "Mar", "revenue": 18000 }
-]`}</code>
+              <code>{`{
+  "transactions": [
+    { "date": "2026-01-04", "amount": 12000 },
+    { "date": "2026-03-11", "amount": 18000 }
+  ]
+}`}</code>
             </pre>
             <p className="text-sm text-foreground/90 leading-relaxed mb-2">
               Grouped output:
             </p>
             <pre className="bg-background border border-border rounded-md p-3 overflow-x-auto text-xs text-foreground/80">
               <code>{`{
-  "groupedMonths": ["Jan", "Mar"],
-  "groupedRevenue": [12000, 18000]
+  "monthsPresent": ["Jan", "Mar"],
+  "revenueByMonth": [12000, 18000]
 }`}</code>
             </pre>
           </div>
@@ -157,7 +161,8 @@ export default function IFoundAIssueNowWhatPage() {
               Type this prompt — Window 2 (Flowchart stage: Preprocessing + Aggregation)
             </p>
             <p className="text-sm text-foreground/90 leading-relaxed">
-              Now show sample input and output for the averaging step using that grouped data.
+              Now show sample input and output for total and average calculations using that grouped
+              data. Be explicit about how many months are counted.
             </p>
           </div>
           <div className="rounded-lg border border-border bg-secondary/40 p-3">
@@ -165,25 +170,27 @@ export default function IFoundAIssueNowWhatPage() {
               Window 2 Response (issue appears)
             </p>
             <p className="text-sm text-foreground/90 leading-relaxed mb-2">
-              Sample averaging input:
+              Sample preprocessing input:
             </p>
             <pre className="bg-background border border-border rounded-md p-3 overflow-x-auto text-xs text-foreground/80 mb-3">
               <code>{`{
-  "groupedMonths": ["Jan", "Mar"],
-  "groupedRevenue": [12000, 18000]
+  "monthsPresent": ["Jan", "Mar"],
+  "revenueByMonth": [12000, 18000]
 }`}</code>
             </pre>
             <p className="text-sm text-foreground/90 leading-relaxed mb-2">
-              Averaging output:
+              Computed output:
             </p>
             <pre className="bg-background border border-border rounded-md p-3 overflow-x-auto text-xs text-foreground/80">
-              <code>{`Total revenue: 30000
-Months considered: 3
-Average monthly revenue: 10000`}</code>
+              <code>{`{
+  "totalRevenue": 30000,
+  "monthsCounted": 3,
+  "averageMonthlyRevenue": 10000
+}`}</code>
             </pre>
             <p className="text-xs mt-2">
               <span className="inline-block rounded px-2 py-1 bg-destructive/15 text-red-300 font-medium">
-                Highlight: Only Jan and Mar are reported, but the average is divided by 3 months.
+                Highlight: Only Jan and Mar are present, but monthsCounted is 3.
               </span>
             </p>
           </div>
