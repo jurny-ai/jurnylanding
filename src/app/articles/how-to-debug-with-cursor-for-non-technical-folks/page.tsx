@@ -7,11 +7,25 @@ export const metadata: Metadata = {
   title: "How to Debug with Cursor for Non Technical Folks — jurny.ai",
   description:
     "A practical guide for non technical folks using Cursor to understand code, isolate problems, and ship their first fix.",
+  alternates: {
+    canonical: "/articles/how-to-debug-with-cursor-for-non-technical-folks",
+  },
   openGraph: {
     title: "How to Debug with Cursor for Non Technical Folks",
     description:
       "A practical guide for non technical folks using Cursor to understand code, isolate problems, and ship their first fix.",
+    url: "https://usejurny.com/articles/how-to-debug-with-cursor-for-non-technical-folks",
+    siteName: "jurny.ai",
     type: "article",
+    images: ["/lovable-uploads/560e781d-c4c7-4e51-819a-b21fc0746540.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@jurny_ai",
+    title: "How to Debug with Cursor for Non Technical Folks",
+    description:
+      "Identify where the problem is and how to fix it using Cursor.",
+    images: ["/lovable-uploads/560e781d-c4c7-4e51-819a-b21fc0746540.png"],
   },
 };
 
