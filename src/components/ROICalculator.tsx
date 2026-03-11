@@ -425,8 +425,11 @@ const ROICalculator = () => {
             <div className="mb-8 sm:mb-10">
               <p className="text-sm sm:text-xl font-semibold text-muted-foreground uppercase tracking-widest mb-2">ROI Calculator</p>
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight">
-                How much can customer experience help?
+                What is the upside in dollars?
               </h2>
+              <p className="text-foreground/55 mt-3">
+                Estimate revenue lift and cost savings from continuous autonomous flow testing, with human-in-the-loop prioritization.
+              </p>
             </div>
 
             <div className="bg-card rounded-2xl sm:rounded-3xl p-3 sm:p-6 md:p-8 border border-primary/15">

@@ -58,7 +58,7 @@ const Hero = () => {
 
             {/* Main headline */}
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-foreground mb-6 leading-[1.1] tracking-tight">
-              Synthetic users <br />
+              Autonomous usability testing <br />
               to reveal <br />
               <span 
                 className={`bg-gradient-to-r from-primary-glow to-indigo-400 bg-clip-text text-transparent transition-all duration-500 inline-block py-1 pr-2 ${
@@ -71,7 +71,7 @@ const Hero = () => {
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl text-foreground/60 mb-10 leading-relaxed font-light max-w-lg">
-            How your users will actually behave before they ever touch your product.
+            With just a URL, Jurny finds every key flow, runs it across personas, and catches usability issues before your customers ever have to report them.
             </p>
 
             {/* CTA buttons */}

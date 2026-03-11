@@ -15,7 +15,7 @@ function SimulationPanel() {
             <span className="text-xs text-foreground/30">10:23 AM</span>
           </div>
           <div className="text-xs sm:text-sm text-foreground/70 leading-relaxed">
-            <span className="text-primary font-medium">@jurny</span> Test if 20 researchers can filter for &ldquo;Phase 3&rdquo; clinical trials in the dashboard
+            <span className="text-primary font-medium">@jurny</span> Here is our URL. Find every key user flow and run it daily across all our personas.
           </div>
         </div>
       </div>
@@ -55,15 +55,15 @@ function ResultsPanel() {
       <div className="rounded-xl sm:rounded-2xl bg-background p-3 sm:p-5 space-y-3">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <div className="text-sm font-semibold text-foreground mb-1">Filter Visibility Issue</div>
+            <div className="text-sm font-semibold text-foreground mb-1">Checkout Step Drop-off Spike</div>
             <p className="text-xs text-foreground/55 leading-relaxed">
-              Users struggled to locate the "Phase 3" filter on mobile due to the collapsed menu.
+              Mobile users started abandoning at payment details after a UI update changed field ordering.
             </p>
           </div>
           <span className="shrink-0 px-2 py-1 rounded bg-red-500/10 text-red-500 text-[10px] font-bold">HIGH</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-xs text-foreground/35"><span className="text-foreground/60 font-medium">12/20</span> simulations affected</span>
+          <span className="text-xs text-foreground/35"><span className="text-foreground/60 font-medium">12/20</span> autonomous runs affected</span>
           <div className="flex items-center text-xs font-semibold text-primary cursor-pointer">
             Watch replay <ArrowUpRight className="ml-1 w-3 h-3" />
           </div>
@@ -73,15 +73,15 @@ function ResultsPanel() {
       <div className="rounded-xl sm:rounded-2xl bg-background p-3 sm:p-5 space-y-3">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <div className="text-sm font-semibold text-foreground mb-1">Terminology Confusion</div>
+            <div className="text-sm font-semibold text-foreground mb-1">Onboarding Copy Confusion</div>
             <p className="text-xs text-foreground/55 leading-relaxed">
-              Researchers hesitated on "Trial Phase", often looking for "Study Status" instead.
+              New users paused on plan selection because copy changed from "Start Free" to "Create Workspace".
             </p>
           </div>
           <span className="shrink-0 px-2 py-1 rounded bg-yellow-500/10 text-yellow-600 text-[10px] font-bold">MED</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-xs text-foreground/35"><span className="text-foreground/60 font-medium">7/20</span> simulations affected</span>
+          <span className="text-xs text-foreground/35"><span className="text-foreground/60 font-medium">7/20</span> autonomous runs affected</span>
           <div className="flex items-center text-xs font-semibold text-foreground/40 cursor-pointer">
             Watch replay <ArrowUpRight className="ml-1 w-3 h-3" />
           </div>
@@ -108,9 +108,9 @@ const ProductDemo = () => {
             <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 items-center mb-8">
               <SimulationPanel />
               <div>
-                <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">Run a Simulation</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">Paste Your URL</h3>
                 <p className="text-foreground/55 leading-relaxed">
-                  Drop in a URL, Figma prototype, or sandbox link. Jurny spins up synthetic users with distinct behaviors and runs them through your product in parallel — no scheduling, no recruiting.
+                  Start with one URL. Jurny auto-discovers critical paths, edge cases, and conversion flows, then runs them in parallel across multiple personas and devices.
                 </p>
               </div>
             </div>
@@ -121,9 +121,9 @@ const ProductDemo = () => {
                 <ResultsPanel />
               </div>
               <div className="lg:order-first">
-                <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">Get Actionable Results</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">Review, Prioritize, and Ship</h3>
                 <p className="text-foreground/55 leading-relaxed">
-                  Jurny surfaces exactly where users got confused, dropped off, or misread your UI — prioritized by severity and backed by session replays you can share instantly.
+                  See replay-backed issues ranked by impact, from conversion leaks to churn drivers. Your team validates what matters, ships fixes fast, and stays ahead of customer-reported UX problems.
                 </p>
               </div>
             </div>
