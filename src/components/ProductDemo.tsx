@@ -1,49 +1,184 @@
-import { ArrowUpRight } from "lucide-react";
+"use client";
 
-function SimulationPanel() {
+import { ArrowUpRight, CheckCircle2, GitBranch, Globe, Map } from "lucide-react";
+import { ResponsiveContainer, Sankey } from "recharts";
+
+const sankeyData = {
+  nodes: [
+    { name: "AI SDR Landing\n100% (52)" },
+    { name: "Pricing + ROI\n46% (24)" },
+    { name: "Outbound Use Cases\n35% (18)" },
+    { name: "Drop-off\n19% (10)" },
+    { name: "Start Trial Form\n29% (15)" },
+    { name: "Book Demo Form\n31% (16)" },
+    { name: "Drop-off\n21% (11)" },
+    { name: "Workspace Created\n19% (10)" },
+    { name: "Demo Confirmed\n17% (9)" },
+    { name: "Drop-off\n13% (7)" },
+  ],
+  links: [
+    { source: 0, target: 1, value: 24 },
+    { source: 0, target: 2, value: 18 },
+    { source: 0, target: 3, value: 10 },
+    { source: 1, target: 4, value: 10 },
+    { source: 1, target: 5, value: 9 },
+    { source: 1, target: 6, value: 5 },
+    { source: 2, target: 4, value: 5 },
+    { source: 2, target: 5, value: 7 },
+    { source: 2, target: 6, value: 6 },
+    { source: 4, target: 7, value: 10 },
+    { source: 4, target: 9, value: 5 },
+    { source: 5, target: 8, value: 9 },
+    { source: 5, target: 9, value: 7 },
+  ],
+};
+
+function isDropoffNode(name: string) {
+  return name.toLowerCase().startsWith("drop-off");
+}
+
+function isSuccessNode(name: string) {
+  return name.startsWith("Workspace Created") || name.startsWith("Demo Confirmed");
+}
+
+function getNodeFill(name: string) {
+  if (isDropoffNode(name)) return "rgba(239, 68, 68, 0.72)";
+  if (isSuccessNode(name)) return "rgba(74, 222, 128, 0.82)";
+  return "rgba(163, 171, 182, 0.9)";
+}
+
+function getLinkStroke(targetName: string) {
+  if (isSuccessNode(targetName)) return "rgba(134, 239, 172, 0.78)";
+  if (isDropoffNode(targetName)) return "rgba(252, 165, 165, 0.58)";
+  return "rgba(196, 205, 222, 0.5)";
+}
+
+function wrapText(text: string, maxChars: number) {
+  const words = text.split(" ");
+  const lines: string[] = [];
+  let current = "";
+
+  for (const word of words) {
+    const candidate = current ? `${current} ${word}` : word;
+    if (candidate.length > maxChars && current) {
+      lines.push(current);
+      current = word;
+    } else {
+      current = candidate;
+    }
+  }
+
+  if (current) lines.push(current);
+  return lines;
+}
+
+function SankeyNode(props: any) {
+  const { x, y, width, height, payload, containerWidth } = props;
+  const name = payload?.name ?? "";
+  const fill = getNodeFill(name);
+  const isDropoff = isDropoffNode(name);
+  const label = isDropoff ? "Drop-off" : name;
+  const [title = "", detail = ""] = label.split("\n");
+  const forceInward = x > containerWidth * 0.7;
+  const textAnchor = forceInward ? "end" : "start";
+  const wrappedTitle = wrapText(title, textAnchor === "end" ? 12 : 14);
+  const lines = detail ? [...wrappedTitle, detail] : wrappedTitle;
+  const textX = textAnchor === "start" ? x + width + 6 : x - 6;
+  const lineHeight = 12;
+  const textStartY = y + height / 2 - ((lines.length - 1) * lineHeight) / 2;
+
+  return (
+    <g>
+      <rect x={x} y={y} width={width} height={height} rx={2} fill={fill} stroke="rgba(255,255,255,0.22)" />
+      <text x={textX} y={textStartY} textAnchor={textAnchor} dominantBaseline="middle" fontSize={10.5} fill="currentColor" opacity={0.82}>
+        {lines.map((line: string, idx: number) => (
+          <tspan key={`${line}-${idx}`} x={textX} dy={idx === 0 ? 0 : lineHeight} fontWeight={idx === 0 ? 600 : 400}>
+            {line}
+          </tspan>
+        ))}
+      </text>
+      {isDropoff ? (
+        <text x={textX} y={textStartY - 12} textAnchor={textAnchor} fontSize={10} fill="rgb(248 113 113)" fontWeight={700}>
+          Drop-off
+        </text>
+      ) : null}
+    </g>
+  );
+}
+
+function SankeyLink(props: any) {
+  const { sourceX, targetX, sourceY, targetY, sourceControlX, targetControlX, linkWidth, payload } = props;
+  const targetName = payload?.target?.name ?? "";
+  const isDropoff = isDropoffNode(targetName);
+  const stroke = getLinkStroke(targetName);
+
+  return (
+    <path
+      d={`M${sourceX},${sourceY}C${sourceControlX},${sourceY} ${targetControlX},${targetY} ${targetX},${targetY}`}
+      fill="none"
+      stroke={stroke}
+      strokeWidth={Math.max(linkWidth, 1)}
+      strokeOpacity={isDropoff ? 0.85 : 0.95}
+    />
+  );
+}
+
+function FlowDiscoveryPanel() {
+  const discoveredPaths = [
+    "AI SDR Landing -> Outbound Use Cases -> Book Demo Form -> Demo Confirmed",
+    "AI SDR Landing -> Pricing + ROI -> Start Trial Form -> Workspace Created",
+  ];
+
   return (
     <div className="rounded-2xl sm:rounded-3xl bg-card border border-primary/15 p-4 sm:p-7 space-y-4 sm:space-y-5">
-      {/* Slack-style message */}
-      <div className="flex items-start gap-3">
-        <div className="w-8 h-8 rounded bg-[#3F0E40] flex items-center justify-center shrink-0 mt-0.5">
-          <span className="text-white font-bold text-xs">J</span>
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
+            <Globe className="w-4 h-4 text-primary-glow" />
+          </div>
+          <div>
+            <div className="text-sm font-bold text-foreground">Flow Discovery</div>
+          </div>
         </div>
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-sm font-bold text-foreground">Jurny</span>
-            <span className="bg-foreground/10 text-foreground/50 px-1.5 py-0.5 rounded text-[10px] font-medium">APP</span>
-            <span className="text-xs text-foreground/30">10:23 AM</span>
-          </div>
-          <div className="text-xs sm:text-sm text-foreground/70 leading-relaxed">
-            <span className="text-primary font-medium">@jurny</span> Here is our URL. Find every key user flow and run it daily across all our personas.
-          </div>
+        <div className="px-2 py-1 rounded bg-primary/10 text-primary-glow text-[10px] uppercase tracking-widest font-bold">
+          Running
         </div>
       </div>
 
-      {/* Persona chips */}
-      <div className="flex flex-wrap gap-2 pl-0 sm:pl-11">
-        {[
-          { name: "Jen, 28", trait: "Impatient", color: "bg-violet-500/10 text-violet-600 border-violet-500/20" },
-          { name: "Randall, 55", trait: "Skeptical", color: "bg-blue-500/10 text-blue-600 border-blue-500/20" },
-          { name: "Marcus, 34", trait: "Methodical", color: "bg-purple-500/10 text-purple-600 border-purple-500/20" },
-          { name: "+17 more", trait: null, color: "bg-foreground/5 text-foreground/35 border-foreground/10" },
-        ].map((p, i) => (
-          <div key={i} className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium border ${p.color}`}>
-            {p.name}
-            {p.trait && <span className="opacity-60">· {p.trait}</span>}
-          </div>
-        ))}
-      </div>
+      <div className="rounded-xl bg-background p-3 sm:p-4 border border-primary/10 space-y-3">
+        <div className="text-[10px] uppercase tracking-[0.2em] text-foreground/40 font-bold">Starting URL</div>
+        <div className="h-10 rounded-lg bg-secondary border border-border px-3 flex items-center">
+          <span className="text-xs sm:text-sm text-foreground/70 font-mono truncate">https://acme-ai-sales.com</span>
+        </div>
 
-      {/* Integrations */}
-      <div className="flex gap-2 pt-1 flex-wrap">
-        {["Slack", "Teams", "Figma · Sandbox · Live URLs"].map((label, i) => (
-          <div key={i} className="flex items-center gap-2 bg-background rounded-xl px-3 py-2">
-            {i === 0 && <img src="/slack.png" alt="Slack" className="h-4 w-4 object-contain opacity-60" />}
-            {i === 1 && <img src="/teams.png" alt="Teams" className="h-4 w-4 object-contain opacity-60" />}
-            <span className="text-[11px] text-foreground/45">{label}</span>
+        <div className="grid grid-cols-3 gap-2">
+          {[
+            { label: "Pages scanned", value: "34" },
+            { label: "Flows mapped", value: "12" },
+            { label: "Persona variants", value: "6" },
+          ].map((item) => (
+            <div key={item.label} className="rounded-lg bg-secondary px-3 py-2 text-center">
+              <div className="text-sm font-bold text-foreground">{item.value}</div>
+              <div className="text-[10px] text-foreground/45">{item.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="rounded-lg border border-border bg-secondary p-3">
+          <div className="flex items-center gap-1.5 mb-2">
+            <Map className="w-3.5 h-3.5 text-primary-glow" />
+            <span className="text-[11px] font-semibold text-foreground/70">Discovered User Paths</span>
           </div>
-        ))}
+          <div className="space-y-1.5">
+            {discoveredPaths.map((path) => (
+              <div key={path} className="flex items-center gap-2">
+                <GitBranch className="w-3 h-3 text-primary-glow/80 shrink-0" />
+                <span className="text-[11px] text-foreground/60 truncate">{path}</span>
+              </div>
+            ))}
+            <div className="pl-5 text-[11px] text-foreground/45 font-medium italic">... and more discovered user paths</div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -51,40 +186,68 @@ function SimulationPanel() {
 
 function ResultsPanel() {
   return (
-    <div className="rounded-2xl sm:rounded-3xl bg-card border border-primary/15 p-4 sm:p-7 space-y-3">
-      <div className="rounded-xl sm:rounded-2xl bg-background p-3 sm:p-5 space-y-3">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <div className="text-sm font-semibold text-foreground mb-1">Checkout Step Drop-off Spike</div>
-            <p className="text-xs text-foreground/55 leading-relaxed">
-              Mobile users started abandoning at payment details after a UI update changed field ordering.
-            </p>
-          </div>
-          <span className="shrink-0 px-2 py-1 rounded bg-red-500/10 text-red-500 text-[10px] font-bold">HIGH</span>
+    <div className="rounded-2xl sm:rounded-3xl bg-card border border-primary/15 p-4 sm:p-7 space-y-4">
+      <div className="rounded-xl sm:rounded-2xl bg-[#f3f4f6] p-3 sm:p-5 border border-primary/10">
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-sm font-semibold text-foreground">User Flow</div>
+          <span className="text-[10px] uppercase tracking-widest text-primary-glow font-bold">Live map</span>
         </div>
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-foreground/35"><span className="text-foreground/60 font-medium">12/20</span> autonomous runs affected</span>
-          <div className="flex items-center text-xs font-semibold text-primary cursor-pointer">
-            Watch replay <ArrowUpRight className="ml-1 w-3 h-3" />
-          </div>
+
+        <div className="h-[280px] w-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <Sankey
+              data={sankeyData}
+              nodePadding={18}
+              nodeWidth={12}
+              margin={{ top: 12, right: 56, bottom: 16, left: 14 }}
+              linkCurvature={0.52}
+              node={<SankeyNode />}
+              link={<SankeyLink />}
+            />
+          </ResponsiveContainer>
+        </div>
+        <div className="grid grid-cols-4 gap-1 text-[10px] text-foreground/45 mt-1 px-1">
+          <span>Step 1</span>
+          <span>Step 2</span>
+          <span>Step 3</span>
+          <span className="text-right">Step 4</span>
         </div>
       </div>
+    </div>
+  );
+}
 
-      <div className="rounded-xl sm:rounded-2xl bg-background p-3 sm:p-5 space-y-3">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <div className="text-sm font-semibold text-foreground mb-1">Onboarding Copy Confusion</div>
-            <p className="text-xs text-foreground/55 leading-relaxed">
-              New users paused on plan selection because copy changed from "Start Free" to "Create Workspace".
-            </p>
-          </div>
-          <span className="shrink-0 px-2 py-1 rounded bg-yellow-500/10 text-yellow-600 text-[10px] font-bold">MED</span>
+function DropoffRootCausesPanel() {
+  const dropoffReasons = [
+    { reason: "Onboarding form feels too long on first interaction", impact: "11 users affected" },
+    { reason: "Primary CTA copy is unclear at key decision points", impact: "10 users affected" },
+    { reason: "Mobile layout pushes proof points below the fold", impact: "7 users affected" },
+  ];
+
+  return (
+    <div className="rounded-xl sm:rounded-2xl bg-background p-3 sm:p-5 space-y-3 border border-primary/10 mt-5">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <div className="text-sm font-semibold text-foreground mb-1">Drop-offs and Root Causes</div>
         </div>
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-foreground/35"><span className="text-foreground/60 font-medium">7/20</span> autonomous runs affected</span>
-          <div className="flex items-center text-xs font-semibold text-foreground/40 cursor-pointer">
-            Watch replay <ArrowUpRight className="ml-1 w-3 h-3" />
+        <span className="shrink-0 px-2 py-1 rounded bg-red-500/10 text-red-500 text-[10px] font-bold">Top blockers</span>
+      </div>
+
+      <div className="space-y-2">
+        {dropoffReasons.map((item) => (
+          <div key={item.reason} className="flex items-center justify-between text-xs rounded-lg bg-secondary px-3 py-2">
+            <div className="flex items-center gap-2 min-w-0">
+              <CheckCircle2 className="w-3.5 h-3.5 text-primary-glow shrink-0" />
+              <span className="text-foreground/70 truncate">{item.reason}</span>
+            </div>
+            <span className="text-foreground/45 shrink-0">{item.impact}</span>
           </div>
+        ))}
+      </div>
+
+      <div className="flex items-center justify-end">
+        <div className="flex items-center text-xs font-semibold text-primary cursor-pointer">
+          Open journey replay <ArrowUpRight className="ml-1 w-3 h-3" />
         </div>
       </div>
     </div>
@@ -106,11 +269,11 @@ const ProductDemo = () => {
 
             {/* Step 1 */}
             <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 items-center mb-8">
-              <SimulationPanel />
+              <FlowDiscoveryPanel />
               <div>
-                <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">Paste Your URL</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">Enter One URL</h3>
                 <p className="text-foreground/55 leading-relaxed">
-                  Start with one URL. Jurny auto-discovers critical paths, edge cases, and conversion flows, then runs them in parallel across multiple personas and devices.
+                  Whether it is a Figma prototype, Lovable link, or a live URL, Jurny builds a user flow map of all possible paths and tests each one across a diverse set of personas.
                 </p>
               </div>
             </div>
@@ -121,10 +284,11 @@ const ProductDemo = () => {
                 <ResultsPanel />
               </div>
               <div className="lg:order-first">
-                <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">Review, Prioritize, and Ship</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">See Every Journey in a Visual Flow</h3>
                 <p className="text-foreground/55 leading-relaxed">
-                  See replay-backed issues ranked by impact, from conversion leaks to churn drivers. Your team validates what matters, ships fixes fast, and stays ahead of customer-reported UX problems.
+                  The output is a visual flow of all user journeys, highlighting where users continue, where they drop off, and the likely reasons behind each drop-off.
                 </p>
+                <DropoffRootCausesPanel />
               </div>
             </div>
 

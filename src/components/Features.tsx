@@ -11,7 +11,7 @@ function ReworkVisual() {
       <div className="flex items-center gap-2.5 bg-primary/10 rounded-xl px-3 py-2.5">
         <Check className="w-3 h-3 text-primary-glow flex-shrink-0" />
         <div className="h-1.5 flex-1 bg-primary/40 rounded-full" />
-        <span className="text-[10px] text-primary-glow font-mono flex-shrink-0">issue prevented</span>
+        <span className="text-[10px] text-primary-glow font-mono flex-shrink-0">issues prevented</span>
       </div>
       <div className="text-center pt-1">
         <span className="text-3xl font-bold text-foreground">80%</span>
@@ -73,14 +73,14 @@ function OptimizeVisual() {
     <div className="flex items-center gap-3 w-full max-w-xs">
       <div className="flex-1 bg-foreground/5 rounded-2xl p-4 text-center">
         <div className="text-[10px] text-foreground/40 uppercase tracking-widest mb-1">Before</div>
-        <div className="text-2xl font-bold text-foreground/50">9</div>
+        <div className="text-2xl font-bold text-foreground/50">8</div>
         <div className="text-[10px] text-foreground/30 mt-0.5">customer reported UX issues</div>
       </div>
       <ArrowRight className="w-4 h-4 text-foreground/20 flex-shrink-0" />
       <div className="flex-1 bg-primary/10 rounded-2xl p-4 text-center border border-primary/20">
         <div className="text-[10px] text-primary-glow uppercase tracking-widest mb-1">After</div>
-        <div className="text-2xl font-bold text-primary-glow">1</div>
-        <div className="text-[10px] text-primary/50 mt-0.5">issue escaped to customers</div>
+        <div className="text-2xl font-bold text-primary-glow">0</div>
+        <div className="text-[10px] text-primary/50 mt-0.5">issues escaped to customers</div>
       </div>
     </div>
   );
