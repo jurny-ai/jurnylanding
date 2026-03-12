@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { ArrowUpRight, CheckCircle2, GitBranch, Globe, Map } from "lucide-react";
 import { ResponsiveContainer, Sankey } from "recharts";
 
@@ -72,13 +73,21 @@ function wrapText(text: string, maxChars: number) {
   return lines;
 }
 
+function formatLegendLabel(name: string) {
+  const [title = "", detail = ""] = name.split("\n");
+  return detail ? `${title} - ${detail}` : title;
+}
+
 function SankeyNode(props: any) {
-  const { x, y, width, height, payload, containerWidth } = props;
+  const { x, y, width, height, payload, containerWidth, isMobile } = props;
   const name = payload?.name ?? "";
   const fill = getNodeFill(name);
-  const isDropoff = isDropoffNode(name);
-  const label = isDropoff ? "Drop-off" : name;
-  const [title = "", detail = ""] = label.split("\n");
+  const [title = "", detail = ""] = name.split("\n");
+
+  if (isMobile) {
+    return <rect x={x} y={y} width={width} height={height} rx={2} fill={fill} stroke="rgba(255,255,255,0.22)" />;
+  }
+
   const forceInward = x > containerWidth * 0.7;
   const textAnchor = forceInward ? "end" : "start";
   const wrappedTitle = wrapText(title, textAnchor === "end" ? 12 : 14);
@@ -97,11 +106,6 @@ function SankeyNode(props: any) {
           </tspan>
         ))}
       </text>
-      {isDropoff ? (
-        <text x={textX} y={textStartY - 12} textAnchor={textAnchor} fontSize={10} fill="rgb(248 113 113)" fontWeight={700}>
-          Drop-off
-        </text>
-      ) : null}
     </g>
   );
 }
@@ -185,6 +189,17 @@ function FlowDiscoveryPanel() {
 }
 
 function ResultsPanel() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 640px)");
+    const updateIsMobile = () => setIsMobile(mediaQuery.matches);
+
+    updateIsMobile();
+    mediaQuery.addEventListener("change", updateIsMobile);
+    return () => mediaQuery.removeEventListener("change", updateIsMobile);
+  }, []);
+
   return (
     <div className="rounded-2xl sm:rounded-3xl bg-card border border-primary/15 p-4 sm:p-7 space-y-4">
       <div className="rounded-xl sm:rounded-2xl bg-[#f3f4f6] p-3 sm:p-5 border border-primary/10">
@@ -197,15 +212,28 @@ function ResultsPanel() {
           <ResponsiveContainer width="100%" height="100%">
             <Sankey
               data={sankeyData}
-              nodePadding={18}
+              nodePadding={isMobile ? 22 : 18}
               nodeWidth={12}
-              margin={{ top: 12, right: 56, bottom: 16, left: 14 }}
+              margin={isMobile ? { top: 12, right: 24, bottom: 16, left: 8 } : { top: 12, right: 56, bottom: 16, left: 14 }}
               linkCurvature={0.52}
-              node={<SankeyNode />}
+              node={<SankeyNode isMobile={isMobile} />}
               link={<SankeyLink />}
             />
           </ResponsiveContainer>
         </div>
+        {isMobile ? (
+          <div className="mt-3 rounded-lg border border-primary/10 bg-background/80 p-2.5">
+            <div className="text-[10px] uppercase tracking-[0.16em] text-foreground/45 font-bold mb-2">Flow Legend</div>
+            <div className="grid grid-cols-1 gap-1.5">
+              {sankeyData.nodes.map((node, idx) => (
+                <div key={`${node.name}-${idx}`} className="flex items-center gap-2 text-[11px] text-foreground/70">
+                  <span className="h-2.5 w-2.5 rounded-sm shrink-0" style={{ backgroundColor: getNodeFill(node.name) }} />
+                  <span className="leading-tight">{formatLegendLabel(node.name)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : null}
         <div className="grid grid-cols-4 gap-1 text-[10px] text-foreground/45 mt-1 px-1">
           <span>Step 1</span>
           <span>Step 2</span>
