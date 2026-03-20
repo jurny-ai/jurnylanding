@@ -45,6 +45,14 @@ const Header = () => {
                   How to Debug with Cursor
                 </Link>
               </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link
+                  href="/articles/designing-synthetic-personas-llm-user-simulations"
+                  className="cursor-pointer"
+                >
+                  Synthetic Personas for LLM User Simulations
+                </Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </nav>
