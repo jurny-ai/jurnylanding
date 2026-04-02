@@ -71,7 +71,7 @@ const Hero = () => {
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl text-foreground/60 mb-10 leading-relaxed font-light max-w-lg">
-            With just a URL, Jurny finds every key flow, runs it across personas, and catches usability issues before your customers ever have to report them.
+              Jurny deploys AI agents that act like your users, continuously testing your product to surface usability issues, bugs, and fixes.
             </p>
 
             {/* CTA buttons */}

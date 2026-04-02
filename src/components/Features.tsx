@@ -124,7 +124,7 @@ const Features = () => {
                 Why Teams Choose Jurny
               </h2>
               <p className="text-base sm:text-lg text-foreground/50 font-light">
-                Not another testing dashboard, this is your early-warning system for UX issues that hurt revenue, trust, and retention.
+                Not another testing tool, this is your early-warning system for UX issues that hurt revenue, trust, and retention.
               </p>
             </div>
 

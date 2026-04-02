@@ -301,7 +301,7 @@ const ProductDemo = () => {
               <div>
                 <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">Enter One URL</h3>
                 <p className="text-foreground/55 leading-relaxed">
-                  Whether it is a Figma prototype, Lovable link, or a live URL, Jurny builds a user flow map of all possible paths and tests each one across a diverse set of personas.
+                  Whether it is a Figma prototype, Lovable link, or a live URL, Jurny launches autonomous agents modeled on your user personas and continuously tests every key path as your product evolves.
                 </p>
               </div>
             </div>
@@ -314,7 +314,7 @@ const ProductDemo = () => {
               <div className="lg:order-first">
                 <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">See Every Journey in a Visual Flow</h3>
                 <p className="text-foreground/55 leading-relaxed">
-                  The output is a visual flow of all user journeys, highlighting where users continue, where they drop off, and the likely reasons behind each drop-off.
+                  You get a visual map of where users drop off, the likely causes, and clear suggestions to improve satisfaction, decrease churn, and increase task completion.
                 </p>
                 <DropoffRootCausesPanel />
               </div>
