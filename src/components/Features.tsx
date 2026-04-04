@@ -124,7 +124,7 @@ const Features = () => {
                 Why Teams Choose Jurny
               </h2>
               <p className="text-base sm:text-lg text-foreground/50 font-light">
-                Not another testing tool, this is your early-warning system for UX issues that hurt revenue, trust, and retention.
+                Jurny runs realistic user journeys, surfaces issues in context, and helps teams improve core workflows without additional internal QA lift.
               </p>
             </div>
 

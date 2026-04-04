@@ -175,7 +175,7 @@ const DashboardVisualization = () => {
                     </div>
                     {urlText === '' && (
                       <div className="absolute left-12 top-1/2 -translate-y-1/2 text-foreground/40 text-base font-mono">
-                        website to test
+                        URL for your web app or website
                       </div>
                     )}
                   </div>

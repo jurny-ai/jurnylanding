@@ -16,8 +16,8 @@ export default function Home() {
       <Header />
       <Hero />
       <ProductDemo />
-      <ROICalculator />
       <Features />
+      <ROICalculator />
       <Footer />
       <ScrollTracker />
     </div>
