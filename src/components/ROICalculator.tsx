@@ -428,7 +428,7 @@ const ROICalculator = () => {
                 What is the impact of better journey coverage?
               </h2>
               <p className="text-foreground/55 mt-3">
-                Estimate revenue lift and cost savings from continuously simulating real users across end-to-end workflows, without adding internal QA overhead.
+                Estimate the revenue lift and cost savings across every market segment you serve.
               </p>
             </div>
 

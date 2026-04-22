@@ -183,7 +183,7 @@ const ProductDemo = () => {
               <div className="order-1 lg:order-2">
                 <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">Give Access Once, Get Continuous Testing</h3>
                 <p className="text-foreground/55 leading-relaxed">
-                  Once Jurny has access, our agents continuously test your product across core workflows with every new feature and every push. End-to-end journeys keep running as the product changes, so issues surface in real task context before they reach customers.
+                  Our user agents continuously test your product across core workflows with every new feature and every push. End-to-end journeys keep running as the product changes, so issues surface in real task context before they reach customers.
                 </p>
               </div>
             </div>
@@ -196,7 +196,7 @@ const ProductDemo = () => {
               <div className="order-1 lg:order-first">
                 <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">Understand Issues in Real Journey Context</h3>
                 <p className="text-foreground/55 leading-relaxed">
-                  Each finding includes the persona, the exact step where the problem appears, replay context, and concrete fix guidance. You get deeper user-flow coverage without adding internal QA overhead.
+                  Every finding ties to a persona, the exact failing step, and concrete fix guidance to surface the drop-offs across market segments that functional tests miss.
                 </p>
               </div>
             </div>

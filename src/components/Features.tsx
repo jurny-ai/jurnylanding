@@ -124,7 +124,7 @@ const Features = () => {
                 Why Teams Choose Jurny
               </h2>
               <p className="text-base sm:text-lg text-foreground/50 font-light">
-                Jurny runs realistic user journeys, surfaces issues in context, and helps teams improve core workflows without additional internal QA lift.
+                Jurny runs realistic user journeys across every market segment, surfaces friction in real task context, and validates the end-to-end flows that functional tests can't catch.
               </p>
             </div>
 
