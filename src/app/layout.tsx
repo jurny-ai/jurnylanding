@@ -78,6 +78,12 @@ export default function RootLayout({
           data-cf-beacon='{"token": "7b48e4fec28849afa9831da11d311388"}'
           strategy="afterInteractive"
         />
+        <Script id="apollo-io-website-tracker" strategy="afterInteractive">
+          {`function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+o.onload=function(){window.trackingFunctions.onLoad({appId:"685ce446f6953c000dff1e5c"})},
+document.head.appendChild(o)}initApollo();`}
+        </Script>
       </body>
     </html>
   );
