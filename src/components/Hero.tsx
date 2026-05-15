@@ -29,7 +29,7 @@ const Hero = () => {
 
             {/* Main headline */}
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-foreground mb-6 leading-[1.1] tracking-tight">
-              Autonomous usability testing <br />
+              Agentic user testing <br />
               to reveal <br />
               <span className="bg-gradient-to-r from-primary-glow to-indigo-400 bg-clip-text text-transparent inline-block py-1 pr-2">
                 customer friction
