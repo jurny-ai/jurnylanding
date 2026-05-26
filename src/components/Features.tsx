@@ -115,10 +115,10 @@ const features = [
 
 const Features = () => {
   return (
-    <section id="features" className="py-16 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="features" className="py-12 sm:py-16 bg-background scroll-mt-14 sm:scroll-mt-16">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-secondary rounded-3xl p-4 sm:p-8 md:p-12">
+          <div className="bg-secondary rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-12">
             <div className="mb-8 sm:mb-12">
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
                 Why Teams Choose Jurny

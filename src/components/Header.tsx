@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { ArrowRight, ChevronDown, Menu } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,52 +11,210 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
+import { track } from "@/lib/analytics";
+
+const SECTION_LINKS = [
+  { label: "Product", id: "how-it-works" },
+  { label: "Features", id: "features" },
+  { label: "ROI", id: "roi" },
+  { label: "FAQ", id: "faq" },
+] as const;
+
+const ARTICLE_LINKS = [
+  { href: "/articles/csr-vs-ssr", label: "Your Website Looks Amazing. Can Anyone Find It?" },
+  { href: "/articles/usability-testing-problems", label: "The Biggest Problems With Usability Testing Today" },
+  { href: "/articles/how-to-debug-with-cursor-for-non-technical-folks", label: "How to Debug with Cursor" },
+  {
+    href: "/articles/designing-synthetic-personas-llm-user-simulations",
+    label: "Synthetic Personas for LLM User Simulations",
+  },
+] as const;
+
+const CALENDLY_URL = "https://calendly.com/jurny-ai/new-meeting";
 
 const Header = () => {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const scrollToSection = (sectionId: string) => {
+    const el = document.getElementById(sectionId);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.replaceState(null, "", `#${sectionId}`);
+    track("nav_section_clicked", { section: sectionId });
+    setMenuOpen(false);
+  };
+
+  useEffect(() => {
+    if (!isHome) return;
+    const hash = window.location.hash.replace(/^#/, "");
+    if (!hash) return;
+    const el = document.getElementById(hash);
+    if (!el) return;
+    requestAnimationFrame(() => {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }, [isHome, pathname]);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <img 
-            src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png" 
-            alt="Jurny Logo" 
-            className="h-5 opacity-90" 
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
+      <div className="container mx-auto px-4 h-14 sm:h-16 flex items-center justify-between gap-3">
+        <Link href="/" className="flex shrink-0 items-center gap-2">
+          <img
+            src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png"
+            alt="Jurny Logo"
+            className="h-5 opacity-90"
           />
         </Link>
-        <nav>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="text-sm font-medium text-foreground/80 hover:text-foreground gap-1 px-2">
-                Articles
-                <ChevronDown className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="min-w-[260px]">
-              <DropdownMenuItem asChild>
-                <Link href="/articles/csr-vs-ssr" className="cursor-pointer">
-                  Your Website Looks Amazing. Can Anyone Find It?
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/articles/usability-testing-problems" className="cursor-pointer">
-                  The Biggest Problems With Usability Testing Today
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/articles/how-to-debug-with-cursor-for-non-technical-folks" className="cursor-pointer">
-                  How to Debug with Cursor
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link
-                  href="/articles/designing-synthetic-personas-llm-user-simulations"
-                  className="cursor-pointer"
+
+        <nav className="flex items-center gap-0.5 sm:gap-2">
+          <ul className="hidden md:flex items-center gap-0.5 mr-1">
+            {SECTION_LINKS.map(({ label, id }) => (
+              <li key={id}>
+                {isHome ? (
+                  <button
+                    type="button"
+                    onClick={() => scrollToSection(id)}
+                    className="px-2.5 lg:px-3 py-2 text-sm font-medium text-foreground/70 hover:text-foreground rounded-md transition-colors"
+                  >
+                    {label}
+                  </button>
+                ) : (
+                  <Link
+                    href={`/#${id}`}
+                    className="px-2.5 lg:px-3 py-2 text-sm font-medium text-foreground/70 hover:text-foreground rounded-md transition-colors"
+                  >
+                    {label}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          <div className="hidden md:block">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="text-sm font-medium text-foreground/80 hover:text-foreground gap-1 px-2"
                 >
-                  Synthetic Personas for LLM User Simulations
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+                  Articles
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="min-w-[260px]">
+                {ARTICLE_LINKS.map(({ href, label }) => (
+                  <DropdownMenuItem key={href} asChild>
+                    <Link href={href} className="cursor-pointer">
+                      {label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          <Button
+            size="sm"
+            className="hidden md:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-5 h-9 text-sm font-bold"
+            asChild
+          >
+            <a
+              href={CALENDLY_URL}
+              onClick={() => track("cta_clicked", { location: "header", label: "Book a Demo" })}
+            >
+              Book a Demo
+            </a>
+          </Button>
+
+          <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden h-10 w-10 text-foreground/80"
+                aria-label="Open menu"
+              >
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-full max-w-[320px] flex flex-col p-0">
+              <SheetHeader className="px-6 pt-6 pb-4 border-b border-border text-left">
+                <SheetTitle className="text-lg font-bold">Menu</SheetTitle>
+              </SheetHeader>
+
+              <div className="flex-1 overflow-y-auto px-4 py-4">
+                <p className="px-2 mb-2 text-[11px] font-bold uppercase tracking-widest text-foreground/45">
+                  Explore
+                </p>
+                <nav className="flex flex-col gap-0.5">
+                  {SECTION_LINKS.map(({ label, id }) =>
+                    isHome ? (
+                      <button
+                        key={id}
+                        type="button"
+                        onClick={() => scrollToSection(id)}
+                        className="w-full text-left px-3 py-3.5 text-base font-medium text-foreground rounded-xl hover:bg-secondary transition-colors"
+                      >
+                        {label}
+                      </button>
+                    ) : (
+                      <SheetClose key={id} asChild>
+                        <Link
+                          href={`/#${id}`}
+                          className="block px-3 py-3.5 text-base font-medium text-foreground rounded-xl hover:bg-secondary transition-colors"
+                        >
+                          {label}
+                        </Link>
+                      </SheetClose>
+                    )
+                  )}
+                </nav>
+
+                <p className="px-2 mt-6 mb-2 text-[11px] font-bold uppercase tracking-widest text-foreground/45">
+                  Articles
+                </p>
+                <nav className="flex flex-col gap-0.5">
+                  {ARTICLE_LINKS.map(({ href, label }) => (
+                    <SheetClose key={href} asChild>
+                      <Link
+                        href={href}
+                        className="block px-3 py-3 text-sm leading-snug text-foreground/75 rounded-xl hover:bg-secondary hover:text-foreground transition-colors"
+                      >
+                        {label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+                </nav>
+              </div>
+
+              <div className="p-4 border-t border-border bg-background">
+                <SheetClose asChild>
+                  <Button
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full h-12 text-sm font-bold"
+                    asChild
+                  >
+                    <a
+                      href={CALENDLY_URL}
+                      onClick={() => track("cta_clicked", { location: "header_mobile", label: "Book a Demo" })}
+                    >
+                      Book a Demo
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                </SheetClose>
+              </div>
+            </SheetContent>
+          </Sheet>
         </nav>
       </div>
     </header>

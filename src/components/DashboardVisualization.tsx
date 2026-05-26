@@ -100,31 +100,31 @@ const DashboardVisualization = () => {
   }, []);
 
   return (
-    <div className="relative w-full flex flex-col justify-start pt-0">
+    <div className="relative w-full flex flex-col justify-start pt-0 overflow-hidden">
       {/* Background Glows */}
-      <div className="absolute top-10 right-10 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-pulse" />
-      <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-indigo-500/5 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="hidden sm:block absolute top-10 right-10 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-pulse" />
+      <div className="hidden sm:block absolute bottom-10 right-1/4 w-80 h-80 bg-indigo-500/5 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
 
       {/* Reorganized Bento Layout */}
-      <div className="relative w-full max-w-[560px] mx-auto flex flex-col gap-4">
+      <div className="relative w-full max-w-[560px] mx-auto flex flex-col gap-3 sm:gap-4">
         
         {/* Row 1: Unified Persona Card */}
         <div className="w-full animate-float" style={{ animationDelay: '0s' }}>
-          <div className="p-6 rounded-3xl bg-secondary backdrop-blur-xl flex justify-between items-center gap-4">
-            <div className="text-xs uppercase tracking-[0.2em] text-foreground/60 font-bold vertical-text border-r border-border pr-4 hidden sm:block">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-secondary backdrop-blur-xl flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 sm:gap-4">
+            <div className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-foreground/60 font-bold sm:vertical-text sm:border-r sm:border-border sm:pr-4 shrink-0">
               Active Personas
             </div>
             
-            <div className="flex-1 flex justify-around items-center">
+            <div className="flex-1 flex justify-between sm:justify-around items-center gap-1">
               {[
                 { name: 'Jen, 28', quality: 'Impatient', grad: 'from-primary to-primary-glow', color: 'text-primary-glow', bg: 'bg-primary/10' },
                 { name: 'Randall, 55', quality: 'Skeptical', grad: 'from-indigo-500 to-blue-400', color: 'text-blue-400', bg: 'bg-blue-500/10' },
                 { name: 'Marcus, 34', quality: 'Methodical', grad: 'from-purple-500 to-pink-400', color: 'text-purple-400', bg: 'bg-purple-500/10' }
               ].map((p, i) => (
-                <div key={i} className="flex flex-col items-center text-center px-2 group">
-                  <div className={`w-12 h-12 rounded-full bg-gradient-to-tr ${p.grad} border border-border mb-2 transition-transform duration-300 group-hover:scale-110`} />
-                  <div className="text-base font-bold text-foreground mb-0.5">{p.name.split(',')[0]}</div>
-                  <div className={`text-xs ${p.color} font-bold uppercase tracking-widest ${p.bg} px-1.5 py-1 rounded-full`}>{p.quality}</div>
+                <div key={i} className="flex flex-col items-center text-center px-0.5 sm:px-2 group min-w-0 flex-1">
+                  <div className={`w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr ${p.grad} border border-border mb-1.5 sm:mb-2 transition-transform duration-300 group-hover:scale-110`} />
+                  <div className="text-xs sm:text-base font-bold text-foreground mb-0.5 truncate max-w-full">{p.name.split(',')[0]}</div>
+                  <div className={`text-[9px] sm:text-xs ${p.color} font-bold uppercase tracking-wide sm:tracking-widest ${p.bg} px-1 sm:px-1.5 py-0.5 sm:py-1 rounded-full`}>{p.quality}</div>
                 </div>
               ))}
             </div>
@@ -132,28 +132,28 @@ const DashboardVisualization = () => {
         </div>
 
         {/* Row 2: Enhanced Browser Simulation with Entry Phase */}
-        <div className="w-full h-[240px] animate-float" style={{ animationDelay: '0.2s' }}>
-          <div className="relative p-0 rounded-3xl bg-secondary backdrop-blur-xl h-full overflow-hidden">
+        <div className="w-full h-[210px] sm:h-[240px] animate-float" style={{ animationDelay: '0.2s' }}>
+          <div className="relative p-0 rounded-2xl sm:rounded-3xl bg-secondary backdrop-blur-xl h-full overflow-hidden">
             {/* Header */}
-            <div className="flex items-center gap-1.5 px-4 py-3 border-b border-border bg-muted">
+            <div className="flex items-center gap-1 px-3 sm:px-4 py-2.5 sm:py-3 border-b border-border bg-muted min-w-0">
               <div className="flex gap-1.5">
                 <div className="w-2 h-2 rounded-full bg-red-500/40" />
                 <div className="w-2 h-2 rounded-full bg-yellow-500/40" />
                 <div className="w-2 h-2 rounded-full bg-green-500/40" />
               </div>
-              <div className="ml-4 px-3 py-1 rounded-full bg-muted text-xs text-foreground/70 font-mono flex items-center gap-2">
+              <div className="ml-2 sm:ml-4 min-w-0 flex-1 px-2 sm:px-3 py-1 rounded-full bg-muted text-[10px] sm:text-xs text-foreground/70 font-mono flex items-center gap-1.5 sm:gap-2">
                 {phase === 'sim' ? (
                   <>
-                    <span className="w-1 h-1 rounded-full bg-primary-glow animate-pulse" />
-                    {urls[currentUrlIndex]}
+                    <span className="w-1 h-1 rounded-full bg-primary-glow animate-pulse shrink-0" />
+                    <span className="truncate">{urls[currentUrlIndex]}</span>
                   </>
                 ) : (
                   <span className="opacity-20 uppercase tracking-widest text-[10px]">jurny.com</span>
                 )}
               </div>
-              <div className="ml-auto">
-                <div className="px-2 py-0.5 rounded-full bg-primary/20 border border-primary/20 text-xs text-primary-glow font-bold uppercase">
-                  {phase === 'url' ? 'Ready' : 'Parallel Sim'}
+              <div className="ml-auto shrink-0">
+                <div className="px-1.5 sm:px-2 py-0.5 rounded-full bg-primary/20 border border-primary/20 text-[9px] sm:text-xs text-primary-glow font-bold uppercase whitespace-nowrap">
+                  {phase === 'url' ? 'Ready' : 'Sim'}
                 </div>
               </div>
             </div>
@@ -193,10 +193,10 @@ const DashboardVisualization = () => {
               <div className={`absolute inset-0 transition-all duration-1000 ${
                 phase === 'sim' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}>
-                <div className="p-8 relative h-full bg-gradient-to-b from-transparent to-primary/5">
-                  <div className="flex gap-6">
+                <div className="p-4 sm:p-8 relative h-full bg-gradient-to-b from-transparent to-primary/5">
+                  <div className="flex gap-3 sm:gap-6">
                     {/* Visual Placeholder */}
-                    <div className="w-24 h-24 rounded-2xl bg-muted border border-border flex-shrink-0 animate-pulse overflow-hidden relative">
+                    <div className="w-14 h-14 sm:w-24 sm:h-24 rounded-xl sm:rounded-2xl bg-muted border border-border flex-shrink-0 animate-pulse overflow-hidden relative">
                       <div className={`absolute inset-0 bg-gradient-to-br ${siteContent[currentUrlIndex].accent} opacity-50`} />
                     </div>
                     

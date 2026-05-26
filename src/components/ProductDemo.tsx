@@ -164,24 +164,24 @@ function ResultsPanel() {
 
 const ProductDemo = () => {
   return (
-    <section id="how-it-works" className="py-16 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="how-it-works" className="py-12 sm:py-16 bg-background scroll-mt-14 sm:scroll-mt-16">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-secondary rounded-3xl p-4 sm:p-8 md:p-12">
+          <div className="bg-secondary rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-12">
 
-            <div className="mb-8 sm:mb-12">
+            <div className="mb-6 sm:mb-12">
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight">
                 How It Works
               </h2>
             </div>
 
             {/* Step 1 */}
-            <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 items-center mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 sm:gap-8 items-center mb-8 sm:mb-10">
               <div className="order-2 lg:order-1">
                 <FlowDiscoveryPanel />
               </div>
               <div className="order-1 lg:order-2">
-                <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">Give Access Once, Get Continuous Testing</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4 leading-tight">Give Access Once, Get Continuous Testing</h3>
                 <p className="text-foreground/55 leading-relaxed">
                   Our user agents continuously test your product across core workflows with every new feature and every push. End-to-end journeys keep running as the product changes, so issues surface in real task context before they reach customers.
                 </p>
@@ -189,12 +189,12 @@ const ProductDemo = () => {
             </div>
 
             {/* Step 2 */}
-            <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-6 sm:gap-8 items-center">
               <div className="order-2 lg:order-last w-full">
                 <ResultsPanel />
               </div>
               <div className="order-1 lg:order-first">
-                <h3 className="text-2xl font-bold text-foreground mb-4 leading-tight">Understand Issues in Real Journey Context</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4 leading-tight">Understand Issues in Real Journey Context</h3>
                 <p className="text-foreground/55 leading-relaxed">
                   Every finding ties to a persona, the exact failing step, and concrete fix guidance to surface the drop-offs across market segments that functional tests miss.
                 </p>

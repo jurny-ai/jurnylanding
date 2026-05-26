@@ -418,12 +418,12 @@ const ROICalculator = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-16 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="roi" ref={sectionRef} className="py-12 sm:py-16 bg-background scroll-mt-14 sm:scroll-mt-16">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-secondary rounded-3xl p-4 sm:p-8 md:p-12">
-            <div className="mb-8 sm:mb-10">
-              <p className="text-sm sm:text-xl font-semibold text-muted-foreground uppercase tracking-widest mb-2">ROI Calculator</p>
+          <div className="bg-secondary rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-12">
+            <div className="mb-6 sm:mb-10">
+              <p className="text-xs sm:text-xl font-semibold text-muted-foreground uppercase tracking-widest mb-2">ROI Calculator</p>
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight">
                 What is the impact of better journey coverage?
               </h2>
@@ -433,12 +433,13 @@ const ROICalculator = () => {
             </div>
 
             <div className="bg-card rounded-2xl sm:rounded-3xl p-3 sm:p-6 md:p-8 border border-primary/15">
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="-mx-1 sm:mx-0 overflow-x-auto pb-1 mb-6 sm:mb-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex gap-2 min-w-max sm:min-w-0 sm:flex-wrap px-1 sm:px-0">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => handleTabClick(tab.id)}
-                  className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                  className={`shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
                     activeTab === tab.id
                       ? "bg-foreground text-background"
                       : "bg-transparent text-foreground/60 border border-border hover:border-foreground/40 hover:text-foreground"
@@ -447,6 +448,7 @@ const ROICalculator = () => {
                   {tab.label}
                 </button>
               ))}
+            </div>
             </div>
 
             {activeTab === "conversion" && <ConversionTab />}

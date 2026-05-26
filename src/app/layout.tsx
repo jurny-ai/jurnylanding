@@ -59,7 +59,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/lovable-uploads/560e781d-c4c7-4e51-819a-b21fc0746540.png" type="image/png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
