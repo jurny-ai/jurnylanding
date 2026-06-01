@@ -192,7 +192,7 @@ function GeneratedSimulationScene({
               <div
                 key={image}
                 className={`absolute inset-0 transition-opacity duration-700 ${
-                  index === lineIndex //? "opacity-100" : "opacity-0"
+                  index === lineIndex
                 }`}
               >
                 <Image
@@ -244,6 +244,22 @@ const DashboardVisualization = () => {
   );
   const activeScenario = scenarios[activeIndex];
 
+  const ScenarioIcon = ({ scenario, active }: { scenario: Scenario; active: boolean }) => {
+    const icon = scenario.id === 'ecommerce' ? (
+      <ShoppingBag className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />
+    ) : scenario.id === 'saas' ? (
+      <Laptop className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />
+    ) : scenario.id === 'onboarding' ? (
+      <ClipboardList className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />
+    ) : null;
+
+    return (
+      <div className={`hidden sm:flex h-7 w-7 shrink-0 items-center justify-center rounded-lg sm:h-8 sm:w-8 ${active ? scenario.softAccent : "bg-secondary"}`}>
+        {icon}
+      </div>
+    );
+  };
+
   useEffect(() => {
     const interval = window.setInterval(() => {
       setLineIndex((current) => {
@@ -273,19 +289,17 @@ const DashboardVisualization = () => {
                   setActiveId(scenario.id);
                   setLineIndex(0);
                 }}
-                className={`min-w-0 rounded-2xl border px-2 py-2.5 text-left transition-all sm:px-3 sm:py-3 ${
+                className={`min-w-0 rounded-2xl border px-2 py-2.5 sm:text-left transition-all sm:px-3 sm:py-3 ${
                   active
                     ? "border-primary/30 bg-card shadow-sm"
                     : "border-transparent bg-background/50 hover:bg-card"
                 }`}
               >
-                <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
-                  <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg sm:h-8 sm:w-8 ${active ? scenario.softAccent : "bg-secondary"}`}>
-                    {scenario.id === "ecommerce" && <ShoppingBag className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />}
-                    {scenario.id === "saas" && <Laptop className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />}
-                    {scenario.id === "onboarding" && <ClipboardList className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />}
+                <div className="flex min-w-0 items-center justify-center gap-1.5 sm:justify-start sm:gap-2">
+                  <ScenarioIcon scenario={scenario} active={active} />
+                  <div className="min-w-0 truncate text-[11px] font-bold text-foreground sm:text-sm">
+                    {scenario.label}
                   </div>
-                  <div className="min-w-0 truncate text-[11px] font-bold text-foreground sm:text-sm">{scenario.label}</div>
                 </div>
               </button>
             );
