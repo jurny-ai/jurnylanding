@@ -146,7 +146,7 @@ function InteractionOverlay({ scenario, lineIndex }: { scenario: Scenario; lineI
                 left: point.left,
                 top: point.top,
                 animationDuration: `${PLAYBACK_MS}ms`,
-                animationDelay: `${Math.round(index * PLAYBACK_MS * 0.38)}ms`,
+                animationDelay: `${Math.round(index * PLAYBACK_MS * 0.3)}ms`, //testing 0.2, 0.3, was 0.38
               }}
             />
           ))}
@@ -192,7 +192,7 @@ function GeneratedSimulationScene({
               <div
                 key={image}
                 className={`absolute inset-0 transition-opacity duration-700 ${
-                  index === lineIndex ? "opacity-100" : "opacity-0"
+                  index === lineIndex //? "opacity-100" : "opacity-0"
                 }`}
               >
                 <Image
