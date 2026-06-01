@@ -37,7 +37,7 @@ const Hero = () => {
               to reveal
               <br />
               <span className="bg-gradient-to-r from-primary-glow to-indigo-400 bg-clip-text text-transparent inline-block py-0.5 pr-1 sm:py-1 sm:pr-2">
-                customer friction
+                consumer friction
               </span>
             </h1>
 

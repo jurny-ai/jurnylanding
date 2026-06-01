@@ -22,6 +22,7 @@ import {
 import { track } from "@/lib/analytics";
 
 const SECTION_LINKS = [
+  { label: "Proof", id: "results" },
   { label: "Product", id: "how-it-works" },
   { label: "Features", id: "features" },
   { label: "ROI", id: "roi" },
@@ -49,15 +50,28 @@ const Header = () => {
     const el = document.getElementById(sectionId);
     if (!el) return;
     el.scrollIntoView({ behavior: "smooth", block: "start" });
-    history.replaceState(null, "", `#${sectionId}`);
     track("nav_section_clicked", { section: sectionId });
     setMenuOpen(false);
   };
 
   useEffect(() => {
     if (!isHome) return;
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    const navigation = performance.getEntriesByType("navigation")[0] as
+      | PerformanceNavigationTiming
+      | undefined;
+    if (navigation?.type === "reload") {
+      history.replaceState(null, "", window.location.pathname);
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      return;
+    }
     const hash = window.location.hash.replace(/^#/, "");
-    if (!hash) return;
+    if (!hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      return;
+    }
     const el = document.getElementById(hash);
     if (!el) return;
     requestAnimationFrame(() => {

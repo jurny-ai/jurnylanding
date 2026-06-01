@@ -6,7 +6,7 @@ import "@/index.css";
 export const metadata: Metadata = {
   title: "jurny.ai — Synthetic Users to Reveal Customer Friction, Product Gaps & Revenue Leaks",
   description:
-    "jurny.ai deploys AI-powered synthetic users to simulate real behavior on your product before launch. Discover customer friction, product gaps, revenue leaks, and churn risks at scale.",
+    "jurny.ai deploys AI-powered synthetic users to simulate real behavior on your product before launch. Discover consumer friction, product gaps, revenue leaks, and churn risks at scale.",
   metadataBase: new URL("https://usejurny.com"),
   alternates: {
     canonical: "/",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "jurny.ai — AI-Powered Synthetic User Simulation",
     description:
-      "Deploy synthetic users to simulate real behavior on your website or app. Reveal customer friction, product gaps, and revenue leaks before real users ever touch your product.",
+      "Deploy synthetic users to simulate real behavior on your website or app. Reveal consumer friction, product gaps, and revenue leaks before real users ever touch your product.",
     url: "https://usejurny.com",
     siteName: "jurny.ai",
     type: "website",

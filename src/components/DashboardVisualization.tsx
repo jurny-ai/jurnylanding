@@ -1,413 +1,315 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import { ArrowUpRight, MousePointer2, CheckCircle2, Globe } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { ClipboardList, Laptop, MousePointerClick, ShoppingBag, Sparkles } from "lucide-react";
 
-const DashboardVisualization = () => {
-  const [phase, setPhase] = useState<'url' | 'sim'>('url');
-  const [urlText, setUrlText] = useState('');
-  const [currentUrlIndex, setCurrentUrlIndex] = useState(0);
-  const urlIndexRef = useRef(0);
-  const timersRef = useRef<{
-    timer?: NodeJS.Timeout;
-    typeInterval?: NodeJS.Timeout;
-    cycleTimer?: NodeJS.Timeout;
-  }>({});
-  
-  const urls = [
-    "crunchdogfood.com",
-    "ibank.com",
-    "lastmiledelivery.com",
-    "jakeslogistics.ai"
-  ];
+const scenarios = [
+  {
+    id: "ecommerce",
+    label: "Ecommerce",
+    title: "Product selection",
+    person: "Commuter shopper",
+    images: [
+      "/simulation/ecommerce-step-1-catalog.png",
+      "/simulation/ecommerce-step-2-product.png",
+      "/simulation/ecommerce-step-3-reviews.png",
+    ],
+    imageAlt: "Synthetic user reviewing an ecommerce product selection flow on a phone while riding a bus",
+    accent: "#7558e8",
+    softAccent: "bg-violet-500/10",
+    lines: [
+      "These lavender sneakers catch my eye, but I cannot tell which card is selected.",
+      "Nice product page. Now I am hunting for size guidance before I choose.",
+      "Reviews are here. I am scanning for comfort issues before risking the purchase.",
+    ],
+    traits: ["Commuter", "Comparison mindset", "Cost sensitive"],
+    interaction: "touch",
+    interactionClassName: "left-[62%] top-[33%] h-[45%] w-[22%]",
+    touchPoints: [
+      [
+        { left: "50%", top: "18%" },
+        { left: "48%", top: "52%" },
+      ],
+      [
+        { left: "32%", top: "44%" },
+        { left: "62%", top: "80%" },
+      ],
+      [
+        { left: "26%", top: "52%" },
+        { left: "54%", top: "72%" },
+      ],
+    ],
+  },
+  {
+    id: "saas",
+    label: "D2C",
+    title: "Activation flow",
+    person: "Operations lead",
+    images: [
+      "/simulation/dtc-step-1-setup.png",
+      "/simulation/dtc-step-2-progress.png",
+      "/simulation/dtc-step-3-ready.png",
+    ],
+    imageAlt: "Older woman reviewing a D2C SaaS activation dashboard at an office cubicle",
+    accent: "#5577e6",
+    softAccent: "bg-blue-500/10",
+    lines: [
+      "CampaignPilot gives me a checklist, but I am not sure which step matters first.",
+      "Some items are complete. I am trying to spot what is blocking launch.",
+      "This looks ready, but I still want a final preview before I publish.",
+    ],
+    traits: ["Operations lead", "Repeat user", "Anxious"],
+    interaction: "click",
+    interactionClassName: "left-[43%] top-[17%] h-[49%] w-[43%]",
+    clickPaths: [
+      { startLeft: "72%", startTop: "18%", endLeft: "18%", endTop: "22%" },
+      { startLeft: "72%", startTop: "24%", endLeft: "42%", endTop: "48%" },
+      { startLeft: "22%", startTop: "32%", endLeft: "76%", endTop: "78%" },
+    ],
+  },
+  {
+    id: "onboarding",
+    label: "Onboarding",
+    title: "Tablet onboarding",
+    person: "At-home user",
+    images: [
+      "/simulation/onboarding-step-1-profile.png",
+      "/simulation/onboarding-step-2-preferences.png",
+      "/simulation/onboarding-step-3-confirm.png",
+    ],
+    imageAlt: "Black woman reviewing an account setup modal on a tablet from a living room couch",
+    accent: "#3b9b7a",
+    softAccent: "bg-emerald-500/10",
+    lines: [
+      "Profile setup looks simple, but I am wondering why these details are needed.",
+      "The preference cards feel optional. I need to know what choosing one changes.",
+      "Everything is checked. I would finish if I knew I could edit this later.",
+    ],
+    traits: ["Tech hesitant", "Patient", "Mistrusting of healthcare"],
+    interaction: "touch",
+    interactionClassName: "left-[58%] top-[20%] h-[50%] w-[31%]",
+    touchPoints: [
+      [
+        { left: "38%", top: "48%" },
+        { left: "40%", top: "64%" },
+      ],
+      [
+        { left: "28%", top: "58%" },
+        { left: "70%", top: "58%" },
+      ],
+      [
+        { left: "80%", top: "70%" },
+        { left: "24%", top: "82%" },
+      ],
+    ],
+  },
+];
 
-  const siteContent = [
-    {
-      title: "Premium Crunch Blend",
-      desc: "Organic, grain-free dog food for active breeds.",
-      btn1: "Add to Cart",
-      btn2: "Reviews",
-      accent: "from-orange-500/20 to-primary/20"
-    },
-    {
-      title: "My Checking Account",
-      desc: "Manage your assets with real-time fraud detection.",
-      btn1: "Transfer",
-      btn2: "Statements",
-      accent: "from-emerald-500/20 to-blue-500/20"
-    },
-    {
-      title: "Shipment #88291-B",
-      desc: "In transit: Expected delivery today by 5:00 PM.",
-      btn1: "Reschedule",
-      btn2: "Track Live",
-      accent: "from-blue-500/20 to-indigo-500/20"
-    },
-    {
-      title: "Covered Truck Delivery",
-      desc: "One week guarenteed delivery",
-      btn1: "Schedule",
-      btn2: "View Logs",
-      accent: "from-purple-500/20 to-primary-glow/20"
-    }
-  ];
+type Scenario = (typeof scenarios)[number];
+const PLAYBACK_MS = 4200;
 
-  useEffect(() => {
-    const startCycle = () => {
-      // Phase 1: URL Entry
-      setPhase('url');
-      setUrlText('');
-      
-      const currentUrl = urls[urlIndexRef.current];
-      // REMOVED: setCurrentUrlIndex(urlIndexRef.current); - Header will update later
-      
-      // Type URL
-      let charIndex = 0;
-      clearInterval(timersRef.current.typeInterval);
-      timersRef.current.typeInterval = setInterval(() => {
-        if (charIndex <= currentUrl.length) {
-          setUrlText(currentUrl.slice(0, charIndex));
-          charIndex++;
-        } else {
-          clearInterval(timersRef.current.typeInterval);
-          
-          // Wait a bit, then transition to sim
-          clearTimeout(timersRef.current.timer);
-          timersRef.current.timer = setTimeout(() => {
-            setPhase('sim');
-            // Update header URL only when simulation starts
-            setCurrentUrlIndex(urlIndexRef.current);
-            // Increment ref for next cycle
-            urlIndexRef.current = (urlIndexRef.current + 1) % urls.length;
-          }, 800);
-        }
-      }, 180);
-
-      // Total cycle length: 16s
-      clearTimeout(timersRef.current.cycleTimer);
-      timersRef.current.cycleTimer = setTimeout(() => {
-        startCycle();
-      }, 16000);
-    };
-
-    startCycle();
-
-    return () => {
-      clearInterval(timersRef.current.typeInterval);
-      clearTimeout(timersRef.current.timer);
-      clearTimeout(timersRef.current.cycleTimer);
-    };
-  }, []);
+function InteractionOverlay({ scenario, lineIndex }: { scenario: Scenario; lineIndex: number }) {
+  const isTouch = scenario.interaction === "touch";
+  const touchPoints = isTouch
+    ? scenario.touchPoints?.[lineIndex] ?? [{ left: "45%", top: "54%" }]
+    : [];
+  const clickPath = scenario.interaction === "click"
+    ? scenario.clickPaths?.[lineIndex] ?? {
+        startLeft: "24%",
+        startTop: "24%",
+        endLeft: "62%",
+        endTop: "62%",
+      }
+    : null;
 
   return (
-    <div className="relative w-full flex flex-col justify-start pt-0 overflow-hidden">
-      {/* Background Glows */}
-      <div className="hidden sm:block absolute top-10 right-10 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-pulse" />
-      <div className="hidden sm:block absolute bottom-10 right-1/4 w-80 h-80 bg-indigo-500/5 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+    <div className={`pointer-events-none absolute overflow-hidden rounded-3xl ${scenario.interactionClassName}`}>
+      {isTouch ? (
+        <>
+          {touchPoints.map((point, index) => (
+            <span
+              key={`${point.left}-${point.top}`}
+              className="absolute animate-touch-pressure rounded-full border border-white/80 bg-white/25 shadow-[0_0_24px_rgba(117,88,232,0.35)]"
+              style={{
+                height: index === 0 ? 36 : 30,
+                width: index === 0 ? 36 : 30,
+                left: point.left,
+                top: point.top,
+                animationDuration: `${PLAYBACK_MS}ms`,
+                animationDelay: `${Math.round(index * PLAYBACK_MS * 0.38)}ms`,
+              }}
+            />
+          ))}
+        </>
+      ) : (
+        <>
+          {clickPath && (
+            <MousePointerClick
+              className="absolute h-5 w-5 fill-primary/15 text-primary drop-shadow-sm"
+              style={{
+                animation: `cursor-travel ${PLAYBACK_MS}ms ease-in-out infinite`,
+                ["--cursor-start-left" as string]: clickPath.startLeft,
+                ["--cursor-start-top" as string]: clickPath.startTop,
+                ["--cursor-end-left" as string]: clickPath.endLeft,
+                ["--cursor-end-top" as string]: clickPath.endTop,
+              }}
+            />
+          )}
+        </>
+      )}
+    </div>
+  );
+}
 
-      {/* Reorganized Bento Layout */}
-      <div className="relative w-full max-w-[560px] mx-auto flex flex-col gap-3 sm:gap-4">
-        
-        {/* Row 1: Unified Persona Card */}
-        <div className="w-full animate-float" style={{ animationDelay: '0s' }}>
-          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-secondary backdrop-blur-xl flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 sm:gap-4">
-            <div className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-foreground/60 font-bold sm:vertical-text sm:border-r sm:border-border sm:pr-4 shrink-0">
-              Active Personas
-            </div>
-            
-            <div className="flex-1 flex justify-between sm:justify-around items-center gap-1">
-              {[
-                { name: 'Jen, 28', quality: 'Impatient', grad: 'from-primary to-primary-glow', color: 'text-primary-glow', bg: 'bg-primary/10' },
-                { name: 'Randall, 55', quality: 'Skeptical', grad: 'from-indigo-500 to-blue-400', color: 'text-blue-400', bg: 'bg-blue-500/10' },
-                { name: 'Marcus, 34', quality: 'Methodical', grad: 'from-purple-500 to-pink-400', color: 'text-purple-400', bg: 'bg-purple-500/10' }
-              ].map((p, i) => (
-                <div key={i} className="flex flex-col items-center text-center px-0.5 sm:px-2 group min-w-0 flex-1">
-                  <div className={`w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-gradient-to-tr ${p.grad} border border-border mb-1.5 sm:mb-2 transition-transform duration-300 group-hover:scale-110`} />
-                  <div className="text-xs sm:text-base font-bold text-foreground mb-0.5 truncate max-w-full">{p.name.split(',')[0]}</div>
-                  <div className={`text-[9px] sm:text-xs ${p.color} font-bold uppercase tracking-wide sm:tracking-widest ${p.bg} px-1 sm:px-1.5 py-0.5 sm:py-1 rounded-full`}>{p.quality}</div>
-                </div>
-              ))}
-            </div>
+function GeneratedSimulationScene({
+  scenario,
+  lineIndex,
+}: {
+  scenario: Scenario;
+  lineIndex: number;
+}) {
+  return (
+    <div>
+      <div className="relative">
+        <div className="relative overflow-hidden rounded-[1.75rem] bg-[#eef1fb]">
+          <div className="relative aspect-[3/2] min-h-[360px]">
+            {scenario.images.map((image, index) => (
+              <Image
+                key={image}
+                src={image}
+                alt={scenario.imageAlt}
+                fill
+                priority={index === 0}
+                sizes="(min-width: 1024px) 600px, 100vw"
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+                  index === lineIndex ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))}
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/5 via-transparent to-white/25" />
+            <InteractionOverlay scenario={scenario} lineIndex={lineIndex} />
           </div>
         </div>
 
-        {/* Row 2: Enhanced Browser Simulation with Entry Phase */}
-        <div className="w-full h-[210px] sm:h-[240px] animate-float" style={{ animationDelay: '0.2s' }}>
-          <div className="relative p-0 rounded-2xl sm:rounded-3xl bg-secondary backdrop-blur-xl h-full overflow-hidden">
-            {/* Header */}
-            <div className="flex items-center gap-1 px-3 sm:px-4 py-2.5 sm:py-3 border-b border-border bg-muted min-w-0">
-              <div className="flex gap-1.5">
-                <div className="w-2 h-2 rounded-full bg-red-500/40" />
-                <div className="w-2 h-2 rounded-full bg-yellow-500/40" />
-                <div className="w-2 h-2 rounded-full bg-green-500/40" />
-              </div>
-              <div className="ml-2 sm:ml-4 min-w-0 flex-1 px-2 sm:px-3 py-1 rounded-full bg-muted text-[10px] sm:text-xs text-foreground/70 font-mono flex items-center gap-1.5 sm:gap-2">
-                {phase === 'sim' ? (
-                  <>
-                    <span className="w-1 h-1 rounded-full bg-primary-glow animate-pulse shrink-0" />
-                    <span className="truncate">{urls[currentUrlIndex]}</span>
-                  </>
-                ) : (
-                  <span className="opacity-20 uppercase tracking-widest text-[10px]">jurny.com</span>
-                )}
-              </div>
-              <div className="ml-auto shrink-0">
-                <div className="px-1.5 sm:px-2 py-0.5 rounded-full bg-primary/20 border border-primary/20 text-[9px] sm:text-xs text-primary-glow font-bold uppercase whitespace-nowrap">
-                  {phase === 'url' ? 'Ready' : 'Sim'}
-                </div>
-              </div>
-            </div>
-
-            {/* Content Area */}
-            <div className="relative h-[calc(100%-44px)] overflow-hidden">
-              {/* Phase 1: URL Entry UI */}
-              <div className={`absolute inset-0 z-50 flex flex-col items-center justify-center p-8 transition-all duration-700 ${
-                phase === 'url' ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
-              }`}>
-                <div className="w-full max-sm px-4 space-y-4">
-                  <div className="relative">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/40">
-                      <Globe className="w-4 h-4" />
-                    </div>
-                    <div className="w-full h-12 bg-muted border border-border rounded-xl flex items-center px-12 text-base text-foreground/80 font-mono overflow-hidden">
-                      {urlText}
-                      <span className="w-1 h-4 bg-primary-glow ml-1 animate-pulse" />
-                    </div>
-                    {urlText === '' && (
-                      <div className="absolute left-12 top-1/2 -translate-y-1/2 text-foreground/40 text-base font-mono">
-                        URL for your web app or website
-                      </div>
-                    )}
-                  </div>
-                  
-                  <button className="w-full h-12 rounded-xl bg-primary text-primary-foreground text-sm font-bold uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 group">
-                    Start Simulation
-                    <div className="w-4 h-4 rounded-full bg-primary-foreground/20 flex items-center justify-center group-active:scale-90 transition-transform">
-                      <div className="w-1.5 h-1.5 bg-primary-foreground rounded-full animate-ping" />
-                    </div>
-                  </button>
-                </div>
-              </div>
-
-              {/* Phase 2: Browser Simulation */}
-              <div className={`absolute inset-0 transition-all duration-1000 ${
-                phase === 'sim' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}>
-                <div className="p-4 sm:p-8 relative h-full bg-gradient-to-b from-transparent to-primary/5">
-                  <div className="flex gap-3 sm:gap-6">
-                    {/* Visual Placeholder */}
-                    <div className="w-14 h-14 sm:w-24 sm:h-24 rounded-xl sm:rounded-2xl bg-muted border border-border flex-shrink-0 animate-pulse overflow-hidden relative">
-                      <div className={`absolute inset-0 bg-gradient-to-br ${siteContent[currentUrlIndex].accent} opacity-50`} />
-                    </div>
-                    
-                    <div className="flex-1 space-y-3">
-                      {/* Dynamic Title */}
-                      <div className="h-4 flex items-center">
-                        <span className="text-sm font-bold text-foreground/90 tracking-tight">
-                          {siteContent[currentUrlIndex].title}
-                        </span>
-                      </div>
-                      
-                      {/* Dynamic Description */}
-                      <div className="space-y-1.5">
-                        <div className="text-xs text-foreground/60 leading-tight font-light line-clamp-2">
-                          {siteContent[currentUrlIndex].desc}
-                        </div>
-                      </div>
-
-                      {/* Dynamic Buttons */}
-                      <div className="flex gap-2 pt-2">
-                        <div className="w-24 h-8 rounded-lg bg-primary/20 border border-primary/30 flex items-center justify-center relative overflow-hidden group/btn-cart">
-                          <span className="text-xs text-foreground/70 font-bold">{siteContent[currentUrlIndex].btn1}</span>
-                          <div className="absolute inset-0 bg-primary-glow/20 animate-ui-click-ripple opacity-0" />
-                        </div>
-                        <div className="w-24 h-8 rounded-lg bg-muted border border-border flex items-center justify-center relative overflow-hidden group/btn-details">
-                          <span className="text-xs text-foreground/60 font-bold">{siteContent[currentUrlIndex].btn2}</span>
-                          <div className="absolute inset-0 bg-blue-500/10 animate-ui-click-ripple-2 opacity-0" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Form elements underneath */}
-                  <div className="mt-6 space-y-3">
-                    <div className="h-1.5 w-24 bg-muted rounded-full" />
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="h-7 rounded-lg bg-muted border border-border" />
-                      <div className="h-7 rounded-lg bg-muted border border-border" />
-                    </div>
-                  </div>
-
-                  {/* Multiple Cursors */}
-                  <div key={phase} className="absolute inset-0 pointer-events-none">
-                    {/* Jen */}
-                    <div className="absolute animate-cursor-jen top-0 left-0 z-20">
-                      <div className="relative">
-                        <MousePointer2 className="w-5 h-5 text-primary-glow fill-primary/20" />
-                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-primary-glow text-xs text-primary-foreground font-bold whitespace-nowrap">Jen</div>
-                        <div className="absolute top-0 left-0 w-8 h-8 -translate-x-1/4 -translate-y-1/4 rounded-full border border-primary-glow/50 scale-0 animate-ui-click-jen" />
-                      </div>
-                    </div>
-
-                    {/* Randall */}
-                    <div className="absolute animate-cursor-randall top-0 left-0 z-10">
-                      <div className="relative">
-                        <MousePointer2 className="w-5 h-5 text-blue-400 fill-blue-500/20" />
-                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-blue-500 text-xs text-white font-bold whitespace-nowrap">Randall</div>
-                        <div className="absolute top-0 left-0 w-8 h-8 -translate-x-1/4 -translate-y-1/4 rounded-full border border-blue-400/50 scale-0 animate-ui-click-randall" />
-                      </div>
-                    </div>
-
-                    {/* Marcus */}
-                    <div className="absolute animate-cursor-marcus top-0 left-0 z-0">
-                      <div className="relative">
-                        <MousePointer2 className="w-5 h-5 text-purple-400 fill-purple-500/20" />
-                        <div className="absolute -top-4 -right-2 px-1.5 py-0.5 rounded-md bg-purple-500 text-xs text-white font-bold whitespace-nowrap">Marcus</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="absolute inset-x-4 bottom-4 z-20 sm:inset-x-6 sm:bottom-6">
+          <div className="flex h-[72px] items-center gap-4 rounded-2xl border border-white/65 bg-white/65 px-5 py-4 text-sm font-medium leading-snug text-foreground/82 shadow-[0_18px_42px_rgba(35,38,85,0.14)] backdrop-blur-md">
+            <span className="flex h-8 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+              {lineIndex + 1}/3
+            </span>
+            <span>{scenario.lines[lineIndex]}</span>
           </div>
         </div>
-
-        {/* Row 3: Stats stuff underneath */}
-        <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-6 h-fit animate-float" style={{ animationDelay: '0.4s' }}>
-            <div className="p-4 sm:p-6 rounded-3xl bg-secondary backdrop-blur-xl h-full space-y-4">
-              <div>
-                <div className="text-[10px] sm:text-xs uppercase tracking-widest text-foreground/60 font-bold mb-3">
-                  Completion Rate
-                </div>
-                
-                <div className="flex items-center gap-3 sm:gap-6">
-                  <div className="relative w-10 h-10 sm:w-16 sm:h-16 flex-shrink-0 flex items-center justify-center">
-                    <svg className="w-full h-full transform -rotate-90" viewBox="0 0 64 64">
-                      <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" className="text-foreground/10" />
-                      <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="4" fill="transparent" strokeDasharray="175.9" strokeDashoffset={175.9 * (1 - 0.94)} className="text-primary-glow transition-all duration-1000" strokeLinecap="round" />
-                    </svg>
-                    <span className="absolute text-[10px] sm:text-sm font-bold text-foreground">94%</span>
-                  </div>
-                  
-                <div className="flex-1 space-y-1 sm:space-y-2">
-                  {[
-                    { label: 'Onboarding', done: true },
-                    { label: 'Nav Logic', done: true },
-                    { label: 'Form Fill', done: false }
-                  ].map((step, i) => (
-                    <div key={i} className="flex items-center gap-1.5">
-                      <CheckCircle2 className={`w-2 h-2 sm:w-3 sm:h-3 ${step.done ? 'text-primary-glow' : 'text-foreground/30'}`} />
-                      <span className={`text-[8px] sm:text-xs ${step.done ? 'text-foreground/80' : 'text-foreground/60'}`}>{step.label}</span>
-                    </div>
-                  ))}
-                </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-span-6 h-fit animate-float" style={{ animationDelay: '0.6s' }}>
-            <div className="p-4 sm:p-6 rounded-3xl bg-secondary backdrop-blur-xl overflow-hidden">
-              <div className="flex justify-between items-start mb-3">
-                <div>
-                  <div className="text-[10px] sm:text-xs uppercase tracking-widest text-primary-glow font-bold">Conversion Rate</div>
-                  <div className="text-2xl sm:text-3xl font-bold text-foreground mt-1">24.8%</div>
-                </div>
-              </div>
-              <div className="h-12 w-full">
-                <svg width="100%" height="100%" viewBox="0 0 100 40" preserveAspectRatio="none" className="overflow-visible">
-                  <path d="M0,38 Q20,35 40,36 T80,15 T100,8" fill="none" stroke="hsl(var(--primary-glow))" strokeWidth="2.5" strokeLinecap="round" className="animate-draw-path" />
-                  <path d="M0,38 Q20,35 40,36 T80,15 T100,8 L100,40 L0,40 Z" fill="url(#grad-stats)" className="opacity-10" />
-                  <defs>
-                    <linearGradient id="grad-stats" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="hsl(var(--primary-glow))" />
-                      <stop offset="100%" stopColor="transparent" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
 
+      <div className="mt-4 flex flex-wrap gap-2 px-1">
+        {scenario.traits.map((trait, index) => (
+          <div
+            key={trait}
+            className="flex items-center gap-2 rounded-full bg-card px-4 py-2 text-sm font-semibold text-foreground/60 shadow-sm"
+          >
+            {index === 0 && <Sparkles className="h-4 w-4 text-primary" />}
+            {trait}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const DashboardVisualization = () => {
+  const [activeId, setActiveId] = useState(scenarios[0].id);
+  const [lineIndex, setLineIndex] = useState(0);
+  const activeIndex = Math.max(
+    scenarios.findIndex((scenario) => scenario.id === activeId),
+    0,
+  );
+  const activeScenario = scenarios[activeIndex];
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setLineIndex((current) => {
+        if (current < activeScenario.lines.length - 1) {
+          return current + 1;
+        }
+
+        setActiveId(scenarios[(activeIndex + 1) % scenarios.length].id);
+        return 0;
+      });
+    }, PLAYBACK_MS);
+
+    return () => window.clearInterval(interval);
+  }, [activeIndex, activeScenario.lines.length]);
+
+  return (
+    <div className="w-full max-w-[600px]">
+      <div className="rounded-[2rem] bg-secondary p-3 shadow-[0_24px_70px_rgba(35,38,85,0.08)] sm:p-4">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+          {scenarios.map((scenario) => {
+            const active = scenario.id === activeScenario.id;
+
+            return (
+              <button
+                key={scenario.id}
+                onClick={() => {
+                  setActiveId(scenario.id);
+                  setLineIndex(0);
+                }}
+                className={`rounded-2xl border px-3 py-3 text-left transition-all ${
+                  active
+                    ? "border-primary/30 bg-card shadow-sm"
+                    : "border-transparent bg-background/50 hover:bg-card"
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${active ? scenario.softAccent : "bg-secondary"}`}>
+                    {scenario.id === "ecommerce" && <ShoppingBag className="h-4 w-4 text-primary" />}
+                    {scenario.id === "saas" && <Laptop className="h-4 w-4 text-primary" />}
+                    {scenario.id === "onboarding" && <ClipboardList className="h-4 w-4 text-primary" />}
+                  </div>
+                  <div className="text-sm font-bold text-foreground">{scenario.label}</div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-3">
+          <GeneratedSimulationScene scenario={activeScenario} lineIndex={lineIndex} />
+        </div>
+      </div>
       <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-        }
-        @keyframes draw-path {
-          from { stroke-dasharray: 0 200; }
-          to { stroke-dasharray: 200 200; }
-        }
-        
-        /* Cursors on 16s cycle - Simplified subtle movement */
-        @keyframes cursor-jen {
-          0%, 24% { transform: translate(450px, 150px); opacity: 0; }
-          26% { opacity: 1; }
-          32% { transform: translate(200px, 57px); } /* Move directly to Primary Button */
-          35% { transform: translate(200px, 57px) scale(0.8); } /* Click */
-          37% { transform: translate(200px, 57px) scale(1); }
-          44% { transform: translate(240px, 80px); opacity: 0; } /* Subtle drift exit */
-          100% { transform: translate(240px, 80px); opacity: 0; }
-        }
-        
-        @keyframes cursor-randall {
-          0%, 28% { transform: translate(400px, 50px); opacity: 0; }
-          30% { opacity: 1; transform: translate(400px, 50px); }
-          45% { transform: translate(150px, 60px); } /* Single drift point near image */
-          65% { transform: translate(304px, 57px); } /* Move to Secondary Button */
-          68% { transform: translate(304px, 57px) scale(0.9); } /* Click */
-          70% { transform: translate(304px, 57px) scale(1); }
-          82% { transform: translate(350px, 100px); opacity: 0; } /* Exit */
-          100% { transform: translate(350px, 100px); opacity: 0; }
+        @keyframes touch-pressure {
+          0%, 100% { opacity: 0; transform: scale(0.45); }
+          18%, 48% { opacity: 0.9; transform: scale(1); }
+          64% { opacity: 0; transform: scale(1.5); }
         }
 
-        @keyframes cursor-marcus {
-          0%, 32% { transform: translate(50px, 150px); opacity: 0; }
-          34% { opacity: 1; transform: translate(30px, 20px); }
-          55% { transform: translate(180px, 25px); } /* Scan title across */
-          75% { transform: translate(60px, 130px); } /* Move down to form area */
-          92% { transform: translate(120px, 200px); opacity: 0; } /* Exit */
-          100% { transform: translate(120px, 200px); opacity: 0; }
+        @keyframes cursor-travel {
+          0% {
+            left: var(--cursor-start-left);
+            top: var(--cursor-start-top);
+            opacity: 0;
+            transform: translate(-8px, -8px) scale(0.96);
+          }
+          18% {
+            opacity: 0.85;
+          }
+          48%, 62% {
+            left: var(--cursor-end-left);
+            top: var(--cursor-end-top);
+            opacity: 1;
+            transform: translate(0, 0) scale(0.9);
+          }
+          82%, 100% {
+            left: var(--cursor-end-left);
+            top: var(--cursor-end-top);
+            opacity: 0;
+            transform: translate(4px, 4px) scale(1);
+          }
         }
 
-        @keyframes ui-click-jen {
-          34% { transform: scale(0); opacity: 0; }
-          35% { transform: scale(1); opacity: 1; }
-          41% { transform: scale(2.5); opacity: 0; }
-        }
-        @keyframes ui-click-randall {
-          67% { transform: scale(0); opacity: 0; }
-          68% { transform: scale(1); opacity: 1; }
-          74% { transform: scale(2.5); opacity: 0; }
-        }
-        @keyframes ui-click-ripple {
-          35% { opacity: 1; transform: scale(1); }
-          43% { opacity: 0; transform: scale(1.5); }
-        }
-        @keyframes ui-click-ripple-2 {
-          68% { opacity: 1; transform: scale(1); }
-          76% { opacity: 0; transform: scale(1.5); }
-        }
-
-        .animate-cursor-jen { animation: cursor-jen 16s ease-in-out infinite; }
-        .animate-cursor-randall { animation: cursor-randall 16s ease-in-out infinite; }
-        .animate-cursor-marcus { animation: cursor-marcus 16s ease-in-out infinite; }
-        .animate-ui-click-jen { animation: ui-click-jen 16s ease-in-out infinite; }
-        .animate-ui-click-randall { animation: ui-click-randall 16s ease-in-out infinite; }
-        .animate-ui-click-ripple { animation: ui-click-ripple 16s ease-in-out infinite; }
-        .animate-ui-click-ripple-2 { animation: ui-click-ripple-2 16s ease-in-out infinite; }
-        .animate-draw-path { animation: draw-path 3s ease-out forwards; }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        
-        .vertical-text {
-          writing-mode: vertical-rl;
-          text-orientation: mixed;
-          transform: rotate(180deg);
-        }
+        .animate-touch-pressure { animation: touch-pressure 4.4s ease-in-out infinite; }
       `}</style>
     </div>
   );
