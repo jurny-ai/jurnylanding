@@ -16,6 +16,7 @@ const scenarios = [
       "/simulation/ecommerce-step-3-reviews.png",
     ],
     imageAlt: "Synthetic user reviewing an ecommerce product selection flow on a phone while riding a bus",
+    imagePosition: "sm:object-center",
     accent: "#7558e8",
     softAccent: "bg-violet-500/10",
     lines: [
@@ -52,6 +53,7 @@ const scenarios = [
       "/simulation/dtc-step-3-ready.png",
     ],
     imageAlt: "Older woman reviewing a D2C SaaS activation dashboard at an office cubicle",
+    imagePosition: "sm:object-center",
     accent: "#5577e6",
     softAccent: "bg-blue-500/10",
     lines: [
@@ -79,6 +81,7 @@ const scenarios = [
       "/simulation/onboarding-step-3-confirm.png",
     ],
     imageAlt: "Black woman reviewing an account setup modal on a tablet from a living room couch",
+    imagePosition: "sm:object-center",
     accent: "#3b9b7a",
     softAccent: "bg-emerald-500/10",
     lines: [
@@ -182,7 +185,7 @@ function GeneratedSimulationScene({
                 fill
                 priority={index === 0}
                 sizes="(min-width: 1024px) 600px, 100vw"
-                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+                className={`absolute inset-0 h-full w-full object-contain object-center sm:object-cover ${scenario.imagePosition} transition-opacity duration-700 ${
                   index === lineIndex ? "opacity-100" : "opacity-0"
                 }`}
               />
@@ -242,9 +245,9 @@ const DashboardVisualization = () => {
   }, [activeIndex, activeScenario.lines.length]);
 
   return (
-    <div className="w-full max-w-[600px]">
-      <div className="rounded-[2rem] bg-secondary p-3 shadow-[0_24px_70px_rgba(35,38,85,0.08)] sm:p-4">
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+    <div className="w-full max-w-[600px] overflow-hidden rounded-[2rem]">
+      <div className="rounded-[2rem] bg-secondary p-2.5 shadow-[0_24px_70px_rgba(35,38,85,0.08)] sm:p-4">
+        <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
           {scenarios.map((scenario) => {
             const active = scenario.id === activeScenario.id;
 
@@ -255,19 +258,19 @@ const DashboardVisualization = () => {
                   setActiveId(scenario.id);
                   setLineIndex(0);
                 }}
-                className={`rounded-2xl border px-3 py-3 text-left transition-all ${
+                className={`min-w-0 rounded-2xl border px-2 py-2.5 text-left transition-all sm:px-3 sm:py-3 ${
                   active
                     ? "border-primary/30 bg-card shadow-sm"
                     : "border-transparent bg-background/50 hover:bg-card"
                 }`}
               >
-                <div className="flex items-center gap-2">
-                  <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${active ? scenario.softAccent : "bg-secondary"}`}>
-                    {scenario.id === "ecommerce" && <ShoppingBag className="h-4 w-4 text-primary" />}
-                    {scenario.id === "saas" && <Laptop className="h-4 w-4 text-primary" />}
-                    {scenario.id === "onboarding" && <ClipboardList className="h-4 w-4 text-primary" />}
+                <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
+                  <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg sm:h-8 sm:w-8 ${active ? scenario.softAccent : "bg-secondary"}`}>
+                    {scenario.id === "ecommerce" && <ShoppingBag className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />}
+                    {scenario.id === "saas" && <Laptop className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />}
+                    {scenario.id === "onboarding" && <ClipboardList className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />}
                   </div>
-                  <div className="text-sm font-bold text-foreground">{scenario.label}</div>
+                  <div className="min-w-0 truncate text-[11px] font-bold text-foreground sm:text-sm">{scenario.label}</div>
                 </div>
               </button>
             );

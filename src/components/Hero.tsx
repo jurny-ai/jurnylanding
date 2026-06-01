@@ -58,7 +58,7 @@ const Hero = () => {
           </div>
 
                   {/* Right Column: Visualization */}
-                  <div className="relative pt-2 sm:pt-4 mx-auto lg:ml-auto w-full max-w-[560px] -mx-1 sm:mx-0">
+                  <div className="relative mx-auto w-full max-w-[560px] px-0 pt-2 sm:pt-4 lg:ml-auto">
                     <DashboardVisualization />
                   </div>
 
