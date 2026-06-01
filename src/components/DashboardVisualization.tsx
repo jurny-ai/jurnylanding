@@ -16,7 +16,9 @@ const scenarios = [
       "/simulation/ecommerce-step-3-reviews.png",
     ],
     imageAlt: "Synthetic user reviewing an ecommerce product selection flow on a phone while riding a bus",
-    imagePosition: "sm:object-center",
+    imageWidth: 1536,
+    imageHeight: 1024,
+    imagePosition: "object-center",
     accent: "#7558e8",
     softAccent: "bg-violet-500/10",
     lines: [
@@ -53,7 +55,9 @@ const scenarios = [
       "/simulation/dtc-step-3-ready.png",
     ],
     imageAlt: "Older woman reviewing a D2C SaaS activation dashboard at an office cubicle",
-    imagePosition: "sm:object-center",
+    imageWidth: 1672,
+    imageHeight: 941,
+    imagePosition: "object-center",
     accent: "#5577e6",
     softAccent: "bg-blue-500/10",
     lines: [
@@ -81,7 +85,9 @@ const scenarios = [
       "/simulation/onboarding-step-3-confirm.png",
     ],
     imageAlt: "Black woman reviewing an account setup modal on a tablet from a living room couch",
-    imagePosition: "sm:object-center",
+    imageWidth: 1536,
+    imageHeight: 1024,
+    imagePosition: "object-center",
     accent: "#3b9b7a",
     softAccent: "bg-emerald-500/10",
     lines: [
@@ -172,23 +178,32 @@ function GeneratedSimulationScene({
   scenario: Scenario;
   lineIndex: number;
 }) {
+  const aspectRatio = `${scenario.imageWidth} / ${scenario.imageHeight}`;
+
   return (
     <div>
       <div className="relative">
         <div className="relative overflow-hidden rounded-[1.75rem] bg-[#eef1fb]">
-          <div className="relative aspect-[3/2] min-h-[360px]">
+          <div
+            className="relative mx-auto w-full max-w-full"
+            style={{ aspectRatio }}
+          >
             {scenario.images.map((image, index) => (
-              <Image
+              <div
                 key={image}
-                src={image}
-                alt={scenario.imageAlt}
-                fill
-                priority={index === 0}
-                sizes="(min-width: 1024px) 600px, 100vw"
-                className={`absolute inset-0 h-full w-full object-contain object-center sm:object-cover ${scenario.imagePosition} transition-opacity duration-700 ${
+                className={`absolute inset-0 transition-opacity duration-700 ${
                   index === lineIndex ? "opacity-100" : "opacity-0"
                 }`}
-              />
+              >
+                <Image
+                  src={image}
+                  alt={scenario.imageAlt}
+                  fill
+                  priority={index === 0}
+                  sizes="(min-width: 1024px) 600px, 100vw"
+                  className={`h-full w-full object-contain ${scenario.imagePosition}`}
+                />
+              </div>
             ))}
             <div className="absolute inset-0 bg-gradient-to-tr from-white/5 via-transparent to-white/25" />
             <InteractionOverlay scenario={scenario} lineIndex={lineIndex} />
