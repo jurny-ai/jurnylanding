@@ -7,7 +7,7 @@ import { track } from "@/lib/analytics";
 
 const Hero = () => {
   return (
-    <section id="top" className="relative min-h-0 lg:min-h-[780px] flex items-center overflow-hidden bg-background pt-20 sm:pt-24 pb-10 sm:pb-12 scroll-mt-14 sm:scroll-mt-16">
+    <section id="top" className="relative min-h-0 lg:min-h-[600px] flex items-center overflow-hidden bg-background pt-20 sm:pt-24 pb-4 sm:pb-6 scroll-mt-14 sm:scroll-mt-16">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-7xl mx-auto lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-24 items-start">
