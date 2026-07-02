@@ -1,21 +1,21 @@
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, TrendingDown, HelpCircle } from "lucide-react";
 
-function ReworkVisual() {
+function ABTestVisual() {
   return (
     <div className="flex flex-col gap-2.5 w-full max-w-xs">
       <div className="flex items-center gap-2.5 bg-red-500/10 rounded-xl px-3 py-2.5">
         <div className="w-2 h-2 rounded-full bg-red-400 flex-shrink-0" />
-        <div className="h-1.5 flex-1 bg-red-400/40 rounded-full" />
-        <span className="text-[10px] text-red-400 font-mono flex-shrink-0">ticket spike</span>
+        <span className="text-[11px] text-foreground/70 font-semibold flex-1">Live A/B test</span>
+        <span className="text-[10px] text-red-400 font-mono flex-shrink-0">3-6 weeks</span>
       </div>
       <div className="flex items-center gap-2.5 bg-primary/10 rounded-xl px-3 py-2.5">
         <Check className="w-3 h-3 text-primary-glow flex-shrink-0" />
-        <div className="h-1.5 flex-1 bg-primary/40 rounded-full" />
-        <span className="text-[10px] text-primary-glow font-mono flex-shrink-0">issues prevented</span>
+        <span className="text-[11px] text-foreground/70 font-semibold flex-1">Jurny simulation</span>
+        <span className="text-[10px] text-primary-glow font-mono flex-shrink-0">minutes</span>
       </div>
       <div className="text-center pt-1">
-        <span className="text-3xl font-bold text-foreground">80%</span>
-        <p className="text-xs text-foreground/40 mt-0.5">reduction in support ticket volume</p>
+        <span className="text-3xl font-bold text-foreground">Weeks</span>
+        <p className="text-xs text-foreground/40 mt-0.5">of traffic and revenue no longer spent testing</p>
       </div>
     </div>
   );
@@ -23,9 +23,9 @@ function ReworkVisual() {
 
 function BehaviorVisual() {
   const personas = [
-    { name: "First-time user", coverage: "High coverage", color: "bg-primary/10 text-primary-glow" },
-    { name: "Power user", coverage: "High coverage", color: "bg-blue-500/10 text-blue-400" },
-    { name: "Skeptical buyer", coverage: "Broad coverage", color: "bg-purple-500/10 text-purple-400" },
+    { name: "High-ATV buyer", coverage: "Representative", color: "bg-primary/10 text-primary-glow" },
+    { name: "Enterprise admin", coverage: "Accurately modeled", color: "bg-blue-500/10 text-blue-400" },
+    { name: "New user", coverage: "Representative", color: "bg-purple-500/10 text-purple-400" },
   ];
   return (
     <div className="flex flex-col gap-2 w-full max-w-xs">
@@ -43,26 +43,33 @@ function BehaviorVisual() {
   );
 }
 
-function LaunchVisual() {
-  const items = ["Regression check in CI", "Replay attached to issue", "Fix owner auto-assigned", "Retest passed before release"];
+function DiagnoseVisual() {
+  const stages = [
+    { label: "Cart", rate: 100 },
+    { label: "Checkout", rate: 58 },
+    { label: "Payment", rate: 21, drop: true },
+  ];
   return (
     <div className="flex flex-col gap-2 w-full max-w-xs">
-      {items.map((item, i) => (
+      {stages.map((stage, i) => (
         <div key={i} className="flex items-center gap-2.5">
-          <div className="w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-            <Check className="w-2.5 h-2.5 text-primary-glow" />
+          <span className="w-16 text-[11px] text-foreground/60 font-medium flex-shrink-0">{stage.label}</span>
+          <div className="flex-1 h-4 rounded-md bg-foreground/5 overflow-hidden">
+            <div
+              className={`h-full rounded-md ${stage.drop ? "bg-red-400/80" : "bg-primary/60"}`}
+              style={{ width: `${stage.rate}%` }}
+            />
           </div>
-          <span className="text-xs text-foreground/70">{item}</span>
+          <span className={`text-[10px] font-bold flex-shrink-0 w-8 text-right ${stage.drop ? "text-red-500" : "text-foreground/50"}`}>
+            {stage.rate}%
+          </span>
         </div>
       ))}
-      <div className="mt-2 space-y-1">
-        <div className="flex justify-between text-[10px] text-foreground/40">
-          <span>Engineering time recovered</span>
-          <span>14 hrs/wk</span>
-        </div>
-        <div className="h-1.5 bg-foreground/10 rounded-full overflow-hidden">
-          <div className="h-full bg-gradient-to-r from-primary to-primary-glow rounded-full w-[78%]" />
-        </div>
+      <div className="flex items-start gap-2 mt-1 bg-foreground/5 rounded-xl px-3 py-2">
+        <HelpCircle className="w-3.5 h-3.5 text-primary-glow flex-shrink-0 mt-0.5" />
+        <span className="text-[11px] text-foreground/70 leading-snug">
+          <span className="font-semibold text-foreground">Why:</span> session resets after the legal link opens a new tab
+        </span>
       </div>
     </div>
   );
@@ -88,21 +95,21 @@ function OptimizeVisual() {
 
 const features = [
   {
-    title: "Comprehensive Persona Coverage",
-    description: "Jurny generates and tests a wide spread of personas, so you validate journeys across real-world behaviors instead of a narrow happy path.",
+    title: "Accurate Coverage of High-Value Customers",
+    description: "Jurny models accurate, representative personas of the customers who matter most, so you validate journeys the way your highest-value users actually behave.",
     visual: <BehaviorVisual />,
     panelBg: "bg-accent/40",
   },
   {
-    title: "Lower Churn and Ticket Volume",
-    description: "Find confusing UX moments early to reduce avoidable churn and cut repetitive support conversations.",
-    visual: <ReworkVisual />,
+    title: "Fewer Costly A/B Tests",
+    description: "Get answers in minutes instead of running live experiments for weeks, so you stop spending traffic, time, and revenue to learn what a simulation can tell you now.",
+    visual: <ABTestVisual />,
     panelBg: "bg-primary/5",
   },
   {
-    title: "Ship Faster With Less Rework",
-    description: "Detect regressions before customers do, so engineering spends less time on fire drills and more time shipping roadmap work.",
-    visual: <LaunchVisual />,
+    title: "Diagnose Drop-Offs and Friction",
+    description: "When you can see users dropping off but don't understand why, Jurny pinpoints the failing step and the friction behind it in real journey context.",
+    visual: <DiagnoseVisual />,
     panelBg: "bg-primary/5",
   },
   {

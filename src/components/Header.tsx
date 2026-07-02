@@ -23,7 +23,7 @@ import { track } from "@/lib/analytics";
 
 const SECTION_LINKS = [
   { label: "Product", id: "how-it-works" },
-  { label: "Features", id: "features" },
+  { label: "Use Cases", id: "features" },
   { label: "ROI", id: "roi" },
   { label: "FAQ", id: "faq" },
 ] as const;

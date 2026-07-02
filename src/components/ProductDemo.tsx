@@ -1,209 +1,278 @@
 "use client";
 
-import { GitBranch, Globe, Map, Wrench } from "lucide-react";
+import { useState } from "react";
 
-function FlowDiscoveryPanel() {
-  const discoveredPaths = [
-    "Sign up -> Verify identity -> Complete onboarding -> Add payment method",
-    "Trial start -> Invite teammate -> Configure workspace -> Publish first workflow",
-  ];
+type DropOff = { segment: string; loss: number; worst?: boolean };
+type Segment = {
+  id: string;
+  label: string;
+  question: string;
+  moreQuestions: string[];
+  personas: string[];
+  dropStep: string;
+  dropOffs: DropOff[];
+};
+
+const SEGMENTS: Segment[] = [
+  {
+    id: "ecommerce",
+    label: "Ecommerce",
+    question: "Why do shoppers abandon checkout?",
+    moreQuestions: ["Which product pages lose buyers?", "Where does mobile checkout drop?"],
+    personas: ["High ATV buyer", "Comparison shopper", "New user"],
+    dropStep: "Payment",
+    dropOffs: [
+      { segment: "Comparison shopper", loss: 38, worst: true },
+      { segment: "High ATV buyer", loss: 12 },
+      { segment: "New user", loss: 7 },
+    ],
+  },
+  {
+    id: "saas",
+    label: "D2C SaaS",
+    question: "Why do trials never activate?",
+    moreQuestions: ["Where does onboarding stall?", "Which step blocks setup?"],
+    personas: ["Solo founder", "Ops manager", "Free-trial user"],
+    dropStep: "Workspace setup",
+    dropOffs: [
+      { segment: "Free-trial user", loss: 44, worst: true },
+      { segment: "Ops manager", loss: 15 },
+      { segment: "Solo founder", loss: 9 },
+    ],
+  },
+];
+
+function QuestionCard({ segment }: { segment: Segment }) {
+  return (
+    <div className="space-y-2">
+      <div className="relative rounded-2xl bg-card border border-primary/20 shadow-[0_12px_32px_rgba(35,38,85,0.08)] px-5 py-4">
+        <div className="text-[9px] uppercase tracking-[0.2em] text-foreground/40 font-bold mb-2">Your product question</div>
+        <p className="text-sm font-semibold text-foreground/85 leading-snug">
+          {segment.question}
+          <span className="inline-block w-0.5 h-3.5 bg-primary-glow ml-1 align-middle animate-pulse" />
+        </p>
+      </div>
+      {segment.moreQuestions.map((q, i) => (
+        <div
+          key={q}
+          className="rounded-xl bg-card/60 border border-primary/10 px-4 py-2"
+          style={{ opacity: 0.55 - i * 0.2 }}
+        >
+          <p className="text-xs font-medium text-foreground/60 leading-snug">{q}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function PersonaChip({ name }: { name: string }) {
+  return (
+    <div className="flex items-center gap-2 rounded-full bg-card border border-primary/20 shadow-sm px-3 py-1.5 whitespace-nowrap">
+      <span className="w-1.5 h-1.5 rounded-full bg-primary-glow animate-pulse" />
+      <span className="text-[11px] font-semibold text-foreground/70">{name}</span>
+    </div>
+  );
+}
+
+function ResultCard({ segment }: { segment: Segment }) {
+  const maxLoss = Math.max(...segment.dropOffs.map((d) => d.loss));
 
   return (
-    <div className="rounded-2xl sm:rounded-3xl bg-card border border-primary/15 p-4 sm:p-7 space-y-4 sm:space-y-5">
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-primary/15 flex items-center justify-center shrink-0">
-            <Globe className="w-4 h-4 text-primary-glow" />
-          </div>
-          <div>
-            <div className="text-sm font-bold text-foreground">Workflow Discovery</div>
-          </div>
-        </div>
-        <div className="px-2 py-1 rounded bg-primary/10 text-primary-glow text-[10px] uppercase tracking-widest font-bold">
-          Running
-        </div>
-      </div>
-
-      <div className="rounded-xl bg-background p-3 sm:p-4 border border-primary/10 space-y-3">
-        <div className="text-[10px] uppercase tracking-[0.2em] text-foreground/40 font-bold">Platform Access</div>
-        <div className="h-10 rounded-lg bg-secondary border border-border px-3 flex items-center">
-          <span className="text-xs sm:text-sm text-foreground/70 font-mono truncate">https://app.acme-platform.com</span>
-        </div>
-
-        <div className="grid grid-cols-3 gap-2">
-          {[
-            { label: "Journeys run", value: "42" },
-            { label: "Workflows covered", value: "11" },
-            { label: "Persona variants", value: "8" },
-          ].map((item) => (
-            <div key={item.label} className="rounded-lg bg-secondary px-3 py-2 text-center">
-              <div className="text-sm font-bold text-foreground">{item.value}</div>
-              <div className="text-[10px] text-foreground/45">{item.label}</div>
+    <div className="rounded-2xl bg-card border border-primary/20 shadow-[0_12px_32px_rgba(35,38,85,0.08)] px-5 py-4">
+      <div className="text-[9px] uppercase tracking-[0.2em] text-foreground/40 font-bold mb-2">Jurny finds</div>
+      <p className="text-xs font-bold text-foreground mb-3">
+        Biggest drop-off at <span className="text-red-500">{segment.dropStep}</span>
+      </p>
+      <div className="space-y-2.5">
+        {segment.dropOffs.map((item, i) => (
+          <div key={item.segment}>
+            <div className="flex items-center justify-between gap-2 mb-1">
+              <span className={`text-[10px] font-semibold truncate ${item.worst ? "text-foreground" : "text-foreground/55"}`}>
+                {item.segment}
+              </span>
+              <span className={`text-[10px] font-bold shrink-0 ${item.worst ? "text-red-500" : "text-foreground/45"}`}>
+                -{item.loss}%
+              </span>
             </div>
-          ))}
-        </div>
-
-        <div className="rounded-lg border border-border bg-secondary p-3">
-          <div className="flex items-center gap-1.5 mb-2">
-            <Map className="w-3.5 h-3.5 text-primary-glow" />
-            <span className="text-[11px] font-semibold text-foreground/70">Discovered End-to-End Journeys</span>
+            <div className="h-1.5 rounded-full bg-foreground/10 overflow-hidden">
+              <div
+                className={`h-full rounded-full origin-left ${item.worst ? "bg-red-400/90" : "bg-primary/40"}`}
+                style={{
+                  width: `${(item.loss / maxLoss) * 100}%`,
+                  animation: `bar-grow 0.9s ${i * 0.15}s cubic-bezier(0.22, 1, 0.36, 1) both`,
+                }}
+              />
+            </div>
           </div>
-          <div className="space-y-1.5">
-            {discoveredPaths.map((path) => (
-              <div key={path} className="flex items-center gap-2">
-                <GitBranch className="w-3 h-3 text-primary-glow/80 shrink-0" />
-                <span className="text-[11px] text-foreground/60 truncate">{path}</span>
-              </div>
-            ))}
-            <div className="pl-5 text-[11px] text-foreground/45 font-medium italic">... and more journeys running continuously</div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
 }
 
-const INTEGRATIONS = [
-  { name: "Linear", logo: "/integrations/linear.png", logoClass: "max-h-full max-w-full object-contain" },
-  { name: "Jira", logo: "/integrations/jira.png", logoClass: "max-h-full max-w-full object-contain" },
-  { name: "GitHub Issues", logo: "/integrations/github-issues.png", logoClass: "max-h-full max-w-full object-contain scale-125" },
-] as const;
-
-function ResultsPanel() {
-  const insights = [
-    {
-      persona: "Less technical user",
-      problem: "Identity verification fails after document upload.",
-      context: "Happens after a successful file upload when the user returns to continue onboarding.",
-      fix: "Persist verification state and auto-resume from the next step.",
-    },
-    {
-      persona: "Trust-sensitive buyer",
-      problem: "Payment page loses confidence after legal link opens a new tab.",
-      context: "Session timeout modal appears on return, causing drop-off before completion.",
-      fix: "Extend session timeout and keep checkout state while legal docs are reviewed.",
-    },
-    {
-      persona: "Busy ops manager",
-      problem: "Workflow publish button remains disabled after teammate invite.",
-      context: "Blocking validation is hidden below the fold on smaller laptop viewports.",
-      fix: "Surface blocking validation inline near the CTA and auto-scroll to issue.",
-    },
+/* Animated dots traveling along the session paths */
+function FlowCanvas({ personas }: { personas: string[] }) {
+  const paths = [
+    "M0,120 C70,120 90,42 200,42 C310,42 330,120 400,120",
+    "M0,120 C130,120 270,120 400,120",
+    "M0,120 C70,120 90,198 200,198 C310,198 330,120 400,120",
+  ];
+  const timing = [
+    { dur: "3.6s", begin: "0s" },
+    { dur: "4.2s", begin: "0.9s" },
+    { dur: "3.9s", begin: "1.7s" },
   ];
 
   return (
-    <div className="rounded-2xl sm:rounded-3xl bg-card border border-primary/15 p-4 sm:p-7 space-y-4">
-      <div className="rounded-xl sm:rounded-2xl bg-[#f3f4f6] p-3 sm:p-5 border border-primary/10">
-        <div className="flex items-center justify-between mb-3">
-          <div className="text-sm font-semibold text-foreground">Journey Insights</div>
-          <span className="text-[10px] uppercase tracking-widest text-primary-glow font-bold">In context</span>
-        </div>
+    <div className="relative flex-1 h-60 text-primary-glow">
+      <svg
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 400 240"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        {paths.map((d) => (
+          <path key={d} d={d} fill="none" stroke="currentColor" strokeOpacity="0.18" strokeWidth="1.5" />
+        ))}
+        {paths.map((d, i) => (
+          <circle key={d} r="4" fill="currentColor">
+            <animateMotion dur={timing[i].dur} begin={timing[i].begin} repeatCount="indefinite" path={d} />
+            <animate
+              attributeName="opacity"
+              values="0;1;1;0"
+              keyTimes="0;0.12;0.88;1"
+              dur={timing[i].dur}
+              begin={timing[i].begin}
+              repeatCount="indefinite"
+            />
+          </circle>
+        ))}
+      </svg>
 
-        <div className="space-y-3">
-          <div className="space-y-2.5">
-            {insights.map((insight) => (
-              <div key={insight.problem} className="rounded-lg border border-border bg-background p-3">
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-primary-glow bg-primary/10 px-2 py-1 rounded">
-                    {insight.persona}
-                  </span>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-[100px_1fr] gap-3">
-                  <div className="h-20 rounded-md bg-[#eceff3] border border-border overflow-hidden">
-                    <div className="h-3.5 border-b border-border/80 bg-[#e3e7ed] flex items-center gap-1 px-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-red-300" />
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-300" />
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-300" />
-                    </div>
-                    <div className="p-2 space-y-1.5">
-                      <div className="h-2 w-2/3 rounded bg-foreground/20" />
-                      <div className="h-1.5 w-full rounded bg-foreground/15" />
-                      <div className="h-1.5 w-5/6 rounded bg-foreground/15" />
-                      <div className="pt-1 flex gap-1.5">
-                        <div className="h-4 w-10 rounded bg-primary/25 border border-primary/25" />
-                        <div className="h-4 w-8 rounded bg-foreground/10 border border-border/60" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="space-y-1.5">
-                    <div className="text-xs font-semibold text-foreground">{insight.problem}</div>
-                    <div className="text-[11px] text-foreground/60">{insight.context}</div>
-                    <div className="flex items-start gap-1.5 text-[11px] text-foreground/70">
-                      <Wrench className="w-3.5 h-3.5 text-primary-glow mt-0.5 shrink-0" />
-                      <span>{insight.fix}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="border-t border-border/60 pt-3 mt-1">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-foreground/45 text-center mb-2">
-              Insights auto-created in
-            </p>
-            <div className="grid grid-cols-3 w-fit mx-auto justify-items-center gap-2">
-              {INTEGRATIONS.map((integration) => (
-                <div key={integration.name} className="flex w-14 sm:w-16 flex-col items-center gap-1">
-                  <div className="h-8 w-8 sm:h-9 sm:w-9 rounded-md bg-white border border-border/50 shadow-[0_1px_2px_rgba(0,0,0,0.04)] flex items-center justify-center p-1">
-                    <img
-                      src={integration.logo}
-                      alt={`${integration.name} logo`}
-                      className={integration.logoClass}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+      {/* Persona chips pinned to each path's apex */}
+      <div className="absolute left-1/2 top-[17.5%] -translate-x-1/2 -translate-y-1/2">
+        <PersonaChip name={personas[0]} />
+      </div>
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <PersonaChip name={personas[1]} />
+      </div>
+      <div className="absolute left-1/2 top-[82.5%] -translate-x-1/2 -translate-y-1/2">
+        <PersonaChip name={personas[2]} />
       </div>
     </div>
+  );
+}
+
+function VerticalFlow() {
+  return (
+    <div className="flex flex-col items-center gap-1.5 py-3">
+      {[0, 1, 2].map((i) => (
+        <span
+          key={i}
+          className="w-1.5 h-1.5 rounded-full bg-primary-glow"
+          style={{ animation: `flow-pulse 1.6s ${i * 0.25}s ease-in-out infinite` }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function FlowVisual({ segment }: { segment: Segment }) {
+  return (
+    <>
+      {/* Desktop: one continuous flow */}
+      <div className="hidden lg:flex items-center gap-4">
+        <div className="w-56 shrink-0 relative z-10">
+          <QuestionCard segment={segment} />
+        </div>
+        <FlowCanvas personas={segment.personas} />
+        <div className="w-64 shrink-0 relative z-10">
+          <ResultCard segment={segment} />
+        </div>
+      </div>
+
+      {/* Mobile: stacked flow */}
+      <div className="lg:hidden">
+        <div className="max-w-md mx-auto">
+          <QuestionCard segment={segment} />
+          <VerticalFlow />
+          <div className="flex flex-wrap justify-center gap-2">
+            {segment.personas.map((name) => (
+              <PersonaChip key={name} name={name} />
+            ))}
+          </div>
+          <VerticalFlow />
+          <ResultCard segment={segment} />
+        </div>
+      </div>
+    </>
   );
 }
 
 const ProductDemo = () => {
+  const [activeId, setActiveId] = useState(SEGMENTS[0].id);
+  const activeSegment = SEGMENTS.find((s) => s.id === activeId) ?? SEGMENTS[0];
+
   return (
     <section id="how-it-works" className="py-12 sm:py-16 bg-background scroll-mt-14 sm:scroll-mt-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="bg-secondary rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-12">
 
-            <div className="mb-6 sm:mb-12">
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight">
+            <div className="mb-6 sm:mb-8">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight mb-3">
                 How It Works
               </h2>
+              <p className="text-base sm:text-lg text-foreground/50 font-light">
+                Understand what breaks your funnel before it costs you revenue.
+              </p>
             </div>
 
-            {/* Step 1 */}
-            <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 sm:gap-8 items-center mb-8 sm:mb-10">
-              <div className="order-2 lg:order-1">
-                <FlowDiscoveryPanel />
-              </div>
-              <div className="order-1 lg:order-2">
-                <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4 leading-tight">Give Access Once, Get Continuous Testing</h3>
-                <p className="text-foreground/55 leading-relaxed">
-                  Our user agents continuously test your product across core workflows with every new feature and every push. End-to-end journeys keep running as the product changes, so issues surface in real task context before they reach customers.
-                </p>
-              </div>
+            {/* Segment toggle */}
+            <div className="flex gap-2">
+              {SEGMENTS.map((segment) => {
+                const isActive = activeId === segment.id;
+                return (
+                  <button
+                    key={segment.id}
+                    onClick={() => setActiveId(segment.id)}
+                    className={`rounded-xl border px-5 py-2 text-sm font-bold cursor-pointer transition-all duration-200 active:scale-[0.98] ${
+                      isActive
+                        ? "border-primary bg-primary text-primary-foreground shadow-[0_8px_22px_rgba(117,88,232,0.25)]"
+                        : "border-primary/20 bg-card/60 text-foreground/55 hover:bg-card hover:text-foreground hover:border-primary/40"
+                    }`}
+                  >
+                    {segment.label}
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Step 2 */}
-            <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-6 sm:gap-8 items-center">
-              <div className="order-2 lg:order-last w-full">
-                <ResultsPanel />
-              </div>
-              <div className="order-1 lg:order-first">
-                <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4 leading-tight">Understand Issues in Real Journey Context</h3>
-                <p className="text-foreground/55 leading-relaxed">
-                  Every finding ties to a persona, the exact failing step, and concrete fix guidance to surface the drop-offs across market segments that functional tests miss.
-                </p>
-              </div>
+            <div key={activeSegment.id} className="pt-6 sm:pt-8 animate-flow-in">
+              <FlowVisual segment={activeSegment} />
             </div>
 
           </div>
         </div>
       </div>
+      <style>{`
+        @keyframes bar-grow {
+          from { transform: scaleX(0); }
+          to { transform: scaleX(1); }
+        }
+
+        @keyframes flow-pulse {
+          0%, 100% { opacity: 0.2; transform: scale(0.8); }
+          50% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes flow-in {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-flow-in { animation: flow-in 0.5s 0.1s ease-out both; }
+      `}</style>
     </section>
   );
 };

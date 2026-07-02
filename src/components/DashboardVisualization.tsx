@@ -183,7 +183,7 @@ function GeneratedSimulationScene({
   return (
     <div>
       <div className="relative">
-        <div className="relative overflow-hidden rounded-[1.75rem] bg-[#eef1fb]">
+        <div className="relative overflow-hidden rounded-[0.6rem] bg-[#eef1fb]">
           <div
             className="relative mx-auto w-full max-w-full"
             style={{ aspectRatio }}
@@ -276,8 +276,8 @@ const DashboardVisualization = () => {
   }, [activeIndex, activeScenario.lines.length]);
 
   return (
-    <div className="w-full max-w-[600px] overflow-hidden rounded-[2rem]">
-      <div className="rounded-[2rem] bg-secondary p-2.5 shadow-[0_24px_70px_rgba(35,38,85,0.08)] sm:p-4">
+    <div className="w-full max-w-[600px] overflow-hidden rounded-[0.75rem]">
+      <div className="rounded-[0.75rem] bg-secondary p-2.5 shadow-[0_24px_70px_rgba(35,38,85,0.08)] sm:p-4">
         <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
           {scenarios.map((scenario) => {
             const active = scenario.id === activeScenario.id;
