@@ -45,20 +45,20 @@ const SEGMENTS: Segment[] = [
 function QuestionCard({ segment }: { segment: Segment }) {
   return (
     <div className="space-y-2">
-      <div className="relative rounded-2xl bg-card border border-primary/20 shadow-[0_12px_32px_rgba(35,38,85,0.08)] px-5 py-4">
-        <div className="text-[9px] uppercase tracking-[0.2em] text-foreground/40 font-bold mb-2">Your product question</div>
-        <p className="text-sm font-semibold text-foreground/85 leading-snug">
+      <div className="relative rounded-2xl bg-card shadow-[0_12px_32px_rgba(35,38,85,0.06)] px-5 py-4">
+        <div className="text-[11px] uppercase tracking-[0.2em] text-foreground/40 font-bold mb-2">Your product question</div>
+        <p className="text-base font-semibold text-foreground/85 leading-snug">
           {segment.question}
-          <span className="inline-block w-0.5 h-3.5 bg-primary-glow ml-1 align-middle animate-pulse" />
+          <span className="inline-block w-0.5 h-4 bg-primary-glow ml-1 align-middle animate-pulse" />
         </p>
       </div>
       {segment.moreQuestions.map((q, i) => (
         <div
           key={q}
-          className="rounded-xl bg-card/60 border border-primary/10 px-4 py-2"
+          className="rounded-xl bg-card/60 px-4 py-2.5"
           style={{ opacity: 0.55 - i * 0.2 }}
         >
-          <p className="text-xs font-medium text-foreground/60 leading-snug">{q}</p>
+          <p className="text-sm font-medium text-foreground/60 leading-snug">{q}</p>
         </div>
       ))}
     </div>
@@ -67,9 +67,9 @@ function QuestionCard({ segment }: { segment: Segment }) {
 
 function PersonaChip({ name }: { name: string }) {
   return (
-    <div className="flex items-center gap-2 rounded-full bg-card border border-primary/20 shadow-sm px-3 py-1.5 whitespace-nowrap">
-      <span className="w-1.5 h-1.5 rounded-full bg-primary-glow animate-pulse" />
-      <span className="text-[11px] font-semibold text-foreground/70">{name}</span>
+    <div className="flex items-center gap-2 rounded-full bg-card shadow-sm px-3.5 py-2 whitespace-nowrap">
+      <span className="w-2 h-2 rounded-full bg-primary-glow animate-pulse" />
+      <span className="text-sm font-semibold text-foreground/70">{name}</span>
     </div>
   );
 }
@@ -78,23 +78,23 @@ function ResultCard({ segment }: { segment: Segment }) {
   const maxLoss = Math.max(...segment.dropOffs.map((d) => d.loss));
 
   return (
-    <div className="rounded-2xl bg-card border border-primary/20 shadow-[0_12px_32px_rgba(35,38,85,0.08)] px-5 py-4">
-      <div className="text-[9px] uppercase tracking-[0.2em] text-foreground/40 font-bold mb-2">Jurny finds</div>
-      <p className="text-xs font-bold text-foreground mb-3">
+    <div className="rounded-2xl bg-card shadow-[0_12px_32px_rgba(35,38,85,0.06)] px-5 py-4">
+      <div className="text-[11px] uppercase tracking-[0.2em] text-foreground/40 font-bold mb-2">Jurny finds</div>
+      <p className="text-base font-bold text-foreground mb-3">
         Biggest drop-off at <span className="text-red-500">{segment.dropStep}</span>
       </p>
-      <div className="space-y-2.5">
+      <div className="space-y-3">
         {segment.dropOffs.map((item, i) => (
           <div key={item.segment}>
             <div className="flex items-center justify-between gap-2 mb-1">
-              <span className={`text-[10px] font-semibold truncate ${item.worst ? "text-foreground" : "text-foreground/55"}`}>
+              <span className={`text-sm font-semibold truncate ${item.worst ? "text-foreground" : "text-foreground/55"}`}>
                 {item.segment}
               </span>
-              <span className={`text-[10px] font-bold shrink-0 ${item.worst ? "text-red-500" : "text-foreground/45"}`}>
+              <span className={`text-sm font-bold shrink-0 ${item.worst ? "text-red-500" : "text-foreground/45"}`}>
                 -{item.loss}%
               </span>
             </div>
-            <div className="h-1.5 rounded-full bg-foreground/10 overflow-hidden">
+            <div className="h-2 rounded-full bg-foreground/10 overflow-hidden">
               <div
                 className={`h-full rounded-full origin-left ${item.worst ? "bg-red-400/90" : "bg-primary/40"}`}
                 style={{
@@ -182,11 +182,11 @@ function FlowVisual({ segment }: { segment: Segment }) {
     <>
       {/* Desktop: one continuous flow */}
       <div className="hidden lg:flex items-center gap-4">
-        <div className="w-56 shrink-0 relative z-10">
+        <div className="w-64 shrink-0 relative z-10">
           <QuestionCard segment={segment} />
         </div>
         <FlowCanvas personas={segment.personas} />
-        <div className="w-64 shrink-0 relative z-10">
+        <div className="w-72 shrink-0 relative z-10">
           <ResultCard segment={segment} />
         </div>
       </div>
@@ -214,16 +214,16 @@ const ProductDemo = () => {
   const activeSegment = SEGMENTS.find((s) => s.id === activeId) ?? SEGMENTS[0];
 
   return (
-    <section id="how-it-works" className="py-12 sm:py-16 bg-background scroll-mt-14 sm:scroll-mt-16">
+    <section id="how-it-works" className="py-14 sm:py-20 bg-gradient-to-b from-background via-secondary to-background scroll-mt-14 sm:scroll-mt-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-secondary rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-12">
+          <div>
 
             <div className="mb-6 sm:mb-8">
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight mb-3">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground leading-tight mb-3">
                 How It Works
               </h2>
-              <p className="text-base sm:text-lg text-foreground/50 font-light">
+              <p className="text-base sm:text-lg text-foreground/50">
                 Understand what breaks your funnel before it costs you revenue.
               </p>
             </div>
@@ -236,10 +236,10 @@ const ProductDemo = () => {
                   <button
                     key={segment.id}
                     onClick={() => setActiveId(segment.id)}
-                    className={`rounded-xl border px-5 py-2 text-sm font-bold cursor-pointer transition-all duration-200 active:scale-[0.98] ${
+                    className={`rounded-full px-5 py-2 text-sm font-semibold cursor-pointer transition-all duration-200 active:scale-[0.98] ${
                       isActive
-                        ? "border-primary bg-primary text-primary-foreground shadow-[0_8px_22px_rgba(117,88,232,0.25)]"
-                        : "border-primary/20 bg-card/60 text-foreground/55 hover:bg-card hover:text-foreground hover:border-primary/40"
+                        ? "bg-primary text-primary-foreground shadow-[0_8px_22px_rgba(117,88,232,0.25)]"
+                        : "bg-card/70 text-foreground/55 hover:bg-card hover:text-foreground"
                     }`}
                   >
                     {segment.label}

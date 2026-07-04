@@ -8,24 +8,24 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
+    --background: 252 45% 98%;
+    --foreground: 250 30% 14%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 250 30% 14%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 250 30% 14%;
 
     --primary: 233 36% 42%;
     --primary-foreground: 0 0% 100%;
     --primary-glow: 263 70% 65%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 255 55% 95%;
+    --secondary-foreground: 250 30% 14%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 254 35% 94%;
+    --muted-foreground: 250 12% 47%;
 
     --accent: 263 70% 95%;
     --accent-foreground: 263 70% 20%;
@@ -33,14 +33,14 @@ All colors MUST be HSL.
     --destructive: 0 84% 85%;
     --destructive-foreground: 0 84% 30%;
 
-    --border: 210 40% 90%;
-    --input: 210 40% 90%;
+    --border: 252 30% 90%;
+    --input: 252 30% 90%;
     --ring: 263 70% 65%;
 
     /* Custom gradients */
     --gradient-primary: linear-gradient(135deg, hsl(233 36% 42%), hsl(263 70% 65%));
     --gradient-hero: linear-gradient(135deg, hsl(233 36% 42%), hsl(263 70% 65%));
-    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(233 36% 95%));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(255 55% 95%));
     --gradient-radial: radial-gradient(circle at center, hsl(var(--primary) / 0.15), hsl(var(--primary) / 0.02), transparent);
 
     /* Shadows - flat theme */
@@ -58,7 +58,7 @@ All colors MUST be HSL.
     --pet-card: 39 100% 97%;       /* Light cream */
     --pet-muted: 43 13% 90%;       /* Warm gray */
 
-    --radius: 0.3rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 

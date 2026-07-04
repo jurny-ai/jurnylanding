@@ -79,7 +79,7 @@ const Header = () => {
   }, [isHome, pathname]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-4 h-14 sm:h-16 flex items-center justify-between gap-3">
         <Link href="/" className="flex shrink-0 items-center gap-2">
           <img

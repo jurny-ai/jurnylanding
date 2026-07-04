@@ -79,11 +79,14 @@ export default {
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)',
-				xl: '0.4rem',
-				'2xl': '0.55rem',
-				'3xl': '0.75rem'
+				md: 'calc(var(--radius) - 4px)',
+				sm: 'calc(var(--radius) - 8px)',
+				xl: '1rem',
+				'2xl': '1.25rem',
+				'3xl': '1.75rem'
+			},
+			fontFamily: {
+				sans: ['"Instrument Sans"', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif']
 			},
 			keyframes: {
 				'accordion-down': {

@@ -98,51 +98,51 @@ const features = [
     title: "Accurate Coverage of High-Value Customers",
     description: "Jurny models accurate, representative personas of the customers who matter most, so you validate journeys the way your highest-value users actually behave.",
     visual: <BehaviorVisual />,
-    panelBg: "bg-accent/40",
+    panelBg: "bg-accent/60",
   },
   {
     title: "Fewer Costly A/B Tests",
     description: "Get answers in minutes instead of running live experiments for weeks, so you stop spending traffic, time, and revenue to learn what a simulation can tell you now.",
     visual: <ABTestVisual />,
-    panelBg: "bg-primary/5",
+    panelBg: "bg-secondary",
   },
   {
     title: "Diagnose Drop-Offs and Friction",
     description: "When you can see users dropping off but don't understand why, Jurny pinpoints the failing step and the friction behind it in real journey context.",
     visual: <DiagnoseVisual />,
-    panelBg: "bg-primary/5",
+    panelBg: "bg-secondary",
   },
   {
     title: "Build Trust in Every Release",
     description: "Turn each release into a confidence moment by preventing customer-reported usability issues from reaching production.",
     visual: <OptimizeVisual />,
-    panelBg: "bg-accent/40",
+    panelBg: "bg-accent/60",
   },
 ];
 
 const Features = () => {
   return (
-    <section id="features" className="py-12 sm:py-16 bg-background scroll-mt-14 sm:scroll-mt-16">
+    <section id="features" className="py-14 sm:py-20 bg-background scroll-mt-14 sm:scroll-mt-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-secondary rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-12">
+          <div>
             <div className="mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-4 leading-tight">
                 Why Teams Choose Jurny
               </h2>
-              <p className="text-base sm:text-lg text-foreground/50 font-light">
+              <p className="text-base sm:text-lg text-foreground/50 max-w-2xl">
                 Jurny runs realistic user journeys across every market segment, surfaces friction in real task context, and validates the end-to-end flows that functional tests can't catch.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {features.map((feature, i) => (
-                <div key={i} className="rounded-2xl sm:rounded-3xl bg-card border border-primary/15 overflow-hidden flex flex-col group">
+                <div key={i} className="rounded-3xl bg-card shadow-[0_10px_40px_rgba(35,38,85,0.06)] overflow-hidden flex flex-col group">
                   <div className={`${feature.panelBg} flex items-center justify-center p-6 sm:p-10 min-h-[180px] sm:min-h-[200px] transition-all duration-300`}>
                     {feature.visual}
                   </div>
                   <div className="p-5 sm:p-7">
-                    <h3 className="text-lg font-bold text-foreground mb-2 tracking-tight">
+                    <h3 className="text-lg font-semibold text-foreground mb-2 tracking-tight">
                       {feature.title}
                     </h3>
                     <p className="text-sm text-foreground/55 leading-relaxed">
