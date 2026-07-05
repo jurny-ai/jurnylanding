@@ -178,7 +178,9 @@ function GeneratedSimulationScene({
   scenario: Scenario;
   lineIndex: number;
 }) {
-  const aspectRatio = `${scenario.imageWidth} / ${scenario.imageHeight}`;
+  // Lock every scenario to the D2C tab's aspect ratio so all pictures render
+  // at the same size; images with a different native ratio get cropped to fill.
+  const aspectRatio = "1672 / 941";
 
   return (
     <div>
@@ -192,7 +194,7 @@ function GeneratedSimulationScene({
               <div
                 key={image}
                 className={`absolute inset-0 transition-opacity duration-700 ${
-                  index === lineIndex
+                  index === lineIndex ? "opacity-100" : "opacity-0"
                 }`}
               >
                 <Image
@@ -201,7 +203,7 @@ function GeneratedSimulationScene({
                   fill
                   priority={index === 0}
                   sizes="(min-width: 1024px) 600px, 100vw"
-                  className={`h-full w-full object-contain ${scenario.imagePosition}`}
+                  className={`h-full w-full object-cover ${scenario.imagePosition}`}
                 />
               </div>
             ))}
