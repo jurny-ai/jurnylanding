@@ -127,12 +127,9 @@ const Features = () => {
         <div className="max-w-7xl mx-auto">
           <div>
             <div className="mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground mb-4 leading-tight">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground leading-tight">
                 Why Teams Choose Jurny
               </h2>
-              <p className="text-base sm:text-lg text-foreground/50 max-w-2xl">
-                Jurny runs realistic user journeys across every market segment, surfaces friction in real task context, and validates the end-to-end flows that functional tests can't catch.
-              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

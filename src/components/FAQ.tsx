@@ -14,9 +14,9 @@ const faqs = [
       "Yes. Jurny can evaluate prototypes and staging builds before launch, helping teams validate product decisions while changes are still low-cost.",
   },
   {
-    question: "How deep does a Jurny run go?",
+    question: "Does Jurny actually use the product, or just analyze screens?",
     answer:
-      "Jurny is closer to a user testing session than a surface-level scan. Each synthetic user follows a goal through the product, producing findings based on journey-level behavior.",
+      "It uses the product. Each synthetic user clicks through the product to pursue a real goal, closer to a user testing session than a surface-level scan, and findings come from that journey-level behavior.",
   },
   {
     question: "As the app changes, does Jurny act like a new or returning user?",
