@@ -38,6 +38,7 @@ const ARTICLE_LINKS = [
 ] as const;
 
 const CALENDLY_URL = "https://calendly.com/jurny-ai/new-meeting";
+const DASHBOARD_SIGNIN_URL = "https://dashboard.usejurny.com";
 
 const Header = () => {
   const pathname = usePathname();
@@ -84,7 +85,7 @@ const Header = () => {
           <img
             src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png"
             alt="Jurny Logo"
-            className="h-5 opacity-90"
+            className="h-7 sm:h-8 opacity-90"
           />
         </Link>
 
@@ -134,6 +135,20 @@ const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+
+          <Button
+            variant="outline"
+            size="sm"
+            className="hidden md:inline-flex rounded-full px-5 h-9 text-sm font-bold"
+            asChild
+          >
+            <a
+              href={DASHBOARD_SIGNIN_URL}
+              onClick={() => track("cta_clicked", { location: "header", label: "Sign In" })}
+            >
+              Sign In
+            </a>
+          </Button>
 
           <Button
             size="sm"
@@ -209,7 +224,21 @@ const Header = () => {
                 </nav>
               </div>
 
-              <div className="p-4 border-t border-border bg-background">
+              <div className="p-4 border-t border-border bg-background flex flex-col gap-2">
+                <SheetClose asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full rounded-full h-12 text-sm font-bold"
+                    asChild
+                  >
+                    <a
+                      href={DASHBOARD_SIGNIN_URL}
+                      onClick={() => track("cta_clicked", { location: "header_mobile", label: "Sign In" })}
+                    >
+                      Sign In
+                    </a>
+                  </Button>
+                </SheetClose>
                 <SheetClose asChild>
                   <Button
                     className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full h-12 text-sm font-bold"
