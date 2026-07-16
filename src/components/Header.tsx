@@ -141,7 +141,7 @@ const Header = () => {
           </ul>
 
           <div className="hidden md:block">
-            <DropdownMenu>
+            <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
