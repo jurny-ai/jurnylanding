@@ -35,7 +35,7 @@ export default function IFoundAIssueNowWhatPage() {
       title="How to Debug with Cursor for Non Technical Folks"
       subtitle="Identify where the problem is and how to fix it using Cursor."
       author={{ name: "Sidd Adatrao", photo: "/sidd-adatrao.png" }}
-      date="March 10, 2026"
+      date="April 27, 2026"
     >
       <p className="text-foreground/90 leading-relaxed">
         Your company has just introduced Cursor agents for non technical people to make changes to

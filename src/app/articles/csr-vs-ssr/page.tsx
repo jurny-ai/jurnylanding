@@ -18,7 +18,7 @@ export default function CsrVsSsrPage() {
     <BlogLayout
       title="Your Website Looks Amazing. Can Anyone Actually Find It?"
       author={{ name: "Sidd Adatrao", photo: "/sidd-adatrao.png" }}
-      date="March 4, 2026"
+      date="March 18, 2026"
     >
       <p className="text-foreground/90 leading-relaxed">
         Every few hours I am reminded of just how cool it is that we can generate code based on a few prompts. More than anything, it&rsquo;s given me so much time back. Things that would have taken hours of research, tinkering, and frankly failing, now don&rsquo;t need my in-depth focus. They kind of just happen.

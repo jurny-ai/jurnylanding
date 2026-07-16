@@ -19,7 +19,7 @@ export default function SyntheticPersonasPostPage() {
       title='Your "AI User" Is a Fiction. Make It a Better One.'
       subtitle="LLM-based user simulations are only as good as the personas behind them. Most teams get this badly wrong, here's how to get it right."
       author={{ name: "Vidushi Somani", photo: "/vidushi-somani.png" }}
-      date="March 15, 2026"
+      date="June 5, 2026"
     >
 
       <p className="text-foreground/90 leading-relaxed">
