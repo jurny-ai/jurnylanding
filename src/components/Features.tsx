@@ -1,21 +1,55 @@
-import { Check, ArrowRight, TrendingDown, HelpCircle } from "lucide-react";
+import { ArrowRight, HelpCircle } from "lucide-react";
 
 function ABTestVisual() {
+  const variants = [
+    { label: "A", kept: false },
+    { label: "B", kept: true },
+    { label: "C", kept: false },
+    { label: "D", kept: true },
+    { label: "E", kept: false },
+  ];
   return (
-    <div className="flex flex-col gap-2.5 w-full max-w-xs">
-      <div className="flex items-center gap-2.5 bg-red-500/10 rounded-xl px-3 py-2.5">
-        <div className="w-2 h-2 rounded-full bg-red-400 flex-shrink-0" />
-        <span className="text-[11px] text-foreground/70 font-semibold flex-1">Live A/B test</span>
-        <span className="text-[10px] text-red-400 font-mono flex-shrink-0">3-6 weeks</span>
+    <div className="flex flex-col gap-3.5 w-full max-w-xs">
+      {/* Pre-screening: many variants pruned to the strongest */}
+      <div>
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-[10px] uppercase tracking-widest text-foreground/40 font-semibold">5 variants</span>
+          <span className="text-[10px] uppercase tracking-widest text-primary-glow font-semibold">Top 2 go live</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          {variants.map((v, i) => (
+            <div
+              key={i}
+              className={`flex h-9 flex-1 items-center justify-center rounded-lg text-xs font-bold ${
+                v.kept
+                  ? "bg-primary/15 text-primary-glow ring-1 ring-primary/30"
+                  : "bg-foreground/5 text-foreground/25 line-through"
+              }`}
+            >
+              {v.label}
+            </div>
+          ))}
+        </div>
+        <p className="mt-2 text-[11px] text-foreground/40 leading-snug">Jurny prunes the losers before you spend traffic</p>
       </div>
-      <div className="flex items-center gap-2.5 bg-primary/10 rounded-xl px-3 py-2.5">
-        <Check className="w-3 h-3 text-primary-glow flex-shrink-0" />
-        <span className="text-[11px] text-foreground/70 font-semibold flex-1">Jurny simulation</span>
-        <span className="text-[10px] text-primary-glow font-mono flex-shrink-0">minutes</span>
-      </div>
-      <div className="text-center pt-1">
-        <span className="text-3xl font-bold text-foreground">Weeks</span>
-        <p className="text-xs text-foreground/40 mt-0.5">of traffic and revenue no longer spent testing</p>
+
+      {/* Convergence: less traffic to reach significance */}
+      <div className="flex flex-col gap-1.5 border-t border-primary/10 pt-3">
+        <div className="flex items-center gap-2">
+          <span className="w-16 text-[10px] text-foreground/55 font-medium flex-shrink-0">Test alone</span>
+          <div className="flex-1 h-3 rounded-md bg-foreground/5 overflow-hidden">
+            <div className="h-full rounded-md bg-red-400/70" style={{ width: "100%" }} />
+          </div>
+          <span className="text-[10px] text-red-400 font-mono flex-shrink-0 w-12 text-right">3-6 wks</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="w-16 text-[10px] text-foreground/55 font-medium flex-shrink-0">With Jurny</span>
+          <div className="flex-1 h-3 rounded-md bg-foreground/5 overflow-hidden">
+            <div className="h-full rounded-md bg-primary/60" style={{ width: "28%" }} />
+          </div>
+          <span className="text-[10px] text-primary-glow font-mono flex-shrink-0 w-12 text-right">~1 wk</span>
+        </div>
+        <p className="mt-0.5 text-[11px] text-foreground/40 leading-snug">Fewer, stronger variants reach significance sooner</p>
       </div>
     </div>
   );
@@ -101,8 +135,8 @@ const features = [
     panelBg: "bg-accent/60",
   },
   {
-    title: "Fewer Costly A/B Tests",
-    description: "Get answers in minutes instead of running live experiments for weeks, so you stop spending traffic, time, and revenue to learn what a simulation can tell you now.",
+    title: "Make Your A/B Tests Converge Faster",
+    description: "Jurny pre-screens your variants in minutes and prunes the losers before they go live, so the experiments you do run reach significance with less traffic and far less waiting.",
     visual: <ABTestVisual />,
     panelBg: "bg-secondary",
   },
