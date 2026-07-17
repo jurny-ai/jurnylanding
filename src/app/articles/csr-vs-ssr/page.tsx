@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import BlogLayout from "@/components/BlogLayout";
 
 export const metadata: Metadata = {
-  title: "Your Website Looks Amazing. Can Anyone Actually Find It? — jurny.ai",
+  title: "Your Website Looks Amazing. Can Anyone Actually Find It? — jurny",
   description:
     "Client-side rendered sites are invisible to Google and ChatGPT crawlers. Learn the difference between CSR and SSR, when each matters, and how Next.js lets you use both.",
   openGraph: {

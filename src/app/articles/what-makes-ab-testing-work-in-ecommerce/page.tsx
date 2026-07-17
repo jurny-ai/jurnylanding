@@ -3,7 +3,7 @@ import BlogLayout from "@/components/BlogLayout";
 
 export const metadata: Metadata = {
   title:
-    "What Actually Makes A/B Testing Work in E-Commerce (And What Quietly Breaks It) — jurny.ai",
+    "What Actually Makes A/B Testing Work in E-Commerce (And What Quietly Breaks It) — jurny",
   description:
     "Lessons from months of conversations with people who run experimentation programs: what makes a test worth running, what makes it worth trusting, and the failure modes that quietly break both.",
   openGraph: {

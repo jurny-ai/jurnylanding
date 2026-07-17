@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import BlogLayout from "@/components/BlogLayout";
 
 export const metadata: Metadata = {
-  title: "The Biggest Problems With Usability Testing Today — jurny.ai",
+  title: "The Biggest Problems With Usability Testing Today — jurny",
   description:
     "Usability testing is universally respected and routinely underused. Learn the five biggest problems and how autonomous usability testing solves them.",
   openGraph: {

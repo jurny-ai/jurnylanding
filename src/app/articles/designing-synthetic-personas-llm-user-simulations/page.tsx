@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import BlogLayout from "@/components/BlogLayout";
 
 export const metadata: Metadata = {
-  title: 'Your "AI User" Is a Fiction. Make It a Better One. — jurny.ai',
+  title: 'Your "AI User" Is a Fiction. Make It a Better One. — jurny',
   description:
     "LLM-based user simulations are only as good as the personas behind them. How to design synthetic personas that drive realistic behavior in LLM user simulations.",
   openGraph: {
