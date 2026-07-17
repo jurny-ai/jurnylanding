@@ -4,7 +4,7 @@ import Providers from "@/components/Providers";
 import "@/index.css";
 
 export const metadata: Metadata = {
-  title: "Jurny AI | Synthetic Users for Customer Behavior",
+  title: "Synthetic Users to Understand Customer Behavior",
   description:
     "Deploy AI-powered synthetic users to simulate real behavior on your product before launch. Discover consumer friction, product gaps, revenue leaks, and churn risks at scale.",
   metadataBase: new URL("https://usejurny.com"),
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Jurny AI | Synthetic Users for Customer Behavior",
+    title: "Synthetic Users to Understand Customer Behavior",
     description:
       "Deploy synthetic users to simulate real behavior on your website or app. Reveal consumer friction, product gaps, and revenue leaks before real users ever touch your product.",
     url: "https://usejurny.com",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@jurny_ai",
-    title: "Jurny AI | Synthetic Users for Customer Behavior",
+    title: "Synthetic Users to Understand Customer Behavior",
     description:
       "Simulate how real users will behave before they ever touch your product. AI-powered personas reveal friction, gaps, and revenue leaks at scale.",
     images: ["/lovable-uploads/560e781d-c4c7-4e51-819a-b21fc0746540.png"],
