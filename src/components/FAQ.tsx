@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Reveal from "@/components/Reveal";
 
 const faqs = [
   {
@@ -46,16 +47,16 @@ const FAQ = () => {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div>
-            <div className="mb-8 sm:mb-12">
+            <Reveal className="mb-8 sm:mb-12">
               <h2
                 id="faq-title"
                 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground leading-tight"
               >
                 Frequently asked questions
               </h2>
-            </div>
+            </Reveal>
 
-            <div className="rounded-3xl bg-secondary/70 px-3 py-1 sm:px-7 sm:py-4">
+            <Reveal delay={100} className="rounded-3xl bg-secondary/70 px-3 py-1 sm:px-7 sm:py-4">
               <Accordion type="single" collapsible>
                 {faqs.map((faq) => (
                   <AccordionItem key={faq.question} value={faq.question}>
@@ -68,7 +69,7 @@ const FAQ = () => {
                   </AccordionItem>
                 ))}
               </Accordion>
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>

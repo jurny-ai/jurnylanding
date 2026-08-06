@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Reveal from "@/components/Reveal";
 
 type DropOff = { segment: string; loss: number; worst?: boolean };
 type Variant = { label: string; name: string; badge: string };
@@ -338,17 +339,17 @@ const ProductDemo = () => {
         <div className="max-w-7xl mx-auto">
           <div>
 
-            <div className="mb-6 sm:mb-8">
+            <Reveal className="mb-6 sm:mb-8">
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground leading-tight mb-3">
                 How It Works
               </h2>
               <p className="text-base sm:text-lg text-foreground/50">
                 Understand what breaks your funnel before it costs you revenue.
               </p>
-            </div>
+            </Reveal>
 
             {/* Segment toggle */}
-            <div className="flex gap-2">
+            <Reveal delay={100} className="flex gap-2">
               {SEGMENTS.map((segment) => {
                 const isActive = activeId === segment.id;
                 return (
@@ -365,11 +366,13 @@ const ProductDemo = () => {
                   </button>
                 );
               })}
-            </div>
+            </Reveal>
 
-            <div key={activeSegment.id} className="pt-6 sm:pt-8 animate-flow-in">
-              <FlowVisual segment={activeSegment} />
-            </div>
+            <Reveal delay={180} className="pt-6 sm:pt-8">
+              <div key={activeSegment.id} className="animate-flow-in">
+                <FlowVisual segment={activeSegment} />
+              </div>
+            </Reveal>
 
           </div>
         </div>

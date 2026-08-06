@@ -1,4 +1,5 @@
 import { ArrowRight, HelpCircle } from "lucide-react";
+import Reveal from "@/components/Reveal";
 
 function ABTestVisual() {
   const variants = [
@@ -160,27 +161,29 @@ const Features = () => {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div>
-            <div className="mb-8 sm:mb-12">
+            <Reveal className="mb-8 sm:mb-12">
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground leading-tight">
                 Why Teams Choose Jurny
               </h2>
-            </div>
+            </Reveal>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {features.map((feature, i) => (
-                <div key={i} className="rounded-3xl bg-card shadow-[0_10px_40px_rgba(35,38,85,0.06)] overflow-hidden flex flex-col group">
-                  <div className={`${feature.panelBg} flex items-center justify-center p-6 sm:p-10 min-h-[180px] sm:min-h-[200px] transition-all duration-300`}>
-                    {feature.visual}
+                <Reveal key={i} asChild delay={(i % 2) * 120}>
+                  <div className="rounded-3xl bg-card shadow-[0_10px_40px_rgba(35,38,85,0.06)] overflow-hidden flex flex-col group h-full">
+                    <div className={`${feature.panelBg} flex items-center justify-center p-6 sm:p-10 min-h-[180px] sm:min-h-[200px] transition-all duration-300`}>
+                      {feature.visual}
+                    </div>
+                    <div className="p-5 sm:p-7">
+                      <h3 className="text-lg font-semibold text-foreground mb-2 tracking-tight">
+                        {feature.title}
+                      </h3>
+                      <p className="text-sm text-foreground/55 leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="p-5 sm:p-7">
-                    <h3 className="text-lg font-semibold text-foreground mb-2 tracking-tight">
-                      {feature.title}
-                    </h3>
-                    <p className="text-sm text-foreground/55 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>

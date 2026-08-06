@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckCircle2, MousePointerClick } from "lucide-react";
+import Reveal from "@/components/Reveal";
 
 const proofCards = [
   {
@@ -26,34 +27,71 @@ const Results = () => {
     <section id="results" className="bg-background pt-4 pb-12 sm:pt-6 sm:pb-20">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mx-auto mb-6 max-w-xl text-center text-sm font-medium leading-relaxed text-foreground/60 sm:mb-8 sm:text-base">
-            It&rsquo;s not just theory.
-            <br />
-            Real friction surfaced for product teams within days of deployment.
-          </h2>
+          <Reveal asChild>
+            <h2 className="mx-auto mb-6 max-w-xl text-center text-sm font-medium leading-relaxed text-foreground/60 sm:mb-8 sm:text-base">
+              It&rsquo;s not just theory.
+              <br />
+              Real friction surfaced for product teams within days of deployment.
+            </h2>
+          </Reveal>
 
           <div className="grid gap-4 lg:grid-cols-[1fr_2fr]">
-            {proofCards.map((card) => {
+            {proofCards.map((card, i) => {
               const Icon = card.icon;
 
               if (!card.quote) {
                 return (
-                  <div
-                    key={card.title}
-                    className="flex min-h-[280px] flex-col justify-center rounded-3xl bg-accent/70 p-6 text-left sm:p-8"
-                  >
-                    <div className="mb-6 flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                        <Icon className="h-5 w-5" />
+                  <Reveal key={card.title} asChild delay={i * 120}>
+                    <div className="flex min-h-[280px] flex-col justify-center rounded-3xl bg-accent/70 p-6 text-left sm:p-8">
+                      <div className="mb-6 flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <p className="text-xs font-semibold uppercase tracking-widest text-foreground/45">
+                          {card.eyebrow}
+                        </p>
                       </div>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-foreground/45">
-                        {card.eyebrow}
-                      </p>
+
+                      <div>
+                        <p className="text-4xl font-semibold tracking-tight text-primary sm:text-5xl">
+                          +{card.metric}
+                        </p>
+                        <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
+                          {card.title}
+                        </h3>
+                        <p className="mt-2 text-sm font-medium text-foreground/55">{card.context}</p>
+                      </div>
+                    </div>
+                  </Reveal>
+                );
+              }
+
+              return (
+                <Reveal key={card.title} asChild delay={i * 120}>
+                  <div className="grid min-h-[280px] rounded-3xl bg-secondary p-6 text-left sm:p-8 xl:grid-cols-[1fr_auto_0.72fr] xl:items-center xl:gap-6">
+                    <div>
+                      <div className="mb-5 flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-widest text-foreground/45">
+                            {card.eyebrow}
+                          </p>
+                        </div>
+                      </div>
+
+                      <blockquote className="text-xl font-normal leading-snug tracking-tight text-foreground sm:text-2xl">
+                        &ldquo;Jurny found bugs we would have missed and helped us prioritize fixes that directly{" "}
+                        <span className="text-primary">protect our funnel</span>.&rdquo;
+                      </blockquote>
                     </div>
 
-                    <div>
-                      <p className="text-4xl font-semibold tracking-tight text-primary sm:text-5xl">
-                        +{card.metric}
+                    <div className="my-5 h-px bg-primary/15 xl:my-0 xl:h-32 xl:w-px" />
+
+                    <div className="xl:pl-2">
+                      <p className="text-6xl font-semibold tracking-tight text-primary sm:text-7xl">
+                        {card.metric}
                       </p>
                       <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
                         {card.title}
@@ -61,44 +99,7 @@ const Results = () => {
                       <p className="mt-2 text-sm font-medium text-foreground/55">{card.context}</p>
                     </div>
                   </div>
-                );
-              }
-
-              return (
-                <div
-                  key={card.title}
-                  className="grid min-h-[280px] rounded-3xl bg-secondary p-6 text-left sm:p-8 xl:grid-cols-[1fr_auto_0.72fr] xl:items-center xl:gap-6"
-                >
-                  <div>
-                    <div className="mb-5 flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-widest text-foreground/45">
-                          {card.eyebrow}
-                        </p>
-                      </div>
-                    </div>
-
-                    <blockquote className="text-xl font-normal leading-snug tracking-tight text-foreground sm:text-2xl">
-                      &ldquo;Jurny found bugs we would have missed and helped us prioritize fixes that directly{" "}
-                      <span className="text-primary">protect our funnel</span>.&rdquo;
-                    </blockquote>
-                  </div>
-
-                  <div className="my-5 h-px bg-primary/15 xl:my-0 xl:h-32 xl:w-px" />
-
-                  <div className="xl:pl-2">
-                    <p className="text-6xl font-semibold tracking-tight text-primary sm:text-7xl">
-                      {card.metric}
-                    </p>
-                    <h3 className="mt-3 text-xl font-semibold tracking-tight text-foreground">
-                      {card.title}
-                    </h3>
-                    <p className="mt-2 text-sm font-medium text-foreground/55">{card.context}</p>
-                  </div>
-                </div>
+                </Reveal>
               );
             })}
           </div>

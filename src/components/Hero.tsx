@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import DashboardVisualization from "@/components/DashboardVisualization";
+import Reveal from "@/components/Reveal";
 import { ArrowRight } from "lucide-react";
 import { track } from "@/lib/analytics";
 
@@ -14,7 +15,7 @@ const Hero = () => {
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
 
             {/* Left Column: Text Content */}
-            <div className="text-left max-w-3xl">
+            <Reveal className="text-left max-w-3xl">
               {/* Logo + AI Badge */}
               <a
                 href="https://www.unusual.vc/"
@@ -49,12 +50,12 @@ const Hero = () => {
                   </a>
                 </Button>
               </div>
-            </div>
+            </Reveal>
 
             {/* Right Column: Visualization over the mounds */}
-            <div className="relative mx-auto w-full max-w-[560px] lg:ml-auto">
+            <Reveal delay={150} className="relative mx-auto w-full max-w-[560px] lg:ml-auto">
               <DashboardVisualization />
-            </div>
+            </Reveal>
 
           </div>
 

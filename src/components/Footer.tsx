@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Reveal from "@/components/Reveal";
 import { track } from "@/lib/analytics";
 
 const Footer = () => {
@@ -9,7 +10,7 @@ const Footer = () => {
     <footer className="bg-background border-t border-border py-12 sm:py-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8 text-center md:text-left">
+          <Reveal className="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8 text-center md:text-left">
             {/* Brand */}
             <div className="flex items-center justify-center gap-4">
               <img 
@@ -35,8 +36,8 @@ const Footer = () => {
               </a>
             </Button>
             </div>
-          </div>
-          
+          </Reveal>
+
           <div className="mt-10 sm:mt-16 pt-6 sm:pt-8 border-t border-border text-center text-foreground/40 text-sm sm:text-base">
             © 2026 Jurny AI, Inc. All rights reserved.
           </div>
