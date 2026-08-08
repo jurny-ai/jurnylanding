@@ -20,6 +20,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { track } from "@/lib/analytics";
+import QualificationFlow from "@/components/QualificationFlow";
 
 const SECTION_LINKS = [
   { label: "Product", id: "how-it-works" },
@@ -64,13 +65,19 @@ const ARTICLE_LINKS: {
   },
 ];
 
-const CALENDLY_URL = "https://calendly.com/jurny-ai/new-meeting";
 const DASHBOARD_SIGNIN_URL = "https://dashboard.usejurny.com";
 
 const Header = () => {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [menuOpen, setMenuOpen] = useState(false);
+  const [qualificationOpen, setQualificationOpen] = useState(false);
+
+  const openQualification = (location: "header" | "header_mobile") => {
+    track("qualification_started", { location });
+    setMenuOpen(false);
+    setQualificationOpen(true);
+  };
 
   const scrollToSection = (sectionId: string) => {
     const el = document.getElementById(sectionId);
@@ -203,14 +210,9 @@ const Header = () => {
           <Button
             size="sm"
             className="hidden md:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-5 h-9 text-sm font-bold"
-            asChild
+            onClick={() => openQualification("header")}
           >
-            <a
-              href={CALENDLY_URL}
-              onClick={() => track("cta_clicked", { location: "header", label: "Book a Demo" })}
-            >
-              Book a Demo
-            </a>
+            Try for free
           </Button>
 
           <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
@@ -304,15 +306,10 @@ const Header = () => {
                 <SheetClose asChild>
                   <Button
                     className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full h-12 text-sm font-bold"
-                    asChild
+                    onClick={() => openQualification("header_mobile")}
                   >
-                    <a
-                      href={CALENDLY_URL}
-                      onClick={() => track("cta_clicked", { location: "header_mobile", label: "Book a Demo" })}
-                    >
-                      Book a Demo
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </a>
+                    Try for free
+                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </SheetClose>
               </div>
@@ -320,6 +317,7 @@ const Header = () => {
           </Sheet>
         </nav>
       </div>
+      <QualificationFlow open={qualificationOpen} onOpenChange={setQualificationOpen} />
     </header>
   );
 };

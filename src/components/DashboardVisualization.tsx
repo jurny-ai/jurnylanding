@@ -45,16 +45,16 @@ const scenarios = [
     ],
   },
   {
-    id: "saas",
-    label: "D2C",
-    title: "Activation flow",
+    id: "subscription-commerce",
+    label: "Subscriptions",
+    title: "Campaign launch flow",
     person: "Operations lead",
     images: [
       "/simulation/dtc-step-1-setup.png",
       "/simulation/dtc-step-2-progress.png",
       "/simulation/dtc-step-3-ready.png",
     ],
-    imageAlt: "Older woman reviewing a D2C SaaS activation dashboard at an office cubicle",
+    imageAlt: "Operations lead reviewing a subscription ecommerce campaign dashboard at an office cubicle",
     imageWidth: 1672,
     imageHeight: 941,
     imagePosition: "object-center",
@@ -178,7 +178,7 @@ function GeneratedSimulationScene({
   scenario: Scenario;
   lineIndex: number;
 }) {
-  // Lock every scenario to the D2C tab's aspect ratio so all pictures render
+  // Lock every scenario to the subscription tab's aspect ratio so all pictures render
   // at the same size; images with a different native ratio get cropped to fill.
   const aspectRatio = "1672 / 941";
 

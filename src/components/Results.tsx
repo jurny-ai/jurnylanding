@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, MousePointerClick } from "lucide-react";
+import { MousePointerClick, Timer } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 const proofCards = [
@@ -8,17 +8,16 @@ const proofCards = [
     eyebrow: "Behavioral friction",
     title: "Reduced rage clicks",
     metric: "53%",
-    context: "Consumer SaaS with 30,000 monthly users",
+    context: "Mid-market ecommerce company with 30,000 monthly shoppers",
     icon: MousePointerClick,
   },
   {
-    eyebrow: "Product feedback",
-    title: "Issues accepted",
-    metric: "30",
-    context: "D2C SaaS company",
-    quote:
-      "Jurny found bugs we would have missed and helped us prioritize fixes that directly protect our funnel.",
-    icon: CheckCircle2,
+    eyebrow: "Experiment velocity",
+    title: "to A/B test convergence",
+    metric: "1 day",
+    context: "Large enterprise ecommerce company",
+    quote: "Reduced a 1.25-month experiment cycle to a single day with Jurny.",
+    icon: Timer,
   },
 ];
 
@@ -29,9 +28,9 @@ const Results = () => {
         <div className="mx-auto max-w-6xl">
           <Reveal asChild>
             <h2 className="mx-auto mb-6 max-w-xl text-center text-sm font-medium leading-relaxed text-foreground/60 sm:mb-8 sm:text-base">
-              It&rsquo;s not just theory.
+              Built for ecommerce teams moving beyond slow, traffic-heavy experiments.
               <br />
-              Real friction surfaced for product teams within days of deployment.
+              Real conversion insights, surfaced in days instead of weeks.
             </h2>
           </Reveal>
 
@@ -74,16 +73,14 @@ const Results = () => {
                         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                           <Icon className="h-5 w-5" />
                         </div>
-                        <div>
-                          <p className="text-xs font-semibold uppercase tracking-widest text-foreground/45">
-                            {card.eyebrow}
-                          </p>
-                        </div>
+                        <p className="text-xs font-semibold uppercase tracking-widest text-foreground/45">
+                          {card.eyebrow}
+                        </p>
                       </div>
 
                       <blockquote className="text-xl font-normal leading-snug tracking-tight text-foreground sm:text-2xl">
-                        &ldquo;Jurny found bugs we would have missed and helped us prioritize fixes that directly{" "}
-                        <span className="text-primary">protect our funnel</span>.&rdquo;
+                        Reduced a 1.25-month experiment cycle to a{" "}
+                        <span className="text-primary">single day with Jurny</span>.
                       </blockquote>
                     </div>
 
