@@ -34,6 +34,10 @@ type Answers = Partial<Record<(typeof questions)[number]["id"], string>>;
 const qualifyingFrequencies = new Set(["Every week", "A few times a month"]);
 const qualifyingTestLengths = new Set(["3–4 weeks", "More than 1 month"]);
 
+const qualifies = (answers: Answers) =>
+  qualifyingFrequencies.has(answers.testFrequency ?? "") &&
+  qualifyingTestLengths.has(answers.longestTest ?? "");
+
 type QualificationFlowProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -45,9 +49,7 @@ export default function QualificationFlow({ open, onOpenChange }: QualificationF
   const complete = step === questions.length;
   const question = questions[Math.min(step, questions.length - 1)];
   const answer = answers[question.id];
-  const isQualified =
-    qualifyingFrequencies.has(answers.testFrequency ?? "") &&
-    qualifyingTestLengths.has(answers.longestTest ?? "");
+  const isQualified = qualifies(answers);
 
   const reset = () => {
     setStep(0);
@@ -59,10 +61,13 @@ export default function QualificationFlow({ open, onOpenChange }: QualificationF
     if (!nextOpen) window.setTimeout(reset, 200);
   };
 
-  const continueFlow = () => {
-    if (!answer) return;
+  const selectAnswer = (option: string) => {
+    const nextAnswers = { ...answers, [question.id]: option };
+    setAnswers(nextAnswers);
+    track("qualification_answered", { question: question.id, answer: option });
+
     if (step === questions.length - 1) {
-      track("qualification_completed", { ...answers, qualified: isQualified });
+      track("qualification_completed", { ...nextAnswers, qualified: qualifies(nextAnswers) });
     }
     setStep((current) => current + 1);
   };
@@ -137,7 +142,7 @@ export default function QualificationFlow({ open, onOpenChange }: QualificationF
                     type="button"
                     role="radio"
                     aria-checked={selected}
-                    onClick={() => setAnswers((current) => ({ ...current, [question.id]: option }))}
+                    onClick={() => selectAnswer(option)}
                     className={`flex min-h-12 items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition-colors ${
                       selected
                         ? "border-primary bg-primary/10 text-foreground"
@@ -153,18 +158,17 @@ export default function QualificationFlow({ open, onOpenChange }: QualificationF
               })}
             </div>
 
-            <div className="mt-7 flex items-center gap-3">
-              {step > 0 && (
-                <Button type="button" variant="ghost" className="rounded-full" onClick={() => setStep((current) => current - 1)}>
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back
-                </Button>
-              )}
-              <Button type="button" className="ml-auto rounded-full px-6 font-bold" disabled={!answer} onClick={continueFlow}>
-                {step === questions.length - 1 ? "Finish" : "Continue"}
-                <ArrowRight className="ml-2 h-4 w-4" />
+            {step > 0 && (
+              <Button
+                type="button"
+                variant="ghost"
+                className="mt-6 rounded-full"
+                onClick={() => setStep((current) => current - 1)}
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back
               </Button>
-            </div>
+            )}
           </div>
         )}
       </DialogContent>
