@@ -249,7 +249,7 @@ const DashboardVisualization = () => {
   const ScenarioIcon = ({ scenario, active }: { scenario: Scenario; active: boolean }) => {
     const icon = scenario.id === 'ecommerce' ? (
       <ShoppingBag className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />
-    ) : scenario.id === 'saas' ? (
+    ) : scenario.id === 'subscription-commerce' ? (
       <Laptop className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />
     ) : scenario.id === 'onboarding' ? (
       <ClipboardList className="h-3.5 w-3.5 text-primary sm:h-4 sm:w-4" />
