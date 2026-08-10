@@ -8,7 +8,7 @@ const proofCards = [
     eyebrow: "Behavioral friction",
     title: "Reduced rage clicks",
     metric: "53%",
-    context: "Mid-market ecommerce company with 30,000 monthly shoppers",
+    context: "D2C education platform with 30,000 users",
     icon: MousePointerClick,
   },
   {

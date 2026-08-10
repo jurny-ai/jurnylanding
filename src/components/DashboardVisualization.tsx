@@ -46,7 +46,7 @@ const scenarios = [
   },
   {
     id: "subscription-commerce",
-    label: "Subscriptions",
+    label: "D2C",
     title: "Campaign launch flow",
     person: "Operations lead",
     images: [

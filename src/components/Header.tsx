@@ -48,16 +48,6 @@ const ARTICLE_LINKS: {
       "How to design personas that make LLM user simulations behave like real users.",
   },
   {
-    href: "/articles/how-to-debug-with-cursor-for-non-technical-folks",
-    label: "How to Debug with Cursor",
-    description: "A practical debugging guide for non-technical folks building with AI.",
-  },
-  {
-    href: "/articles/csr-vs-ssr",
-    label: "Your Website Looks Amazing. Can Anyone Find It?",
-    description: "What your rendering choice means for SEO, in plain language.",
-  },
-  {
     href: "/articles/usability-testing-problems",
     label: "The Biggest Problems With Usability Testing Today",
     description:
