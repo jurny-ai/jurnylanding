@@ -13,6 +13,7 @@ import {
 import { track } from "@/lib/analytics";
 
 const CALENDLY_URL = "https://calendly.com/jurny-ai/new-meeting";
+const ONBOARDING_URL = "https://dashboard.usejurny.com/onboarding";
 
 const questions = [
   {
@@ -93,15 +94,25 @@ export default function QualificationFlow({ open, onOpenChange }: QualificationF
                 We work best with ecommerce teams running A/B tests at least monthly, where experiments take three weeks or longer to converge.
               </DialogDescription>
             </DialogHeader>
-            <Button className="mt-7 h-12 w-full rounded-full font-bold" asChild>
-              <a
-                href={CALENDLY_URL}
-                onClick={() => track("cta_clicked", { location: "qualification_complete", label: "Choose a time", ...answers })}
-              >
-                Choose a time
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              <Button className="h-12 rounded-full font-bold" asChild>
+                <a
+                  href={CALENDLY_URL}
+                  onClick={() => track("cta_clicked", { location: "qualification_complete", label: "Choose a time", ...answers })}
+                >
+                  Choose a time
+                </a>
+              </Button>
+              <Button variant="outline" className="h-12 rounded-full font-bold" asChild>
+                <a
+                  href={ONBOARDING_URL}
+                  onClick={() => track("cta_clicked", { location: "qualification_complete", label: "Try for free", ...answers })}
+                >
+                  Try for free
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            </div>
           </div>
         ) : complete ? (
           <div className="px-6 py-10 text-center sm:px-10">
