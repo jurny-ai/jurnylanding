@@ -23,7 +23,7 @@ const Footer = () => {
             {/* Centered Description Text */}
             <div className="flex-1 md:text-center">
               <p className="text-foreground/60 text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed">
-                The future of product validation through autonomous synthetic user testing.
+                One user model. Predict your tests, find customer friction.
               </p>
             </div>
 

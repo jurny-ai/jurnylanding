@@ -152,4 +152,30 @@ All colors MUST be HSL.
       transition: none;
     }
   }
+
+  /* Hero crowd caption, swapped as the camera pulls back. Lives here rather than
+     in a component <style> tag because React escapes quotes and angle brackets
+     when it renders style text on the server, so a selector containing either
+     fails to match and takes hydration down with it. */
+  .crowd-label {
+    animation: crowd-label-in 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes crowd-label-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 4px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .crowd-label {
+      animation: none;
+    }
+  }
+
 }

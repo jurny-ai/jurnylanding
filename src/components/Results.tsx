@@ -23,7 +23,7 @@ const proofCards = [
 
 const Results = () => {
   return (
-    <section id="results" className="border-b border-border bg-background py-14 sm:py-20">
+    <section id="results" className="border-b border-border bg-background pb-12 pt-10 sm:pb-14 sm:pt-14">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-6xl">
           <Reveal asChild>
