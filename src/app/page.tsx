@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import ProductDemo from "@/components/ProductDemo";
 import Features from "@/components/Features";
 import Results from "@/components/Results";
+import InfrastructureFlow from "@/components/InfrastructureFlow";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import ScrollTracker from "@/components/ScrollTracker";
@@ -13,6 +14,7 @@ export default function Home() {
       <Header />
       <Hero />
       <Results />
+      <InfrastructureFlow />
       <ProductDemo />
       <Features />
       <FAQ />

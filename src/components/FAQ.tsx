@@ -56,7 +56,7 @@ const FAQ = () => {
               </h2>
             </Reveal>
 
-            <Reveal delay={100} className="rounded-3xl bg-secondary/70 px-3 py-1 sm:px-7 sm:py-4">
+            <Reveal delay={100} className="border border-border bg-secondary px-3 py-1 sm:px-7 sm:py-4">
               <Accordion type="single" collapsible>
                 {faqs.map((faq) => (
                   <AccordionItem key={faq.question} value={faq.question}>

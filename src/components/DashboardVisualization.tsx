@@ -19,8 +19,8 @@ const scenarios = [
     imageWidth: 1536,
     imageHeight: 1024,
     imagePosition: "object-center",
-    accent: "#7558e8",
-    softAccent: "bg-violet-500/10",
+    accent: "#3E53CE",
+    softAccent: "bg-primary/10",
     lines: [
       "These lavender sneakers catch my eye, but I cannot tell which card is selected.",
       "Nice product page. Now I am hunting for size guidance before I choose.",
@@ -58,8 +58,8 @@ const scenarios = [
     imageWidth: 1672,
     imageHeight: 941,
     imagePosition: "object-center",
-    accent: "#5577e6",
-    softAccent: "bg-blue-500/10",
+    accent: "#3E53CE",
+    softAccent: "bg-primary/10",
     lines: [
       "CampaignPilot gives me a checklist, but I am not sure which step matters first.",
       "Some items are complete. I am trying to spot what is blocking launch.",
@@ -88,8 +88,8 @@ const scenarios = [
     imageWidth: 1536,
     imageHeight: 1024,
     imagePosition: "object-center",
-    accent: "#3b9b7a",
-    softAccent: "bg-emerald-500/10",
+    accent: "#3E53CE",
+    softAccent: "bg-primary/10",
     lines: [
       "Profile setup looks simple, but I am wondering why these details are needed.",
       "The preference cards feel optional. I need to know what choosing one changes.",
@@ -133,13 +133,13 @@ function InteractionOverlay({ scenario, lineIndex }: { scenario: Scenario; lineI
     : null;
 
   return (
-    <div className={`pointer-events-none absolute overflow-hidden rounded-3xl ${scenario.interactionClassName}`}>
+    <div className={`pointer-events-none absolute overflow-hidden ${scenario.interactionClassName}`}>
       {isTouch ? (
         <>
           {touchPoints.map((point, index) => (
             <span
               key={`${point.left}-${point.top}`}
-              className="absolute animate-touch-pressure rounded-full border border-white/80 bg-white/25 shadow-[0_0_24px_rgba(117,88,232,0.35)]"
+              className="absolute animate-touch-pressure rounded-full border border-white/80 bg-white/25 shadow-[0_0_24px_rgba(62,83,206,0.32)]"
               style={{
                 height: index === 0 ? 36 : 30,
                 width: index === 0 ? 36 : 30,
@@ -185,7 +185,7 @@ function GeneratedSimulationScene({
   return (
     <div>
       <div className="relative">
-        <div className="relative overflow-hidden rounded-[0.6rem] bg-[#eef1fb]">
+        <div className="relative overflow-hidden bg-[#eef1fb]">
           <div
             className="relative mx-auto w-full max-w-full"
             style={{ aspectRatio }}
@@ -207,14 +207,13 @@ function GeneratedSimulationScene({
                 />
               </div>
             ))}
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/5 via-transparent to-white/25" />
             <InteractionOverlay scenario={scenario} lineIndex={lineIndex} />
           </div>
         </div>
 
         <div className="absolute inset-x-4 bottom-4 z-20 sm:inset-x-6 sm:bottom-6">
-          <div className="flex h-[72px] items-center gap-4 rounded-2xl border border-white/65 bg-white/65 px-5 py-4 text-sm font-medium leading-snug text-foreground/82 shadow-[0_18px_42px_rgba(35,38,85,0.14)] backdrop-blur-md">
-            <span className="flex h-8 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+          <div className="flex h-[72px] items-center gap-4 border border-border bg-white px-5 py-4 text-sm font-medium leading-snug text-foreground shadow-[0_14px_34px_rgba(28,35,76,0.12)]">
+            <span className="flex h-8 w-10 shrink-0 items-center justify-center rounded-full bg-highlight text-xs font-bold text-highlight-foreground">
               {lineIndex + 1}/3
             </span>
             <span>{scenario.lines[lineIndex]}</span>
@@ -226,9 +225,13 @@ function GeneratedSimulationScene({
         {scenario.traits.map((trait, index) => (
           <div
             key={trait}
-            className="flex items-center gap-2 rounded-full bg-card px-4 py-2 text-sm font-semibold text-foreground/60 shadow-sm"
+            className={`flex items-center gap-2 border px-4 py-2 text-sm font-semibold ${
+              index === 0
+                ? "border-highlight bg-highlight text-highlight-foreground"
+                : "border-border bg-card text-foreground/60"
+            }`}
           >
-            {index === 0 && <Sparkles className="h-4 w-4 text-primary" />}
+            {index === 0 && <Sparkles className="h-4 w-4 text-highlight-foreground" />}
             {trait}
           </div>
         ))}
@@ -256,7 +259,7 @@ const DashboardVisualization = () => {
     ) : null;
 
     return (
-      <div className={`hidden sm:flex h-7 w-7 shrink-0 items-center justify-center rounded-lg sm:h-8 sm:w-8 ${active ? scenario.softAccent : "bg-secondary"}`}>
+      <div className={`hidden sm:flex h-7 w-7 shrink-0 items-center justify-center sm:h-8 sm:w-8 ${active ? scenario.softAccent : "bg-secondary"}`}>
         {icon}
       </div>
     );
@@ -278,8 +281,8 @@ const DashboardVisualization = () => {
   }, [activeIndex, activeScenario.lines.length]);
 
   return (
-    <div className="w-full max-w-[600px] overflow-hidden rounded-[0.75rem]">
-      <div className="rounded-[0.75rem] bg-secondary p-2.5 shadow-[0_24px_70px_rgba(35,38,85,0.08)] sm:p-4">
+    <div className="w-full max-w-[600px] overflow-hidden border border-white/35">
+      <div className="bg-secondary p-2.5 sm:p-4">
         <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
           {scenarios.map((scenario) => {
             const active = scenario.id === activeScenario.id;
@@ -291,10 +294,10 @@ const DashboardVisualization = () => {
                   setActiveId(scenario.id);
                   setLineIndex(0);
                 }}
-                className={`min-w-0 rounded-2xl border px-2 py-2.5 sm:text-left transition-all sm:px-3 sm:py-3 ${
+                className={`min-w-0 border px-2 py-2.5 sm:text-left transition-all sm:px-3 sm:py-3 ${
                   active
-                    ? "border-primary/30 bg-card shadow-sm"
-                    : "border-transparent bg-background/50 hover:bg-card"
+                    ? "border-primary bg-card"
+                    : "border-transparent bg-primary/5 hover:bg-card"
                 }`}
               >
                 <div className="flex min-w-0 items-center justify-center gap-1.5 sm:justify-start sm:gap-2">

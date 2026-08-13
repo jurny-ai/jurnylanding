@@ -33,9 +33,9 @@ const SEGMENTS: Segment[] = [
     label: "Ecommerce",
     kind: "abtest",
     variants: [
-      { label: "A", name: "Control", badge: "bg-primary/10 text-primary-glow ring-1 ring-primary/20" },
-      { label: "B", name: "One-click pay", badge: "bg-blue-500/10 text-blue-500 ring-1 ring-blue-500/20" },
-      { label: "C", name: "Simplified layout", badge: "bg-emerald-500/10 text-emerald-500 ring-1 ring-emerald-500/20" },
+      { label: "A", name: "Control", badge: "bg-primary/10 text-primary ring-1 ring-primary/20" },
+      { label: "B", name: "One-click pay", badge: "bg-highlight text-highlight-foreground ring-1 ring-highlight" },
+      { label: "C", name: "Simplified layout", badge: "bg-primary/10 text-primary ring-1 ring-primary/20" },
     ],
     personas: ["High ATV buyer", "Comparison shopper", "New user"],
   },
@@ -57,12 +57,12 @@ const SEGMENTS: Segment[] = [
 
 function VariantsCard({ segment }: { segment: ABSegment }) {
   return (
-    <div className="rounded-2xl bg-card shadow-[0_12px_32px_rgba(35,38,85,0.06)] px-5 py-4">
+    <div className="border border-border bg-card px-5 py-4">
       <div className="text-[11px] uppercase tracking-[0.2em] text-foreground/40 font-bold mb-3">Variants in test</div>
       <div className="space-y-2.5">
         {segment.variants.map((v) => (
           <div key={v.label} className="flex items-center gap-3">
-            <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${v.badge}`}>
+            <span className={`flex h-8 w-8 shrink-0 items-center justify-center text-sm font-bold ${v.badge}`}>
               {v.label}
             </span>
             <span className="text-sm font-semibold text-foreground/80">{v.name}</span>
@@ -80,7 +80,7 @@ function QuestionCard({ segment }: { segment: FunnelSegment }) {
 
   return (
     <div className="space-y-2">
-      <div className="relative rounded-2xl bg-card shadow-[0_12px_32px_rgba(35,38,85,0.06)] px-5 py-4">
+      <div className="relative border border-border bg-card px-5 py-4">
         <div className="text-[11px] uppercase tracking-[0.2em] text-foreground/40 font-bold mb-2">Your product question</div>
         <p className="text-base font-semibold text-foreground/85 leading-snug">
           {rest ? `${rest} ` : ""}
@@ -94,7 +94,7 @@ function QuestionCard({ segment }: { segment: FunnelSegment }) {
       {segment.moreQuestions.map((q, i) => (
         <div
           key={q}
-          className="rounded-xl bg-card/60 px-4 py-2.5"
+          className="border border-border bg-card/60 px-4 py-2.5"
           style={{ opacity: 0.55 - i * 0.2 }}
         >
           <p className="text-sm font-medium text-foreground/60 leading-snug">{q}</p>
@@ -106,7 +106,7 @@ function QuestionCard({ segment }: { segment: FunnelSegment }) {
 
 function PersonaChip({ name }: { name: string }) {
   return (
-    <div className="flex items-center gap-2 rounded-full bg-card shadow-sm px-3.5 py-2 whitespace-nowrap">
+    <div className="flex items-center gap-2 border border-border bg-card px-3.5 py-2 whitespace-nowrap">
       <span className="w-2 h-2 rounded-full bg-primary-glow animate-pulse" />
       <span className="text-sm font-semibold text-foreground/70">{name}</span>
     </div>
@@ -115,7 +115,7 @@ function PersonaChip({ name }: { name: string }) {
 
 function ConvergenceCard() {
   return (
-    <div className="rounded-2xl bg-card shadow-[0_12px_32px_rgba(35,38,85,0.06)] px-5 py-4">
+    <div className="border border-border bg-card px-5 py-4">
       <div className="text-[11px] uppercase tracking-[0.2em] text-foreground/40 font-bold mb-2">Jurny converges the test</div>
       <p className="text-base font-bold text-foreground mb-3">
         Significance in <span className="text-primary-glow">~1 week</span>, not 3-6
@@ -184,7 +184,7 @@ function ResultCard({ segment }: { segment: FunnelSegment }) {
   const maxLoss = Math.max(...segment.dropOffs.map((d) => d.loss));
 
   return (
-    <div className="rounded-2xl bg-card shadow-[0_12px_32px_rgba(35,38,85,0.06)] px-5 py-4">
+    <div className="border border-border bg-card px-5 py-4">
       <div className="text-[11px] uppercase tracking-[0.2em] text-foreground/40 font-bold mb-2">Jurny finds</div>
       <p className="text-base font-bold text-foreground mb-3">
         Biggest drop-off at <span className="text-red-500">{segment.dropStep}</span>
@@ -334,17 +334,17 @@ const ProductDemo = () => {
   const activeSegment = SEGMENTS.find((s) => s.id === activeId) ?? SEGMENTS[0];
 
   return (
-    <section id="how-it-works" className="py-14 sm:py-20 bg-gradient-to-b from-background via-secondary to-background scroll-mt-14 sm:scroll-mt-16">
+    <section id="how-it-works" className="bg-secondary/55 py-14 sm:py-20 scroll-mt-14 sm:scroll-mt-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div>
 
             <Reveal className="mb-6 sm:mb-8">
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground leading-tight mb-3">
-                How It Works
+                Put the model to work
               </h2>
               <p className="text-base sm:text-lg text-foreground/50">
-                Understand what breaks your funnel before it costs you revenue.
+                Ask product questions, evaluate experiments, and simulate the journeys that matter.
               </p>
             </Reveal>
 
@@ -356,10 +356,10 @@ const ProductDemo = () => {
                   <button
                     key={segment.id}
                     onClick={() => setActiveId(segment.id)}
-                    className={`rounded-full px-5 py-2 text-sm font-semibold cursor-pointer transition-all duration-200 active:scale-[0.98] ${
+                    className={`border px-5 py-2 text-sm font-semibold cursor-pointer transition-all duration-200 active:scale-[0.98] ${
                       isActive
-                        ? "bg-primary text-primary-foreground shadow-[0_8px_22px_rgba(117,88,232,0.25)]"
-                        : "bg-card/70 text-foreground/55 hover:bg-card hover:text-foreground"
+                        ? "bg-primary text-primary-foreground"
+                        : "border border-border bg-card text-foreground/55 hover:border-primary/40 hover:text-foreground"
                     }`}
                   >
                     {segment.label}

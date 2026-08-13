@@ -1,16 +1,25 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import DashboardVisualization from "@/components/DashboardVisualization";
+import QualificationFlow from "@/components/QualificationFlow";
 import Reveal from "@/components/Reveal";
 import { ArrowRight } from "lucide-react";
 import { track } from "@/lib/analytics";
 
 const Hero = () => {
+  const [qualificationOpen, setQualificationOpen] = useState(false);
+
+  const openQualification = () => {
+    track("qualification_started", { location: "hero" });
+    setQualificationOpen(true);
+  };
+
   return (
-    <section id="top" className="relative overflow-hidden bg-gradient-to-b from-secondary to-background pt-16 sm:pt-[4.5rem] pb-4 sm:pb-6 scroll-mt-14 sm:scroll-mt-16">
+    <section id="top" className="relative overflow-hidden bg-primary pt-16 text-primary-foreground sm:pt-[4.5rem] scroll-mt-14 sm:scroll-mt-16">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="relative max-w-7xl mx-auto overflow-hidden rounded-3xl sm:rounded-[2.5rem] bg-gradient-to-b from-secondary via-background to-background px-4 py-6 sm:px-8 sm:py-8 lg:px-12">
+        <div className="relative max-w-7xl mx-auto overflow-hidden px-4 py-10 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
 
@@ -22,37 +31,46 @@ const Hero = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("badge_clicked", { badge: "unusual_ventures" })}
-                className="inline-flex flex-wrap items-center gap-2 sm:gap-3 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-card/70 backdrop-blur-sm mb-6 sm:mb-8 hover:bg-card transition-colors cursor-pointer max-w-full"
+                className="mb-7 inline-flex max-w-full cursor-pointer flex-wrap items-center gap-2 border border-highlight bg-highlight px-4 py-2 text-highlight-foreground transition-colors hover:bg-highlight/85 sm:gap-3 sm:px-5"
               >
                 <img src="/unusual-ventures.png" alt="Unusual Ventures Logo" className="h-2.5 sm:h-3 opacity-80 shrink-0" />
-                <div className="w-1 h-1 bg-primary-glow rounded-full animate-pulse shrink-0" />
-                <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.14em] sm:tracking-[0.2em] font-bold text-foreground/60">
+                <div className="w-1.5 h-1.5 bg-primary rounded-full shrink-0" />
+                <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.14em] sm:tracking-[0.2em] font-bold text-foreground">
                   Backed by Unusual Ventures
                 </span>
               </a>
 
               {/* Main headline */}
-              <h1 className="text-[2rem] leading-[1.08] sm:text-5xl md:text-6xl font-semibold text-foreground mb-4 sm:mb-6 tracking-tight">
-                Agentic user testing to reveal consumer friction.
+              <h1 className="mb-5 text-[2.65rem] font-medium leading-[0.98] tracking-[-0.045em] text-white sm:text-6xl lg:text-[4.7rem]">
+                One user model. Every product decision.
               </h1>
 
               {/* Subheadline */}
-              <p className="text-base sm:text-lg text-foreground/60 mb-8 sm:mb-10 leading-relaxed max-w-lg">
-                Your users as AI agents, using your product every day to catch usability issues, bugs, and drop-offs.
+              <p className="mb-8 max-w-xl text-base leading-relaxed text-white/75 sm:text-xl sm:mb-10">
+                Turn unstructured customer data into one model you can use to ask questions, run A/B tests, and simulate real customer journeys.
               </p>
 
               {/* CTA buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-start">
-                <Button size="lg" className="w-full sm:w-auto justify-center bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300" asChild>
+                <Button size="lg" className="h-auto w-full justify-center rounded-none border border-white bg-white px-8 py-4 text-sm font-bold text-primary hover:bg-white/90 sm:w-auto" asChild>
                   <a href="https://calendly.com/jurny-ai/new-meeting" onClick={() => track("cta_clicked", { location: "hero", label: "Book a Demo" })}>
                     Book a Demo
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="lg"
+                  className="h-auto w-full justify-center rounded-none border-highlight bg-highlight px-8 py-4 text-sm font-bold text-highlight-foreground hover:bg-highlight/85 hover:text-highlight-foreground sm:w-auto"
+                  onClick={openQualification}
+                >
+                  Try for free
+                </Button>
               </div>
             </Reveal>
 
-            {/* Right Column: Visualization over the mounds */}
+            {/* Right Column: Product visualization */}
             <Reveal delay={150} className="relative mx-auto w-full max-w-[560px] lg:ml-auto">
               <DashboardVisualization />
             </Reveal>
@@ -61,6 +79,7 @@ const Hero = () => {
 
         </div>
       </div>
+      <QualificationFlow open={qualificationOpen} onOpenChange={setQualificationOpen} />
     </section>
   );
 };

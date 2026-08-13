@@ -2,46 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Definition of the design system. All colors and fonts should be defined here.
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 252 45% 98%;
-    --foreground: 250 30% 14%;
+    --background: 0 0% 100%;
+    --foreground: 248 55% 4%;
 
     --card: 0 0% 100%;
-    --card-foreground: 250 30% 14%;
+    --card-foreground: 248 55% 4%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 250 30% 14%;
+    --popover-foreground: 248 55% 4%;
 
-    --primary: 233 36% 42%;
+    --primary: 231.25 59.51% 52.55%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 263 70% 65%;
+    --primary-glow: 231.25 59.51% 52.55%;
 
-    --secondary: 255 55% 95%;
-    --secondary-foreground: 250 30% 14%;
+    --secondary: 232 54% 97%;
+    --secondary-foreground: 248 55% 4%;
 
-    --muted: 254 35% 94%;
-    --muted-foreground: 250 12% 47%;
+    --muted: 232 24% 95%;
+    --muted-foreground: 245 7% 40%;
 
-    --accent: 263 70% 95%;
-    --accent-foreground: 263 70% 20%;
+    --accent: 232 54% 96%;
+    --accent-foreground: 232 60% 35%;
+
+    --highlight: 75.08 85.65% 59.02%;
+    --highlight-foreground: 248 55% 4%;
 
     --destructive: 0 84% 85%;
     --destructive-foreground: 0 84% 30%;
 
-    --border: 252 30% 90%;
-    --input: 252 30% 90%;
-    --ring: 263 70% 65%;
-
-    /* Custom gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(233 36% 42%), hsl(263 70% 65%));
-    --gradient-hero: linear-gradient(135deg, hsl(233 36% 42%), hsl(263 70% 65%));
-    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(255 55% 95%));
-    --gradient-radial: radial-gradient(circle at center, hsl(var(--primary) / 0.15), hsl(var(--primary) / 0.02), transparent);
+    --border: 232 18% 88%;
+    --input: 232 18% 88%;
+    --ring: 231.25 59.51% 52.55%;
 
     /* Shadows - flat theme */
     --shadow-elegant: none;
@@ -50,15 +47,7 @@ All colors MUST be HSL.
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    /* Pet Store Theme */
-    --pet-primary: 25 95% 53%;     /* Orange/amber for warmth */
-    --pet-secondary: 142 76% 36%;  /* Forest green for nature */
-    --pet-accent: 271 81% 56%;     /* Purple for playfulness */
-    --pet-background: 45 100% 96%; /* Warm off-white */
-    --pet-card: 39 100% 97%;       /* Light cream */
-    --pet-muted: 43 13% 90%;       /* Warm gray */
-
-    --radius: 0.75rem;
+    --radius: 0.25rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -87,9 +76,9 @@ All colors MUST be HSL.
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 233 36% 42%;
+    --primary: 231.25 59.51% 52.55%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 263 70% 65%;
+    --primary-glow: 231.25 59.51% 52.55%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -105,7 +94,9 @@ All colors MUST be HSL.
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 263 70% 65%;
+    --ring: 231.25 59.51% 52.55%;
+    --highlight: 75.08 85.65% 59.02%;
+    --highlight-foreground: 248 55% 4%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;

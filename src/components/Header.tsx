@@ -23,7 +23,7 @@ import { track } from "@/lib/analytics";
 import QualificationFlow from "@/components/QualificationFlow";
 
 const SECTION_LINKS = [
-  { label: "Product", id: "how-it-works" },
+  { label: "Product", id: "infrastructure" },
   { label: "Use Cases", id: "features" },
   { label: "FAQ", id: "faq" },
 ] as const;
@@ -103,13 +103,13 @@ const Header = () => {
   }, [isHome, pathname]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/50">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 text-foreground backdrop-blur-md">
       <div className="container mx-auto px-4 h-14 sm:h-16 flex items-center justify-between gap-3">
-        <Link href="/" className="flex shrink-0 items-center gap-2">
+        <Link href="/" className="flex shrink-0 items-center">
           <img
             src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png"
             alt="Jurny Logo"
-            className="h-7 sm:h-8 opacity-90"
+            className="h-7 sm:h-8"
           />
         </Link>
 
@@ -121,14 +121,14 @@ const Header = () => {
                   <button
                     type="button"
                     onClick={() => scrollToSection(id)}
-                    className="px-2.5 lg:px-3 py-2 text-sm font-medium text-foreground/70 hover:text-foreground rounded-md transition-colors"
+                    className="px-2.5 lg:px-3 py-2 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
                   >
                     {label}
                   </button>
                 ) : (
                   <Link
                     href={`/#${id}`}
-                    className="px-2.5 lg:px-3 py-2 text-sm font-medium text-foreground/70 hover:text-foreground rounded-md transition-colors"
+                    className="px-2.5 lg:px-3 py-2 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
                   >
                     {label}
                   </Link>
@@ -142,7 +142,7 @@ const Header = () => {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="text-sm font-medium text-foreground/80 hover:text-foreground gap-1 px-2"
+                  className="gap-1 px-2 text-sm font-medium text-foreground/80 hover:bg-secondary hover:text-foreground"
                 >
                   Articles
                   <ChevronDown className="h-4 w-4 transition-transform duration-200 [[data-state=open]>&]:rotate-180" />
@@ -186,7 +186,7 @@ const Header = () => {
           <Button
             variant="outline"
             size="sm"
-            className="hidden md:inline-flex rounded-full px-5 h-9 text-sm font-bold"
+            className="hidden h-9 rounded-none border-border bg-transparent px-5 text-sm font-bold text-foreground/70 hover:bg-secondary hover:text-foreground md:inline-flex"
             asChild
           >
             <a
@@ -199,7 +199,7 @@ const Header = () => {
 
           <Button
             size="sm"
-            className="hidden md:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-5 h-9 text-sm font-bold"
+            className="hidden h-9 rounded-none bg-primary px-5 text-sm font-bold text-primary-foreground hover:bg-primary/90 md:inline-flex"
             onClick={() => openQualification("header")}
           >
             Try for free
@@ -210,7 +210,7 @@ const Header = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="md:hidden h-10 w-10 text-foreground/80"
+                className="h-10 w-10 text-foreground/80 hover:bg-secondary hover:text-foreground md:hidden"
                 aria-label="Open menu"
               >
                 <Menu className="h-5 w-5" />
@@ -282,7 +282,7 @@ const Header = () => {
                 <SheetClose asChild>
                   <Button
                     variant="outline"
-                    className="w-full rounded-full h-12 text-sm font-bold"
+                    className="w-full rounded-none h-12 text-sm font-bold"
                     asChild
                   >
                     <a
@@ -295,7 +295,7 @@ const Header = () => {
                 </SheetClose>
                 <SheetClose asChild>
                   <Button
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full h-12 text-sm font-bold"
+                    className="w-full rounded-none bg-primary h-12 text-sm font-bold text-primary-foreground hover:bg-primary/90"
                     onClick={() => openQualification("header_mobile")}
                   >
                     Try for free

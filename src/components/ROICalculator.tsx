@@ -418,7 +418,7 @@ const ROICalculator = () => {
   };
 
   return (
-    <section id="roi" ref={sectionRef} className="py-14 sm:py-20 bg-gradient-to-b from-background via-secondary to-background scroll-mt-14 sm:scroll-mt-16">
+    <section id="roi" ref={sectionRef} className="bg-secondary/55 py-14 sm:py-20 scroll-mt-14 sm:scroll-mt-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div>

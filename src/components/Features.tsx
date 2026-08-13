@@ -15,7 +15,7 @@ function ABTestVisual() {
       <div>
         <div className="flex items-center justify-between mb-2">
           <span className="text-[10px] uppercase tracking-widest text-foreground/40 font-semibold">5 variants</span>
-          <span className="text-[10px] uppercase tracking-widest text-primary-glow font-semibold">Top 2 go live</span>
+          <span className="text-[10px] uppercase tracking-widest text-primary font-semibold">Top 2 go live</span>
         </div>
         <div className="flex items-center gap-1.5">
           {variants.map((v, i) => (
@@ -23,7 +23,7 @@ function ABTestVisual() {
               key={i}
               className={`flex h-9 flex-1 items-center justify-center rounded-lg text-xs font-bold ${
                 v.kept
-                  ? "bg-primary/15 text-primary-glow ring-1 ring-primary/30"
+                  ? "bg-highlight text-highlight-foreground ring-1 ring-highlight"
                   : "bg-foreground/5 text-foreground/25 line-through"
               }`}
             >
@@ -48,7 +48,7 @@ function ABTestVisual() {
           <div className="flex-1 h-3 rounded-md bg-foreground/5 overflow-hidden">
             <div className="h-full rounded-md bg-primary/60" style={{ width: "28%" }} />
           </div>
-          <span className="text-[10px] text-primary-glow font-mono flex-shrink-0 w-12 text-right">~1 wk</span>
+          <span className="text-[10px] text-primary font-mono flex-shrink-0 w-12 text-right">~1 wk</span>
         </div>
         <p className="mt-0.5 text-[11px] text-foreground/40 leading-snug">Fewer, stronger variants reach significance sooner</p>
       </div>
@@ -58,14 +58,14 @@ function ABTestVisual() {
 
 function BehaviorVisual() {
   const personas = [
-    { name: "High-ATV buyer", coverage: "Representative", color: "bg-primary/10 text-primary-glow" },
-    { name: "Enterprise admin", coverage: "Accurately modeled", color: "bg-blue-500/10 text-blue-400" },
-    { name: "New user", coverage: "Representative", color: "bg-purple-500/10 text-purple-400" },
+    { name: "High-ATV buyer", coverage: "Representative", color: "bg-primary/10 text-primary" },
+    { name: "Enterprise admin", coverage: "Accurately modeled", color: "bg-highlight text-highlight-foreground" },
+    { name: "New user", coverage: "Representative", color: "bg-primary/10 text-primary" },
   ];
   return (
     <div className="flex flex-col gap-2 w-full max-w-xs">
       {personas.map((p, i) => (
-        <div key={i} className={`flex items-center gap-2.5 rounded-xl px-3 py-2.5 ${p.color}`}>
+        <div key={i} className={`flex items-center gap-2.5 border border-border px-3 py-2.5 ${p.color}`}>
           <div className="w-6 h-6 rounded-full bg-foreground/10 flex items-center justify-center flex-shrink-0">
             <span className="text-[10px] font-bold text-foreground">{i + 1}</span>
           </div>
@@ -100,7 +100,7 @@ function DiagnoseVisual() {
           </span>
         </div>
       ))}
-      <div className="flex items-start gap-2 mt-1 bg-foreground/5 rounded-xl px-3 py-2">
+      <div className="flex items-start gap-2 mt-1 border border-border bg-foreground/5 px-3 py-2">
         <HelpCircle className="w-3.5 h-3.5 text-primary-glow flex-shrink-0 mt-0.5" />
         <span className="text-[11px] text-foreground/70 leading-snug">
           <span className="font-semibold text-foreground">Why:</span> session resets after the legal link opens a new tab
@@ -113,13 +113,13 @@ function DiagnoseVisual() {
 function OptimizeVisual() {
   return (
     <div className="flex items-center gap-3 w-full max-w-xs">
-      <div className="flex-1 bg-foreground/5 rounded-2xl p-4 text-center">
+      <div className="flex-1 border border-border bg-foreground/5 p-4 text-center">
         <div className="text-[10px] text-foreground/40 uppercase tracking-widest mb-1">Before</div>
         <div className="text-2xl font-bold text-foreground/50">8</div>
         <div className="text-[10px] text-foreground/30 mt-0.5">customer reported UX issues</div>
       </div>
       <ArrowRight className="w-4 h-4 text-foreground/20 flex-shrink-0" />
-      <div className="flex-1 bg-primary/10 rounded-2xl p-4 text-center border border-primary/20">
+      <div className="flex-1 border border-primary/30 bg-primary/10 p-4 text-center">
         <div className="text-[10px] text-primary-glow uppercase tracking-widest mb-1">After</div>
         <div className="text-2xl font-bold text-primary-glow">0</div>
         <div className="text-[10px] text-primary/50 mt-0.5">issues escaped to customers</div>
@@ -133,7 +133,7 @@ const features = [
     title: "Accurate Coverage of High-Value Customers",
     description: "Jurny models accurate, representative personas of the customers who matter most, so you validate journeys the way your highest-value users actually behave.",
     visual: <BehaviorVisual />,
-    panelBg: "bg-accent/60",
+    panelBg: "bg-secondary",
   },
   {
     title: "Make Your A/B Tests Converge Faster",
@@ -151,7 +151,7 @@ const features = [
     title: "Build Trust in Every Release",
     description: "Turn each release into a confidence moment by preventing customer-reported usability issues from reaching production.",
     visual: <OptimizeVisual />,
-    panelBg: "bg-accent/60",
+    panelBg: "bg-secondary",
   },
 ];
 
@@ -170,7 +170,7 @@ const Features = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {features.map((feature, i) => (
                 <Reveal key={i} asChild delay={(i % 2) * 120}>
-                  <div className="rounded-3xl bg-card shadow-[0_10px_40px_rgba(35,38,85,0.06)] overflow-hidden flex flex-col group h-full">
+                  <div className="border border-border bg-card overflow-hidden flex flex-col group h-full">
                     <div className={`${feature.panelBg} flex items-center justify-center p-6 sm:p-10 min-h-[180px] sm:min-h-[200px] transition-all duration-300`}>
                       {feature.visual}
                     </div>
