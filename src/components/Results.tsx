@@ -23,11 +23,11 @@ const proofCards = [
 
 const Results = () => {
   return (
-    <section id="results" className="bg-background pt-4 pb-12 sm:pt-6 sm:pb-20">
+    <section id="results" className="border-b border-border bg-background pb-12 pt-10 sm:pb-14 sm:pt-14">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-6xl">
           <Reveal asChild>
-            <h2 className="mx-auto mb-6 max-w-xl text-center text-sm font-medium leading-relaxed text-foreground/60 sm:mb-8 sm:text-base">
+            <h2 className="mb-8 max-w-3xl text-left text-xl font-medium leading-snug tracking-tight text-foreground/65 sm:text-2xl">
               Built for teams moving beyond slow, traffic-heavy experiments.
               <br />
               Real conversion insights, surfaced in days instead of weeks.
@@ -41,9 +41,9 @@ const Results = () => {
               if (!card.quote) {
                 return (
                   <Reveal key={card.title} asChild delay={i * 120}>
-                    <div className="flex min-h-[280px] flex-col justify-center rounded-3xl bg-accent/70 p-6 text-left sm:p-8">
+                    <div className="flex min-h-[280px] flex-col justify-center border border-border bg-secondary p-6 text-left sm:p-8">
                       <div className="mb-6 flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <div className="flex h-10 w-10 items-center justify-center bg-highlight text-highlight-foreground">
                           <Icon className="h-5 w-5" />
                         </div>
                         <p className="text-xs font-semibold uppercase tracking-widest text-foreground/45">
@@ -67,10 +67,10 @@ const Results = () => {
 
               return (
                 <Reveal key={card.title} asChild delay={i * 120}>
-                  <div className="grid min-h-[280px] rounded-3xl bg-secondary p-6 text-left sm:p-8 xl:grid-cols-[1fr_auto_0.72fr] xl:items-center xl:gap-6">
+                  <div className="grid min-h-[280px] border border-border bg-secondary p-6 text-left sm:p-8 xl:grid-cols-[1fr_auto_0.72fr] xl:items-center xl:gap-6">
                     <div>
                       <div className="mb-5 flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <div className="flex h-10 w-10 items-center justify-center bg-highlight text-highlight-foreground">
                           <Icon className="h-5 w-5" />
                         </div>
                         <p className="text-xs font-semibold uppercase tracking-widest text-foreground/45">

@@ -4,17 +4,17 @@ import Providers from "@/components/Providers";
 import "@/index.css";
 
 export const metadata: Metadata = {
-  title: "Synthetic Users to Understand Customer Behavior",
+  title: "Predict Your A/B Tests and Find Cohort Friction",
   description:
-    "Deploy AI-powered synthetic users to simulate real behavior on your product before launch. Discover consumer friction, product gaps, revenue leaks, and churn risks at scale.",
+    "Jurny builds one model of your D2C customers from the customer data you already have, then runs synthetic users through your site. Get a directional call on every variant, and see exactly where each cohort gets stuck.",
   metadataBase: new URL("https://usejurny.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Synthetic Users to Understand Customer Behavior",
+    title: "Predict Your A/B Tests and Find Cohort Friction",
     description:
-      "Deploy synthetic users to simulate real behavior on your website or app. Reveal consumer friction, product gaps, and revenue leaks before real users ever touch your product.",
+      "One user model built from the customer data you already have. Synthetic users predict which variant wins before you spend traffic, and show which cohort stalls at which step.",
     url: "https://usejurny.com",
     siteName: "jurny",
     type: "website",
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@jurny_ai",
-    title: "Synthetic Users to Understand Customer Behavior",
+    title: "Predict Your A/B Tests and Find Cohort Friction",
     description:
-      "Simulate how real users will behave before they ever touch your product. AI-powered personas reveal friction, gaps, and revenue leaks at scale.",
+      "Synthetic users drawn from one model of your customers. Call the winning variant before you spend traffic, and see which cohort stalls at which step.",
     images: ["/lovable-uploads/560e781d-c4c7-4e51-819a-b21fc0746540.png"],
   },
   robots: "index, follow",
@@ -42,7 +42,7 @@ export default function RootLayout({
     name: "jurny.ai",
     url: "https://usejurny.com",
     description:
-      "AI-powered synthetic user simulation platform. Deploy targeted personas, simulate user behaviors at scale, and discover actionable insights to improve user journeys.",
+      "User model infrastructure for D2C teams. Jurny builds one model of your customers from qualitative and quantitative evidence, then runs synthetic users through your site to predict A/B test outcomes and diagnose cohort-level friction.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     offers: {

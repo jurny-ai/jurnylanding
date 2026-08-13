@@ -13,7 +13,7 @@ import {
 import { track } from "@/lib/analytics";
 
 const CALENDLY_URL = "https://calendly.com/jurny-ai/new-meeting";
-const ONBOARDING_URL = "https://dashboard.usejurny.com/onboarding";
+const ONBOARDING_URL = "https://dashboard.usejurny.com/get-started";
 
 const questions = [
   {
@@ -75,7 +75,7 @@ export default function QualificationFlow({ open, onOpenChange }: QualificationF
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="w-[calc(100%-2rem)] max-w-lg overflow-hidden rounded-3xl border-primary/10 p-0 shadow-2xl">
+      <DialogContent className="w-[calc(100%-2rem)] max-w-lg overflow-hidden rounded-none border-primary/20 p-0 shadow-2xl">
         <div className="h-1.5 bg-secondary">
           <div
             className="h-full bg-primary transition-all duration-300"
@@ -85,7 +85,7 @@ export default function QualificationFlow({ open, onOpenChange }: QualificationF
 
         {complete && isQualified ? (
           <div className="px-6 py-10 text-center sm:px-10">
-            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center bg-highlight text-highlight-foreground">
               <CalendarCheck2 className="h-7 w-7" />
             </div>
             <DialogHeader className="text-center sm:text-center">
@@ -95,7 +95,7 @@ export default function QualificationFlow({ open, onOpenChange }: QualificationF
               </DialogDescription>
             </DialogHeader>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              <Button className="h-12 rounded-full font-bold" asChild>
+              <Button className="h-12 rounded-none font-bold" asChild>
                 <a
                   href={CALENDLY_URL}
                   onClick={() => track("cta_clicked", { location: "qualification_complete", label: "Choose a time", ...answers })}
@@ -103,7 +103,7 @@ export default function QualificationFlow({ open, onOpenChange }: QualificationF
                   Choose a time
                 </a>
               </Button>
-              <Button variant="outline" className="h-12 rounded-full font-bold" asChild>
+              <Button variant="outline" className="h-12 rounded-none font-bold" asChild>
                 <a
                   href={ONBOARDING_URL}
                   onClick={() => track("cta_clicked", { location: "qualification_complete", label: "Try for free", ...answers })}
@@ -116,7 +116,7 @@ export default function QualificationFlow({ open, onOpenChange }: QualificationF
           </div>
         ) : complete ? (
           <div className="px-6 py-10 text-center sm:px-10">
-            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary text-foreground/55">
+            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center bg-secondary text-foreground/55">
               <Clock3 className="h-7 w-7" />
             </div>
             <DialogHeader className="text-center sm:text-center">
@@ -128,7 +128,7 @@ export default function QualificationFlow({ open, onOpenChange }: QualificationF
             <Button
               type="button"
               variant="secondary"
-              className="mt-7 h-12 w-full rounded-full font-bold"
+              className="mt-7 h-12 w-full rounded-none font-bold"
               onClick={() => handleOpenChange(false)}
             >
               Got it
@@ -154,7 +154,7 @@ export default function QualificationFlow({ open, onOpenChange }: QualificationF
                     role="radio"
                     aria-checked={selected}
                     onClick={() => selectAnswer(option)}
-                    className={`flex min-h-12 items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition-colors ${
+                    className={`flex min-h-12 items-center justify-between border px-4 py-3 text-left text-sm font-semibold transition-colors ${
                       selected
                         ? "border-primary bg-primary/10 text-foreground"
                         : "border-border bg-background text-foreground/70 hover:border-primary/35 hover:bg-secondary/60"
@@ -173,7 +173,7 @@ export default function QualificationFlow({ open, onOpenChange }: QualificationF
               <Button
                 type="button"
                 variant="ghost"
-                className="mt-6 rounded-full"
+                className="mt-6 rounded-none"
                 onClick={() => setStep((current) => current - 1)}
               >
                 <ArrowLeft className="mr-2 h-4 w-4" />

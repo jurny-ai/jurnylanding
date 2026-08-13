@@ -10,34 +10,34 @@ import Reveal from "@/components/Reveal";
 
 const faqs = [
   {
-    question: "Can Jurny catch problems during the design process?",
+    question: "Does this replace live A/B testing?",
     answer:
-      "Yes. Jurny can evaluate prototypes and staging builds before launch, helping teams validate product decisions while changes are still low-cost.",
+      "No. It changes what you send to live traffic. Jurny gives you a directional call on every variant in hours, so you ship the two worth testing instead of splitting traffic five ways for a month. The live test is still what confirms the result.",
+  },
+  {
+    question: "How accurate is a directional prediction?",
+    answer:
+      "Directional means Jurny calls which variant wins and roughly how far apart they are, not an exact conversion rate. We calibrate against tests you have already run, so you can see how the model performed on your own history before you rely on it for the next one.",
+  },
+  {
+    question: "What is the difference between population and individual modeling?",
+    answer:
+      "The population layer captures how your whole customer base behaves, including segment sizes, behavioral distributions, and price sensitivity. That is what predicts an experiment. The individual layer is one customer with memory, constraints, and intent. That is what explains why a specific cohort dropped off.",
+  },
+  {
+    question: "What data do you need to build the model?",
+    answer:
+      "Whatever you already have. Interviews, support tickets, reviews, session notes, and survey verbatims on the qualitative side, plus funnel analytics, session replay, order history, and past experiment results on the quantitative side. More evidence sharpens the model, but you do not need all of it to start.",
+  },
+  {
+    question: "Where do the cohorts come from?",
+    answer:
+      "Your own data. Jurny derives cohorts from the behavior in your evidence rather than from a stock persona library, and you can add the segments your team already reports on so the findings line up with how you talk about customers.",
   },
   {
     question: "Does Jurny actually use the product, or just analyze screens?",
     answer:
-      "It uses the product. Each synthetic user clicks through the product to pursue a real goal, closer to a user testing session than a surface-level scan, and findings come from that journey-level behavior.",
-  },
-  {
-    question: "As the app changes, does Jurny act like a new or returning user?",
-    answer:
-      "Both. Jurny can simulate first-time users or returning users with retained context across sessions.",
-  },
-  {
-    question: "How frequently can teams run Jurny?",
-    answer:
-      "As needed. Teams typically run Jurny when workflows change, before release milestones, or when a product decision needs validation.",
-  },
-  {
-    question: "What can Jurny test?",
-    answer:
-      "Jurny can test prototypes, dev links, staging builds, and live products, with runs focused on the workflows that matter most.",
-  },
-  {
-    question: "What does a product team get back?",
-    answer:
-      "Teams receive prioritized findings, voice-of-customer style feedback, replayable evidence, and recommendations for product, design, or engineering work.",
+      "It uses the product. Each synthetic user clicks through prototypes, staging builds, or the live site to pursue a real goal, and every finding comes with the replayable session that produced it.",
   },
 ];
 
@@ -56,7 +56,7 @@ const FAQ = () => {
               </h2>
             </Reveal>
 
-            <Reveal delay={100} className="rounded-3xl bg-secondary/70 px-3 py-1 sm:px-7 sm:py-4">
+            <Reveal delay={100} className="border border-border bg-secondary px-3 py-1 sm:px-7 sm:py-4">
               <Accordion type="single" collapsible>
                 {faqs.map((faq) => (
                   <AccordionItem key={faq.question} value={faq.question}>

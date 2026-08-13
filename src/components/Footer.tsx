@@ -13,9 +13,9 @@ const Footer = () => {
           <Reveal className="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8 text-center md:text-left">
             {/* Brand */}
             <div className="flex items-center justify-center gap-4">
-              <img 
-                src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png" 
-                alt="Jurny Logo" 
+              <img
+                src="/lovable-uploads/bb454a78-d8c4-4776-aa28-246c06947dfc.png"
+                alt="Jurny Logo"
                 className="h-6 opacity-80"
               />
             </div>
@@ -23,13 +23,13 @@ const Footer = () => {
             {/* Centered Description Text */}
             <div className="flex-1 md:text-center">
               <p className="text-foreground/60 text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed">
-                The future of product validation through autonomous synthetic user testing.
+                One user model. Predict your tests, find customer friction.
               </p>
             </div>
 
             {/* Work with Us Button */}
             <div className="flex items-center w-full sm:w-auto justify-center">
-              <Button size="lg" className="w-full sm:w-auto justify-center bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 h-auto text-sm font-bold transition-all duration-300" asChild>
+              <Button size="lg" className="w-full sm:w-auto justify-center bg-primary hover:bg-primary/90 text-primary-foreground rounded-none px-8 py-4 h-auto text-sm font-bold transition-all duration-300" asChild>
               <a href="https://calendly.com/jurny-ai/new-meeting" onClick={() => track("cta_clicked", { location: "footer", label: "Get Started" })}>
                 Get Started
                   <ArrowRight className="ml-2 h-4 w-4" />
