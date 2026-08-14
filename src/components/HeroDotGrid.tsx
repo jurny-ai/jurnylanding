@@ -201,9 +201,12 @@ const HeroDotGrid = () => {
         const alpha = baseA[idx] > glow ? baseA[idx] : glow;
         if (alpha < 0.012) continue;
 
+        // Grow toward the full group-dot size when lit, so hovering a bare gap
+        // looks the same as hovering a group (not just tiny specks).
+        const radius = sizes[idx] + (DOT_MAX - sizes[idx]) * h;
         ctx.globalAlpha = alpha;
         ctx.beginPath();
-        ctx.arc(homeX[idx] + ddx, homeY[idx] + ddy, sizes[idx] * (1 + 0.35 * h), 0, Math.PI * 2);
+        ctx.arc(homeX[idx] + ddx, homeY[idx] + ddy, radius, 0, Math.PI * 2);
         ctx.fill();
       }
       ctx.globalAlpha = 1;
