@@ -30,7 +30,8 @@ const GROUP_LO = 0.44; // noise below this → bare background (no dots)
 const GROUP_HI = 0.7; // noise above this → full-strength group
 const DOT_HSL = "0, 0%, 100%"; // white
 const LIME_HSL = "75.08, 85.65%, 59.02%"; // brand lime (--highlight)
-const LIME_FRACTION = 0.01; // share of dots tinted lime instead of white
+const LIME_FRACTION = 0.03; // share of dots tinted lime instead of white
+const LIME_SIZE_MULT = 1.5; // lime dots render slightly larger than the white ones
 
 // Interaction.
 const CURSOR_RADIUS = 60; // px — reach of the cursor's brighten + nudge
@@ -226,7 +227,8 @@ const HeroDotGrid = () => {
         const glow = h * GLOW_MAX;
         const alpha = baseA[idx] > glow ? baseA[idx] : glow;
         if (alpha < 0.012) continue;
-        const radius = sizes[idx] + (DOT_MAX - sizes[idx]) * h;
+        let radius = sizes[idx] + (DOT_MAX - sizes[idx]) * h;
+        if (lime[idx]) radius *= LIME_SIZE_MULT;
         const style = lime[idx] ? limeStyle : whiteStyle;
         if (style !== curStyle) {
           ctx.fillStyle = style;
