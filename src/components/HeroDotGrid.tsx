@@ -35,7 +35,7 @@ const DOT_HSL = "0, 0%, 100%"; // white
 // Interaction.
 const CURSOR_RADIUS = 60; // px — reach of the cursor's brighten + nudge
 const GLOW_MAX = 1; // opacity a dot reaches right under the cursor
-const GLOW_FADE = 0.88; // brightness retained per frame after the cursor leaves
+const GLOW_FADE = 0.94; // brightness retained per frame after the cursor leaves (higher = longer tail)
 const PUSH_STRENGTH = 0.16; // per-frame nudge acceleration at the cursor's center
 const SPRING_K = 0.05; // pull back toward home (stiffness)
 const DAMPING = 0.86; // velocity retained per frame (< 1; lower = settles faster)
