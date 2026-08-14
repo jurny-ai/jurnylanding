@@ -22,7 +22,7 @@ const Hero = () => {
       className="relative overflow-hidden bg-primary pt-16 text-primary-foreground scroll-mt-14 sm:pt-[4.5rem] sm:scroll-mt-16"
     >
       <HeroDotGrid />
-      <div className="container mx-auto px-4 sm:px-6">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6">
         <div className="relative mx-auto max-w-7xl px-4 py-12 text-center sm:px-8 sm:py-16 lg:px-12 lg:py-20">
           <Reveal className="mx-auto flex max-w-5xl flex-col items-center">
             <a

@@ -3,30 +3,49 @@
 import { useEffect, useRef } from "react";
 
 /**
- * A field of dots painted onto a canvas, confined to its nearest positioned
- * ancestor (mount inside a `relative` section). Dots start from an even grid
- * but each is jittered off its cell (and given a slightly random size) so the
- * field keeps an ordered grid feel while softening the rigid lattice that would
- * otherwise create a moiré illusion.
+ * A halftone-style field of dots painted onto a canvas, confined to its nearest
+ * positioned ancestor (mount inside a `relative` section). Dots sit on an even
+ * grid; a large-scale value-noise field varies each dot's resting opacity and
+ * size, so the visible dots gather into a few separated cloud-like groups over
+ * a mostly bare background.
  *
- * Every dot is invisible until the cursor passes near it. Dots under the cursor
- * light up brightest and biggest, then fade to a faint level that lingers while
- * gently shrinking — leaving a shooting-star trail along the path the cursor
- * just took before it fades out.
+ * As the cursor moves through the field, nearby dots brighten toward full
+ * opacity (re-lighting each time the cursor passes over them) and then fade back
+ * to their resting opacity. They are also given a very slight physical nudge
+ * away from the cursor, springing back once it leaves.
+ *
+ * Every dot is redrawn each frame, but dots that are invisible, cool, and at
+ * rest are skipped, keeping the draw count down.
  *
  * Renders nothing for touch/no-hover pointers or when the user has requested
  * reduced motion.
  */
-const SPACING = 5; // px between grid cells (before jitter)
-const JITTER = 0.25; // how far a dot can drift off its cell, as a fraction of SPACING
-const DOT_MIN = 0.7; // px, smallest base dot radius
-const DOT_MAX = 1.3; // px, largest base dot radius
-const SIZE_FLOOR = 0.5; // trail dots keep at least this fraction of their base size
-const REVEAL_RADIUS = 55; // px around the cursor that lights up (the "star")
-const TRAIL_THRESHOLD = 0.4; // above this a dot is the bright head; below, the trail
-const HEAD_FADE = 0.85; // fast decay for the bright head (~0.3s)
-const TRAIL_FADE = 0.985; // slow decay for the lingering trail (~4s) — longer tail
-const DOT_HSL = "75.08, 85.65%, 59.02%"; // brand lime (--highlight)
+const SPACING = 6; // px between grid dots
+const JITTER = 0; // 0 = dots sit on a perfect grid (no scatter)
+const DOT_MIN = 0.4; // px, dot radius in the sparsest patches
+const DOT_MAX = 1.5; // px, dot radius in the densest patches
+const BASE_OPACITY_MAX = 0.15; // resting opacity of the densest texture dots
+const NOISE_A = 360; // coarse noise cell size (px) — the big cloud groups
+const NOISE_B = 150; // secondary noise cell size (px) — gentle large-scale variation
+const NOISE_A_WEIGHT = 0.82; // lean on the coarse octave so groups stay clean
+const GROUP_LO = 0.44; // noise below this → bare background (no dots)
+const GROUP_HI = 0.7; // noise above this → full-strength group
+const DOT_HSL = "0, 0%, 100%"; // white
+
+// Interaction.
+const CURSOR_RADIUS = 60; // px — reach of the cursor's brighten + nudge
+const GLOW_MAX = 1; // opacity a dot reaches right under the cursor
+const GLOW_FADE = 0.88; // brightness retained per frame after the cursor leaves
+const PUSH_STRENGTH = 0.16; // per-frame nudge acceleration at the cursor's center
+const SPRING_K = 0.05; // pull back toward home (stiffness)
+const DAMPING = 0.86; // velocity retained per frame (< 1; lower = settles faster)
+const MAX_DISP = 8; // px — clamp how far a dot can travel
+
+const smooth = (t: number) => t * t * (3 - 2 * t);
+const smoothstep = (a: number, b: number, x: number) => {
+  const t = Math.min(1, Math.max(0, (x - a) / (b - a)));
+  return t * t * (3 - 2 * t);
+};
 
 const HeroDotGrid = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -43,18 +62,41 @@ const HeroDotGrid = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let cols = 0;
-    let rows = 0;
-    let offsetX = 0;
-    let offsetY = 0;
+    let count = 0;
     let width = 0;
     let height = 0;
-    // Per-dot state, indexed r * cols + c.
-    let intensities = new Float32Array(0);
-    let posX = new Float32Array(0); // jittered pixel position
-    let posY = new Float32Array(0);
+    // Per-dot state.
+    let homeX = new Float32Array(0);
+    let homeY = new Float32Array(0);
+    let dx = new Float32Array(0); // displacement from home
+    let dy = new Float32Array(0);
+    let vx = new Float32Array(0); // velocity
+    let vy = new Float32Array(0);
+    let heat = new Float32Array(0); // 0..1 brightness from the cursor
+    let baseA = new Float32Array(0); // resting opacity
     let sizes = new Float32Array(0);
     const mouse = { x: -9999, y: -9999, active: false };
+
+    // Build a smooth value-noise sampler over the current canvas size.
+    const makeNoise = (cell: number) => {
+      const gc = Math.ceil(width / cell) + 2;
+      const gr = Math.ceil(height / cell) + 2;
+      const lat = new Float32Array(gc * gr);
+      for (let i = 0; i < lat.length; i++) lat[i] = Math.random();
+      return (x: number, y: number) => {
+        const fx = x / cell;
+        const fy = y / cell;
+        const x0 = Math.floor(fx);
+        const y0 = Math.floor(fy);
+        const tx = smooth(fx - x0);
+        const ty = smooth(fy - y0);
+        const v00 = lat[y0 * gc + x0];
+        const v10 = lat[y0 * gc + x0 + 1];
+        const v01 = lat[(y0 + 1) * gc + x0];
+        const v11 = lat[(y0 + 1) * gc + x0 + 1];
+        return (v00 * (1 - tx) + v10 * tx) * (1 - ty) + (v01 * (1 - tx) + v11 * tx) * ty;
+      };
+    };
 
     const setup = () => {
       const rect = parent.getBoundingClientRect();
@@ -66,22 +108,35 @@ const HeroDotGrid = () => {
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      cols = Math.floor(width / SPACING);
-      rows = Math.floor(height / SPACING);
-      offsetX = (width - (cols - 1) * SPACING) / 2;
-      offsetY = (height - (rows - 1) * SPACING) / 2;
-      const count = cols * rows;
-      intensities = new Float32Array(count);
-      posX = new Float32Array(count);
-      posY = new Float32Array(count);
+
+      const cols = Math.floor(width / SPACING);
+      const rows = Math.floor(height / SPACING);
+      const offsetX = (width - (cols - 1) * SPACING) / 2;
+      const offsetY = (height - (rows - 1) * SPACING) / 2;
+      count = cols * rows;
+      homeX = new Float32Array(count);
+      homeY = new Float32Array(count);
+      dx = new Float32Array(count);
+      dy = new Float32Array(count);
+      vx = new Float32Array(count);
+      vy = new Float32Array(count);
+      heat = new Float32Array(count);
+      baseA = new Float32Array(count);
       sizes = new Float32Array(count);
-      // Freeze a random jitter + size per dot so the field is stable but not gridded.
+
+      const noiseA = makeNoise(NOISE_A);
+      const noiseB = makeNoise(NOISE_B);
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
           const idx = r * cols + c;
-          posX[idx] = offsetX + c * SPACING + (Math.random() - 0.5) * 2 * JITTER * SPACING;
-          posY[idx] = offsetY + r * SPACING + (Math.random() - 0.5) * 2 * JITTER * SPACING;
-          sizes[idx] = DOT_MIN + Math.random() * (DOT_MAX - DOT_MIN);
+          const px = offsetX + c * SPACING + (Math.random() - 0.5) * 2 * JITTER * SPACING;
+          const py = offsetY + r * SPACING + (Math.random() - 0.5) * 2 * JITTER * SPACING;
+          homeX[idx] = px;
+          homeY[idx] = py;
+          const raw = NOISE_A_WEIGHT * noiseA(px, py) + (1 - NOISE_A_WEIGHT) * noiseB(px, py);
+          const field = smoothstep(GROUP_LO, GROUP_HI, raw);
+          sizes[idx] = DOT_MIN + (DOT_MAX - DOT_MIN) * field;
+          baseA[idx] = field * BASE_OPACITY_MAX;
         }
       }
     };
@@ -98,43 +153,60 @@ const HeroDotGrid = () => {
 
     let raf = 0;
     const tick = () => {
-      // Light up dots within reach of the cursor (brightest at the center). The
-      // cell scan is padded by the jitter range so drifted dots aren't missed.
-      if (mouse.active) {
-        const pad = REVEAL_RADIUS + JITTER * SPACING;
-        const minCol = Math.max(0, Math.floor((mouse.x - pad - offsetX) / SPACING));
-        const maxCol = Math.min(cols - 1, Math.ceil((mouse.x + pad - offsetX) / SPACING));
-        const minRow = Math.max(0, Math.floor((mouse.y - pad - offsetY) / SPACING));
-        const maxRow = Math.min(rows - 1, Math.ceil((mouse.y + pad - offsetY) / SPACING));
-        for (let r = minRow; r <= maxRow; r++) {
-          for (let c = minCol; c <= maxCol; c++) {
-            const idx = r * cols + c;
-            const dist = Math.hypot(posX[idx] - mouse.x, posY[idx] - mouse.y);
-            if (dist < REVEAL_RADIUS) {
-              const v = 1 - dist / REVEAL_RADIUS;
-              if (v > intensities[idx]) intensities[idx] = v;
-            }
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = `hsl(${DOT_HSL})`;
+      const r2 = CURSOR_RADIUS * CURSOR_RADIUS;
+
+      for (let idx = 0; idx < count; idx++) {
+        let ddx = dx[idx];
+        let ddy = dy[idx];
+        let dvx = vx[idx];
+        let dvy = vy[idx];
+        let h = heat[idx] * GLOW_FADE; // cool down a little each frame
+
+        // Cursor interaction: brighten + a slight nudge away.
+        if (mouse.active) {
+          const rx = homeX[idx] + ddx - mouse.x;
+          const ry = homeY[idx] + ddy - mouse.y;
+          const d2 = rx * rx + ry * ry;
+          if (d2 < r2 && d2 > 0.01) {
+            const dist = Math.sqrt(d2);
+            const prox = 1 - dist / CURSOR_RADIUS;
+            if (prox > h) h = prox; // re-lights each time the cursor passes over
+            const f = (PUSH_STRENGTH * prox) / dist;
+            dvx += rx * f;
+            dvy += ry * f;
           }
         }
-      }
+        heat[idx] = h;
 
-      // Draw lit dots. Brightness scales fully with intensity; size only tapers
-      // down to SIZE_FLOOR, so the tail stays visible instead of vanishing.
-      ctx.clearRect(0, 0, width, height);
-      const count = intensities.length;
-      for (let idx = 0; idx < count; idx++) {
-        const v = intensities[idx];
-        if (v <= 0.01) {
-          intensities[idx] = 0;
-          continue;
+        // Spring back toward home, with damping.
+        dvx = (dvx - SPRING_K * ddx) * DAMPING;
+        dvy = (dvy - SPRING_K * ddy) * DAMPING;
+        ddx += dvx;
+        ddy += dvy;
+        const mag = Math.hypot(ddx, ddy);
+        if (mag > MAX_DISP) {
+          const s = MAX_DISP / mag;
+          ddx *= s;
+          ddy *= s;
         }
-        const radius = sizes[idx] * (SIZE_FLOOR + (1 - SIZE_FLOOR) * v);
+        dx[idx] = ddx;
+        dy[idx] = ddy;
+        vx[idx] = dvx;
+        vy[idx] = dvy;
+
+        // Brightness is the cursor glow or the resting opacity, whichever is more.
+        const glow = h * GLOW_MAX;
+        const alpha = baseA[idx] > glow ? baseA[idx] : glow;
+        if (alpha < 0.012) continue;
+
+        ctx.globalAlpha = alpha;
         ctx.beginPath();
-        ctx.arc(posX[idx], posY[idx], radius, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${DOT_HSL}, ${v})`;
+        ctx.arc(homeX[idx] + ddx, homeY[idx] + ddy, sizes[idx] * (1 + 0.35 * h), 0, Math.PI * 2);
         ctx.fill();
-        intensities[idx] = v > TRAIL_THRESHOLD ? v * HEAD_FADE : v * TRAIL_FADE;
       }
+      ctx.globalAlpha = 1;
       raf = requestAnimationFrame(tick);
     };
 
@@ -152,7 +224,7 @@ const HeroDotGrid = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} aria-hidden className="pointer-events-none absolute inset-0 z-10" />;
+  return <canvas ref={canvasRef} aria-hidden className="pointer-events-none absolute inset-0 z-0" />;
 };
 
 export default HeroDotGrid;
