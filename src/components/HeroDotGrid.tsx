@@ -6,16 +6,14 @@ import { useEffect, useRef } from "react";
  * A halftone-style field of dots painted onto a canvas, confined to its nearest
  * positioned ancestor (mount inside a `relative` section). Dots sit on an even
  * grid; a large-scale value-noise field varies each dot's resting opacity and
- * size, so the visible dots gather into a few separated cloud-like groups over
- * a mostly bare background.
+ * size, so the visible dots gather into small, broken-up cloud groups over a
+ * mostly bare background.
  *
  * As the cursor moves through the field, nearby dots brighten toward full
- * opacity (re-lighting each time the cursor passes over them) and then fade back
- * to their resting opacity. They are also given a very slight physical nudge
- * away from the cursor, springing back once it leaves.
- *
- * Every dot is redrawn each frame, but dots that are invisible, cool, and at
- * rest are skipped, keeping the draw count down.
+ * opacity and are given a very slight nudge away, springing back once it leaves.
+ * Interaction is measured against the whole segment the cursor swept this frame
+ * (last position → current), so a fast flick lights the dots along its path just
+ * as smoothly as a slow drag instead of leaving gaps.
  *
  * Renders nothing for touch/no-hover pointers or when the user has requested
  * reduced motion.
@@ -75,7 +73,8 @@ const HeroDotGrid = () => {
     let heat = new Float32Array(0); // 0..1 brightness from the cursor
     let baseA = new Float32Array(0); // resting opacity
     let sizes = new Float32Array(0);
-    const mouse = { x: -9999, y: -9999, active: false };
+    // Cursor: current position, plus where it was last frame (for the swept segment).
+    const mouse = { x: -9999, y: -9999, px: -9999, py: -9999, active: false };
 
     // Build a smooth value-noise sampler over the current canvas size.
     const makeNoise = (cell: number) => {
@@ -143,8 +142,16 @@ const HeroDotGrid = () => {
 
     const onMove = (e: MouseEvent) => {
       const rect = parent.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      const nx = e.clientX - rect.left;
+      const ny = e.clientY - rect.top;
+      // On (re-)entry start the segment at the current point so we don't sweep
+      // a line across the hero from wherever the cursor last was.
+      if (!mouse.active) {
+        mouse.px = nx;
+        mouse.py = ny;
+      }
+      mouse.x = nx;
+      mouse.y = ny;
       mouse.active = true;
     };
     const onLeave = () => {
@@ -156,6 +163,12 @@ const HeroDotGrid = () => {
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = `hsl(${DOT_HSL})`;
       const r2 = CURSOR_RADIUS * CURSOR_RADIUS;
+      // The segment the cursor swept this frame: (px,py) -> (x,y).
+      const ax = mouse.px;
+      const ay = mouse.py;
+      const abx = mouse.x - ax;
+      const aby = mouse.y - ay;
+      const abLen2 = abx * abx + aby * aby;
 
       for (let idx = 0; idx < count; idx++) {
         let ddx = dx[idx];
@@ -164,10 +177,16 @@ const HeroDotGrid = () => {
         let dvy = vy[idx];
         let h = heat[idx] * GLOW_FADE; // cool down a little each frame
 
-        // Cursor interaction: brighten + a slight nudge away.
+        // Cursor interaction, measured against the nearest point on the swept
+        // segment so fast moves light the whole path, not just the endpoints.
         if (mouse.active) {
-          const rx = homeX[idx] + ddx - mouse.x;
-          const ry = homeY[idx] + ddy - mouse.y;
+          const px = homeX[idx] + ddx;
+          const py = homeY[idx] + ddy;
+          let t = abLen2 > 0 ? ((px - ax) * abx + (py - ay) * aby) / abLen2 : 0;
+          if (t < 0) t = 0;
+          else if (t > 1) t = 1;
+          const rx = px - (ax + t * abx);
+          const ry = py - (ay + t * aby);
           const d2 = rx * rx + ry * ry;
           if (d2 < r2 && d2 > 0.01) {
             const dist = Math.sqrt(d2);
@@ -196,13 +215,9 @@ const HeroDotGrid = () => {
         vx[idx] = dvx;
         vy[idx] = dvy;
 
-        // Brightness is the cursor glow or the resting opacity, whichever is more.
         const glow = h * GLOW_MAX;
         const alpha = baseA[idx] > glow ? baseA[idx] : glow;
         if (alpha < 0.012) continue;
-
-        // Grow toward the full group-dot size when lit, so hovering a bare gap
-        // looks the same as hovering a group (not just tiny specks).
         const radius = sizes[idx] + (DOT_MAX - sizes[idx]) * h;
         ctx.globalAlpha = alpha;
         ctx.beginPath();
@@ -210,6 +225,10 @@ const HeroDotGrid = () => {
         ctx.fill();
       }
       ctx.globalAlpha = 1;
+
+      // This frame's position becomes next frame's segment start.
+      mouse.px = mouse.x;
+      mouse.py = mouse.y;
       raf = requestAnimationFrame(tick);
     };
 
