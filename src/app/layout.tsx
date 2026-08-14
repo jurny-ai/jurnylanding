@@ -4,7 +4,7 @@ import Providers from "@/components/Providers";
 import "@/index.css";
 
 export const metadata: Metadata = {
-  title: "Get More From Your Funnel in Hours, Not Quarters",
+  title: "Jurny - Your customers, simulated",
   description:
     "Know which variant wins before you spend traffic on it, and see exactly which cohort gets stuck where. Jurny simulates your D2C customers against every variant and every flow.",
   metadataBase: new URL("https://usejurny.com"),
