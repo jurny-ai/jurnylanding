@@ -30,7 +30,8 @@ const GROUP_LO = 0.44; // noise below this → bare background (no dots)
 const GROUP_HI = 0.7; // noise above this → full-strength group
 const DOT_HSL = "0, 0%, 100%"; // white
 const LIME_HSL = "75.08, 85.65%, 59.02%"; // brand lime (--highlight)
-const LIME_FRACTION = 0.03; // share of dots tinted lime instead of white
+const LIME_CELL = 130; // noise cell (px) for the lime zones — bigger = larger patches
+const LIME_THRESHOLD = 0.8; // noise above this → lime zone (tuned for ~10% coverage)
 const LIME_SIZE_MULT = 1.5; // lime dots render slightly larger than the white ones
 
 // Interaction.
@@ -130,6 +131,7 @@ const HeroDotGrid = () => {
 
       const noiseA = makeNoise(NOISE_A);
       const noiseB = makeNoise(NOISE_B);
+      const limeNoise = makeNoise(LIME_CELL);
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
           const idx = r * cols + c;
@@ -141,7 +143,8 @@ const HeroDotGrid = () => {
           const field = smoothstep(GROUP_LO, GROUP_HI, raw);
           sizes[idx] = DOT_MIN + (DOT_MAX - DOT_MIN) * field;
           baseA[idx] = field * BASE_OPACITY_MAX;
-          lime[idx] = Math.random() < LIME_FRACTION ? 1 : 0;
+          // Lime falls in cohesive zones (its own noise field), not scattered.
+          lime[idx] = limeNoise(px, py) > LIME_THRESHOLD ? 1 : 0;
         }
       }
     };
