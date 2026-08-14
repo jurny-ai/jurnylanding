@@ -8,7 +8,7 @@ const VARIANTS = [
   {
     id: "a" as const,
     tag: "Control",
-    name: "Gallery first, single add to cart",
+    name: "Standard product page",
     points: VARIANT_A_VIEWPORT_CLICKS,
     stats: [
       { label: "Add to cart", value: "4.1%" },
@@ -19,7 +19,7 @@ const VARIANTS = [
   {
     id: "b" as const,
     tag: "Variant B",
-    name: "Express pay above the fold, sticky bar",
+    name: "Sticky add-to-cart bar",
     winner: true,
     points: VARIANT_B_VIEWPORT_CLICKS,
     stats: [
@@ -46,7 +46,7 @@ export default function VariantPrediction() {
         <div className="mx-auto max-w-7xl">
           <Reveal className="mb-8">
             <div>
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-primary">
+              <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-primary">
                 Pre-screen experiments
               </p>
               <h2 className="max-w-3xl text-3xl font-medium leading-[1.02] tracking-[-0.04em] text-foreground sm:text-5xl">
@@ -61,18 +61,18 @@ export default function VariantPrediction() {
             <div className="border border-primary bg-primary text-primary-foreground">
               <div className="grid gap-5 p-5 sm:p-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-8">
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-highlight">
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-highlight">
                     Predicted winner
                   </p>
                   <p className="mt-1.5 text-2xl font-medium leading-[1.1] tracking-[-0.03em] sm:text-3xl">
-                    Variant B, express pay above the fold
+                    Variant B, sticky add-to-cart bar
                   </p>
                 </div>
 
                 <dl className="grid gap-px border border-white/20 bg-white/20 sm:grid-cols-3">
                   {VERDICT.map((item) => (
                     <div key={item.label} className="bg-primary px-4 py-4">
-                      <dt className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/50">
+                      <dt className="text-xs font-bold uppercase tracking-[0.12em] text-white/60">
                         {item.label}
                       </dt>
                       <dd className="mt-1 text-xl font-semibold tracking-tight text-highlight sm:text-2xl">
@@ -98,7 +98,7 @@ export default function VariantPrediction() {
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-border px-4 py-3">
                   <span
                     className={cn(
-                      "px-2 py-1 text-[10px] font-bold uppercase tracking-[0.14em]",
+                      "px-2 py-1 text-xs font-bold uppercase tracking-[0.12em]",
                       variant.winner
                         ? "bg-primary text-primary-foreground"
                         : "bg-foreground/[0.07] text-foreground/55"
@@ -106,9 +106,9 @@ export default function VariantPrediction() {
                   >
                     {variant.tag}
                   </span>
-                  <span className="text-sm font-semibold tracking-tight text-foreground">{variant.name}</span>
+                  <span className="text-base font-semibold tracking-tight text-foreground">{variant.name}</span>
                   {variant.winner && (
-                    <span className="ml-auto flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-primary">
+                    <span className="ml-auto flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.12em] text-primary">
                       <span className="h-1.5 w-1.5 bg-highlight" />
                       Winner
                     </span>
@@ -122,7 +122,7 @@ export default function VariantPrediction() {
                 <dl className="grid grid-cols-3 border-t border-border">
                   {variant.stats.map((stat, i) => (
                     <div key={stat.label} className={cn("px-4 py-3", i > 0 && "border-l border-border")}>
-                      <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-foreground/40">
+                      <dt className="text-xs font-semibold uppercase tracking-[0.1em] text-foreground/50">
                         {stat.label}
                       </dt>
                       <dd className="mt-1 text-lg font-semibold tracking-tight text-foreground">{stat.value}</dd>

@@ -7,7 +7,7 @@ import { track } from "@/lib/analytics";
 
 const Footer = () => {
   return (
-    <footer className="bg-background border-t border-border py-12 sm:py-16">
+    <footer className="border-t border-border bg-background py-12 sm:py-16">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <Reveal className="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8 text-center md:text-left">
@@ -22,14 +22,14 @@ const Footer = () => {
 
             {/* Centered Description Text */}
             <div className="flex-1 md:text-center">
-              <p className="text-foreground/60 text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed">
+              <p className="mx-auto max-w-2xl text-base leading-relaxed text-foreground/60 sm:text-lg">
                 One user model. Predict your tests, find customer friction.
               </p>
             </div>
 
             {/* Work with Us Button */}
             <div className="flex items-center w-full sm:w-auto justify-center">
-              <Button size="lg" className="w-full sm:w-auto justify-center bg-primary hover:bg-primary/90 text-primary-foreground rounded-none px-8 py-4 h-auto text-sm font-bold transition-all duration-300" asChild>
+              <Button size="lg" className="h-auto w-full justify-center rounded-none bg-primary px-8 py-4 text-sm font-bold text-primary-foreground transition-all duration-300 hover:bg-primary/90 sm:w-auto" asChild>
               <a href="https://calendly.com/jurny-ai/new-meeting" onClick={() => track("cta_clicked", { location: "footer", label: "Get Started" })}>
                 Get Started
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -38,7 +38,7 @@ const Footer = () => {
             </div>
           </Reveal>
 
-          <div className="mt-10 sm:mt-16 pt-6 sm:pt-8 border-t border-border text-center text-foreground/40 text-sm sm:text-base">
+          <div className="mt-10 border-t border-border pt-6 text-center text-sm text-foreground/40 sm:mt-16 sm:pt-8 sm:text-base">
             © 2026 Jurny AI, Inc. All rights reserved.
           </div>
         </div>

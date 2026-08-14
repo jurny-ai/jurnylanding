@@ -47,7 +47,7 @@ All colors MUST be HSL.
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --radius: 0.25rem;
+    --radius: 0rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -115,6 +115,14 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "ss01" 1, "cv02" 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: hsl(var(--highlight));
+    color: hsl(var(--highlight-foreground));
   }
 }
 
@@ -124,20 +132,20 @@ All colors MUST be HSL.
   [data-reveal] {
     opacity: 0;
     transition-property: opacity, transform;
-    transition-duration: 700ms;
+    transition-duration: 450ms;
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   [data-reveal="up"] {
-    transform: translate3d(0, 28px, 0);
+    transform: translate3d(0, 12px, 0);
   }
 
   [data-reveal="left"] {
-    transform: translate3d(-28px, 0, 0);
+    transform: translate3d(-12px, 0, 0);
   }
 
   [data-reveal="right"] {
-    transform: translate3d(28px, 0, 0);
+    transform: translate3d(12px, 0, 0);
   }
 
   [data-reveal][data-visible="true"] {

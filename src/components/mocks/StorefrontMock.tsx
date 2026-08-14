@@ -269,25 +269,6 @@ function PdpScreen({ variant, crop }: { variant: StorefrontVariant; crop: Storef
         </span>
       </div>
 
-      {isB && (
-        <div className="flex gap-2">
-          <div
-            data-hot="shop-pay"
-            className="flex h-9 flex-1 items-center justify-center text-[11px] font-semibold text-white"
-            style={{ background: "#5a31f4" }}
-          >
-            Shop Pay
-          </div>
-          <div
-            data-hot="paypal"
-            className="flex h-9 flex-1 items-center justify-center text-[11px] font-semibold"
-            style={{ background: "#ffc439", color: "#253b80" }}
-          >
-            PayPal
-          </div>
-        </div>
-      )}
-
       <div>
         <p className="mb-1.5 text-[11px]" style={{ color: "#3d3d47" }}>
           Color: <span className="font-medium">Fog Grey</span>

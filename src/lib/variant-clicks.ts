@@ -30,10 +30,8 @@ export const VARIANT_A_VIEWPORT_CLICKS: HeatPoint[] = [
 
 export const VARIANT_B_VIEWPORT_CLICKS: HeatPoint[] = [
   { x: 20.1, y: 55.6, w: 0.55, r: 11 }, // gallery
-  { x: 52.6, y: 54.7, w: 0.85, r: 8 }, // Shop Pay
-  { x: 78.3, y: 54.7, w: 0.55, r: 6 }, // PayPal
-  { x: 65.4, y: 69.8, w: 0.5, r: 6 }, // swatches
-  { x: 65.4, y: 84.5, w: 0.75, r: 8 }, // size row
+  { x: 65.4, y: 58.4, w: 0.5, r: 6 }, // swatches
+  { x: 65.4, y: 73.1, w: 0.75, r: 8 }, // size row
   { x: 83.2, y: 92.7, w: 1, r: 8, peak: true }, // sticky add to cart
   { x: 94, y: 10.2, w: 0.25, r: 4 }, // cart icon
 ];

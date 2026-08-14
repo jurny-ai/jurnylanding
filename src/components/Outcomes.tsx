@@ -64,23 +64,23 @@ function BlockedRevenueTreemap() {
         <div className="flex flex-[1.45] flex-col justify-between bg-primary p-3 sm:p-4">
           <span className="text-[10px] font-bold uppercase tracking-widest text-highlight">Largest</span>
           <span className="text-sm font-semibold leading-tight tracking-tight text-primary-foreground sm:text-base">
-            Gift buyers
+            Registry builders
           </span>
         </div>
 
         <div className="flex flex-1 flex-col gap-1">
           <div className="flex flex-[1.6] items-end bg-primary/50 p-3">
             <span className="text-[11px] font-semibold leading-tight text-primary-foreground sm:text-xs">
-              Bundlers
+              Wedding guests
             </span>
           </div>
 
           <div className="flex flex-1 gap-1">
             <div className="flex flex-[1.7] items-end bg-primary/25 p-2">
-              <span className="text-[10px] font-medium leading-tight text-foreground/65">Lapsed</span>
+              <span className="text-[10px] font-medium leading-tight text-foreground/65">Beauty loyalists</span>
             </div>
             <div className="flex flex-1 items-end bg-primary/10 p-2">
-              <span className="text-[10px] font-medium leading-tight text-foreground/50">Compare</span>
+              <span className="text-[10px] font-medium leading-tight text-foreground/50">Home refreshers</span>
             </div>
           </div>
         </div>
@@ -132,15 +132,15 @@ function TreatmentSlope() {
   );
 }
 
-/** Share of the build queue the model closes out before anyone opens an editor. */
+/** Share of test ideas the model filters before they consume build time or traffic. */
 function BuildEffortRing() {
   const radius = 62;
   const circumference = 2 * Math.PI * radius;
-  const skipped = 0.6;
+  const filtered = 0.6;
 
   const key = [
-    { label: "5 scoped", tone: "bg-primary/15" },
-    { label: "2 built", tone: "bg-primary" },
+    { label: "5 ideas scored", tone: "bg-primary/15" },
+    { label: "2 launched", tone: "bg-primary" },
     { label: "3 pruned", tone: "bg-primary/40" },
   ];
 
@@ -159,12 +159,12 @@ function BuildEffortRing() {
               fill="none"
               stroke="hsl(var(--primary))"
               strokeWidth="16"
-              strokeDasharray={`${circumference * skipped} ${circumference}`}
+              strokeDasharray={`${circumference * filtered} ${circumference}`}
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
             <span className="text-2xl font-semibold tracking-tight text-primary sm:text-3xl">60%</span>
-            <span className="text-[11px] leading-tight text-foreground/40">never built</span>
+            <span className="text-[11px] leading-tight text-foreground/40">filtered early</span>
           </div>
         </div>
 
@@ -183,23 +183,27 @@ function BuildEffortRing() {
 
 const outcomes = [
   {
-    title: "More conversion from the same traffic",
-    description: "Variants get scored before launch, so the tests you run reach significance on less traffic.",
+    accent: "More conversions",
+    title: "from existing traffic",
+    description: "Variants get scored before launch so you don't waste traffic on losers.",
     visual: <PredictedLiftScatter />,
   },
   {
-    title: "Revenue you are not capturing yet",
-    description: "Cohort analysis surfaces the customers your flows were never designed for.",
+    accent: "Revenue",
+    title: "you are not capturing yet",
+    description: "Cohort analysis shows where the customers you care about struggle, drop off, and leave revenue behind.",
     visual: <BlockedRevenueTreemap />,
   },
   {
-    title: "Personalization that pays for itself",
-    description: "Once you know where a cohort stalls, the right treatment is obvious.",
+    accent: "Cohort-level decisions",
+    title: "instead of broad averages",
+    description: "Measure each idea by the cohorts that matter—not one blended conversion rate.",
     visual: <TreatmentSlope />,
   },
   {
-    title: "Time back for your team",
-    description: "Stop building and instrumenting the variants the model already knows are flat.",
+    accent: "More ideas",
+    title: "tested, faster",
+    description: "Score more A/B test ideas, send only the strongest live, and keep your growth roadmap moving.",
     visual: <BuildEffortRing />,
   },
 ];
@@ -225,16 +229,24 @@ const Outcomes = () => {
               const flipped = i % 2 === 1;
 
               return (
-                <Reveal key={outcome.title} asChild delay={40}>
+                <Reveal key={outcome.accent} asChild delay={40}>
                   <div className="grid items-center gap-5 py-7 lg:grid-cols-2 lg:gap-10 lg:py-9">
                     <div className={cn("lg:pr-4", flipped ? "lg:order-2 lg:pl-4 lg:pr-0" : "lg:order-1")}>
                       <span className="block font-mono text-3xl font-semibold leading-none tracking-tight text-primary/20 sm:text-4xl">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <h3 className="mt-2.5 text-lg font-semibold leading-snug tracking-tight text-foreground sm:text-xl">
+                      <h3
+                        className={cn(
+                          "mt-2.5 text-xl font-semibold leading-snug tracking-tight text-foreground sm:text-2xl",
+                          i === 0 && "lg:whitespace-nowrap",
+                        )}
+                      >
+                        <span className="inline-block border-2 border-highlight px-2 py-0.5 text-foreground">
+                          {outcome.accent}
+                        </span>{" "}
                         {outcome.title}
                       </h3>
-                      <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-foreground/55">
+                      <p className="mt-2 max-w-md text-base leading-relaxed text-foreground/60 sm:text-lg">
                         {outcome.description}
                       </p>
                     </div>

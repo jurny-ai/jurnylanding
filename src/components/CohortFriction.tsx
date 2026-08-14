@@ -105,7 +105,7 @@ const WINDOW_H = 430;
 
 /** A taller window for the pinned frame, which has a whole viewport to fill and
  *  looks thin at the stacked layout's crop. */
-const PINNED_WINDOW_H = 560;
+const PINNED_WINDOW_H = 500;
 
 /** Scrolls the window so the cohort's friction point sits mid-frame, clamped so
  *  it never runs past either end of the page. Derived rather than hand-set, so
@@ -158,7 +158,7 @@ function FrictionMarker({ cohort, y, windowH }: { cohort: Cohort; y: number; win
 function SectionHeading({ className, compact = false }: { className?: string; compact?: boolean }) {
   return (
     <div className={className}>
-      <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-primary">Diagnose drop-off</p>
+      <p className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-primary">Diagnose drop-off</p>
       {/* Both halves of the old title block in one line: the leak analytics can
           see, then the cohort behind it that only the model can name. */}
       <h2
@@ -195,43 +195,33 @@ function CohortPanel({
       {/* Both cards grow to split the screenshot's height between them and centre
           their own copy, so the column has no gap in the middle and no dead run
           at the bottom, whatever the diagnosis wraps to. */}
-      <div className="flex flex-col gap-4">
+      <div className="grid content-center gap-4">
         <div
           className={cn(
-            "flex flex-1 flex-col justify-center border border-destructive-foreground/25 bg-card",
-            compact ? "p-4 sm:p-5" : "p-5 sm:p-6"
+            "border border-destructive-foreground/25 bg-card",
+            compact ? "p-5 sm:p-6" : "p-5 sm:p-7"
           )}
         >
-          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-destructive-foreground">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-destructive-foreground">
             Where it breaks
           </p>
-          <p
-            className={cn(
-              "mt-2 font-medium leading-snug tracking-tight text-foreground",
-              compact ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"
-            )}
-          >
+          <p className="mt-2 text-2xl font-medium leading-snug tracking-tight text-foreground sm:text-3xl">
             {cohort.markerLabel}
           </p>
-          <p className="mt-3 text-sm leading-relaxed text-foreground/60">{cohort.diagnosis}</p>
+          <p className="mt-4 text-base leading-relaxed text-foreground/65 sm:text-lg">{cohort.diagnosis}</p>
         </div>
 
         <blockquote
           className={cn(
-            "flex flex-1 flex-col justify-center border border-primary/25 bg-primary/[0.04]",
-            compact ? "p-4 sm:p-5" : "p-5 sm:p-6"
+            "border border-primary/25 bg-primary/[0.04]",
+            compact ? "p-5 sm:p-6" : "p-5 sm:p-7"
           )}
         >
-          <Quote className="mb-3 h-5 w-5 text-primary" />
-          <p
-            className={cn(
-              "italic leading-relaxed text-foreground/80",
-              compact ? "text-base" : "text-base sm:text-lg"
-            )}
-          >
+          <Quote className="mb-4 h-6 w-6 text-primary" />
+          <p className="text-xl italic leading-relaxed text-foreground/80 sm:text-2xl">
             {cohort.quote}
           </p>
-          <footer className="mt-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground/40">
+          <footer className="mt-4 text-xs font-semibold uppercase tracking-[0.12em] text-foreground/45 sm:text-sm">
             {cohort.name}
           </footer>
         </blockquote>
@@ -286,7 +276,7 @@ function PinnedCohorts() {
       {/* The heading rides inside the pinned frame rather than scrolling away
           above it, so the viewport holds the whole argument at once instead of a
           band of empty ground over the evidence. */}
-      <div className="sticky top-0 flex h-screen flex-col justify-center pb-10 pt-20">
+      <div className="sticky top-0 flex h-screen flex-col justify-center pb-6 pt-12">
         <div className="container mx-auto px-4 sm:px-6">
           {/* The screenshot's height follows its width, so the whole frame is
               capped by the height left over after the heading and the padding:
@@ -295,9 +285,9 @@ function PinnedCohorts() {
               short viewport would push the quote past the bottom of the frame.
               Heading and row share the cap so their edges stay on one line. */}
           <div
-            className="mx-auto flex flex-col gap-7"
+            className="mx-auto flex flex-col gap-5"
             style={{
-              maxWidth: `min(80rem, calc((100vh - 285px) * 2 + 260px))`,
+              maxWidth: `min(80rem, calc((100vh - 245px) * 2 + 260px))`,
             }}
           >
             <SectionHeading compact />
@@ -348,7 +338,7 @@ function PinnedCohorts() {
                             className={cn("h-4 w-4 shrink-0", selected ? "text-highlight" : "text-primary")}
                             strokeWidth={2}
                           />
-                          <span className="min-w-0 flex-1 truncate text-xs font-semibold tracking-tight">
+                          <span className="min-w-0 flex-1 truncate text-sm font-semibold tracking-tight">
                             {cohort.short}
                           </span>
                         </span>
@@ -366,7 +356,7 @@ function PinnedCohorts() {
                       </span>
                       <span
                         className={cn(
-                          "shrink-0 text-base font-semibold tabular-nums tracking-tight",
+                          "shrink-0 text-lg font-semibold tabular-nums tracking-tight",
                           selected ? "text-highlight" : "text-foreground"
                         )}
                       >
@@ -554,7 +544,7 @@ function TabbedCohorts() {
                       className={cn("h-4 w-4 shrink-0", selected ? "text-highlight" : "text-primary")}
                       strokeWidth={2}
                     />
-                    <span className="min-w-0 flex-1 truncate text-xs font-semibold tracking-tight">
+                    <span className="min-w-0 flex-1 truncate text-sm font-semibold tracking-tight">
                       {cohort.short}
                     </span>
                   </span>
@@ -619,7 +609,7 @@ export default function CohortFriction() {
       id="cohort-friction"
       className={cn(
         "scroll-mt-14 border-b border-border bg-secondary/55 sm:scroll-mt-16",
-        pinned ? "py-0" : "py-14 sm:py-20"
+        pinned ? "py-0" : "py-10 sm:py-12"
       )}
     >
       <style>{`
@@ -643,7 +633,7 @@ export default function CohortFriction() {
       ) : (
         <>
           <Reveal className="container mx-auto px-4 sm:px-6">
-            <SectionHeading className="mx-auto mb-8 max-w-7xl" />
+            <SectionHeading className="mx-auto mb-6 max-w-7xl" />
           </Reveal>
           <TabbedCohorts />
         </>

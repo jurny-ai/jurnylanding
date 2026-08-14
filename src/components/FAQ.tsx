@@ -43,34 +43,32 @@ const faqs = [
 
 const FAQ = () => {
   return (
-    <section id="faq" className="py-14 sm:py-20 bg-background scroll-mt-14 sm:scroll-mt-16" aria-labelledby="faq-title">
+    <section id="faq" className="scroll-mt-14 bg-background py-14 sm:scroll-mt-16 sm:py-20" aria-labelledby="faq-title">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
-          <div>
-            <Reveal className="mb-8 sm:mb-12">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.58fr_1.42fr] lg:gap-16">
+            <Reveal>
               <h2
                 id="faq-title"
-                className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground leading-tight"
+                className="max-w-sm text-3xl font-medium leading-[1.02] tracking-[-0.04em] text-foreground sm:text-5xl"
               >
                 Frequently asked questions
               </h2>
             </Reveal>
 
-            <Reveal delay={100} className="border border-border bg-secondary px-3 py-1 sm:px-7 sm:py-4">
+            <Reveal delay={100} className="border-t border-border">
               <Accordion type="single" collapsible>
                 {faqs.map((faq) => (
                   <AccordionItem key={faq.question} value={faq.question}>
-                    <AccordionTrigger className="text-left text-sm font-semibold leading-snug text-foreground hover:no-underline py-4 sm:text-lg sm:py-4 [&>svg]:shrink-0">
+                    <AccordionTrigger className="py-5 text-left text-base font-semibold leading-snug text-foreground hover:no-underline sm:py-6 sm:text-lg [&>svg]:shrink-0">
                       {faq.question}
                     </AccordionTrigger>
-                    <AccordionContent className="pr-2 sm:pr-8 text-sm leading-relaxed text-foreground/65 sm:text-base pb-4">
+                    <AccordionContent className="pb-5 pr-2 text-base leading-relaxed text-foreground/65 sm:pb-6 sm:pr-8">
                       {faq.answer}
                     </AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>
             </Reveal>
-          </div>
         </div>
       </div>
     </section>

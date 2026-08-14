@@ -126,12 +126,12 @@ function scrollToStage(ref: RefObject<HTMLElement>, index: number) {
 function SourceCloud({ align, title, chips }: { align: "left" | "right"; title: string; chips: string[] }) {
   return (
     <div
-      className={cn("absolute top-[4%] max-w-[30%]", align === "left" ? "left-[2%]" : "right-[2%] text-right")}
+      className={cn("absolute top-[3%] max-w-[32%]", align === "left" ? "left-[2%]" : "right-[2%] text-right")}
     >
-      <p className="text-xs font-bold uppercase tracking-[0.16em] text-foreground/50">{title}</p>
-      <div className={cn("mt-2 flex flex-wrap gap-1.5", align === "right" && "justify-end")}>
+      <p className="text-sm font-bold uppercase tracking-[0.14em] text-foreground/55">{title}</p>
+      <div className={cn("mt-2.5 flex flex-wrap gap-2", align === "right" && "justify-end")}>
         {chips.map((chip) => (
-          <span key={chip} className="border border-border bg-card px-2 py-1 text-[11px] font-semibold text-foreground/60">
+          <span key={chip} className="border border-border bg-card px-2.5 py-1.5 text-[13px] font-semibold text-foreground/65">
             {chip}
           </span>
         ))}
@@ -152,12 +152,12 @@ function LayerCallout({
   return (
     <div
       className={cn(
-        "absolute bottom-[3%] max-w-[27%] border border-border bg-card p-3",
+        "absolute bottom-[2%] max-w-[32%] border border-border bg-card p-4",
         align === "left" ? "left-[2%]" : "right-[2%]"
       )}
     >
-      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary">{title}</p>
-      <p className="mt-1.5 text-xs leading-snug text-foreground/60">{body}</p>
+      <p className="text-[13px] font-bold uppercase tracking-[0.14em] text-primary">{title}</p>
+      <p className="mt-2 text-sm leading-relaxed text-foreground/65">{body}</p>
     </div>
   );
 }
@@ -316,12 +316,12 @@ function StageCanvas({ progress, overlays = true }: { progress: number; overlays
             {AGENTS.map((agent, i) => (
               <div
                 key={agent.name}
-                className="absolute w-[22%] -translate-x-1/2 border border-border bg-card p-2.5"
+                className="absolute min-h-[108px] w-[24%] -translate-x-1/2 border border-border bg-card p-3"
                 style={{ left: pctX(AGENT_ANCHORS[i].x), top: pctY(AGENT_ANCHORS[i].y + 44) }}
               >
-                <p className="text-xs font-semibold leading-tight tracking-tight text-foreground">{agent.name}</p>
-                <p className="mt-1 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-primary">{agent.traits}</p>
-                <p className="mt-1.5 text-[11px] leading-snug text-foreground/55">{agent.scenario}</p>
+                <p className="text-[15px] font-semibold leading-tight tracking-tight text-foreground">{agent.name}</p>
+                <p className="mt-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-primary">{agent.traits}</p>
+                <p className="mt-2 text-[13px] leading-snug text-foreground/60">{agent.scenario}</p>
               </div>
             ))}
           </div>
@@ -342,12 +342,12 @@ function StageDetail({ index }: { index: number }) {
           { title: "Quantitative", chips: QUANT_SOURCES },
         ].map((group) => (
           <div key={group.title}>
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-foreground/45">{group.title}</p>
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-foreground/50">{group.title}</p>
             <div className="mt-2 flex flex-wrap gap-1.5">
               {group.chips.map((chip) => (
                 <span
                   key={chip}
-                  className="border border-border bg-secondary px-2 py-1 text-xs font-semibold text-foreground/60"
+                  className="border border-border bg-secondary px-2 py-1 text-sm font-semibold text-foreground/60"
                 >
                   {chip}
                 </span>
@@ -372,9 +372,9 @@ function StageDetail({ index }: { index: number }) {
             body: "One customer with memory, constraints, and intent. This is what explains a drop-off.",
           },
         ].map((layer) => (
-          <div key={layer.title} className="border border-border bg-secondary p-3">
-            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary">{layer.title}</p>
-            <p className="mt-1.5 text-sm leading-relaxed text-foreground/60">{layer.body}</p>
+          <div key={layer.title} className="border border-border bg-secondary p-4">
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary">{layer.title}</p>
+            <p className="mt-1.5 text-base leading-relaxed text-foreground/60">{layer.body}</p>
           </div>
         ))}
       </div>
@@ -385,10 +385,10 @@ function StageDetail({ index }: { index: number }) {
     return (
       <div className="grid gap-2 sm:grid-cols-2">
         {AGENTS.map((agent) => (
-          <div key={agent.name} className="border border-border bg-secondary p-3">
-            <p className="text-sm font-semibold tracking-tight text-foreground">{agent.name}</p>
-            <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-primary">{agent.traits}</p>
-            <p className="mt-1.5 text-xs leading-snug text-foreground/55">{agent.scenario}</p>
+          <div key={agent.name} className="border border-border bg-secondary p-4">
+            <p className="text-base font-semibold tracking-tight text-foreground">{agent.name}</p>
+            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.1em] text-primary">{agent.traits}</p>
+            <p className="mt-1.5 text-sm leading-relaxed text-foreground/60">{agent.scenario}</p>
           </div>
         ))}
       </div>
@@ -398,10 +398,10 @@ function StageDetail({ index }: { index: number }) {
   return (
     <div className="grid gap-2 sm:grid-cols-3">
       {JOURNEY.map((step, i) => (
-        <div key={step.step} className="border border-border bg-secondary p-3">
-          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-primary">0{i + 1}</p>
-          <p className="mt-1 text-sm font-semibold tracking-tight text-foreground">{step.step}</p>
-          <p className="mt-1.5 text-xs leading-snug text-foreground/55">
+        <div key={step.step} className="border border-border bg-secondary p-4">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary">0{i + 1}</p>
+          <p className="mt-1 text-base font-semibold tracking-tight text-foreground">{step.step}</p>
+          <p className="mt-1.5 text-sm leading-snug text-foreground/60">
             {step.clicks.length} click clusters recorded
           </p>
         </div>
@@ -427,7 +427,7 @@ function StageRail({ active, onSelect }: { active: number; onSelect: (index: num
           >
             <p
               className={cn(
-                "text-[11px] font-bold uppercase tracking-[0.16em] transition-colors duration-300",
+                "text-xs font-bold uppercase tracking-[0.14em] transition-colors duration-300",
                 i === active ? "text-primary" : "text-foreground/30"
               )}
             >
@@ -435,7 +435,7 @@ function StageRail({ active, onSelect }: { active: number; onSelect: (index: num
             </p>
             <p
               className={cn(
-                "mt-1 text-base font-semibold leading-snug tracking-tight transition-colors duration-300",
+                "mt-1 text-lg font-semibold leading-snug tracking-tight transition-colors duration-300",
                 i === active ? "text-foreground" : "text-foreground/35"
               )}
             >
@@ -463,14 +463,14 @@ function MobileStageDetail({ stage }: { stage: number }) {
           { title: "Quantitative", chips: QUANT_SOURCES.slice(0, 3) },
         ].map((group) => (
           <div key={group.title}>
-            <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-foreground/45">
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-foreground/50">
               {group.title}
             </p>
             <div className="mt-2 flex flex-wrap gap-1.5">
               {group.chips.map((chip) => (
                 <span
                   key={chip}
-                  className="border border-border bg-secondary px-2 py-1 text-[11px] font-semibold text-foreground/60"
+                  className="border border-border bg-secondary px-2.5 py-1.5 text-xs font-semibold text-foreground/65"
                 >
                   {chip}
                 </span>
@@ -489,9 +489,9 @@ function MobileStageDetail({ stage }: { stage: number }) {
           { title: "Population layer", body: "Segment sizes and behavioral distributions. This predicts a test." },
           { title: "Individual layer", body: "One customer with memory and intent. This explains a drop-off." },
         ].map((layer) => (
-          <div key={layer.title} className="border border-border bg-secondary p-3">
-            <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-primary">{layer.title}</p>
-            <p className="mt-1 text-[11px] leading-snug text-foreground/60">{layer.body}</p>
+          <div key={layer.title} className="border border-border bg-secondary p-3.5">
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-primary">{layer.title}</p>
+            <p className="mt-1.5 text-[13px] leading-snug text-foreground/65">{layer.body}</p>
           </div>
         ))}
       </div>
@@ -507,10 +507,10 @@ function MobileStageDetail({ stage }: { stage: number }) {
         {AGENTS.slice(0, 3).map((agent) => (
           <div
             key={agent.name}
-            className="flex items-baseline justify-between gap-2 border border-border bg-secondary px-2.5 py-1.5"
+            className="flex items-baseline justify-between gap-2 border border-border bg-secondary px-3 py-2"
           >
-            <p className="text-xs font-semibold tracking-tight text-foreground">{agent.name}</p>
-            <p className="text-right text-[10px] font-semibold uppercase tracking-[0.1em] text-primary">
+            <p className="text-sm font-semibold tracking-tight text-foreground">{agent.name}</p>
+            <p className="text-right text-[11px] font-semibold uppercase tracking-[0.08em] text-primary">
               {agent.traits}
             </p>
           </div>
@@ -522,9 +522,9 @@ function MobileStageDetail({ stage }: { stage: number }) {
   return (
     <div className="grid grid-cols-3 gap-2">
       {JOURNEY.map((step, i) => (
-        <div key={step.step} className="border border-border bg-secondary p-2.5">
-          <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-primary">0{i + 1}</p>
-          <p className="mt-1 text-[11px] font-semibold leading-tight tracking-tight text-foreground">{step.step}</p>
+        <div key={step.step} className="border border-border bg-secondary p-3">
+          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-primary">0{i + 1}</p>
+          <p className="mt-1 text-[13px] font-semibold leading-tight tracking-tight text-foreground">{step.step}</p>
         </div>
       ))}
     </div>
@@ -739,8 +739,8 @@ function StackedStages() {
               <div className="border-b border-border bg-secondary/60 p-3">
                 <StageCanvas progress={i / (STAGES.length - 1)} overlays={false} />
               </div>
-              <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary">{stage.n}</p>
+              <div className="flex flex-1 flex-col p-6 sm:p-7">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary">{stage.n}</p>
                 <h3 className="mt-1.5 text-xl font-semibold tracking-tight text-foreground">{stage.title}</h3>
                 <div className="mt-5">
                   <StageDetail index={i} />
