@@ -20,14 +20,14 @@ import { useEffect, useRef } from "react";
  * Renders nothing for touch/no-hover pointers or when the user has requested
  * reduced motion.
  */
-const SPACING = 6; // px between grid dots
+const SPACING = 5; // px between grid dots
 const JITTER = 0; // 0 = dots sit on a perfect grid (no scatter)
 const DOT_MIN = 0.4; // px, dot radius in the sparsest patches
 const DOT_MAX = 1.5; // px, dot radius in the densest patches
 const BASE_OPACITY_MAX = 0.15; // resting opacity of the densest texture dots
-const NOISE_A = 360; // coarse noise cell size (px) — the big cloud groups
-const NOISE_B = 150; // secondary noise cell size (px) — gentle large-scale variation
-const NOISE_A_WEIGHT = 0.82; // lean on the coarse octave so groups stay clean
+const NOISE_A = 200; // coarse noise cell size (px) — the cloud groups (smaller = more groups)
+const NOISE_B = 85; // fine noise cell size (px) — breaks the groups up
+const NOISE_A_WEIGHT = 0.6; // balance of coarse groups vs. fine break-up
 const GROUP_LO = 0.44; // noise below this → bare background (no dots)
 const GROUP_HI = 0.7; // noise above this → full-strength group
 const DOT_HSL = "0, 0%, 100%"; // white
