@@ -12,7 +12,7 @@ const faqs = [
   {
     question: "Does this replace live A/B testing?",
     answer:
-      "No. It changes what you send to live traffic. Jurny gives you a directional call on every variant in hours, so you ship the two worth testing instead of splitting traffic five ways for a month. The live test is still what confirms the result.",
+      "No. Jurny runs before the test, not instead of it. It scores every variant in hours so you put live traffic behind the two with a real chance, and the live test still confirms the winner.",
   },
   {
     question: "How accurate is a directional prediction?",
