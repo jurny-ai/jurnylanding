@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import PhoneMock from "@/components/mocks/PhoneMock";
 import HeatmapOverlay from "@/components/HeatmapOverlay";
 import UserModelGraph from "@/components/UserModelGraph";
-import { AGENT_ANCHORS, PANELS, VIEW_H, VIEW_W } from "@/lib/model-graph-layout";
+import { AGENT_ANCHORS, PANELS, VIEW_H, VIEW_W, easeInOut } from "@/lib/model-graph-layout";
 import { JOURNEY } from "@/lib/variant-clicks";
 import { useScrollProgress } from "@/hooks/use-scroll-progress";
 import { useIsDesktop, usePrefersReducedMotion } from "@/hooks/use-media-query";
@@ -56,15 +56,67 @@ const PANEL_GAP_HALF = (PANELS[1].x - (PANELS[0].x + PANELS[0].w)) / 2;
 const pctX = (x: number) => `${(x / VIEW_W) * 100}%`;
 const pctY = (y: number) => `${(y / VIEW_H) * 100}%`;
 
+/** A crop of the layout, in viewBox units: x, y, width, height. */
+type Box = [number, number, number, number];
+
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+/** Pans and zooms between two crops rather than sliding four numbers
+ *  independently, because centre and size are what the eye actually tracks. */
+const lerpBox = (a: Box, b: Box, t: number): Box => {
+  const w = lerp(a[2], b[2], t);
+  const h = lerp(a[3], b[3], t);
+  return [
+    lerp(a[0] + a[2] / 2, b[0] + b[2] / 2, t) - w / 2,
+    lerp(a[1] + a[3] / 2, b[1] + b[3] / 2, t) - h / 2,
+    w,
+    h,
+  ];
+};
+
+/** Position within a crop, as a percentage of it. The same idiom as pctX/pctY,
+ *  for the crops that move. */
+const boxRect = (view: Box, rect: { x: number; y: number; w: number; h: number }) => ({
+  left: `${((rect.x - view[0]) / view[2]) * 100}%`,
+  top: `${((rect.y - view[1]) / view[3]) * 100}%`,
+  width: `${(rect.w / view[2]) * 100}%`,
+  height: `${(rect.h / view[3]) * 100}%`,
+});
+
+/**
+ * The rendered size of an element.
+ *
+ * Both pinned sequences size their canvas from the room the rest of the layout
+ * leaves behind. Measuring that beats hand-counting the chrome above and below
+ * it, which silently goes stale whenever the type scale changes or a heading
+ * wraps to another line at some viewport width nobody checked.
+ */
+function useBoxSize(ref: RefObject<HTMLElement>) {
+  const [size, setSize] = useState({ w: 0, h: 0 });
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      const { width, height } = entry.contentRect;
+      setSize((prev) => (prev.w === width && prev.h === height ? prev : { w: width, h: height }));
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [ref]);
+
+  return size;
+}
+
 function SourceCloud({ align, title, chips }: { align: "left" | "right"; title: string; chips: string[] }) {
   return (
     <div
       className={cn("absolute top-[4%] max-w-[30%]", align === "left" ? "left-[2%]" : "right-[2%] text-right")}
     >
-      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-foreground/50">{title}</p>
+      <p className="text-xs font-bold uppercase tracking-[0.16em] text-foreground/50">{title}</p>
       <div className={cn("mt-2 flex flex-wrap gap-1.5", align === "right" && "justify-end")}>
         {chips.map((chip) => (
-          <span key={chip} className="border border-border bg-card px-2 py-1 text-[10px] font-semibold text-foreground/60">
+          <span key={chip} className="border border-border bg-card px-2 py-1 text-[11px] font-semibold text-foreground/60">
             {chip}
           </span>
         ))}
@@ -89,8 +141,8 @@ function LayerCallout({
         align === "left" ? "left-[2%]" : "right-[2%]"
       )}
     >
-      <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-primary">{title}</p>
-      <p className="mt-1.5 text-[11px] leading-snug text-foreground/60">{body}</p>
+      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary">{title}</p>
+      <p className="mt-1.5 text-xs leading-snug text-foreground/60">{body}</p>
     </div>
   );
 }
@@ -107,9 +159,20 @@ function LayerCallout({
 const STACKED_VIEWBOX = ["105 28 790 380", "180 66 640 308", "116 33 768 369"];
 
 /* Union of the scatter, graph and agent extents. The mobile sequence holds this
-   one frame across all three so the cloud animates rather than cutting between
-   crops. */
-const MOBILE_VIEWBOX = "95 45 810 345";
+   one frame across the first three stages so the cloud animates rather than
+   cutting between crops. */
+const MOBILE_VIEW_START: Box = [95, 45, 810, 345];
+
+/* Stage 4 travels out of that framing and into the first journey panel, so the
+   dots pooling into click density land on a screen big enough to read on a
+   phone. The pad is what keeps the mock off the edges of its slot. */
+const MOBILE_VIEW_PAD = 22;
+const MOBILE_VIEW_END: Box = [
+  PANELS[0].x - MOBILE_VIEW_PAD,
+  PANELS[0].y - MOBILE_VIEW_PAD,
+  PANELS[0].w + MOBILE_VIEW_PAD * 2,
+  PANELS[0].h + MOBILE_VIEW_PAD * 2,
+];
 
 function StageCanvas({ progress, overlays = true }: { progress: number; overlays?: boolean }) {
   const sources = 1 - band(progress, 0.08, 0.2);
@@ -168,8 +231,8 @@ function StageCanvas({ progress, overlays = true }: { progress: number; overlays
               className="absolute flex items-baseline gap-2"
               style={{ left: pctX(panel.x), top: pctY(panel.y - 30) }}
             >
-              <span className="text-[10px] font-bold tabular-nums text-primary">0{i + 1}</span>
-              <span className="text-xs font-semibold tracking-tight text-foreground">{JOURNEY[i].step}</span>
+              <span className="text-[11px] font-bold tabular-nums text-primary">0{i + 1}</span>
+              <span className="text-sm font-semibold tracking-tight text-foreground">{JOURNEY[i].step}</span>
             </div>
 
             <div
@@ -241,9 +304,9 @@ function StageCanvas({ progress, overlays = true }: { progress: number; overlays
                 className="absolute w-[22%] -translate-x-1/2 border border-border bg-card p-2.5"
                 style={{ left: pctX(AGENT_ANCHORS[i].x), top: pctY(AGENT_ANCHORS[i].y + 44) }}
               >
-                <p className="text-[11px] font-semibold leading-tight tracking-tight text-foreground">{agent.name}</p>
-                <p className="mt-1 text-[9.5px] font-semibold uppercase tracking-[0.1em] text-primary">{agent.traits}</p>
-                <p className="mt-1.5 text-[10px] leading-snug text-foreground/55">{agent.scenario}</p>
+                <p className="text-xs font-semibold leading-tight tracking-tight text-foreground">{agent.name}</p>
+                <p className="mt-1 text-[10.5px] font-semibold uppercase tracking-[0.1em] text-primary">{agent.traits}</p>
+                <p className="mt-1.5 text-[11px] leading-snug text-foreground/55">{agent.scenario}</p>
               </div>
             ))}
           </div>
@@ -264,12 +327,12 @@ function StageDetail({ index }: { index: number }) {
           { title: "Quantitative", chips: QUANT_SOURCES },
         ].map((group) => (
           <div key={group.title}>
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-foreground/45">{group.title}</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-foreground/45">{group.title}</p>
             <div className="mt-2 flex flex-wrap gap-1.5">
               {group.chips.map((chip) => (
                 <span
                   key={chip}
-                  className="border border-border bg-secondary px-2 py-1 text-[11px] font-semibold text-foreground/60"
+                  className="border border-border bg-secondary px-2 py-1 text-xs font-semibold text-foreground/60"
                 >
                   {chip}
                 </span>
@@ -295,8 +358,8 @@ function StageDetail({ index }: { index: number }) {
           },
         ].map((layer) => (
           <div key={layer.title} className="border border-border bg-secondary p-3">
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-primary">{layer.title}</p>
-            <p className="mt-1.5 text-xs leading-relaxed text-foreground/60">{layer.body}</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary">{layer.title}</p>
+            <p className="mt-1.5 text-sm leading-relaxed text-foreground/60">{layer.body}</p>
           </div>
         ))}
       </div>
@@ -308,9 +371,9 @@ function StageDetail({ index }: { index: number }) {
       <div className="grid gap-2 sm:grid-cols-2">
         {AGENTS.map((agent) => (
           <div key={agent.name} className="border border-border bg-secondary p-3">
-            <p className="text-xs font-semibold tracking-tight text-foreground">{agent.name}</p>
-            <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-primary">{agent.traits}</p>
-            <p className="mt-1.5 text-[11px] leading-snug text-foreground/55">{agent.scenario}</p>
+            <p className="text-sm font-semibold tracking-tight text-foreground">{agent.name}</p>
+            <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-primary">{agent.traits}</p>
+            <p className="mt-1.5 text-xs leading-snug text-foreground/55">{agent.scenario}</p>
           </div>
         ))}
       </div>
@@ -321,9 +384,9 @@ function StageDetail({ index }: { index: number }) {
     <div className="grid gap-2 sm:grid-cols-3">
       {JOURNEY.map((step, i) => (
         <div key={step.step} className="border border-border bg-secondary p-3">
-          <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-primary">0{i + 1}</p>
-          <p className="mt-1 text-xs font-semibold tracking-tight text-foreground">{step.step}</p>
-          <p className="mt-1.5 text-[11px] leading-snug text-foreground/55">
+          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-primary">0{i + 1}</p>
+          <p className="mt-1 text-sm font-semibold tracking-tight text-foreground">{step.step}</p>
+          <p className="mt-1.5 text-xs leading-snug text-foreground/55">
             {step.clicks.length} click clusters recorded
           </p>
         </div>
@@ -346,7 +409,7 @@ function StageRail({ active }: { active: number }) {
           >
             <p
               className={cn(
-                "text-[10px] font-bold uppercase tracking-[0.16em] transition-colors duration-300",
+                "text-[11px] font-bold uppercase tracking-[0.16em] transition-colors duration-300",
                 i === active ? "text-primary" : "text-foreground/30"
               )}
             >
@@ -354,7 +417,7 @@ function StageRail({ active }: { active: number }) {
             </p>
             <p
               className={cn(
-                "mt-1 text-sm font-semibold leading-snug tracking-tight transition-colors duration-300",
+                "mt-1 text-base font-semibold leading-snug tracking-tight transition-colors duration-300",
                 i === active ? "text-foreground" : "text-foreground/35"
               )}
             >
@@ -373,14 +436,29 @@ function StageRail({ active }: { active: number }) {
 function MobileStageDetail({ stage }: { stage: number }) {
   if (stage === 0) {
     return (
-      <div className="flex flex-wrap gap-1.5">
-        {[...QUAL_SOURCES.slice(0, 3), ...QUANT_SOURCES.slice(0, 3)].map((chip) => (
-          <span
-            key={chip}
-            className="border border-border bg-secondary px-2 py-1 text-[11px] font-semibold text-foreground/60"
-          >
-            {chip}
-          </span>
+      // Two labelled columns, not one pooled list. The point of this stage is
+      // that both kinds of evidence go in, which an unlabelled run of chips
+      // does not say: it just reads as a list of sources.
+      <div className="grid grid-cols-2 gap-3">
+        {[
+          { title: "Qualitative", chips: QUAL_SOURCES.slice(0, 3) },
+          { title: "Quantitative", chips: QUANT_SOURCES.slice(0, 3) },
+        ].map((group) => (
+          <div key={group.title}>
+            <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-foreground/45">
+              {group.title}
+            </p>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {group.chips.map((chip) => (
+                <span
+                  key={chip}
+                  className="border border-border bg-secondary px-2 py-1 text-[11px] font-semibold text-foreground/60"
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     );
@@ -404,11 +482,19 @@ function MobileStageDetail({ stage }: { stage: number }) {
 
   if (stage === 2) {
     return (
-      <div className="grid gap-2">
+      // One line per user rather than a stacked card. Three of these set the
+      // height of the whole detail block, and the name and its traits read fine
+      // side by side at this width.
+      <div className="grid gap-1.5">
         {AGENTS.slice(0, 3).map((agent) => (
-          <div key={agent.name} className="border border-border bg-secondary p-3">
+          <div
+            key={agent.name}
+            className="flex items-baseline justify-between gap-2 border border-border bg-secondary px-2.5 py-1.5"
+          >
             <p className="text-xs font-semibold tracking-tight text-foreground">{agent.name}</p>
-            <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-primary">{agent.traits}</p>
+            <p className="text-right text-[10px] font-semibold uppercase tracking-[0.1em] text-primary">
+              {agent.traits}
+            </p>
           </div>
         ))}
       </div>
@@ -432,19 +518,44 @@ function MobileStageDetail({ stage }: { stage: number }) {
  *
  * The desktop version pins a wide canvas and hangs cards on it at percentage
  * coordinates, which does not survive a 390px viewport. This keeps the pinning
- * and the scroll-driven cloud, but stacks title, canvas and detail vertically and
- * crops the cloud to one frame so it animates continuously.
+ * and the scroll-driven cloud, but stacks title, canvas and detail vertically.
+ *
+ * Every band of this layout holds one size for the whole scroll. The title and
+ * the detail each stack all four stages in a single grid cell and cross-fade
+ * between them, so both are as tall as their longest stage at every moment, and
+ * the canvas between them keeps one box rather than being resized from above and
+ * below as the copy changes. What moves is the artwork inside that box.
  */
 function MobileSequence() {
   const wrapRef = useRef<HTMLDivElement>(null);
+  const slotRef = useRef<HTMLDivElement>(null);
   const progress = useScrollProgress(wrapRef);
+  const slot = useBoxSize(slotRef);
   const active = Math.min(3, Math.floor(progress * 4 + 0.001));
-  const showPhone = progress > 0.78;
+
+  // Stage 4 as one continuous move instead of a cut to a static screenshot. The
+  // dots finish pooling into their three panel clusters in the wide framing
+  // first; only then does the crop travel into the first panel, and the cloud
+  // fades over that travel so the two clusters being left behind dissolve rather
+  // than streak off the edge. The phone grows in under the dots still landing on
+  // it, and the heatmap resolves last, out of the density they had pooled into.
+  // Everything lands a little before the end of the scroll, so the finished
+  // frame gets a beat of its own rather than completing on the last pixel.
+  const zoom = easeInOut(band(progress, 0.84, 0.97));
+  const view = lerpBox(MOBILE_VIEW_START, MOBILE_VIEW_END, zoom);
+  const cloud = 1 - band(progress, 0.86, 0.95);
+  const phone = band(progress, 0.86, 0.94);
+  const heat = band(progress, 0.9, 0.98);
+
+  // An SVG letterboxes its crop inside whatever box it is given, so the crop gets
+  // a box of its own aspect, centred in the slot. Everything hung on the canvas
+  // is then placed in percentages of that box, the way the desktop overlays are.
+  const scale = slot.w && slot.h ? Math.min(slot.w / view[2], slot.h / view[3]) : 0;
 
   return (
     <div ref={wrapRef} className="relative h-[340vh]">
-      <div className="sticky top-14 flex h-[calc(100vh-3.5rem)] flex-col gap-4 px-4 pb-6 pt-5">
-        <div>
+      <div className="sticky top-14 flex h-[calc(100vh-3.5rem)] flex-col px-4 pb-6 pt-5">
+        <div className="shrink-0">
           <div className="flex items-center gap-1.5" aria-hidden="true">
             {STAGES.map((stage, i) => (
               <span
@@ -459,27 +570,88 @@ function MobileSequence() {
           <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.16em] text-primary">
             {STAGES[active].n} / 04
           </p>
-          <p className="mt-1 text-lg font-semibold leading-snug tracking-tight text-foreground">
-            {STAGES[active].title}
-          </p>
+          <div className="mt-1 grid">
+            {STAGES.map((stage, i) => (
+              <p
+                key={stage.n}
+                aria-hidden={i !== active}
+                className={cn(
+                  "col-start-1 row-start-1 text-lg font-semibold leading-snug tracking-tight text-foreground transition-opacity duration-300",
+                  i !== active && "pointer-events-none"
+                )}
+                style={{ opacity: i === active ? 1 : 0 }}
+              >
+                {stage.title}
+              </p>
+            ))}
+          </div>
         </div>
 
-        <div className="flex min-h-0 flex-1 flex-col justify-center gap-4">
-          <div className="relative">
-            {showPhone ? (
-              <div className="mx-auto w-full max-w-[190px]">
-                <PhoneMock screen={JOURNEY[0].screen} className="ring-1 ring-foreground/15">
-                  <HeatmapOverlay points={JOURNEY[0].clicks} />
-                </PhoneMock>
-              </div>
-            ) : (
-              <UserModelGraph progress={progress} flat viewBox={MOBILE_VIEWBOX} className="w-full" />
-            )}
-          </div>
+        {/* w-full and min-h-0 flex-1 make both of the slot's dimensions come from
+            the column rather than from what is inside it, so measuring it to size
+            the canvas cannot feed back into its own size. */}
+        <div ref={slotRef} className="relative my-4 flex min-h-0 w-full flex-1 items-center justify-center">
+          {/* Before the first measurement lands, fall back to the width-driven
+              box. At the wide framing that is the same box the measurement
+              produces, so the swap on the next frame is invisible. */}
+          <div
+            className="relative"
+            style={
+              scale
+                ? { width: view[2] * scale, height: view[3] * scale }
+                : { width: "100%", aspectRatio: `${view[2]} / ${view[3]}` }
+            }
+          >
+            <div
+              className="absolute inset-0"
+              style={{ opacity: cloud, visibility: cloud < 0.01 ? "hidden" : undefined }}
+            >
+              <UserModelGraph
+                progress={progress}
+                flat
+                viewBox={view.join(" ")}
+                className="absolute inset-0"
+              />
+            </div>
 
-          <div key={active}>
-            <MobileStageDetail stage={active} />
+            <div
+              className="absolute"
+              style={{
+                ...boxRect(view, PANELS[0]),
+                opacity: phone,
+                visibility: phone < 0.01 ? "hidden" : undefined,
+              }}
+            >
+              <PhoneMock screen={JOURNEY[0].screen} className="h-full ring-1 ring-foreground/15">
+                <div className="absolute inset-0" style={{ opacity: heat }}>
+                  <HeatmapOverlay points={JOURNEY[0].clicks} />
+                </div>
+              </PhoneMock>
+            </div>
           </div>
+        </div>
+
+        {/* The cell is as tall as the longest stage, so the shorter ones leave
+            slack. items-end spends that slack above the text instead of below
+            it, which puts every stage's last line the same distance off the
+            bottom of the screen and hides the slack next to the canvas.
+
+            MobileStageDetail branches on position in STAGES, so these stay in
+            step with the titles above only as long as that order is the order. */}
+        <div className="grid shrink-0 items-end">
+          {STAGES.map((stage, i) => (
+            <div
+              key={stage.n}
+              aria-hidden={i !== active}
+              className={cn(
+                "col-start-1 row-start-1 transition-opacity duration-300",
+                i !== active && "pointer-events-none"
+              )}
+              style={{ opacity: i === active ? 1 : 0 }}
+            >
+              <MobileStageDetail stage={i} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -491,6 +663,14 @@ function PinnedSequence() {
   const progress = useScrollProgress(wrapRef);
   const active = progress < 0.24 ? 0 : progress < 0.48 ? 1 : progress < 0.74 ? 2 : 3;
 
+  // The canvas takes its height from its width, so the width has to be capped to
+  // whatever leaves the derived height fitting the space the stage rail leaves
+  // behind. Measuring the slot cannot feed back into its own size: it is a
+  // min-h-0 flex-1 child of a fixed-height column, so its height is the leftover
+  // space no matter how wide the canvas inside it is.
+  const slotRef = useRef<HTMLDivElement>(null);
+  const slot = useBoxSize(slotRef);
+
   return (
     <div ref={wrapRef} className="relative h-[360vh]">
       <div className="sticky top-0 flex h-screen flex-col pb-6 pt-16">
@@ -499,17 +679,19 @@ function PinnedSequence() {
             <StageRail active={active} />
           </div>
         </div>
-        <div className="container mx-auto mt-3 min-h-0 flex-1 px-4 sm:px-6">
+        <div ref={slotRef} className="container mx-auto mt-3 min-h-0 flex-1 px-4 sm:px-6">
           <div className="mx-auto flex h-full max-w-7xl items-center justify-center">
-            {/* The canvas takes its height from its width, so the width is capped
-                to whatever leaves the derived height fitting the pinned area.
-                190px is the fixed chrome above and below it: pt-16, the stage
-                rail, the 12px gap, and pb-6. That leaves the canvas at the full
-                column width, which is the point of the 1000x520 aspect: a taller
-                canvas would be pinched in from both sides. */}
+            {/* The wide aspect is what lets the canvas run the full column width
+                on a roomy viewport; a shorter slot narrows it from both sides
+                rather than clipping it. The calc is only the value for the first
+                frame, before the measurement lands. */}
             <div
               className="w-full"
-              style={{ maxWidth: `calc((100vh - 190px) * ${VIEW_W / VIEW_H})` }}
+              style={{
+                maxWidth: slot.h
+                  ? `${slot.h * (VIEW_W / VIEW_H)}px`
+                  : `calc((100vh - 190px) * ${VIEW_W / VIEW_H})`,
+              }}
             >
               <StageCanvas progress={progress} />
             </div>
@@ -532,8 +714,8 @@ function StackedStages() {
                 <StageCanvas progress={i / (STAGES.length - 1)} overlays={false} />
               </div>
               <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-primary">{stage.n}</p>
-                <h3 className="mt-1.5 text-lg font-semibold tracking-tight text-foreground">{stage.title}</h3>
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary">{stage.n}</p>
+                <h3 className="mt-1.5 text-xl font-semibold tracking-tight text-foreground">{stage.title}</h3>
                 <div className="mt-5">
                   <StageDetail index={i} />
                 </div>
@@ -563,7 +745,7 @@ export default function ModelPipeline() {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mx-auto max-w-7xl">
           <Reveal className="mb-8">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-primary">
+            <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-primary">
               User model infrastructure
             </p>
             {/* Wider than the old two-column measure, now that nothing sits beside it. */}
