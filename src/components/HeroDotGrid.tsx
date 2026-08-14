@@ -6,13 +6,16 @@ import { useEffect, useRef } from "react";
  * A halftone-style field of dots painted onto a canvas, confined to its nearest
  * positioned ancestor (mount inside a `relative` section). Dots sit on an even
  * grid; a large-scale value-noise field varies each dot's resting opacity and
- * size, so the visible dots gather into small, broken-up cloud groups over a
- * mostly bare background.
+ * size, so the visible dots gather into a few separated cloud-like groups over
+ * a mostly bare background.
  *
- * As the cursor moves through the field, nearby dots brighten and are given a
- * very slight nudge away, springing back once it leaves. A soft additive glow is
- * blitted under each lit dot so the trail reads as one cohesive band of light
- * rather than a string of separate circles.
+ * As the cursor moves through the field, nearby dots brighten toward full
+ * opacity (re-lighting each time the cursor passes over them) and then fade back
+ * to their resting opacity. They are also given a very slight physical nudge
+ * away from the cursor, springing back once it leaves.
+ *
+ * Every dot is redrawn each frame, but dots that are invisible, cool, and at
+ * rest are skipped, keeping the draw count down.
  *
  * Renders nothing for touch/no-hover pointers or when the user has requested
  * reduced motion.
@@ -31,17 +34,12 @@ const DOT_HSL = "0, 0%, 100%"; // white
 
 // Interaction.
 const CURSOR_RADIUS = 60; // px — reach of the cursor's brighten + nudge
-const GLOW_MAX = 0.8; // opacity a dot reaches right under the cursor
-const GLOW_FADE = 0.94; // brightness retained per frame after the cursor leaves (higher = longer tail)
+const GLOW_MAX = 1; // opacity a dot reaches right under the cursor
+const GLOW_FADE = 0.88; // brightness retained per frame after the cursor leaves (higher = longer tail)
 const PUSH_STRENGTH = 0.16; // per-frame nudge acceleration at the cursor's center
 const SPRING_K = 0.05; // pull back toward home (stiffness)
 const DAMPING = 0.86; // velocity retained per frame (< 1; lower = settles faster)
 const MAX_DISP = 8; // px — clamp how far a dot can travel
-
-// Cohesive glow that binds the lit dots into one trail. Kept low because the
-// per-dot halos stack additively where the field is dense.
-const GLOW_DIAMETER = 20; // px baseline size of each dot's soft halo
-const GLOW_STRENGTH = 0.06; // additive intensity of the glow
 
 const smooth = (t: number) => t * t * (3 - 2 * t);
 const smoothstep = (a: number, b: number, x: number) => {
@@ -63,19 +61,6 @@ const HeroDotGrid = () => {
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
-    // A soft white radial halo, drawn once and blitted additively per lit dot.
-    const glow = document.createElement("canvas");
-    glow.width = 64;
-    glow.height = 64;
-    const gctx = glow.getContext("2d");
-    if (!gctx) return;
-    const grad = gctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-    grad.addColorStop(0, "rgba(255,255,255,0.9)");
-    grad.addColorStop(0.35, "rgba(255,255,255,0.35)");
-    grad.addColorStop(1, "rgba(255,255,255,0)");
-    gctx.fillStyle = grad;
-    gctx.fillRect(0, 0, 64, 64);
 
     let count = 0;
     let width = 0;
@@ -169,11 +154,9 @@ const HeroDotGrid = () => {
     let raf = 0;
     const tick = () => {
       ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = `hsl(${DOT_HSL})`;
       const r2 = CURSOR_RADIUS * CURSOR_RADIUS;
 
-      // Pass 1 — update physics/heat and draw the crisp dots (source-over).
-      ctx.globalCompositeOperation = "source-over";
-      ctx.fillStyle = `hsl(${DOT_HSL})`;
       for (let idx = 0; idx < count; idx++) {
         let ddx = dx[idx];
         let ddy = dy[idx];
@@ -181,6 +164,7 @@ const HeroDotGrid = () => {
         let dvy = vy[idx];
         let h = heat[idx] * GLOW_FADE; // cool down a little each frame
 
+        // Cursor interaction: brighten + a slight nudge away.
         if (mouse.active) {
           const rx = homeX[idx] + ddx - mouse.x;
           const ry = homeY[idx] + ddy - mouse.y;
@@ -196,6 +180,7 @@ const HeroDotGrid = () => {
         }
         heat[idx] = h;
 
+        // Spring back toward home, with damping.
         dvx = (dvx - SPRING_K * ddx) * DAMPING;
         dvy = (dvy - SPRING_K * ddy) * DAMPING;
         ddx += dvx;
@@ -211,27 +196,19 @@ const HeroDotGrid = () => {
         vx[idx] = dvx;
         vy[idx] = dvy;
 
-        const glowA = h * GLOW_MAX;
-        const alpha = baseA[idx] > glowA ? baseA[idx] : glowA;
+        // Brightness is the cursor glow or the resting opacity, whichever is more.
+        const glow = h * GLOW_MAX;
+        const alpha = baseA[idx] > glow ? baseA[idx] : glow;
         if (alpha < 0.012) continue;
+
+        // Grow toward the full group-dot size when lit, so hovering a bare gap
+        // looks the same as hovering a group (not just tiny specks).
         const radius = sizes[idx] + (DOT_MAX - sizes[idx]) * h;
         ctx.globalAlpha = alpha;
         ctx.beginPath();
         ctx.arc(homeX[idx] + ddx, homeY[idx] + ddy, radius, 0, Math.PI * 2);
         ctx.fill();
       }
-
-      // Pass 2 — additive soft halos that merge the lit dots into one trail.
-      ctx.globalCompositeOperation = "lighter";
-      for (let idx = 0; idx < count; idx++) {
-        const h = heat[idx];
-        if (h <= 0.03) continue;
-        const d = GLOW_DIAMETER * (0.7 + 0.6 * h);
-        ctx.globalAlpha = h * GLOW_STRENGTH;
-        ctx.drawImage(glow, homeX[idx] + dx[idx] - d / 2, homeY[idx] + dy[idx] - d / 2, d, d);
-      }
-
-      ctx.globalCompositeOperation = "source-over";
       ctx.globalAlpha = 1;
       raf = requestAnimationFrame(tick);
     };
