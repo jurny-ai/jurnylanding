@@ -28,9 +28,9 @@ const Results = () => {
         <div className="mx-auto max-w-6xl">
           <Reveal asChild>
             <h2 className="mb-8 max-w-3xl text-left text-xl font-medium leading-snug tracking-tight text-foreground/65 sm:text-2xl">
-              Built for teams moving beyond slow, traffic-heavy experiments.
+              Optimize conversion without waiting out long testing cycles.
               <br />
-              Real conversion insights, without a month of split traffic.
+              Grow revenue from the traffic you already have.
             </h2>
           </Reveal>
 
