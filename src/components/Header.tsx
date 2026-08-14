@@ -23,9 +23,9 @@ import { track } from "@/lib/analytics";
 import QualificationFlow from "@/components/QualificationFlow";
 
 const SECTION_LINKS = [
-  { label: "How it works", id: "model" },
   { label: "A/B prediction", id: "ab-prediction" },
   { label: "Cohort friction", id: "cohort-friction" },
+  { label: "How it works", id: "model" },
   { label: "FAQ", id: "faq" },
 ] as const;
 

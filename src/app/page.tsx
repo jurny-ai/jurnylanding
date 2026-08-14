@@ -19,10 +19,10 @@ export default function Home() {
       <Header />
       <Hero />
       <Results />
-      <ModelPipeline />
+      <Outcomes />
       <VariantPrediction />
       <CohortFriction />
-      <Outcomes />
+      <ModelPipeline />
       <FAQ />
       <Footer />
       <ScrollTracker />

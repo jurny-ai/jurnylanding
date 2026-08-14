@@ -35,13 +35,13 @@ const Hero = () => {
               </span>
             </a>
 
-            <h1 className="mb-6 text-[2.75rem] font-medium leading-[0.96] tracking-[-0.045em] text-white sm:text-7xl lg:text-[5.75rem]">
-              Your customers, simulated.
+            <h1 className="mb-6 text-[2.25rem] font-medium leading-[0.96] tracking-[-0.045em] text-white sm:text-6xl lg:text-[4.5rem]">
+              Get more from your funnel in hours, not quarters.
             </h1>
 
             <p className="mb-9 max-w-3xl text-base leading-relaxed text-white/75 sm:mb-11 sm:text-xl">
-              Know which variant wins, and where each cohort gets stuck, in hours instead of quarters. All from one
-              model built on the customer data you already have.
+              Jurny simulates your customers against every variant and every flow, so you know which one wins and
+              where each cohort gets stuck.
             </p>
 
             <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">

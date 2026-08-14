@@ -138,7 +138,7 @@ function EngineeringTimeVisual() {
 
 const outcomes = [
   {
-    title: "More conversion from the traffic you already have",
+    title: "More conversion from the same traffic",
     description:
       "Every variant gets scored against the population model first, so the experiments you run are the ones with a real chance and they reach significance on less traffic.",
     visual: <PrescreenVisual />,
@@ -165,12 +165,15 @@ const outcomes = [
 
 const Outcomes = () => {
   return (
-    <section id="features" className="scroll-mt-14 bg-background py-14 sm:scroll-mt-16 sm:py-20">
+    <section
+      id="features"
+      className="scroll-mt-14 border-b border-border bg-background py-14 sm:scroll-mt-16 sm:py-20"
+    >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mx-auto max-w-7xl">
           <Reveal className="mb-8 sm:mb-12">
             <h2 className="text-2xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl">
-              Where it pays off
+              Where the lift comes from
             </h2>
           </Reveal>
 

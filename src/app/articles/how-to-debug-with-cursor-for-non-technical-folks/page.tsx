@@ -57,7 +57,7 @@ export default function IFoundAIssueNowWhatPage() {
       </div>
       <p className="text-foreground/90 leading-relaxed">
         To learn more about how Jurny generates insights like these,{" "}
-        <Link href="/#how-it-works" className="text-primary underline underline-offset-4">
+        <Link href="/#model" className="text-primary underline underline-offset-4">
           click here
         </Link>
         .

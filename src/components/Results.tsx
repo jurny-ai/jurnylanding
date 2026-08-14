@@ -30,7 +30,7 @@ const Results = () => {
             <h2 className="mb-8 max-w-3xl text-left text-xl font-medium leading-snug tracking-tight text-foreground/65 sm:text-2xl">
               Built for teams moving beyond slow, traffic-heavy experiments.
               <br />
-              Real conversion insights, surfaced in days instead of weeks.
+              Real conversion insights, without a month of split traffic.
             </h2>
           </Reveal>
 

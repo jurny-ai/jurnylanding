@@ -4,17 +4,17 @@ import Providers from "@/components/Providers";
 import "@/index.css";
 
 export const metadata: Metadata = {
-  title: "Predict Your A/B Tests and Find Cohort Friction",
+  title: "Get More From Your Funnel in Hours, Not Quarters",
   description:
-    "Jurny builds one model of your D2C customers from the customer data you already have, then runs synthetic users through your site. Get a directional call on every variant, and see exactly where each cohort gets stuck.",
+    "Know which variant wins before you spend traffic on it, and see exactly which cohort gets stuck where. Jurny simulates your D2C customers against every variant and every flow.",
   metadataBase: new URL("https://usejurny.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Predict Your A/B Tests and Find Cohort Friction",
+    title: "Get More From Your Funnel in Hours, Not Quarters",
     description:
-      "One user model built from the customer data you already have. Synthetic users predict which variant wins before you spend traffic, and show which cohort stalls at which step.",
+      "Ship the variant that wins and fix the step your customers give up on. Jurny simulates your customers against every variant and every flow, so the answer arrives before the traffic is spent.",
     url: "https://usejurny.com",
     siteName: "jurny",
     type: "website",
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@jurny_ai",
-    title: "Predict Your A/B Tests and Find Cohort Friction",
+    title: "Get More From Your Funnel in Hours, Not Quarters",
     description:
-      "Synthetic users drawn from one model of your customers. Call the winning variant before you spend traffic, and see which cohort stalls at which step.",
+      "Call the winning variant before you spend traffic on it, and see which cohort stalls at which step. Jurny simulates your customers against every variant and every flow.",
     images: ["/lovable-uploads/560e781d-c4c7-4e51-819a-b21fc0746540.png"],
   },
   robots: "index, follow",

@@ -158,7 +158,7 @@ function FrictionMarker({ cohort, y, windowH }: { cohort: Cohort; y: number; win
 function SectionHeading({ className, compact = false }: { className?: string; compact?: boolean }) {
   return (
     <div className={className}>
-      <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-primary">Individual model</p>
+      <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-primary">Diagnose drop-off</p>
       {/* Both halves of the old title block in one line: the leak analytics can
           see, then the cohort behind it that only the model can name. */}
       <h2
@@ -340,13 +340,17 @@ function PinnedCohorts() {
                           : "border-border bg-card hover:border-primary/45 hover:bg-secondary"
                       )}
                     >
-                      <Icon
-                        className={cn("h-4 w-4 shrink-0", selected ? "text-highlight" : "text-primary")}
-                        strokeWidth={2}
-                      />
                       <span className="min-w-0 flex-1">
-                        <span className="block truncate text-xs font-semibold tracking-tight">
-                          {cohort.short}
+                        {/* Icon rides the title's own line: centring it against
+                            the title-plus-bar block drops it below the text. */}
+                        <span className="flex items-center gap-2.5">
+                          <Icon
+                            className={cn("h-4 w-4 shrink-0", selected ? "text-highlight" : "text-primary")}
+                            strokeWidth={2}
+                          />
+                          <span className="min-w-0 flex-1 truncate text-xs font-semibold tracking-tight">
+                            {cohort.short}
+                          </span>
                         </span>
                         <span
                           className={cn(
@@ -433,10 +437,12 @@ function TabbedCohorts() {
                 type="button"
                 className="flex w-full items-center gap-2.5 border border-border bg-card px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 data-[state=open]:border-primary/45"
               >
-                <active.icon className="h-4 w-4 shrink-0 text-primary" strokeWidth={2} />
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold tracking-tight text-foreground">
-                    {active.short}
+                  <span className="flex items-center gap-2.5">
+                    <active.icon className="h-4 w-4 shrink-0 text-primary" strokeWidth={2} />
+                    <span className="min-w-0 flex-1 truncate text-sm font-semibold tracking-tight text-foreground">
+                      {active.short}
+                    </span>
                   </span>
                   <span className="mt-1.5 block h-1 w-full bg-foreground/10">
                     <span
@@ -475,13 +481,15 @@ function TabbedCohorts() {
                         : "focus:bg-secondary"
                     )}
                   >
-                    <Icon
-                      className={cn("h-4 w-4 shrink-0", selected ? "text-highlight" : "text-primary")}
-                      strokeWidth={2}
-                    />
                     <span className="min-w-0 flex-1">
-                      <span className="block truncate text-sm font-semibold tracking-tight">
-                        {cohort.short}
+                      <span className="flex items-center gap-2.5">
+                        <Icon
+                          className={cn("h-4 w-4 shrink-0", selected ? "text-highlight" : "text-primary")}
+                          strokeWidth={2}
+                        />
+                        <span className="min-w-0 flex-1 truncate text-sm font-semibold tracking-tight">
+                          {cohort.short}
+                        </span>
                       </span>
                       <span
                         className={cn(

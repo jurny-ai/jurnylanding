@@ -47,7 +47,7 @@ export default function VariantPrediction() {
           <Reveal className="mb-8">
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                Population model
+                Pre-screen experiments
               </p>
               <h2 className="max-w-3xl text-3xl font-medium leading-[1.02] tracking-[-0.04em] text-foreground sm:text-5xl">
                 Know which variant wins before you spend traffic on it.

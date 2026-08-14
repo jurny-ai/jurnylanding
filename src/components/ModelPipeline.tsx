@@ -772,11 +772,10 @@ export default function ModelPipeline() {
         <div className="mx-auto max-w-7xl">
           <Reveal className="mb-8">
             <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-primary">
-              User model infrastructure
+              Under the hood
             </p>
-            {/* Wider than the old two-column measure, now that nothing sits beside it. */}
-            <h2 className="max-w-4xl text-3xl font-medium leading-[1.02] tracking-[-0.04em] text-foreground sm:text-5xl lg:text-6xl">
-              Every customer signal, in one model that behaves like them.
+            <h2 className="max-w-4xl text-3xl font-medium leading-[1.02] tracking-[-0.04em] text-foreground sm:text-5xl">
+              How our model works.
             </h2>
           </Reveal>
         </div>
