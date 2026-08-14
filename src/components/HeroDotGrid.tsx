@@ -29,6 +29,8 @@ const NOISE_A_WEIGHT = 0.6; // balance of coarse groups vs. fine break-up
 const GROUP_LO = 0.44; // noise below this → bare background (no dots)
 const GROUP_HI = 0.7; // noise above this → full-strength group
 const DOT_HSL = "0, 0%, 100%"; // white
+const LIME_HSL = "75.08, 85.65%, 59.02%"; // brand lime (--highlight)
+const LIME_FRACTION = 0.01; // share of dots tinted lime instead of white
 
 // Interaction.
 const CURSOR_RADIUS = 60; // px — reach of the cursor's brighten + nudge
@@ -73,6 +75,7 @@ const HeroDotGrid = () => {
     let heat = new Float32Array(0); // 0..1 brightness from the cursor
     let baseA = new Float32Array(0); // resting opacity
     let sizes = new Float32Array(0);
+    let lime = new Uint8Array(0); // 1 = tint this dot lime instead of white
     // Cursor: current position, plus where it was last frame (for the swept segment).
     const mouse = { x: -9999, y: -9999, px: -9999, py: -9999, active: false };
 
@@ -122,6 +125,7 @@ const HeroDotGrid = () => {
       heat = new Float32Array(count);
       baseA = new Float32Array(count);
       sizes = new Float32Array(count);
+      lime = new Uint8Array(count);
 
       const noiseA = makeNoise(NOISE_A);
       const noiseB = makeNoise(NOISE_B);
@@ -136,6 +140,7 @@ const HeroDotGrid = () => {
           const field = smoothstep(GROUP_LO, GROUP_HI, raw);
           sizes[idx] = DOT_MIN + (DOT_MAX - DOT_MIN) * field;
           baseA[idx] = field * BASE_OPACITY_MAX;
+          lime[idx] = Math.random() < LIME_FRACTION ? 1 : 0;
         }
       }
     };
@@ -161,7 +166,10 @@ const HeroDotGrid = () => {
     let raf = 0;
     const tick = () => {
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = `hsl(${DOT_HSL})`;
+      const whiteStyle = `hsl(${DOT_HSL})`;
+      const limeStyle = `hsl(${LIME_HSL})`;
+      let curStyle = whiteStyle;
+      ctx.fillStyle = curStyle;
       const r2 = CURSOR_RADIUS * CURSOR_RADIUS;
       // The segment the cursor swept this frame: (px,py) -> (x,y).
       const ax = mouse.px;
@@ -219,6 +227,11 @@ const HeroDotGrid = () => {
         const alpha = baseA[idx] > glow ? baseA[idx] : glow;
         if (alpha < 0.012) continue;
         const radius = sizes[idx] + (DOT_MAX - sizes[idx]) * h;
+        const style = lime[idx] ? limeStyle : whiteStyle;
+        if (style !== curStyle) {
+          ctx.fillStyle = style;
+          curStyle = style;
+        }
         ctx.globalAlpha = alpha;
         ctx.beginPath();
         ctx.arc(homeX[idx] + ddx, homeY[idx] + ddy, radius, 0, Math.PI * 2);
