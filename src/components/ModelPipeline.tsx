@@ -108,6 +108,21 @@ function useBoxSize(ref: RefObject<HTMLElement>) {
   return size;
 }
 
+function scrollToStage(ref: RefObject<HTMLElement>, index: number) {
+  const node = ref.current;
+  if (!node) return;
+
+  const rect = node.getBoundingClientRect();
+  const travel = rect.height - window.innerHeight;
+  const sequenceTop = window.scrollY + rect.top;
+  const progress = index / (STAGES.length - 1);
+
+  window.scrollTo({
+    top: sequenceTop + travel * progress,
+    behavior: "smooth",
+  });
+}
+
 function SourceCloud({ align, title, chips }: { align: "left" | "right"; title: string; chips: string[] }) {
   return (
     <div
@@ -395,15 +410,18 @@ function StageDetail({ index }: { index: number }) {
   );
 }
 
-function StageRail({ active }: { active: number }) {
+function StageRail({ active, onSelect }: { active: number; onSelect: (index: number) => void }) {
   return (
     <div>
       <div className="grid gap-3 sm:grid-cols-4">
         {STAGES.map((stage, i) => (
-          <div
+          <button
+            type="button"
             key={stage.n}
+            onClick={() => onSelect(i)}
+            aria-current={i === active ? "step" : undefined}
             className={cn(
-              "border-t-2 pt-3 transition-colors duration-300",
+              "border-t-2 pt-3 text-left transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-background",
               i === active ? "border-primary" : "border-border"
             )}
           >
@@ -423,7 +441,7 @@ function StageRail({ active }: { active: number }) {
             >
               {stage.title}
             </p>
-          </div>
+          </button>
         ))}
       </div>
     </div>
@@ -556,15 +574,23 @@ function MobileSequence() {
     <div ref={wrapRef} className="relative h-[340vh]">
       <div className="sticky top-14 flex h-[calc(100vh-3.5rem)] flex-col px-4 pb-6 pt-5">
         <div className="shrink-0">
-          <div className="flex items-center gap-1.5" aria-hidden="true">
+          <div className="flex items-center gap-1.5">
             {STAGES.map((stage, i) => (
-              <span
+              <button
+                type="button"
                 key={stage.n}
-                className={cn(
-                  "h-0.5 flex-1 transition-colors duration-300",
-                  i <= active ? "bg-primary" : "bg-border"
-                )}
-              />
+                onClick={() => scrollToStage(wrapRef, i)}
+                aria-label={`Go to step ${i + 1}: ${stage.title}`}
+                aria-current={i === active ? "step" : undefined}
+                className="flex flex-1 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              >
+                <span
+                  className={cn(
+                    "h-0.5 w-full transition-colors duration-300",
+                    i <= active ? "bg-primary" : "bg-border"
+                  )}
+                />
+              </button>
             ))}
           </div>
           <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.16em] text-primary">
@@ -676,7 +702,7 @@ function PinnedSequence() {
       <div className="sticky top-0 flex h-screen flex-col pb-6 pt-16">
         <div className="container mx-auto shrink-0 px-4 sm:px-6">
           <div className="mx-auto max-w-7xl">
-            <StageRail active={active} />
+            <StageRail active={active} onSelect={(index) => scrollToStage(wrapRef, index)} />
           </div>
         </div>
         <div ref={slotRef} className="container mx-auto mt-3 min-h-0 flex-1 px-4 sm:px-6">
