@@ -30,20 +30,19 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("badge_clicked", { badge: "unusual_ventures" })}
-              className="mb-8 inline-flex max-w-full cursor-pointer items-center border border-highlight bg-highlight px-4 py-2 text-highlight-foreground transition-colors hover:bg-highlight/85 sm:px-5"
+              className="mb-8 inline-flex max-w-full cursor-pointer items-center border border-white bg-white px-4 py-2 text-muted-foreground transition-colors hover:bg-white/90 sm:px-5"
             >
-              <span className="text-[9px] font-bold uppercase tracking-[0.14em] text-foreground sm:text-[10px] sm:tracking-[0.2em]">
+              <span className="text-[9px] font-bold uppercase tracking-[0.14em] text-muted-foreground sm:text-[10px] sm:tracking-[0.2em]">
                 Backed by Unusual Ventures
               </span>
             </a>
 
             <h1 className="mb-6 text-[2.25rem] font-medium leading-[0.96] tracking-[-0.045em] text-white sm:text-6xl lg:text-[4.5rem]">
-              Get more from your funnel in hours, not quarters.
+              Your customers on demand
             </h1>
 
-            <p className="mb-9 max-w-3xl text-base leading-relaxed text-white/75 sm:mb-11 sm:text-xl">
-              Jurny simulates your customers against every variant and every flow, so you know which one wins and
-              where each cohort gets stuck.
+            <p className="mb-9 max-w-3xl text-lg font-semibold leading-snug text-highlight sm:mb-11 sm:text-2xl">
+              Simulate real users to see what wins and who&apos;s struggling, before it costs you a conversion
             </p>
 
             <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
