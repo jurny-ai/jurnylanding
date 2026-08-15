@@ -1,6 +1,5 @@
 "use client";
 
-import { MousePointerClick, Timer } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 const proofCards = [
@@ -9,7 +8,6 @@ const proofCards = [
     title: "rage clicks",
     metric: "-53%",
     context: "D2C education platform with 30,000 users",
-    icon: MousePointerClick,
   },
   {
     eyebrow: "Experiment velocity",
@@ -17,7 +15,6 @@ const proofCards = [
     metric: "1 day",
     context: "Large enterprise ecommerce company",
     quote: "Reduced a 1.25-month experiment cycle to a single day with Jurny.",
-    icon: Timer,
   },
 ];
 
@@ -28,20 +25,13 @@ const Results = () => {
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-px border border-border bg-border lg:grid-cols-[0.82fr_1.18fr]">
             {proofCards.map((card, i) => {
-              const Icon = card.icon;
-
               if (!card.quote) {
                 return (
                   <Reveal key={card.title} asChild delay={i * 120}>
                     <div className="flex min-h-[270px] flex-col justify-between bg-secondary p-6 text-left sm:p-8">
-                      <div className="mb-6 flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center bg-highlight text-highlight-foreground">
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <p className="text-sm font-semibold uppercase tracking-[0.14em] text-foreground/50">
-                          {card.eyebrow}
-                        </p>
-                      </div>
+                      <p className="mb-6 text-sm font-bold uppercase tracking-[0.14em] text-primary">
+                        {card.eyebrow}
+                      </p>
 
                       <div>
                         <p className="text-6xl font-medium tracking-[-0.05em] text-primary sm:text-7xl">
@@ -61,14 +51,9 @@ const Results = () => {
                 <Reveal key={card.title} asChild delay={i * 120}>
                   <div className="grid min-h-[270px] bg-secondary p-6 text-left sm:p-8 xl:grid-cols-[1fr_auto_0.72fr] xl:items-center xl:gap-8">
                     <div>
-                      <div className="mb-5 flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center bg-highlight text-highlight-foreground">
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <p className="text-sm font-semibold uppercase tracking-[0.14em] text-foreground/50">
-                          {card.eyebrow}
-                        </p>
-                      </div>
+                      <p className="mb-5 text-sm font-bold uppercase tracking-[0.14em] text-primary">
+                        {card.eyebrow}
+                      </p>
 
                       <blockquote className="text-xl font-normal leading-snug tracking-tight text-foreground sm:text-2xl">
                         Reduced a 1.25-month experiment cycle to a{" "}

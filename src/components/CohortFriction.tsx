@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { ChevronDown, Gift, Layers3, Quote, Repeat, Search, Smartphone } from "lucide-react";
+import { useRef, useState } from "react";
+import { ChevronDown, Layers3, Quote, Repeat, Search, Smartphone } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import {
   DropdownMenu,
@@ -10,8 +10,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import StorefrontMock, { MOCK_H, type StorefrontScreen } from "@/components/mocks/StorefrontMock";
-import { useIsDesktop, usePrefersReducedMotion } from "@/hooks/use-media-query";
-import { useScrollProgress } from "@/hooks/use-scroll-progress";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -19,7 +17,7 @@ type Cohort = {
   id: string;
   name: string;
   short: string;
-  icon: typeof Gift;
+  icon: typeof Smartphone;
   /** Share of this cohort that reaches a completed order. */
   completion: number;
   screen: StorefrontScreen;
@@ -58,19 +56,6 @@ const COHORTS: Cohort[] = [
     quote: "It says $163. I get twenty percent off, so where is it?",
   },
   {
-    id: "gift-buyer",
-    name: "Gift buyer",
-    short: "Gift buyer",
-    icon: Gift,
-    completion: 33,
-    screen: "cart",
-    marker: { x: 50, y: 81.9, side: "left" }, // cart checkout button
-    markerLabel: "No gift option before payment",
-    diagnosis:
-      "There is no gift note and no way to hide the receipt. They leave the cart to find a gift option and do not come back.",
-    quote: "I cannot send this to my sister with the price printed in the box.",
-  },
-  {
     id: "bundler",
     name: "High order value bundler",
     short: "Bundler",
@@ -102,10 +87,6 @@ const COHORTS: Cohort[] = [
  *  screenshots are evidence for the diagnosis beside them, not the subject of
  *  the section, so each shows the part that fails rather than the whole page. */
 const WINDOW_H = 430;
-
-/** A taller window for the pinned frame, which has a whole viewport to fill and
- *  looks thin at the stacked layout's crop. */
-const PINNED_WINDOW_H = 500;
 
 /** Scrolls the window so the cohort's friction point sits mid-frame, clamped so
  *  it never runs past either end of the page. Derived rather than hand-set, so
@@ -153,39 +134,30 @@ function FrictionMarker({ cohort, y, windowH }: { cohort: Cohort; y: number; win
   );
 }
 
-/** The section's title block. Sits above the tabs when the section scrolls
- *  normally, and inside the pinned frame when it does not. */
-function SectionHeading({ className, compact = false }: { className?: string; compact?: boolean }) {
+/** The section's title block, above the tabs. */
+function SectionHeading({ className }: { className?: string }) {
   return (
     <div className={className}>
       <p className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-primary">Diagnose drop-off</p>
       {/* Both halves of the old title block in one line: the leak analytics can
           see, then the cohort behind it that only the model can name. */}
-      <h2
-        className={cn(
-          "max-w-5xl font-medium leading-[1.05] tracking-[-0.04em] text-foreground",
-          compact ? "text-3xl sm:text-4xl" : "text-3xl sm:text-5xl"
-        )}
-      >
+      <h2 className="max-w-5xl text-3xl font-medium leading-[1.05] tracking-[-0.04em] text-foreground sm:text-5xl">
         Analytics tells you a step leaks. See exactly which cohort gives up there, and why.
       </h2>
     </div>
   );
 }
 
+/** The panel's two columns: the wireframe on the left, the read-out on the right.
+ *  The tab row borrows the same template and sits in the first cell, so its edges
+ *  land on the wireframe's rather than running the width of the whole section. */
+const PANEL_COLUMNS = "grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]";
+
 /** The evidence for one cohort: the screen it fails on, the diagnosis, the quote. */
-function CohortPanel({
-  cohort,
-  compact = false,
-  windowH = WINDOW_H,
-}: {
-  cohort: Cohort;
-  compact?: boolean;
-  windowH?: number;
-}) {
+function CohortPanel({ cohort, windowH = WINDOW_H }: { cohort: Cohort; windowH?: number }) {
   const { offset, markerPct } = windowFor(cohort, windowH);
   return (
-    <div className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+    <div className={PANEL_COLUMNS}>
       <div className="border border-border bg-card p-3">
         <StorefrontMock screen={cohort.screen} windowH={windowH} windowOffset={offset} className="border-0">
           <FrictionMarker cohort={cohort} y={markerPct} windowH={windowH} />
@@ -196,12 +168,7 @@ function CohortPanel({
           their own copy, so the column has no gap in the middle and no dead run
           at the bottom, whatever the diagnosis wraps to. */}
       <div className="grid content-center gap-4">
-        <div
-          className={cn(
-            "border border-destructive-foreground/25 bg-card",
-            compact ? "p-5 sm:p-6" : "p-5 sm:p-7"
-          )}
-        >
+        <div className="border border-destructive-foreground/25 bg-card p-5 sm:p-7">
           <p className="text-xs font-bold uppercase tracking-[0.14em] text-destructive-foreground">
             Where it breaks
           </p>
@@ -211,12 +178,7 @@ function CohortPanel({
           <p className="mt-4 text-base leading-relaxed text-foreground/65 sm:text-lg">{cohort.diagnosis}</p>
         </div>
 
-        <blockquote
-          className={cn(
-            "border border-primary/25 bg-primary/[0.04]",
-            compact ? "p-5 sm:p-6" : "p-5 sm:p-7"
-          )}
-        >
+        <blockquote className="border border-primary/25 bg-primary/[0.04] p-5 sm:p-7">
           <Quote className="mb-4 h-6 w-6 text-primary" />
           <p className="text-xl italic leading-relaxed text-foreground/80 sm:text-2xl">
             {cohort.quote}
@@ -230,163 +192,8 @@ function CohortPanel({
   );
 }
 
-/**
- * The cohorts pinned to the left of their own evidence.
- *
- * The wrapper is five viewports tall and the frame inside it is sticky, so a
- * scroll through the section walks the rail one cohort at a time. The active
- * cohort is derived from scroll position alone: the rail buttons scroll the page
- * rather than setting state, so there is only ever one thing deciding what shows.
- */
-function PinnedCohorts() {
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const progress = useScrollProgress(wrapRef);
-  const railRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const index = Math.min(COHORTS.length - 1, Math.floor(progress * COHORTS.length));
-  const active = COHORTS[index];
-
-  /** Parks the page mid-segment for a cohort, so it is not sitting on a boundary
-   *  where the next flick of the wheel swaps it out. */
-  const scrollTo = (i: number) => {
-    const node = wrapRef.current;
-    if (!node) return;
-    const rect = node.getBoundingClientRect();
-    const travel = rect.height - window.innerHeight;
-    if (travel <= 0) return;
-    const top = rect.top + window.scrollY + ((i + 0.5) / COHORTS.length) * travel;
-    window.scrollTo({ top, behavior: "auto" });
-  };
-
-  const onKeyDown = (event: React.KeyboardEvent, i: number) => {
-    const delta =
-      event.key === "ArrowDown" || event.key === "ArrowRight"
-        ? 1
-        : event.key === "ArrowUp" || event.key === "ArrowLeft"
-          ? -1
-          : 0;
-    if (!delta) return;
-    event.preventDefault();
-    const next = (i + delta + COHORTS.length) % COHORTS.length;
-    scrollTo(next);
-    railRefs.current[next]?.focus({ preventScroll: true });
-  };
-
-  return (
-    <div ref={wrapRef} className="relative h-[500vh]">
-      {/* The heading rides inside the pinned frame rather than scrolling away
-          above it, so the viewport holds the whole argument at once instead of a
-          band of empty ground over the evidence. */}
-      <div className="sticky top-0 flex h-screen flex-col justify-center pb-6 pt-12">
-        <div className="container mx-auto px-4 sm:px-6">
-          {/* The screenshot's height follows its width, so the whole frame is
-              capped by the height left over after the heading and the padding:
-              every 1px of panel height costs about 2px of row width, and the
-              rail plus the gap add a fixed 260px on the left. Without the cap a
-              short viewport would push the quote past the bottom of the frame.
-              Heading and row share the cap so their edges stay on one line. */}
-          <div
-            className="mx-auto flex flex-col gap-5"
-            style={{
-              maxWidth: `min(80rem, calc((100vh - 245px) * 2 + 260px))`,
-            }}
-          >
-            <SectionHeading compact />
-
-            <div className="grid items-stretch gap-6 lg:grid-cols-[minmax(200px,236px)_minmax(0,1fr)]">
-              {/* Stretched to the evidence beside it, and the buttons split that
-                height evenly, so the rail starts and ends on the same lines as
-                the panel. */}
-              <div
-                role="tablist"
-                aria-label="Customer cohorts"
-                aria-orientation="vertical"
-                className="flex flex-col gap-2"
-              >
-                {COHORTS.map((cohort, i) => {
-                  const Icon = cohort.icon;
-                  const selected = i === index;
-                  return (
-                    <button
-                      key={cohort.id}
-                      ref={(el) => {
-                        railRefs.current[i] = el;
-                      }}
-                      type="button"
-                      role="tab"
-                      id={`cohort-tab-${cohort.id}`}
-                      aria-selected={selected}
-                      aria-controls="cohort-panel"
-                      tabIndex={selected ? 0 : -1}
-                      onClick={() => {
-                        scrollTo(i);
-                        track("cohort_selected", { cohort: cohort.id });
-                      }}
-                      onKeyDown={(event) => onKeyDown(event, i)}
-                      className={cn(
-                        "flex w-full flex-1 items-center gap-2.5 border px-3 py-2.5 text-left transition-all duration-300",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-                        selected
-                          ? "border-primary bg-primary text-primary-foreground"
-                          : "border-border bg-card hover:border-primary/45 hover:bg-secondary"
-                      )}
-                    >
-                      <span className="min-w-0 flex-1">
-                        {/* Icon rides the title's own line: centring it against
-                            the title-plus-bar block drops it below the text. */}
-                        <span className="flex items-center gap-2.5">
-                          <Icon
-                            className={cn("h-4 w-4 shrink-0", selected ? "text-highlight" : "text-primary")}
-                            strokeWidth={2}
-                          />
-                          <span className="min-w-0 flex-1 truncate text-sm font-semibold tracking-tight">
-                            {cohort.short}
-                          </span>
-                        </span>
-                        <span
-                          className={cn(
-                            "mt-1.5 block h-1 w-full",
-                            selected ? "bg-white/20" : "bg-foreground/10"
-                          )}
-                        >
-                          <span
-                            className={cn("block h-full", selected ? "bg-highlight" : "bg-primary/50")}
-                            style={{ width: `${cohort.completion}%` }}
-                          />
-                        </span>
-                      </span>
-                      <span
-                        className={cn(
-                          "shrink-0 text-lg font-semibold tabular-nums tracking-tight",
-                          selected ? "text-highlight" : "text-foreground"
-                        )}
-                      >
-                        {cohort.completion}%
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div
-                key={active.id}
-                id="cohort-panel"
-                role="tabpanel"
-                aria-labelledby={`cohort-tab-${active.id}`}
-                className="cohort-panel"
-              >
-                <CohortPanel cohort={active} compact windowH={PINNED_WINDOW_H} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/** No pinning: the cohorts as tabs across the top, read at the reader's pace.
- *  A left rail does not fit a phone, and pinning is the thing reduced motion is
- *  asking us not to do, so both cases land here. */
+/** The cohorts as tabs across the top, read at the reader's pace: the panel
+ *  below swaps on click, and nothing about the section is driven by scroll. */
 function TabbedCohorts() {
   const [activeId, setActiveId] = useState(COHORTS[0].id);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -415,33 +222,23 @@ function TabbedCohorts() {
   return (
     <div className="container mx-auto px-4 sm:px-6">
       <div className="mx-auto max-w-7xl">
-        {/* A phone gets a dropdown: five tiles at 390px wide push the evidence
-            they belong to off the screen. The menu carries the same face as the
-            desktop rail, so a cohort is picked from the same information either
-            way, rather than from a name in a system picker. */}
+        {/* A phone gets a dropdown: the buttons wrap to three lines at 390px wide
+            and push the evidence they belong to off the screen. The menu carries
+            the same face as those buttons, so a cohort is picked from the same
+            information either way, rather than from a name in a system picker. */}
         <div className="sm:hidden">
           <p className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-foreground/45">Cohort</p>
           <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
             <DropdownMenuTrigger asChild>
               <button
                 type="button"
-                className="flex w-full items-center gap-2.5 border border-border bg-card px-3 py-2.5 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 data-[state=open]:border-primary/45"
+                className="flex w-full items-center gap-2.5 border border-foreground/20 bg-card px-4 py-2.5 text-left shadow-[0_2px_0_0_rgba(28,35,76,0.16)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 data-[state=open]:border-primary/50"
               >
-                <span className="min-w-0 flex-1">
-                  <span className="flex items-center gap-2.5">
-                    <active.icon className="h-4 w-4 shrink-0 text-primary" strokeWidth={2} />
-                    <span className="min-w-0 flex-1 truncate text-sm font-semibold tracking-tight text-foreground">
-                      {active.short}
-                    </span>
-                  </span>
-                  <span className="mt-1.5 block h-1 w-full bg-foreground/10">
-                    <span
-                      className="block h-full bg-primary"
-                      style={{ width: `${active.completion}%` }}
-                    />
-                  </span>
+                <active.icon className="h-4 w-4 shrink-0 text-primary" strokeWidth={2} />
+                <span className="min-w-0 flex-1 truncate text-sm font-semibold tracking-tight text-foreground">
+                  {active.short}
                 </span>
-                <span className="shrink-0 text-base font-semibold tabular-nums tracking-tight text-foreground">
+                <span className="shrink-0 text-sm font-semibold tabular-nums tracking-tight text-foreground/45">
                   {active.completion}%
                 </span>
                 <ChevronDown
@@ -471,32 +268,17 @@ function TabbedCohorts() {
                         : "focus:bg-secondary"
                     )}
                   >
-                    <span className="min-w-0 flex-1">
-                      <span className="flex items-center gap-2.5">
-                        <Icon
-                          className={cn("h-4 w-4 shrink-0", selected ? "text-highlight" : "text-primary")}
-                          strokeWidth={2}
-                        />
-                        <span className="min-w-0 flex-1 truncate text-sm font-semibold tracking-tight">
-                          {cohort.short}
-                        </span>
-                      </span>
-                      <span
-                        className={cn(
-                          "mt-1.5 block h-1 w-full",
-                          selected ? "bg-white/20" : "bg-foreground/10"
-                        )}
-                      >
-                        <span
-                          className={cn("block h-full", selected ? "bg-highlight" : "bg-primary/50")}
-                          style={{ width: `${cohort.completion}%` }}
-                        />
-                      </span>
+                    <Icon
+                      className={cn("h-4 w-4 shrink-0", selected ? "text-highlight" : "text-primary")}
+                      strokeWidth={2}
+                    />
+                    <span className="min-w-0 flex-1 truncate text-sm font-semibold tracking-tight">
+                      {cohort.short}
                     </span>
                     <span
                       className={cn(
-                        "shrink-0 text-base font-semibold tabular-nums tracking-tight",
-                        selected ? "text-highlight" : "text-foreground"
+                        "shrink-0 text-sm font-semibold tabular-nums tracking-tight",
+                        selected ? "text-highlight" : "text-foreground/45"
                       )}
                     >
                       {cohort.completion}%
@@ -508,73 +290,65 @@ function TabbedCohorts() {
           </DropdownMenu>
         </div>
 
+        {/* Buttons rather than a grid of tiles, so the control reads as something
+            to press instead of a set of stat cards competing with the evidence
+            below. They share the panel's column template and split the first cell
+            evenly, so the block starts and ends on the wireframe's edges. */}
         <Reveal asChild>
-          <div
-            role="tablist"
-            aria-label="Customer cohorts"
-            className="hidden gap-2 sm:grid sm:grid-cols-3 lg:grid-cols-5"
-          >
-            {COHORTS.map((cohort, i) => {
-              const Icon = cohort.icon;
-              const selected = cohort.id === activeId;
-              return (
-                <button
-                  key={cohort.id}
-                  ref={(el) => {
-                    tabRefs.current[i] = el;
-                  }}
-                  type="button"
-                  role="tab"
-                  id={`cohort-tab-${cohort.id}`}
-                  aria-selected={selected}
-                  aria-controls="cohort-panel"
-                  tabIndex={selected ? 0 : -1}
-                  onClick={() => select(cohort)}
-                  onKeyDown={(event) => onKeyDown(event, i)}
-                  className={cn(
-                    "flex flex-col items-start gap-3 border p-4 text-left transition-all",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-                    selected
-                      ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border bg-card hover:-translate-y-0.5 hover:border-primary/45 hover:bg-secondary"
-                  )}
-                >
-                  <span className="flex w-full items-center gap-2">
+          <div className={cn(PANEL_COLUMNS, "hidden sm:grid")}>
+            <div
+              role="tablist"
+              aria-label="Customer cohorts"
+              className="grid grid-cols-2 gap-2"
+            >
+              {COHORTS.map((cohort, i) => {
+                const Icon = cohort.icon;
+                const selected = cohort.id === activeId;
+                return (
+                  <button
+                    key={cohort.id}
+                    ref={(el) => {
+                      tabRefs.current[i] = el;
+                    }}
+                    type="button"
+                    role="tab"
+                    id={`cohort-tab-${cohort.id}`}
+                    aria-selected={selected}
+                    aria-controls="cohort-panel"
+                    tabIndex={selected ? 0 : -1}
+                    onClick={() => select(cohort)}
+                    onKeyDown={(event) => onKeyDown(event, i)}
+                    className={cn(
+                      // Raised off the ground and pressed back down on click: the
+                      // theme has no corner radius to lean on, so the shadow and
+                      // the travel are what say this is a control and not a chip.
+                      "flex items-center gap-2 border px-4 py-2.5 text-left text-sm font-bold tracking-tight",
+                      "shadow-[0_2px_0_0_rgba(28,35,76,0.16)] transition-[transform,box-shadow,background-color,border-color] duration-150",
+                      "hover:-translate-y-px hover:shadow-[0_4px_0_0_rgba(28,35,76,0.2)]",
+                      "active:translate-y-[2px] active:shadow-none",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+                      selected
+                        ? "border-primary bg-primary text-primary-foreground"
+                        : "border-foreground/20 bg-card text-foreground hover:border-primary/50"
+                    )}
+                  >
                     <Icon
                       className={cn("h-4 w-4 shrink-0", selected ? "text-highlight" : "text-primary")}
                       strokeWidth={2}
                     />
-                    <span className="min-w-0 flex-1 truncate text-sm font-semibold tracking-tight">
-                      {cohort.short}
-                    </span>
-                  </span>
-                  <span className="flex w-full items-baseline justify-between gap-2">
+                    <span className="min-w-0 flex-1 truncate">{cohort.short}</span>
                     <span
                       className={cn(
-                        "text-2xl font-semibold tabular-nums tracking-tight",
-                        selected ? "text-highlight" : "text-foreground"
+                        "shrink-0 tabular-nums",
+                        selected ? "text-highlight" : "text-foreground/45"
                       )}
                     >
                       {cohort.completion}%
                     </span>
-                    <span
-                      className={cn(
-                        "text-[10px] font-semibold uppercase tracking-[0.12em]",
-                        selected ? "text-white/55" : "text-foreground/40"
-                      )}
-                    >
-                      complete
-                    </span>
-                  </span>
-                  <span className={cn("h-1 w-full", selected ? "bg-white/20" : "bg-foreground/10")}>
-                    <span
-                      className={cn("block h-full", selected ? "bg-highlight" : "bg-primary/50")}
-                      style={{ width: `${cohort.completion}%` }}
-                    />
-                  </span>
-                </button>
-              );
-            })}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </Reveal>
 
@@ -593,24 +367,10 @@ function TabbedCohorts() {
 }
 
 export default function CohortFriction() {
-  const isDesktop = useIsDesktop();
-  const reducedMotion = usePrefersReducedMotion();
-  // Server and first client render both take the tabbed path, so the static
-  // export ships a complete section. The pinned rail is an upgrade applied after
-  // mount, on a viewport wide enough to hold it.
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-  const pinned = mounted && isDesktop && !reducedMotion;
-
   return (
-    // The pinned frame carries its own vertical rhythm, so the section drops its
-    // padding there rather than opening a gap the pinning cannot fill.
     <section
       id="cohort-friction"
-      className={cn(
-        "scroll-mt-14 border-b border-border bg-secondary/55 sm:scroll-mt-16",
-        pinned ? "py-0" : "py-10 sm:py-12"
-      )}
+      className="scroll-mt-14 border-b border-border bg-secondary/55 py-10 sm:scroll-mt-16 sm:py-12"
     >
       <style>{`
         @keyframes friction-pulse {
@@ -628,16 +388,10 @@ export default function CohortFriction() {
         }
       `}</style>
 
-      {pinned ? (
-        <PinnedCohorts />
-      ) : (
-        <>
-          <Reveal className="container mx-auto px-4 sm:px-6">
-            <SectionHeading className="mx-auto mb-6 max-w-7xl" />
-          </Reveal>
-          <TabbedCohorts />
-        </>
-      )}
+      <Reveal className="container mx-auto px-4 sm:px-6">
+        <SectionHeading className="mx-auto mb-6 max-w-7xl" />
+      </Reveal>
+      <TabbedCohorts />
     </section>
   );
 }
