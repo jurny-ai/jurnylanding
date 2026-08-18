@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ChevronDown, Layers3, Quote, Repeat, Search, Smartphone } from "lucide-react";
+import { ChevronDown, Quote, Repeat, Search, Smartphone } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import {
   DropdownMenu,
@@ -54,19 +54,6 @@ const COHORTS: Cohort[] = [
     diagnosis:
       "Their subscriber discount only lands at checkout, so the cart shows full price. They stop to look for a code that does not exist.",
     quote: "It says $163. I get twenty percent off, so where is it?",
-  },
-  {
-    id: "bundler",
-    name: "High order value bundler",
-    short: "Bundler",
-    icon: Layers3,
-    completion: 46,
-    screen: "pdp",
-    marker: { x: 50, y: 82.4, side: "left" }, // complete the look row
-    markerLabel: "One item at a time",
-    diagnosis:
-      "They want the full set, but each item has to be added separately and every add returns them to the top of the page.",
-    quote: "Three trips back to the same page to buy three things that were shown together.",
   },
   {
     id: "comparison-shopper",
@@ -299,7 +286,7 @@ function TabbedCohorts() {
             <div
               role="tablist"
               aria-label="Customer cohorts"
-              className="grid grid-cols-2 gap-2"
+              className="grid grid-cols-3 gap-2"
             >
               {COHORTS.map((cohort, i) => {
                 const Icon = cohort.icon;

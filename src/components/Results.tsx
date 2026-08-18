@@ -14,18 +14,20 @@ const proofCards = [
     title: "to A/B test convergence",
     metric: "1 day",
     context: "Large enterprise ecommerce company",
-    quote: "Reduced a 1.25-month experiment cycle to a single day with Jurny.",
+    // The quote itself lives in the JSX below: it carries an emphasised span
+    // that a plain string in this table cannot.
+    quoted: true,
   },
 ];
 
 const Results = () => {
   return (
-    <section id="results" className="border-b border-border bg-background pb-12 pt-10 sm:pb-14 sm:pt-14">
+    <section id="results" className="bg-background pb-12 pt-10 sm:pb-14 sm:pt-14">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-px border border-border bg-border lg:grid-cols-[0.82fr_1.18fr]">
             {proofCards.map((card, i) => {
-              if (!card.quote) {
+              if (!card.quoted) {
                 return (
                   <Reveal key={card.title} asChild delay={i * 120}>
                     <div className="flex min-h-[270px] flex-col justify-between bg-secondary p-6 text-left sm:p-8">
