@@ -37,12 +37,14 @@ const Hero = () => {
               </span>
             </a>
 
-            <h1 className="mb-6 text-[2.25rem] font-medium leading-[0.96] tracking-[-0.045em] text-white sm:text-6xl lg:text-[4.5rem]">
-              Your customers on demand
+            <h1 className="mb-6 text-balance text-[2.25rem] font-medium leading-[0.96] tracking-[-0.045em] text-highlight sm:text-6xl lg:text-[4.5rem]">
+              Predict what converts{" "}
+              <br className="hidden sm:block" />
+              before you launch
             </h1>
 
-            <p className="mb-9 max-w-3xl text-lg font-semibold leading-snug text-highlight sm:mb-11 sm:text-2xl">
-              Simulate real users to see what wins and who&apos;s struggling, before it costs you a conversion
+            <p className="mb-9 max-w-3xl text-lg font-semibold leading-snug text-white sm:mb-11 sm:text-2xl">
+              Simulate real customers to validate ideas, uncover friction, and prioritize winning experiences
             </p>
 
             <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
