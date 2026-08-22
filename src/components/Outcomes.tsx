@@ -17,7 +17,7 @@ const Outcomes = () => {
   return (
     <section
       id="features"
-      className="scroll-mt-14 bg-background py-7 sm:scroll-mt-16 sm:py-9"
+      className="scroll-mt-14 border-b border-border bg-background py-7 sm:scroll-mt-16 sm:py-9"
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mx-auto max-w-7xl">
