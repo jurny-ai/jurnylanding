@@ -17,19 +17,25 @@ const Outcomes = () => {
   return (
     <section
       id="features"
-      className="scroll-mt-14 border-b border-border bg-background py-7 sm:scroll-mt-16 sm:py-9"
+      className="scroll-mt-14 bg-background py-7 sm:scroll-mt-16 sm:py-9"
     >
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mx-auto max-w-7xl">
-          {/* Each claim breaks after the outlined phrase rather than wrapping
-              where it happens to run out of column, so the three lime marks
-              land on one line across the page and every qualifier starts at
-              the same height underneath. */}
+          {/* Each claim breaks after the leading phrase rather than wrapping
+              where it happens to run out of column, so the three opening
+              phrases land on one line across the page and every qualifier
+              starts at the same height underneath. A hairline rule separates
+              the columns; on mobile, where they stack, it turns horizontal. */}
           <Reveal asChild>
-            <div className="grid gap-6 sm:grid-cols-3 sm:gap-8">
-              {GAINS.map((gain) => (
-                <p key={gain.accent} className="flex flex-col items-center gap-2.5 text-center">
-                  <span className="border-2 border-highlight bg-highlight/10 px-2.5 py-1 text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+            <div className="grid sm:grid-cols-3">
+              {GAINS.map((gain, i) => (
+                <p
+                  key={gain.accent}
+                  className={`flex flex-col items-center gap-2.5 px-4 text-center ${
+                    i > 0 ? "mt-6 border-t border-border pt-6 sm:mt-0 sm:border-l sm:border-t-0 sm:pt-0" : ""
+                  }`}
+                >
+                  <span className="border-2 border-highlight px-2.5 py-1 text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
                     {gain.accent}
                   </span>
                   <span className="text-xl font-medium leading-snug tracking-tight text-foreground/70 sm:text-2xl">
