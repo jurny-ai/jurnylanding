@@ -8,9 +8,9 @@ import Reveal from "@/components/Reveal";
  * them belongs to those sections.
  */
 const GAINS = [
-  { accent: "More conversions", rest: "from the traffic you already have" },
-  { accent: "Revenue", rest: "hiding in the cohorts that drop off" },
-  { accent: "More ideas", rest: "tested per quarter, without extra build time" },
+  { accent: "More conversions", rest: "from the traffic you're already driving to your site" },
+  { accent: "More revenue", rest: "recovered from the cohorts that drop off" },
+  { accent: "More ideas tested", rest: "per quarter, without extra engineering time" },
 ];
 
 const Outcomes = () => {
