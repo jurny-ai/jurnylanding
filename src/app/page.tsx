@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import Advisors from "@/components/Advisors";
 import Results from "@/components/Results";
 import Outcomes from "@/components/Outcomes";
 import ModelPipeline from "@/components/ModelPipeline";
@@ -18,6 +19,7 @@ export default function Home() {
     <div className="min-h-screen bg-background overflow-x-clip">
       <Header />
       <Hero />
+      <Advisors />
       <Results />
       <Outcomes />
       <VariantPrediction />
