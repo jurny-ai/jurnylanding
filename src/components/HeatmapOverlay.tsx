@@ -87,31 +87,6 @@ export default function HeatmapOverlay({ points, className }: HeatmapOverlayProp
   );
 }
 
-/** Shared legend, so every heatmap on the page is read the same way. */
-export function HeatmapLegend({ className }: { className?: string }) {
-  return (
-    <div className={cn("flex flex-wrap items-center gap-x-4 gap-y-2", className)}>
-      <div className="flex items-center gap-2">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground/45">Low</span>
-        <span className="flex">
-          {DENSITY_RAMP.map((step) => (
-            <span key={step} className="h-2.5 w-6" style={{ background: step }} />
-          ))}
-        </span>
-        <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground/45">
-          High click density
-        </span>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="h-3 w-3 rounded-full border-2 border-highlight" />
-        <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-foreground/45">
-          Strongest cluster
-        </span>
-      </div>
-    </div>
-  );
-}
-
 /** The label every illustrative figure on the page carries. */
 export function SampleOutputPill({ className }: { className?: string }) {
   return (

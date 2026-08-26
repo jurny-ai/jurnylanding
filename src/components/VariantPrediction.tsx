@@ -1,40 +1,29 @@
 import Reveal from "@/components/Reveal";
-import StorefrontMock from "@/components/mocks/StorefrontMock";
-import HeatmapOverlay, { HeatmapLegend } from "@/components/HeatmapOverlay";
-import { VARIANT_A_VIEWPORT_CLICKS, VARIANT_B_VIEWPORT_CLICKS } from "@/lib/variant-clicks";
-import { cn } from "@/lib/utils";
-
-const VARIANTS = [
-  {
-    id: "a" as const,
-    tag: "Control",
-    name: "Standard product page",
-    points: VARIANT_A_VIEWPORT_CLICKS,
-    stats: [
-      { label: "Add to cart", value: "4.1%" },
-      { label: "Reached buy box", value: "62%" },
-      { label: "Started checkout", value: "2.8%" },
-    ],
-  },
-  {
-    id: "b" as const,
-    tag: "Variant B",
-    name: "Sticky add-to-cart bar",
-    winner: true,
-    points: VARIANT_B_VIEWPORT_CLICKS,
-    stats: [
-      { label: "Add to cart", value: "5.2%" },
-      { label: "Reached buy box", value: "88%" },
-      { label: "Started checkout", value: "3.9%" },
-    ],
-  },
-];
+import { ArrowRight } from "lucide-react";
 
 const VERDICT = [
   { label: "Lift on add to cart", value: "+27%" },
-  { label: "Variants eliminated", value: "3 of 5" },
+  { label: "Variants eliminated", value: "11 of 12" },
   { label: "Time to the call", value: "4 hours" },
 ];
+
+/* Same team time spent in both columns — the constant that makes the
+   comparison fair. What changes is how many of those tests you actually get
+   a result on: live traffic can only carry a couple at a time, so most ideas
+   never got their turn. */
+const COMPARISON = {
+  timeframe: "Same team, same time spent.",
+  before: {
+    label: "Before",
+    count: "50",
+    body: "Capped by how much live traffic you could risk.",
+  },
+  withJurny: {
+    label: "With Jurny",
+    count: "75",
+    body: "No cap. Live traffic is only spent on the winners.",
+  },
+};
 
 export default function VariantPrediction() {
   return (
@@ -53,7 +42,6 @@ export default function VariantPrediction() {
                 Know which variant wins before you spend traffic on it.
               </h2>
             </div>
-
           </Reveal>
 
           {/* The call leads. Everything under it is the evidence for it. */}
@@ -85,56 +73,42 @@ export default function VariantPrediction() {
             </div>
           </Reveal>
 
-          {/* The evidence: where the synthetic users actually clicked. */}
-          <Reveal delay={80} className="mt-4 grid gap-4 lg:grid-cols-2">
-            {VARIANTS.map((variant) => (
-              <div
-                key={variant.id}
-                className={cn(
-                  "flex flex-col border bg-card",
-                  variant.winner ? "border-primary" : "border-border"
-                )}
-              >
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-border px-4 py-3">
-                  <span
-                    className={cn(
-                      "px-2 py-1 text-xs font-bold uppercase tracking-[0.12em]",
-                      variant.winner
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-foreground/[0.07] text-foreground/55"
-                    )}
-                  >
-                    {variant.tag}
-                  </span>
-                  <span className="text-base font-semibold tracking-tight text-foreground">{variant.name}</span>
-                  {variant.winner && (
-                    <span className="ml-auto flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.12em] text-primary">
-                      <span className="h-1.5 w-1.5 bg-highlight" />
-                      Winner
-                    </span>
-                  )}
+          {/* The evidence: same time and team on both sides, so the only
+              thing that moves is how many ideas actually get a real result. */}
+          <Reveal delay={80} asChild>
+            <div className="mt-8 flex flex-col items-center text-center">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-foreground/40">
+                {COMPARISON.timeframe}
+              </p>
+
+              <div className="mt-4 flex flex-col items-center gap-6 sm:flex-row sm:items-center sm:gap-8">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-foreground/40">
+                    {COMPARISON.before.label}
+                  </p>
+                  <p className="mt-1.5 text-6xl font-medium tracking-tight text-foreground/70">
+                    {COMPARISON.before.count}
+                  </p>
+                  <p className="mt-2 max-w-[15rem] text-sm leading-relaxed text-foreground/55">
+                    {COMPARISON.before.body}
+                  </p>
                 </div>
 
-                <StorefrontMock screen="pdp" variant={variant.id} crop="viewport" chrome={false} className="border-0">
-                  <HeatmapOverlay points={variant.points} />
-                </StorefrontMock>
+                <ArrowRight className="h-6 w-6 shrink-0 rotate-90 text-primary/40 sm:rotate-0" />
 
-                <dl className="grid grid-cols-3 border-t border-border">
-                  {variant.stats.map((stat, i) => (
-                    <div key={stat.label} className={cn("px-4 py-3", i > 0 && "border-l border-border")}>
-                      <dt className="text-xs font-semibold uppercase tracking-[0.1em] text-foreground/50">
-                        {stat.label}
-                      </dt>
-                      <dd className="mt-1 text-lg font-semibold tracking-tight text-foreground">{stat.value}</dd>
-                    </div>
-                  ))}
-                </dl>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary">
+                    {COMPARISON.withJurny.label}
+                  </p>
+                  <p className="mt-1.5 text-6xl font-medium tracking-tight text-primary">
+                    {COMPARISON.withJurny.count}
+                  </p>
+                  <p className="mt-2 max-w-[15rem] text-sm leading-relaxed text-foreground/65">
+                    {COMPARISON.withJurny.body}
+                  </p>
+                </div>
               </div>
-            ))}
-          </Reveal>
-
-          <Reveal delay={120} className="mt-4">
-            <HeatmapLegend />
+            </div>
           </Reveal>
         </div>
       </div>
