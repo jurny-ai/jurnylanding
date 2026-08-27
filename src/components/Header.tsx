@@ -56,6 +56,19 @@ const ARTICLE_LINKS: {
   },
 ];
 
+const VIDEO_LINKS: {
+  href: string;
+  label: string;
+  description: string;
+}[] = [
+  {
+    href: "/videos",
+    label: "Podcast episodes",
+    description:
+      "Conversations with product leaders on AI, enterprise product, and building fast.",
+  },
+];
+
 const DASHBOARD_SIGNIN_URL = "https://dashboard.usejurny.com";
 
 const Header = () => {
@@ -145,7 +158,7 @@ const Header = () => {
                   variant="ghost"
                   className="gap-1 px-2 text-sm font-medium text-foreground/80 hover:bg-secondary hover:text-foreground"
                 >
-                  Articles
+                  Resources
                   <ChevronDown className="h-4 w-4 transition-transform duration-200 [[data-state=open]>&]:rotate-180" />
                 </Button>
               </DropdownMenuTrigger>
@@ -173,6 +186,29 @@ const Header = () => {
                             New
                           </span>
                         )}
+                      </span>
+                      <span className="text-xs leading-snug text-muted-foreground">
+                        {description}
+                      </span>
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+                <p className="px-3 pt-3 pb-2 text-[11px] font-bold uppercase tracking-widest text-foreground/45 border-t border-border mt-2">
+                  Watch
+                </p>
+                {VIDEO_LINKS.map(({ href, label, description }) => (
+                  <DropdownMenuItem
+                    key={href}
+                    asChild
+                    className="flex flex-col items-start gap-1 rounded-lg px-3 py-2.5 cursor-pointer focus:bg-secondary"
+                  >
+                    <Link href={href}>
+                      <span
+                        className={`text-sm font-medium leading-snug ${
+                          pathname === href ? "text-primary" : "text-foreground"
+                        }`}
+                      >
+                        {label}
                       </span>
                       <span className="text-xs leading-snug text-muted-foreground">
                         {description}
@@ -251,7 +287,7 @@ const Header = () => {
                 </nav>
 
                 <p className="px-2 mt-6 mb-2 text-[11px] font-bold uppercase tracking-widest text-foreground/45">
-                  Articles
+                  Resources
                 </p>
                 <nav className="flex flex-col gap-0.5">
                   {ARTICLE_LINKS.map(({ href, label, description, isNew }) => (
@@ -269,6 +305,21 @@ const Header = () => {
                               New
                             </span>
                           )}
+                        </span>
+                        <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">
+                          {description}
+                        </span>
+                      </Link>
+                    </SheetClose>
+                  ))}
+                  {VIDEO_LINKS.map(({ href, label, description }) => (
+                    <SheetClose key={href} asChild>
+                      <Link
+                        href={href}
+                        className="block px-3 py-3 rounded-xl hover:bg-secondary transition-colors"
+                      >
+                        <span className="text-sm font-medium leading-snug text-foreground">
+                          {label}
                         </span>
                         <span className="mt-0.5 block text-xs leading-snug text-muted-foreground">
                           {description}
