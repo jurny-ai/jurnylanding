@@ -36,11 +36,17 @@ const ARTICLE_LINKS: {
   isNew?: boolean;
 }[] = [
   {
+    href: "/articles/do-personas-improve-llm-ab-test-predictions",
+    label: "Do Personas Improve LLM Predictions of A/B Test Winners?",
+    description:
+      "An exploratory test on historical Upworthy headlines: personas vs. one “typical” user.",
+    isNew: true,
+  },
+  {
     href: "/articles/what-makes-ab-testing-work-in-ecommerce",
     label: "What Actually Makes A/B Testing Work in E-Commerce",
     description:
       "What separates experimentation programs that work from the ones that quietly break.",
-    isNew: true,
   },
   {
     href: "/articles/designing-synthetic-personas-llm-user-simulations",
@@ -220,6 +226,13 @@ const Header = () => {
             </DropdownMenu>
           </div>
 
+          <Link
+            href="/careers"
+            className="hidden md:inline-flex px-2.5 lg:px-3 py-2 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
+          >
+            Careers
+          </Link>
+
           <Button
             variant="outline"
             size="sm"
@@ -327,6 +340,20 @@ const Header = () => {
                       </Link>
                     </SheetClose>
                   ))}
+                </nav>
+
+                <p className="px-2 mt-6 mb-2 text-[11px] font-bold uppercase tracking-widest text-foreground/45">
+                  Company
+                </p>
+                <nav className="flex flex-col gap-0.5">
+                  <SheetClose asChild>
+                    <Link
+                      href="/careers"
+                      className="block px-3 py-3.5 text-base font-medium text-foreground rounded-xl hover:bg-secondary transition-colors"
+                    >
+                      Careers
+                    </Link>
+                  </SheetClose>
                 </nav>
               </div>
 

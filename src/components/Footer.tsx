@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Reveal from "@/components/Reveal";
@@ -38,8 +39,15 @@ const Footer = () => {
             </div>
           </Reveal>
 
-          <div className="mt-10 border-t border-border pt-6 text-center text-sm text-foreground/40 sm:mt-16 sm:pt-8 sm:text-base">
-            © 2026 Jurny AI, Inc. All rights reserved.
+          <div className="mt-10 flex flex-col items-center gap-4 border-t border-border pt-6 text-sm text-foreground/40 sm:mt-16 sm:flex-row sm:justify-between sm:pt-8 sm:text-base">
+            <span>© 2026 Jurny AI, Inc. All rights reserved.</span>
+            <Link
+              href="/careers"
+              className="font-medium text-foreground/60 transition-colors hover:text-foreground"
+              onClick={() => track("nav_footer_clicked", { label: "Careers" })}
+            >
+              Careers
+            </Link>
           </div>
         </div>
       </div>
