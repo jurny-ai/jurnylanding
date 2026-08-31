@@ -4,11 +4,11 @@ import BlogLayout from "@/components/BlogLayout";
 export const metadata: Metadata = {
   title: "Do Personas Improve LLM Predictions of A/B Test Winners? | jurny",
   description:
-    "An exploratory test on historical Upworthy headline experiments: does an untuned population of evidence-grounded personas predict A/B winners more accurately than a single “typical” user prompt?",
+    "An exploratory test on historical Upworthy headline experiments: does a population of evidence-grounded personas predict A/B winners more accurately than a single “typical” user prompt?",
   openGraph: {
     title: "Do Personas Improve LLM Predictions of A/B Test Winners?",
     description:
-      "An exploratory test on historical Upworthy headline experiments: does an untuned population of evidence-grounded personas predict A/B winners more accurately than a single “typical” user prompt?",
+      "An exploratory test on historical Upworthy headline experiments: does a population of evidence-grounded personas predict A/B winners more accurately than a single “typical” user prompt?",
     type: "article",
   },
 };
@@ -21,14 +21,53 @@ export default function PersonasVsTypicalUserPage() {
       date="August 28, 2026"
     >
       <p className="text-foreground/90 leading-relaxed">
-        The value of pre-validating A/B tests is clear. A team that runs 50 tests a year at a 20% win
-        rate, with $1M in added revenue per winner, adds $10M in revenue this year. With synthetic
-        pre-validation, 50% of the losers are never run, freeing 20 more slots. At the same 20% win
-        rate, that is 4 more winners, and the team is now adding $14M a year.
+        The value of pre-validating A/B tests is clear. Jurny predicts each test before it launches,
+        so you skip the likely losers and spend those slots on new ideas instead. Say it catches half
+        of the losers up front, for a team running 50 tests a year at a 20% win rate, with $1M in
+        added revenue per winner:
       </p>
+
+      <div className="overflow-x-auto my-8">
+        <table className="w-full text-sm border border-border rounded-md">
+          <thead>
+            <tr className="bg-secondary/50">
+              <th className="text-left font-semibold text-foreground px-4 py-3 border-b border-border" />
+              <th className="text-right font-semibold text-foreground px-4 py-3 border-b border-border">
+                Today
+              </th>
+              <th className="text-right font-semibold text-foreground px-4 py-3 border-b border-border">
+                With pre-validation
+              </th>
+            </tr>
+          </thead>
+          <tbody className="text-foreground/90">
+            <tr>
+              <td className="px-4 py-3 border-b border-border">Tests run per year</td>
+              <td className="px-4 py-3 border-b border-border text-right">50</td>
+              <td className="px-4 py-3 border-b border-border text-right">50 + 20 reclaimed slots</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 border-b border-border">Win rate</td>
+              <td className="px-4 py-3 border-b border-border text-right">20%</td>
+              <td className="px-4 py-3 border-b border-border text-right">20%</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 border-b border-border">Winners</td>
+              <td className="px-4 py-3 border-b border-border text-right">10</td>
+              <td className="px-4 py-3 border-b border-border text-right">14</td>
+            </tr>
+            <tr>
+              <td className="px-4 py-3 font-medium">Revenue added</td>
+              <td className="px-4 py-3 text-right font-semibold">$10M</td>
+              <td className="px-4 py-3 text-right font-semibold text-primary">$14M</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <p className="text-foreground/90 leading-relaxed">
-        The big question is whether the technology can actually deliver. Our answer is first no, then
-        yes, and our fundamental thesis is simple: personas matter.
+        The big question is whether the technology can actually deliver. Our fundamental thesis is
+        simple: personas matter.
       </p>
       <p className="text-foreground/90 leading-relaxed">
         We create synthetic users in three stages: population creation, calibration, and behavior.
@@ -93,16 +132,17 @@ export default function PersonasVsTypicalUserPage() {
       <h2 className="text-xl font-bold text-foreground mb-4 mt-12">The two approaches</h2>
 
       <h3 className="text-lg font-bold text-foreground mb-3 mt-10">
-        1. One &ldquo;typical&rdquo; Upworthy user
+        1. The control: just asking the AI
       </h3>
       <p className="text-foreground/90 leading-relaxed">
-        The baseline showed each headline to Qwen3-8B separately and asked it to predict the CTR of
-        a &ldquo;typical Upworthy user.&rdquo; We collected 10 estimates per headline,
-        averaged them, and predicted that the headline with the higher CTR would win.
+        Our baseline is the obvious thing you would do today: ask the model directly. We showed each
+        headline to Qwen3-8B separately and asked it to predict the CTR of a &ldquo;typical Upworthy
+        user.&rdquo; We collected 10 estimates per headline, averaged them, and predicted that the
+        headline with the higher CTR would win.
       </p>
 
       <h3 className="text-lg font-bold text-foreground mb-3 mt-10">
-        2. An untuned population of 100 personas
+        2. Jurny: a population of 100 persona agents
       </h3>
       <p className="text-foreground/90 leading-relaxed">
         We created 100 synthetic audience members using public data from the same era as an
@@ -140,7 +180,7 @@ export default function PersonasVsTypicalUserPage() {
       <div className="my-8 space-y-4">
         <div className="rounded-md border border-border bg-secondary/20 p-5">
           <p className="text-[11px] font-bold uppercase tracking-widest text-foreground/45 mb-2">
-            Control: one &ldquo;typical&rdquo; user
+            Control: just asking the AI
           </p>
           <p className="text-foreground/80 italic leading-relaxed">
             Each headline is shown on its own: &ldquo;Predict the CTR that a typical Upworthy-era
@@ -151,7 +191,7 @@ export default function PersonasVsTypicalUserPage() {
 
         <div className="rounded-md border border-border bg-secondary/20 p-5">
           <p className="text-[11px] font-bold uppercase tracking-widest text-foreground/45 mb-2">
-            Persona population
+            Jurny: persona population
           </p>
           <p className="text-foreground/80 italic leading-relaxed">
             Each of the 100 personas, given its own profile, sees both headlines: &ldquo;As this
@@ -183,13 +223,13 @@ export default function PersonasVsTypicalUserPage() {
           </thead>
           <tbody className="text-foreground/90">
             <tr>
-              <td className="px-4 py-3 border-b border-border">Asking AI which is better</td>
+              <td className="px-4 py-3 border-b border-border">Just asking the AI (control)</td>
               <td className="px-4 py-3 border-b border-border text-right">44.6%</td>
               <td className="px-4 py-3 border-b border-border text-right">44.8%</td>
               <td className="px-4 py-3 border-b border-border text-right">44.6%</td>
             </tr>
             <tr>
-              <td className="px-4 py-3 border-b border-border">100 untuned Pew-grounded agents</td>
+              <td className="px-4 py-3 border-b border-border">Jurny: 100 Pew-grounded agents</td>
               <td className="px-4 py-3 border-b border-border text-right font-semibold text-primary">
                 68.7%
               </td>
@@ -220,7 +260,7 @@ export default function PersonasVsTypicalUserPage() {
       <p className="text-foreground/90 leading-relaxed">
         This is encouraging evidence that replacing one generic aggregate-user prompt with a
         heterogeneous, evidence-grounded population can materially change an LLM&apos;s A/B
-        predictions. Across these 83 tests, the untuned population also produced
+        predictions. Across these 83 tests, the population also produced
         substantially better directional and balanced accuracy.
       </p>
       <p className="text-foreground/90 leading-relaxed">
@@ -235,7 +275,7 @@ export default function PersonasVsTypicalUserPage() {
 
       <blockquote className="border-t-2 border-foreground border-b border-border py-7 my-10 not-italic">
         <p className="text-xl md:text-2xl font-serif font-bold leading-snug text-foreground">
-          An untuned, public-data-grounded persona population produced much better predictions than
+          A public-data-grounded persona population produced much better predictions than
           a single &ldquo;typical user&rdquo; prompt on this set of 83 significant historical tests.
         </p>
       </blockquote>
