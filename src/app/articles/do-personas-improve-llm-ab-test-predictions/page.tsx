@@ -183,13 +183,13 @@ export default function PersonasVsTypicalUserPage() {
           </thead>
           <tbody className="text-foreground/90">
             <tr>
-              <td className="px-4 py-3 border-b border-border">One &ldquo;typical&rdquo; user</td>
+              <td className="px-4 py-3 border-b border-border">Asking AI which is better</td>
               <td className="px-4 py-3 border-b border-border text-right">44.6%</td>
               <td className="px-4 py-3 border-b border-border text-right">44.8%</td>
               <td className="px-4 py-3 border-b border-border text-right">44.6%</td>
             </tr>
             <tr>
-              <td className="px-4 py-3 border-b border-border">100 untuned Pew-grounded personas</td>
+              <td className="px-4 py-3 border-b border-border">100 untuned Pew-grounded agents</td>
               <td className="px-4 py-3 border-b border-border text-right font-semibold text-primary">
                 68.7%
               </td>
