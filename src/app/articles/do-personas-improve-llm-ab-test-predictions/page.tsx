@@ -211,9 +211,6 @@ export default function PersonasVsTypicalUserPage() {
                 Method
               </th>
               <th className="text-right font-semibold text-foreground px-4 py-3 border-b border-border">
-                Overall accuracy
-              </th>
-              <th className="text-right font-semibold text-foreground px-4 py-3 border-b border-border">
                 Winner recall
               </th>
               <th className="text-right font-semibold text-foreground px-4 py-3 border-b border-border">
@@ -224,15 +221,11 @@ export default function PersonasVsTypicalUserPage() {
           <tbody className="text-foreground/90">
             <tr>
               <td className="px-4 py-3 border-b border-border">Typical-user CTR prompt</td>
-              <td className="px-4 py-3 border-b border-border text-right">44.6%</td>
               <td className="px-4 py-3 border-b border-border text-right">44.8%</td>
               <td className="px-4 py-3 border-b border-border text-right">44.4%</td>
             </tr>
             <tr>
               <td className="px-4 py-3">100 untuned Pew-grounded</td>
-              <td className="px-4 py-3 text-right font-semibold text-primary">
-                68.7%
-              </td>
               <td className="px-4 py-3 text-right font-semibold text-primary">
                 82.8%
               </td>
