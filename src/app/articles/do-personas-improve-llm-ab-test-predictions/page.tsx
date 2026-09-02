@@ -211,40 +211,34 @@ export default function PersonasVsTypicalUserPage() {
                 Method
               </th>
               <th className="text-right font-semibold text-foreground px-4 py-3 border-b border-border">
-                Directional accuracy
+                Overall accuracy
               </th>
               <th className="text-right font-semibold text-foreground px-4 py-3 border-b border-border">
-                Question-winner recall
+                Winner recall
               </th>
               <th className="text-right font-semibold text-foreground px-4 py-3 border-b border-border">
-                Balanced accuracy
+                Loser identification
               </th>
             </tr>
           </thead>
           <tbody className="text-foreground/90">
             <tr>
-              <td className="px-4 py-3 border-b border-border">Just asking the AI (control)</td>
+              <td className="px-4 py-3 border-b border-border">Typical-user CTR prompt</td>
               <td className="px-4 py-3 border-b border-border text-right">44.6%</td>
               <td className="px-4 py-3 border-b border-border text-right">44.8%</td>
-              <td className="px-4 py-3 border-b border-border text-right">44.6%</td>
+              <td className="px-4 py-3 border-b border-border text-right">44.4%</td>
             </tr>
             <tr>
-              <td className="px-4 py-3 border-b border-border">Jurny: 100 Pew-grounded agents</td>
-              <td className="px-4 py-3 border-b border-border text-right font-semibold text-primary">
+              <td className="px-4 py-3">100 untuned Pew-grounded</td>
+              <td className="px-4 py-3 text-right font-semibold text-primary">
                 68.7%
               </td>
-              <td className="px-4 py-3 border-b border-border text-right font-semibold text-primary">
+              <td className="px-4 py-3 text-right font-semibold text-primary">
                 82.8%
               </td>
-              <td className="px-4 py-3 border-b border-border text-right font-semibold text-primary">
-                71.9%
+              <td className="px-4 py-3 text-right font-semibold text-primary">
+                61.1%
               </td>
-            </tr>
-            <tr>
-              <td className="px-4 py-3 font-medium">Difference</td>
-              <td className="px-4 py-3 text-right font-semibold">+24.1 pts</td>
-              <td className="px-4 py-3 text-right font-semibold">+37.9 pts</td>
-              <td className="px-4 py-3 text-right font-semibold">+27.3 pts</td>
             </tr>
           </tbody>
         </table>
