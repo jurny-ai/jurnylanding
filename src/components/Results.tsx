@@ -23,18 +23,18 @@ const proofCards = [
 
 const Results = () => {
   return (
-    <section id="results" className="border-b border-border bg-background pb-12 pt-10 sm:pb-14 sm:pt-14">
+    <section id="results" className="border-b border-border bg-background pb-20 pt-16 sm:pb-28 sm:pt-24">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-6xl">
           <Reveal asChild>
-            <h2 className="mb-8 max-w-3xl text-left text-xl font-medium leading-snug tracking-tight text-foreground/65 sm:text-2xl">
+            <h2 className="mb-12 max-w-3xl text-left text-xl font-medium leading-snug tracking-tight text-foreground/65 sm:text-2xl">
               Built for teams moving beyond slow, traffic-heavy experiments.
               <br />
               Real conversion insights, surfaced in days instead of weeks.
             </h2>
           </Reveal>
 
-          <div className="grid gap-4 lg:grid-cols-[1fr_2fr]">
+          <div className="grid gap-6 lg:grid-cols-[1fr_2fr]">
             {proofCards.map((card, i) => {
               const Icon = card.icon;
 

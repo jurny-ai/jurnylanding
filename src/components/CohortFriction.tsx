@@ -168,7 +168,7 @@ export default function CohortFriction() {
   return (
     <section
       id="cohort-friction"
-      className="scroll-mt-14 border-b border-border bg-secondary/55 py-14 sm:scroll-mt-16 sm:py-20"
+      className="scroll-mt-14 border-b border-border bg-secondary/55 py-20 sm:scroll-mt-16 sm:py-28"
     >
       <style>{`
         @keyframes friction-pulse {
@@ -188,7 +188,7 @@ export default function CohortFriction() {
 
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mx-auto max-w-7xl">
-          <Reveal className="mb-8 grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <Reveal className="mb-12 grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-primary">
                 Individual model
