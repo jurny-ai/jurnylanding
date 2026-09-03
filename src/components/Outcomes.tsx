@@ -165,7 +165,7 @@ const outcomes = [
 
 const Outcomes = () => {
   return (
-    <section id="features" className="scroll-mt-14 bg-background py-14 sm:scroll-mt-16 sm:py-20">
+    <section id="features" className="scroll-mt-14 bg-background py-20 sm:scroll-mt-16 sm:py-28">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mx-auto max-w-7xl">
           <Reveal className="mb-8 sm:mb-12">

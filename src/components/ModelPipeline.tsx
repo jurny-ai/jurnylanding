@@ -559,7 +559,7 @@ export default function ModelPipeline() {
   const pinned = mounted && !reducedMotion;
 
   return (
-    <section id="model" className="scroll-mt-14 border-b border-border bg-background pb-14 pt-8 sm:scroll-mt-16 sm:pb-20 sm:pt-10">
+    <section id="model" className="scroll-mt-14 border-b border-border bg-background pb-24 pt-16 sm:scroll-mt-16 sm:pb-32 sm:pt-20">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mx-auto max-w-7xl">
           <Reveal className="mb-8">

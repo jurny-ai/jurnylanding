@@ -43,11 +43,11 @@ const faqs = [
 
 const FAQ = () => {
   return (
-    <section id="faq" className="py-14 sm:py-20 bg-background scroll-mt-14 sm:scroll-mt-16" aria-labelledby="faq-title">
+    <section id="faq" className="py-20 sm:py-28 bg-background scroll-mt-14 sm:scroll-mt-16" aria-labelledby="faq-title">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <div>
-            <Reveal className="mb-8 sm:mb-12">
+            <Reveal className="mb-12 sm:mb-16">
               <h2
                 id="faq-title"
                 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground leading-tight"
