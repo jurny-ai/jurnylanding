@@ -42,7 +42,7 @@ export default function RootLayout({
     name: "jurny.ai",
     url: "https://usejurny.com",
     description:
-      "User model infrastructure for D2C teams. Jurny builds one model of your customers from qualitative and quantitative evidence, then runs synthetic users through your site to predict A/B test outcomes and diagnose cohort-level friction.",
+      "A data-driven customer simulation platform that predicts A/B test outcomes and diagnoses cohort-level friction before you spend traffic finding out.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     offers: {
