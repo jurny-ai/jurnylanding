@@ -186,4 +186,30 @@ All colors MUST be HSL.
     }
   }
 
+  /* Advisors strip: two copies of the list sit back to back in a wide flex
+     track, and the track scrolls exactly one copy's width so the loop reads
+     as continuous rather than resetting. */
+  .advisors-track {
+    animation: advisors-scroll 28s linear infinite;
+  }
+
+  .advisors-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes advisors-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .advisors-track {
+      animation: none;
+    }
+  }
+
 }

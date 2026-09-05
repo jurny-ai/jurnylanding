@@ -3,11 +3,13 @@ import Reveal from "@/components/Reveal";
 /**
  * A single static strip rather than a card row: three advisors is too few to
  * fill a section, and the credentials read fastest as one line high on the
- * page, while the reader is still deciding whether to trust us.
+ * page, while the reader is still deciding whether to trust us. The strip
+ * scrolls continuously rather than wrapping, since the credentials are too
+ * long to guarantee a single fixed line at every viewport width.
  */
 const ADVISORS = [
   { name: "Shrenik Shah", role: "Head of Product", company: "Wayfair" },
-  { name: "Sumita Daga", role: "Director", company: "Walmart" },
+  { name: "Amit Karmakar", role: "Director of Product", company: "PayPal" },
   { name: "Will Guyeskey", role: "Director of Digital", company: "GoPro" },
 ];
 
@@ -21,19 +23,21 @@ const Advisors = () => {
               Advised by
             </p>
 
-            <div className="flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-6 sm:gap-y-3">
-              {ADVISORS.map((advisor, i) => (
-                <div key={advisor.company} className="flex items-center gap-6">
-                  {i > 0 && (
-                    <span aria-hidden className="hidden h-1.5 w-1.5 shrink-0 bg-highlight sm:block" />
-                  )}
-                  <span className="text-lg font-medium tracking-tight text-foreground/70 sm:text-xl">
-                    <span className="font-semibold text-foreground">{advisor.name}</span>
-                    {", "}
-                    {advisor.role}, {advisor.company}
-                  </span>
-                </div>
-              ))}
+            <div className="w-full min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_2rem,black_calc(100%-2rem),transparent)]">
+              <div className="advisors-track flex w-max items-center gap-10">
+                {[...ADVISORS, ...ADVISORS].map((advisor, i) => (
+                  <div key={i} className="flex items-center gap-6">
+                    {i % ADVISORS.length > 0 && (
+                      <span aria-hidden className="h-1.5 w-1.5 shrink-0 bg-highlight" />
+                    )}
+                    <span className="whitespace-nowrap text-lg font-medium tracking-tight text-foreground/70 sm:text-xl">
+                      <span className="font-semibold text-foreground">{advisor.name}</span>
+                      {", "}
+                      {advisor.role}, {advisor.company}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </Reveal>
