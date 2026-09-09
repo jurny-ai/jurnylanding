@@ -9,7 +9,7 @@ import Reveal from "@/components/Reveal";
  */
 const ADVISORS = [
   { name: "Shrenik Shah", role: "Head of Product", company: "Wayfair" },
-  { name: "Amit Karmakar", role: "Director of Product", company: "PayPal" },
+  { name: "Sumita Daga", role: "Director", company: "Walmart" },
   { name: "Will Guyeskey", role: "Director of Digital", company: "GoPro" },
 ];
 
