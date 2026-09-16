@@ -36,11 +36,17 @@ const ARTICLE_LINKS: {
   isNew?: boolean;
 }[] = [
   {
+    href: "/articles/ab-testing-terms-i-wish-id-known-earlier",
+    label: "Terms I Wish I’d Known Earlier: 8 A/B Testing Concepts",
+    description:
+      "False positive risk, peeking, SRM, CUPED, and more, explained for teams who already run tests.",
+    isNew: true,
+  },
+  {
     href: "/articles/do-personas-improve-llm-ab-test-predictions",
     label: "Do Personas Improve LLM Predictions of A/B Test Winners?",
     description:
       "An exploratory test on historical Upworthy headlines: personas vs. one “typical” user.",
-    isNew: true,
   },
   {
     href: "/articles/what-makes-ab-testing-work-in-ecommerce",
@@ -168,7 +174,10 @@ const Header = () => {
                   <ChevronDown className="h-4 w-4 transition-transform duration-200 [[data-state=open]>&]:rotate-180" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-[340px] p-2">
+              <DropdownMenuContent
+                align="end"
+                className="w-[340px] p-2 max-h-[var(--radix-dropdown-menu-content-available-height)] overflow-y-auto"
+              >
                 <p className="px-3 pt-1.5 pb-2 text-[11px] font-bold uppercase tracking-widest text-foreground/45">
                   From the blog
                 </p>
