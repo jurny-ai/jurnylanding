@@ -175,15 +175,15 @@ export default function AbTestingConceptsPage() {
       </ConceptHeading>
       <p className="text-foreground/90 leading-relaxed">
         A p-value of 0.05 doesn&apos;t mean there&apos;s a 5% chance your result is wrong. The
-        number that matters is False Positive Risk: given a significant result, how likely is it
-        that nothing actually happened? It depends on how often your ideas work. With 95%
-        confidence, 80% power, and a 10% success rate,{" "}
+        number that matters is False Positive Risk: out of all the tests you declare winners, how
+        many are actually nothing? It depends on how often your ideas work. With 95% confidence,
+        80% power, and a 10% success rate,{" "}
         <strong className="text-primary font-semibold">22%</strong> of significant results are
         false positives <Cite id="src-1" label="[1]" />.
       </p>
       <p className="text-foreground/90 leading-relaxed">
         Now the real world. In practice, almost no program holds to 95% consistently. Many drop to
-        80% to learn faster, and the confidence level you actually run at changes the odds a lot:
+        80% to learn faster.
       </p>
 
       <div className="overflow-x-auto my-8">
@@ -216,16 +216,17 @@ export default function AbTestingConceptsPage() {
       </div>
 
       <p className="text-foreground/90 leading-relaxed">
-        At 80% confidence, roughly half your &ldquo;wins&rdquo; are noise. Loosening the threshold
-        can be a fine trade-off to learn faster, but make it knowingly.
+        Run the same math at 80% confidence and roughly half your &ldquo;wins&rdquo; are noise{" "}
+        <Cite id="calc-a" label="[A]" />. Loosening the threshold can be a fine trade-off, but make
+        it knowingly.
       </p>
 
       <ConceptHeading n={2} id="power-mde">
         Statistical Power and Minimum Detectable Effect (MDE)
       </ConceptHeading>
       <p className="text-foreground/90 leading-relaxed">
-        Power is your chance of catching a real effect. MDE is the smallest effect your test can
-        detect. Most teams set MDE backwards: they pick whatever makes the test length tolerable.
+        Power is your chance of catching a real effect when there is one. MDE is the smallest
+        change your test can actually see. Most teams set MDE backwards: they pick whatever makes the test length tolerable.
         Underpowered tests don&apos;t just miss real effects; the &ldquo;wins&rdquo; they do find
         are badly inflated. At 10% power, a significant result can overstate the true effect about{" "}
         <strong className="text-primary font-semibold">3.5x</strong> <Cite id="src-2" label="[2]" />.
@@ -258,7 +259,8 @@ export default function AbTestingConceptsPage() {
         Multiple Comparisons (and Slicing Results After the Fact)
       </ConceptHeading>
       <p className="text-foreground/90 leading-relaxed">
-        This is the one I hear about most. The test comes back flat overall, so the team slices it:
+        Multiple comparisons just means checking many things at once, and it&apos;s the trap I
+        hear about most. The test comes back flat overall, so the team slices it:
         mobile, new users, loyalty members, signed-in. Mobile shows a lift. Ship it for mobile?
       </p>
       <p className="text-foreground/90 leading-relaxed">
@@ -295,8 +297,8 @@ export default function AbTestingConceptsPage() {
         Overall Evaluation Criterion (OEC)
       </ConceptHeading>
       <p className="text-foreground/90 leading-relaxed">
-        Your OEC is the single metric that defines success, and it should predict long-term value,
-        not short-term clicks. The trap I hear about most is
+        Your OEC is the one number everyone agreed the test is trying to move, and it should
+        predict long-term value, not short-term clicks. The trap I hear about most is
         conversion rate. Conversion can rise while average order value falls, and you&apos;ve lost
         money on a &ldquo;winning&rdquo; test. That&apos;s why strong programs treat revenue per
         visitor as the primary metric, and fall back to conversion or funnel progress only when
@@ -311,9 +313,10 @@ export default function AbTestingConceptsPage() {
         CUPED (Variance Reduction)
       </ConceptHeading>
       <p className="text-foreground/90 leading-relaxed">
-        If traffic is your constraint, and for most teams it is, this is the most useful technique
-        people underuse. CUPED uses each user&apos;s behavior before the experiment to strip out
-        predictable noise. Eppo reports it lets teams finish experiments up to{" "}
+        CUPED uses what each user did before the experiment to strip predictable noise out of the
+        results, so the same traffic buys you a clearer read. If traffic is your constraint, and
+        for most teams it is, this is the most useful technique people underuse. Eppo reports it
+        lets teams finish experiments up to{" "}
         <strong className="text-primary font-semibold">65%</strong> faster{" "}
         <Cite id="src-5" label="[5]" />.
       </p>
@@ -327,7 +330,8 @@ export default function AbTestingConceptsPage() {
         Winner&apos;s Curse (and Why Wins Shrink)
       </ConceptHeading>
       <p className="text-foreground/90 leading-relaxed">
-        The variant that wins overstates its true impact. To clear the significance bar it needed a
+        The winner&apos;s curse is simple: the variant that wins overstates how much it really did.
+        To clear the significance bar it needed a
         real effect and some lucky noise, and the luck doesn&apos;t ship. The curse is worst in
         underpowered tests, and some teams now shrink reported lifts to correct for it.
       </p>
