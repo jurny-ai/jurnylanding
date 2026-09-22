@@ -36,11 +36,17 @@ const ARTICLE_LINKS: {
   isNew?: boolean;
 }[] = [
   {
+    href: "/articles/human-like-ai-focus-group",
+    label: "A More Human-Like AI Focus Group Isn’t Necessarily Better",
+    description:
+      "Why matching the variety of human behavior does not guarantee correct predictions.",
+    isNew: true,
+  },
+  {
     href: "/articles/ab-testing-terms-i-wish-id-known-earlier",
     label: "Terms I Wish I’d Known Earlier: 8 A/B Testing Concepts",
     description:
       "False positive risk, peeking, SRM, CUPED, and more, explained for teams who already run tests.",
-    isNew: true,
   },
   {
     href: "/articles/do-personas-improve-llm-ab-test-predictions",
