@@ -1,11 +1,13 @@
 "use client";
 
+import { ArrowDown, ArrowRight } from "lucide-react";
+
 import Reveal from "@/components/Reveal";
 
 const proofCards = [
   {
-    title: "rage clicks",
-    metric: "-53%",
+    title: "lift in key funnel completion",
+    metric: "+53%",
     context: "D2C education platform with 30,000 users",
   },
   {
@@ -48,12 +50,15 @@ const Results = () => {
                   <div className="grid min-h-[190px] bg-secondary p-6 text-left sm:p-7 xl:grid-cols-[1fr_auto_0.72fr] xl:items-center xl:gap-8">
                     <div>
                       <blockquote className="text-xl font-normal leading-snug tracking-tight text-foreground sm:text-2xl">
-                        Reduced a 1.25-month experiment cycle to a{" "}
-                        <span className="text-primary">single day with Jurny</span>.
+                        A/B tests that used to take{" "}
+                        <span className="text-primary">1.25 months</span> to converge.
                       </blockquote>
                     </div>
 
-                    <div className="my-4 h-px bg-border xl:my-0 xl:h-28 xl:w-px" />
+                    <div className="my-4 text-primary xl:my-0" aria-hidden="true">
+                      <ArrowDown className="h-8 w-8 xl:hidden" strokeWidth={1.5} />
+                      <ArrowRight className="hidden h-10 w-10 xl:block" strokeWidth={1.5} />
+                    </div>
 
                     <div className="xl:pl-2">
                       <p className="text-6xl font-semibold tracking-tight text-primary sm:text-7xl">
