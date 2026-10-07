@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
 };
 
-const APPLY_EMAIL = "sidd@usejurny.com";
+const APPLY_EMAIL = "careers@usejurny.com";
 
 type Role = {
   slug: string;
