@@ -39,6 +39,27 @@ const Footer = () => {
             </div>
           </Reveal>
 
+          <nav
+            aria-label="Contact emails"
+            className="mt-8 flex flex-col items-center gap-2 text-sm sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-8"
+          >
+            {[
+              ["Support", "support@usejurny.com"],
+              ["Privacy", "privacy@usejurny.com"],
+              ["Security", "security@usejurny.com"],
+            ].map(([label, email]) => (
+              <a
+                key={email}
+                href={`mailto:${email}`}
+                className="inline-flex min-h-11 flex-wrap items-center justify-center gap-x-2 text-foreground/70 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                onClick={() => track("nav_footer_clicked", { label: `${label} email` })}
+              >
+                <span className="font-medium">{label}:</span>
+                <span>{email}</span>
+              </a>
+            ))}
+          </nav>
+
           <div className="mt-10 flex flex-col items-center gap-4 border-t border-border pt-6 text-sm text-foreground/40 sm:mt-16 sm:flex-row sm:justify-between sm:pt-8">
             <span>© 2026 Jurny AI, Inc. All rights reserved.</span>
             <nav aria-label="Footer" className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
