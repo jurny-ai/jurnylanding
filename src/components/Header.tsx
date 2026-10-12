@@ -369,6 +369,14 @@ const Header = () => {
                       Careers
                     </Link>
                   </SheetClose>
+                  <SheetClose asChild>
+                    <Link
+                      href="/support"
+                      className="block px-3 py-3.5 text-base font-medium text-foreground rounded-xl hover:bg-secondary transition-colors"
+                    >
+                      Support
+                    </Link>
+                  </SheetClose>
                 </nav>
               </div>
 

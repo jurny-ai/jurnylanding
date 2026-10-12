@@ -39,15 +39,25 @@ const Footer = () => {
             </div>
           </Reveal>
 
-          <div className="mt-10 flex flex-col items-center gap-4 border-t border-border pt-6 text-sm text-foreground/40 sm:mt-16 sm:flex-row sm:justify-between sm:pt-8 sm:text-base">
+          <div className="mt-10 flex flex-col items-center gap-4 border-t border-border pt-6 text-sm text-foreground/40 sm:mt-16 sm:flex-row sm:justify-between sm:pt-8">
             <span>© 2026 Jurny AI, Inc. All rights reserved.</span>
-            <Link
-              href="/careers"
-              className="font-medium text-foreground/60 transition-colors hover:text-foreground"
-              onClick={() => track("nav_footer_clicked", { label: "Careers" })}
-            >
-              Careers
-            </Link>
+            <nav aria-label="Footer" className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+              {[
+                ["Careers", "/careers"],
+                ["Support", "/support"],
+                ["Privacy", "/privacy"],
+                ["Terms", "/terms"],
+              ].map(([label, href]) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="font-medium text-foreground/60 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  onClick={() => track("nav_footer_clicked", { label })}
+                >
+                  {label}
+                </Link>
+              ))}
+            </nav>
           </div>
         </div>
       </div>
