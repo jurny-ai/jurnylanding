@@ -67,6 +67,7 @@ const Footer = () => {
                 ["Careers", "/careers"],
                 ["Support", "/support"],
                 ["Privacy", "/privacy"],
+                ["Subprocessors", "/privacy#subprocessors"],
                 ["Terms", "/terms"],
               ].map(([label, href]) => (
                 <Link

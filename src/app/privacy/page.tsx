@@ -125,6 +125,56 @@ const sections: PolicySection[] = [
     ),
   },
   {
+    id: "subprocessors",
+    title: "Customer personal data subprocessors",
+    content: (
+      <>
+        <p>
+          Jurny uses the following third-party service providers to process customer personal data
+          on its behalf in connection with delivering the Jurny service.
+        </p>
+        <p className="text-sm text-muted-foreground">List last updated: October 13, 2026</p>
+        <table className="w-full table-fixed border-collapse text-left text-sm leading-6">
+          <caption className="sr-only">
+            Jurny customer personal data subprocessors, their purposes, and the data they process
+          </caption>
+          <thead>
+            <tr className="border-b border-border">
+              <th scope="col" className="w-1/4 py-3 pr-3 font-semibold text-foreground">Provider</th>
+              <th scope="col" className="w-1/3 py-3 pr-3 font-semibold text-foreground">Purpose</th>
+              <th scope="col" className="py-3 font-semibold text-foreground">Personal data processed</th>
+            </tr>
+          </thead>
+          <tbody className="[&_td]:break-words">
+            <tr className="border-b border-border">
+              <th scope="row" className="break-words py-4 pr-3 align-top font-medium text-foreground">Supabase</th>
+              <td className="py-4 pr-3 align-top">Hosting Jurny’s application database and storing account and organization records</td>
+              <td className="py-4 align-top">User identifiers, email addresses, and associated account and organization information</td>
+            </tr>
+            <tr className="border-b border-border">
+              <th scope="row" className="break-words py-4 pr-3 align-top font-medium text-foreground">Google — Firebase Authentication</th>
+              <td className="py-4 pr-3 align-top">Account registration, authentication, and sign-in management</td>
+              <td className="py-4 align-top">Email addresses, user identifiers, profile names where provided, and authentication-related information</td>
+            </tr>
+            <tr className="border-b border-border">
+              <th scope="row" className="break-words py-4 pr-3 align-top font-medium text-foreground">DigitalOcean</th>
+              <td className="py-4 pr-3 align-top">Cloud infrastructure hosting and processing for the Jurny service</td>
+              <td className="py-4 align-top">Personal data transmitted to or processed by the hosted service, including IP addresses, request metadata, and account identifiers where present in application requests or logs</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          The personal data processed depends on the features used and information provided when
+          creating and managing an account or using the Services.
+        </p>
+        <p>
+          Customers may contact their existing Jurny support channel or {privacyEmail} with questions
+          about these providers or their processing activities.
+        </p>
+      </>
+    ),
+  },
+  {
     id: "security",
     title: "Security",
     content: (
@@ -194,7 +244,7 @@ export default function PrivacyPage() {
       eyebrow="Legal"
       title="Jurny Platform Privacy Policy"
       description="Jurny AI, Inc. (“Jurny,” “we,” “us,” or “our”) provides a platform for customer simulation, custom model training, and related analysis (the “Services”). This Privacy Policy explains how we handle information when business customers and their authorized users use the Services, including data customers provide for training and simulation."
-      updated="October 2, 2026"
+      updated="October 13, 2026"
       sections={sections}
     />
   );
